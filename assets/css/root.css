@@ -12,7 +12,7 @@
     --color-primary: #C52525;
     --color-primary-light: #D12828;
     --color-primary-lighter: #e85d6d;
-    --color-primary-very-light: #f4d3d8;
+
     --color-primary-hover: #851919;
     --color-secondary-dark: #000042;
     --color-secondary: #00005B;
@@ -84,9 +84,9 @@
     --btn-outline-hover-bg: var(--color-primary-light);
     --btn-outline-hover-text: var(--color-white);
 
-    --btn-soft-bg: var(--color-primary-very-light);
+    --btn-soft-bg: var(--color-primary-lighter);
     --btn-soft-text: var(--color-primary);
-    --btn-soft-hover-bg: var(--color-primary-lighter);
+    --btn-soft-hover-bg: var(--color-primary-light);
 
     /* ================================
      🃏 CARDS SYSTEM
