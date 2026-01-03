@@ -6,14 +6,14 @@
 }
 
 :root {
-  --background: #450d0d;
+  --background-footer: #450d0d;
 }
 
 /* -- footer --------------------------------------------------------------------------------------- */
 
 footer {
   margin-top: 100px;
-  background-color: var(--background);
+  background-color: var(--background-footer);
   /* background-color: var(--color-primary-dark); */
 }
 
