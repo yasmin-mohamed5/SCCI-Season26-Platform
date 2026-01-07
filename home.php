@@ -24,8 +24,10 @@
 
     <!-- css page link -->
     <link rel="stylesheet" href="./assets/css/home.css">
+    <!-- AOS library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <title>Document</title>
+    <title>Home</title>
 </head>
 
 <body>
@@ -72,7 +74,7 @@
                             <img src="assets/img/workshopCard.png" alt="Workshops" loading="lazy">
                             <div class="cardContent">
                                 <p class="cardText">OUR WORKSHOPS</p>
-                                <img src="assets/img/workShopsLogo.png" alt="Workshops">
+                                <img src="assets/img/workShopsLogo.jpg" alt="Workshops">
                                 <a href="workshops.php" class="btn btn-primary btn-sm">
                                     Explore More
                                 </a>
@@ -90,7 +92,7 @@
                             <img src="assets/img/workshopCard.png" alt="Crew" loading="lazy">
                             <div class="cardContent">
                                 <p class="cardText">OUR CREW</p>
-                                <img src="assets/img/workShopsLogo.png" alt="Crew">
+                                <img src="assets/img/workShopsLogo.jpg" alt="Crew">
                                 <a href="crew.php" class="btn btn-primary btn-sm">
                                     Explore More
                                 </a>
@@ -252,7 +254,19 @@
     </section>
 
     <script src="../assets/js/all.min.js" defer></script>
-    <script src="./assets/js/home.validation.js"></script>
+    <script src="./assets/js/home.validation.js" defer></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+
+            once: true,
+
+            offset: 100,
+
+            easing: 'ease-in-out',
+        });
+    </script>
 </body>
 
 </html>
