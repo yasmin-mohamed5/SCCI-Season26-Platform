@@ -12,10 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/root.css">
+     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/gallary.css">
+      <link rel="stylesheet" href="assets/css/footer.css" >
+
 </head>
 
 <body>
+<?php include 'includes/nav.php'; ?>
 
     <main>
 

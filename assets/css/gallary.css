@@ -2,15 +2,15 @@
 @import url(root.css);
 
 footer {
-    position: static;
-    margin-top: auto;
+    position: relative;
+    z-index: 10;
 }
+
 
 body {
     margin: 0;
     padding: 0;
     background-color: #e5c8a4;
-    display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -24,7 +24,6 @@ body {
 
 main {
     width: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     flex: 1;
@@ -588,7 +587,7 @@ main {
     display: flex;
     justify-content: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     pointer-events: none;
 }
 
@@ -878,7 +877,7 @@ main {
 .modalText {
     font-family: 'Irish Grover', cursive;
     color: #8b4513;
-    font-size: 1.2rem;
+    font-size: 15px;
     margin-bottom: 5px;
     text-align: center;
     opacity: 0.9;
