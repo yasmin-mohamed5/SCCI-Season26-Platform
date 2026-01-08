@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Gallery</title>
+    <title>SCCI-Gallery</title>
+    <link rel="icon" href="assets/icons/logoSCCI.png" type="image/png">
+
     <!-- font  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +72,7 @@
                 </figure>
                 <div class="pageText textLeft">click on the image</div>
                 <figure class="imageFrame right">
-\                    <img id="bookImageRight" src="assets/img/opening/book2.jpg" alt="Magic Content Right"
+                    <img id="bookImageRight" src="assets/img/opening/book2.jpg" alt="Magic Content Right"
                         loading="lazy">
                     <!-- <div class="comingSoonText">Soon</div> -->
                     <div class="flashOverlay"></div>
@@ -82,7 +84,11 @@
 
         <!-- ================= Slider Section ================= -->
         <section class="eventsSection" aria-label="Events">
-            <h2 class="eventsTitle">Events Slider</h2>
+            <div class="eventsHeader">
+                <div class="dividerLine left"></div>
+                <h2 class="eventsTitle">Our Events</h2>
+                <div class="dividerLine right"></div>
+            </div>
             <div class="sliderContainer">
                 <button class="sliderBtn prev" aria-label="Previous Slide"></button>
                 <div class="cardsWrapper">
@@ -111,12 +117,33 @@
                 <button class="sliderBtn next" aria-label="Next Slide"></button>
             </div>
         </section>
+        <div class="sectionDivider" id="cardsDivider"></div>
         <!-- ================= Cards Section ================= -->
         <section class="polaroidGallery" aria-label="Photo Gallery">
             <div class="polaroidContainer" id="cardsContainer">
 
             </div>
         </section>
+
+
+        <!-- ================= Coming Soon Popup ================= -->
+        <div id="comingSoonModal" class="modalOverlay" aria-hidden="true">
+            <div class="modalContent card">
+                <h2 class="modalTitle">Coming Soon</h2>
+                <div class="sectionDivider"></div>
+                <div class="modalBody">
+                    <p class="modalText">We are preparing something magical for you.</p>
+                </div>
+                <button id="closeModalBtn" class="btn btnPrimary" style="width: 100%; margin-top: 20px;">Go
+                    Back</button>
+            </div>
+        </div>
+        <!-- ================= Lightbox Modal ================= -->
+        <div id="lightboxModal" class="lightboxOverlay" aria-hidden="true">
+            <span class="lightboxClose">&times;</span>
+            <img id="lightboxImage" class="lightboxImage" src="" alt="Magnified View">
+        </div>
+
 
 
     </main>
