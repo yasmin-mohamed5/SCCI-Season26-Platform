@@ -130,7 +130,7 @@ footer h3::after {
 }
 
 footer p {
-  margin-top: 6px;
+  margin: 6px;
   font-size: 13px;
   color: var(--color-gray-lighter);
 }
@@ -188,3 +188,4 @@ footer p {
     width: 210px !important;
   }
 }
+
