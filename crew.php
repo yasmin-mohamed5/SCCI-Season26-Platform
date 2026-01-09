@@ -12,8 +12,6 @@ include './includes/config.php';
     <link rel="icon" href="./assets/icons/logoSCCI.png" type="image/png">
     <link rel="stylesheet" href="./assets/css/root.css" />
     <link rel="stylesheet" href="./assets/css/crew.css" />
-    <link rel="stylesheet" href="./assets/css/navbar.css" />
-    <link rel="stylesheet" href="./assets/css/footer.css" />
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- font  -->
@@ -23,9 +21,7 @@ include './includes/config.php';
 </head>
 
 <body >
-<?php
-include './includes/nav.php';
-?>
+<?php include './includes/nav.php'; ?>
 
 
     <section class="sectionBlock container">
@@ -38,7 +34,7 @@ include './includes/nav.php';
                         <img src="./assets/img/backCardCrew.png" loading="lazy" alt="President" />
                     </div>
                     <div class="flipSide flipBack">
-                        <img src="./assets/img/crewFrontCard.png" loading="lazy" alt="Details" />
+
                     </div>
                 </div>
             </div >
@@ -75,7 +71,7 @@ include './includes/nav.php';
                             <img src="./assets/img/backCardCrew.png" loading="lazy">
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/img/crewFrontCard.png" loading="lazy">
+
                         </div>
                     </div>
                      
@@ -90,7 +86,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card1" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>
                        <a href="crewDetails.php?committee_id=6" class="btn btnPrimary btnSm">Discover More</a>
@@ -101,7 +97,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card2" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>
                        <a href="crewDetails.php?committee_id=7" class="btn btnPrimary btnSm">Discover More</a>
@@ -112,7 +108,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card3" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>   
                        <a href="crewDetails.php?committee_id=10" class="btn btnPrimary btnSm">Discover More</a>
@@ -123,7 +119,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card4" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>   
                        <a href="crewDetails.php?committee_id=5" class="btn btnPrimary btnSm">Discover More</a>
@@ -139,7 +135,7 @@ include './includes/nav.php';
                             <img src="./assets/img/backCardCrew.png" alt="Academic" />
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/img/crewFrontCard.png" loading="lazy">
+
                         </div>
                     </div>
                 </div>
@@ -154,7 +150,7 @@ include './includes/nav.php';
                             <img src="./assets/img/backCardCrew.png" alt="HR" />
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/img/crewFrontCard.png" loading="lazy">
+
                         </div>
                     </div>
                 </div>
@@ -170,7 +166,7 @@ include './includes/nav.php';
                             <img src="./assets/img/backCardCrew.png" loading="lazy">
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/img/crewFrontCard.png" loading="lazy">
+
                         </div>
                     </div>
                 </div>
@@ -184,7 +180,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card1" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>   
                        <a href="crewDetails.php?committee_id=4" class="btn btnPrimary btnSm">Discover More</a>
@@ -195,7 +191,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card2" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>   
                        <a href="crewDetails.php?committee_id=9" class="btn btnPrimary btnSm">Discover More</a>
@@ -206,7 +202,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card3" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>   
                        <a href="crewDetails.php?committee_id=8" class="btn btnPrimary btnSm">Discover More</a>
@@ -217,7 +213,7 @@ include './includes/nav.php';
                        <div class="flipCard smCard card4" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
-                               <div class="flipSide flipBack"><img src="./assets/img/crewFrontCard.png" loading="lazy"></div>
+                               <div class="flipSide flipBack"></div>
                            </div>
                        </div>   
                        <a href="crewDetails.php?committee_id=11" class="btn btnPrimary btnSm">Discover More</a>
@@ -244,6 +240,14 @@ include './includes/nav.php';
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false,
+            offset: 50,
+            duration: 1000,
+            easing: 'ease-in-out'
+        });
+    </script>
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/crew.js"></script>
 </body>

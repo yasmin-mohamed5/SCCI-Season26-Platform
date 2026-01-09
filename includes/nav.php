@@ -45,5 +45,3 @@ include(__DIR__ . '/config.php');
         </a>
     </div>
 </aside>
-
-<script src="/SCCI-Season26-Platform/assets/js/nav.js" defer></script>

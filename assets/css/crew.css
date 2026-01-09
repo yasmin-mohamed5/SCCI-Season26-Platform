@@ -47,8 +47,8 @@
 }
 
 @media (max-width: 992px) {
-  
- /* to make it one column */
+
+  /* to make it one column */
   .presidentGrid {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -57,17 +57,18 @@
 
   /* fix the card*/
   .presidentGrid .flipCard {
-    max-width: 260px; /* make the paper smaller*/
+    max-width: 260px;
+    /* make the paper smaller*/
     margin: 0 auto;
   }
 
   /* fix the paper*/
   .paperScroll {
-    width: 95%; 
+    width: 95%;
     max-width: 400px;
     margin: 0 auto;
-    padding: 140px 25px 130px 25px; 
-    height: auto; 
+    padding: 140px 25px 130px 25px;
+    height: auto;
     min-height: auto;
     background-size: 100% 100%;
   }
@@ -81,14 +82,14 @@
   }
 
   .paperTitle {
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
     margin-bottom: 8px;
     margin-top: 0;
     line-height: 1.1;
   }
 
   .paperScroll p.textPrimary {
-    font-size: 0.85rem; 
+    font-size: 0.85rem;
     line-height: 1.5;
     font-weight: 700;
     text-align: center;
@@ -98,6 +99,18 @@
 }
 
 /* ===== High Board Grid ===== */
+
+/* Base grid styling */
+.cards-grid,
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
 
 /* Force 2 columns on desktop for a balanced 2x2 layout */
 @media (min-width: 992px) {
@@ -109,7 +122,7 @@
     margin-inline: auto;
     gap: var(--space-10);
   }
-  
+
 }
 
 .boardItem {
@@ -215,12 +228,51 @@
 }
 
 .flipBack {
-  background-color: var(--color-secondary-dark);
-  /* Dark background to replace white */
-  border: 4px double var(--color-parchment);
-  /* Gold/Parchment double border */
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.7);
+  background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-primary-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
   transform: rotateY(180deg);
+}
+
+/* Decorative Stars */
+.flipBack::before,
+.flipBack::after {
+  content: '✦';
+  position: absolute;
+  color: var(--color-warning);
+  font-size: 2rem;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.flipBack::before {
+  top: 20px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.flipBack::after {
+  bottom: 20px;
+  right: 20px;
+  animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
 }
 
 /* ===== Side Labels (Restored) ===== */
