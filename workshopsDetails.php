@@ -37,6 +37,7 @@ if (isset($_GET['category_id'])) {
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/root.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/navbar.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/workshops.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/workshopsDetails.css?v=<?php echo time(); ?>">
     <!-- Custom Page Styles -->
@@ -48,6 +49,7 @@ if (isset($_GET['category_id'])) {
 <body>
 
     <!-- Navigation -->
+    <?php include 'includes/nav.php'; ?>
 
 
     <main>
@@ -204,5 +206,5 @@ if (isset($_GET['category_id'])) {
         });
     </script>
 </body>
-
+<?php include 'includes/footer.php'; ?>
 </html>

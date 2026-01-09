@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <!-- Root -->
   <link rel="stylesheet" href="assets/css/root.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="assets/css/navbar.css">
+  <link rel="stylesheet" href="assets/css/footer.css">
   <link rel="stylesheet" href="assets/css/all.min.css">
   <link rel="stylesheet" href="assets/css/profile.css?v=<?php echo time(); ?>">
   <script src="assets/js/profile.js"></script>
@@ -56,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+<?php include './includes/nav.php'; ?>
 
   <section class="profileSection">
     <article class="profileCard">
@@ -250,6 +253,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
   </section>
   </main>
+
+  <?php include './includes/footer.php'; ?>
 
   <script src="assets/js/profile.js" defer></script>
   <script src="assets/js/all.min.js" defer></script>

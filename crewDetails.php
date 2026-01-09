@@ -29,6 +29,8 @@ if(isset($_GET['committee_id'])) {
     <title>SCCI - crewDetails</title>
     <link rel="icon" href="./assets/icons/logoSCCI.png" type="image/png">
     <link rel="stylesheet" href="./assets/css/root.css" />
+    <link rel="stylesheet" href="./assets/css/navbar.css" />
+    <link rel="stylesheet" href="./assets/css/footer.css" />
     <link rel="stylesheet" href="./assets/css/crewDetails.css" />
      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- font  -->
@@ -38,6 +40,7 @@ if(isset($_GET['committee_id'])) {
 </head>
 
 <body>
+<?php include './includes/nav.php'; ?>
 
       <!-- Back Button -->
     <a href="crew.php" class="backButton" aria-label="Go back to crew page">
@@ -142,4 +145,5 @@ if(isset($_GET['committee_id'])) {
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/crew.js"></script>
 </body>
+<?php include './includes/footer.php'; ?>
 </html>
