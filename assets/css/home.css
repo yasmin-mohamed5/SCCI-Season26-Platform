@@ -5,6 +5,8 @@
   font-family: "Almendra", serif;
 }
 
+
+
 /* home components */
 
 .form-content::before {
@@ -49,15 +51,26 @@
 .heroSection {
   position: relative;
   height: 110vh;
-  background: url(../img/homeHeroSection.png);
+  background: url(../img/home/Artboard.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
 }
 
-.heroSection img {
+.heroSection::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
   height: 100%;
-  width: 100%;
+  background: url(../img/home/Column.png);
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  transition: all 0.3s ease;
 }
 
 .heroContainer {
@@ -178,8 +191,8 @@
 
 /*  animation apply  */
 
-.cardsContainer.aos-animate .flipCard {
-  animation: flip 1.2s 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+[data-aos].aos-animate .flipCard {
+  animation: flip 1.2s 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes flip {
@@ -392,6 +405,10 @@ select {
   .workshopCardsGrid {
     gap: var(--space-6);
   }
+
+  .heroSection::after {
+    width: 55%;
+  }
 }
 
 @media (max-width: 850px) {
@@ -438,6 +455,10 @@ select {
 @media (max-width: 700px) {
   .heroSection {
     height: 100vh;
+  }
+
+  .heroSection::after {
+    width: 60%;
   }
 
   .heroContainer {
@@ -529,6 +550,10 @@ select {
     min-width: 150px;
   }
 
+  .heroSection::after {
+    width: 70%;
+  }
+
   .heroContainer {
     width: 90%;
   }
@@ -563,6 +588,10 @@ select {
 }
 
 @media (max-width: 380px) {
+  .heroSection::after {
+    width: 75%;
+  }
+
   .heroContainer h1 {
     font-size: var(--fs-lg);
   }

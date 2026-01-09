@@ -1,29 +1,3 @@
-// Scroll To Top Functionality
-const scrollTopBtn = document.getElementById('scrollTopBtn');
-
-if (scrollTopBtn) {
-    // Get the first section to determine when to show the button
-    const firstSection = document.querySelector('.workshopsHero');
-
-    window.addEventListener('scroll', () => {
-        if (firstSection) {
-            const firstSectionHeight = firstSection.offsetHeight;
-
-            if (window.pageYOffset > firstSectionHeight) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
-            }
-        }
-    });
-
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
 
 // Workshop Journey Navigation
 document.addEventListener('DOMContentLoaded', function () {

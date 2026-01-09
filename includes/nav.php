@@ -69,3 +69,4 @@ if(isset($_SESSION['user_id'])){
         <?php endif; ?>
     </div>
 </aside>
+<script src="/SCCI-Season26-Platform/assets/js/index.js"></script>

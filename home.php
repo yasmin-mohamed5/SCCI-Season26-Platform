@@ -28,7 +28,8 @@
     <!-- AOS library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <title>Home</title>
+
+    <title>SCCI - Home</title>
 </head>
 
 <body>
@@ -36,31 +37,31 @@
     <!-- Main Hero section -->
     <section class="heroSection">
         <div class="heroContainer">
-            <h1 data-aos="fade-down" data-aos-duration="1000">seek the peak</h1>
-            <hr data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            <h1>seek the peak</h1>
+            <hr>
+            <p>
                 SCCI is an abbreviation for Student's Conference for Communication and Information,
                 which helps you in bringing the gap between the technical life and the practical
                 life in the market place. You can know more about our organization right here.
             </p>
-            <a href="./about.php" class="submit-btn homeBtn" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">explore more</a>
+            <a href="./about.php" class="submit-btn homeBtn">explore more</a>
         </div>
     </section>
 
     <!-- Main About section -->
-    <section class="aboutSection">
+    <section  class="aboutSection">
         <div class="aboutContainer">
-            <h1 data-aos="fade-down" data-aos-duration="1000">about us</h1>
-            <hr data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
-            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            <h1>about us</h1>
+            <hr>
+            <p>
                 SCCI is a typical simulation of the outside real life. A one eventful
                 experience that will stay in your heart & you'll watch it in your
                 personality developmentand that is what SCCI is all about, unleashing your
             </p>
-            <a href="./about.php" class="submit-btn homeBtn" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="600">explore more</a>
+            <a href="./about.php" class="submit-btn homeBtn">explore more</a>
         </div>
-        <img class="aboutBG" loading="lazy" src="./assets/img/paperHome.png" alt="" data-aos="fade-left" data-aos-duration="1200">
-        <img class="aboutBGresponsive" loading="lazy" src="./assets/img/paperHomeResponsive.png" alt="" data-aos="fade-left" data-aos-duration="1200">
+        <img class="aboutBG" loading="lazy" src="./assets/img/paperHome.png" alt="">
+        <img class="aboutBGresponsive" loading="lazy" src="./assets/img/paperHomeResponsive.png" alt="">
     </section>
 
     <!-- Main Cards -->
@@ -114,31 +115,31 @@
 
         <!-- title -->
         <div class="homeTitles">
-            <h1 data-aos="fade-down" data-aos-duration="1000">scci statistics</h1>
-            <hr data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+            <h1>scci statistics</h1>
+            <hr>
         </div>
 
         <div class="statContainer">
             <!-- stats container -->
-            <div class="stat" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+            <div class="stat">
                 <img loading="lazy" src="./assets/img/stat-calender.png" alt="">
                 <h4 class="statNumber">21</h4>
                 <h4 class="statUnit">years</h4>
             </div>
 
-            <div class="stat" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+            <div class="stat">
                 <img loading="lazy" src="./assets/img/stat-members.png" alt="">
                 <h4 class="statNumber">300</h4>
                 <h4 class="statUnit">participants</h4>
             </div>
 
-            <div class="stat" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+            <div class="stat">
                 <img loading="lazy" src="./assets/img/stat-participant.png" alt="">
                 <h4 class="statNumber">200</h4>
                 <h4 class="statUnit">members</h4>
             </div>
 
-            <div class="stat" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+            <div class="stat">
                 <img loading="lazy" src="./assets/img/stat-session.png" alt="">
                 <h4 class="statNumber">16</h4>
                 <h4 class="statUnit">sessions</h4>
@@ -152,15 +153,15 @@
 
         <!-- title -->
         <div class="homeTitles">
-            <h1 data-aos="fade-down" data-aos-duration="1000">our sponsors</h1>
-            <hr data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+            <h1>our sponsors</h1>
+            <hr>
         </div>
 
         <!-- sponsors container -->
         <div class="sponsorContainer">
 
             <!-- sponsor card -->
-            <div class="sponsor" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="100">
+            <div class="sponsor">
                 <img loading="lazy" src="./assets/img/sponsorBackground1.1.png" alt="">
 
                 <div class="sponsorInfo">
@@ -173,7 +174,7 @@
             </div>
 
             <!-- sponsor card -->
-            <div class="sponsor" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="300">
+            <div class="sponsor">
                 <img loading="lazy" src="./assets/img/sponsorBackground1.1.png" alt="">
 
                 <div class="sponsorInfo">
@@ -186,7 +187,7 @@
             </div>
 
             <!-- sponsor card -->
-            <div class="sponsor" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="500">
+            <div class="sponsor">
                 <img loading="lazy" src="./assets/img/sponsorBackground1.1.png" alt="">
 
                 <div class="sponsorInfo">
@@ -207,12 +208,12 @@
     <section class="homeContactUs">
         <!-- title -->
         <div class="homeTitles">
-            <h1 data-aos="fade-down" data-aos-duration="1000">contact us</h1>
-            <hr data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+            <h1>contact us</h1>
+            <hr>
         </div>
         <div class="contactUsContainer">
 
-            <div class="homeContactPaper" data-aos="fade-right" data-aos-duration="1200">
+            <div class="homeContactPaper">
 
                 <div class="contactText">
                     Keep In Touch
@@ -224,7 +225,7 @@
 
             </div>
 
-            <form class="form-content" id="form" action="" method="POST" enctype="multipart/form-data" data-aos="fade-left" data-aos-duration="1200">
+            <form class="form-content" id="form" action="" method="POST" enctype="multipart/form-data">
                 <img class="homeBird" loading="lazy" src="./assets/img/bird.png" alt="">
 
 
@@ -259,18 +260,8 @@
 
     <script src="./assets/js/all.min.js" defer></script>
     <script src="./assets/js/home.validation.js" defer></script>
-    <!-- AOS -->
+     <!-- AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            once: false,
-            offset: 50,
-            duration: 1000,
-            easing: 'ease-in-out',
-            delay: 0,
-            mirror: true
-        });
-    </script>
 </body>
 
 </html>
