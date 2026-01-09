@@ -50,11 +50,18 @@
 
       <div class="contactForm footerForm">
         <h3>Our Committees</h3>
-        <section>
-          <a href="../workshopsDetails.php">devolgy</a>
-          <a href="../workshopsDetails.php">market</a>
-          <a href="../workshopsDetails.php">data station</a>
-          <a href="../workshopsDetails.php">tech solve</a>
+        <section class="footerCrew">
+          <a href="../crewDetails.php">AC</a>
+          <a href="../crewDetails.php">IT</a>
+          <a href="../crewDetails.php">MP</a>
+          <a href="../crewDetails.php">DD</a>
+          <a href="../crewDetails.php">HR</a>
+          <a href="../crewDetails.php">more..</a>
+          <!-- <a href="../crewDetails.php">MC</a>
+          <a href="../crewDetails.php">PR</a>
+          <a href="../crewDetails.php">CR</a>
+          <a href="../crewDetails.php">LOGISTICS</a>
+          <a href="../crewDetails.php">BD</a> -->
         </section>
       </div>
 
