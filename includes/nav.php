@@ -1,6 +1,6 @@
 <header>
     <a href="./home.php" class="logo">
-        <img src="./assets/icons/logoSCCI.png" alt="" loading="lazy" />
+        <img src="./assets/icons/logoSCCI.png" alt="SCCI logo" loading="lazy" />
         <h1>SCCI</h1>
     </a>
     <nav class="navLinks navRespnsive">
@@ -12,14 +12,13 @@
     </nav>
     <nav class="navAccount navRespnsive">
         <a href="./auth/login.php" id="loginNav">Log In</a>
-        <!-- profile -->
         <a href="./profile.php" id="profileNav">
-            <img src="./assets/img/profilePhoto.png" alt="">
+            <img loading="lazy" src="./assets/img/profilePhoto.png" alt="profile img">
         </a>
     </nav>
-    <!-- side navbar btn -->
     <button class="sideBtn"><i class="fa-solid fa-bars sideBars"></i></button>
 </header>
+
 <!-- side navbar -->
 <aside class="sideNav">
     <div class="sideNavLinks">
@@ -30,14 +29,12 @@
         <a href="./gallery.php"><i class="fa-solid fa-images"></i> gallery</a>
         <a href="./workshops.php"><i class="fa-solid fa-graduation-cap"></i> workshops</a>
         <a href="./crew.php"><i class="fa-solid fa-users"></i> crew</a>
-        <!-- login -->
         <a href="./auth/login.php"><i class="fa-solid fa-user"></i> LogIn</a>
-        <!-- profile -->
         <hr>
         <a href="./profile.php" id="profileNav">
-            <img src="./assets/img/profilePhoto.png" alt="">
+            <img loading="lazy" src="./assets/img/profilePhoto.png" alt="profile img">
         </a>
     </div>
 </aside>
-<!-- navbar js -->
-<script src="./assets/js/navbar.js"></script>
+
+<script src="./assets/js/nav.js" defer></script>
