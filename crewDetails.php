@@ -1,0 +1,145 @@
+<?php
+include './includes/config.php';
+
+if(isset($_GET['committee_id'])) {
+    $committee_id = $_GET['committee_id'];
+
+    // Fetch committee details
+    $select_committee = "SELECT committe_name, head_id, committee_description FROM committees WHERE committee_id = '$committee_id'";
+    $run_committee = mysqli_query($connect, $select_committee);
+    $committee = mysqli_fetch_assoc($run_committee);
+
+    // Fetch head details
+    $head_id = $committee['head_id'];
+    $select_head = "SELECT user_name, image FROM users WHERE user_id = '$head_id'";
+    $run_head = mysqli_query($connect, $select_head);
+    $head = mysqli_fetch_assoc($run_head);
+
+    // Fetch members
+    $select_members = "SELECT u.user_id, u.user_name, w.workshop_name FROM users u JOIN workshops w ON u.workshop_id = w.workshop_id WHERE u.committee_id = '$committee_id' AND u.user_id != '$head_id' And status=1 " ;
+    $members = mysqli_query($connect, $select_members);
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCCI - crewDetails</title>
+    <link rel="icon" href="./assets/icons/logoSCCI.png" type="image/png">
+    <link rel="stylesheet" href="./assets/css/root.css" />
+    <link rel="stylesheet" href="./assets/css/crewDetails.css" />
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+      <!-- Back Button -->
+    <a href="crew.php" class="backButton" aria-label="Go back to crew page">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        <span>Back</span>
+    </a>
+
+    <!-- Committee Details Section -->
+    <section class="sectionBlock container">
+        <div class="titleWrapper" data-aos="fade-down">
+            <h1 class="mainTitle">
+                <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
+                <span class="textDark">Head</span>
+            </h1>
+            <div class="sectionDivider"></div>
+        </div>
+
+        <div class="headLayout">
+            <div class="flipCard headCard smCard" data-aos="flip">
+                <div class="flipInner">
+                    <div class="flipSide flipFront">
+                        <img src="./assets/img/backCardCrew.png" loading="lazy" alt="Head" />
+                    </div>
+                    <div class="flipSide flipBack">
+                        <div class="card" style="width: 18rem;">
+  <img src="<?php echo $head['image']; ?>" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title"><?php echo $head['user_name']; ?></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"></li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">profile</a>
+  </div>
+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paperScroll" data-aos="fade-left">
+                <div class="paperContent">
+                    <h2 class="paperTitle">Job Description</h2>
+                    <p class="paperText">
+               <?php echo $committee['committee_description']; ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sectionBlock container">
+        <div class="titleWrapper" data-aos="fade-up">
+            <h1 class="mainTitle">
+                <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
+                <span class="textDark">Members</span>
+            </h1>
+            <div class="sectionDivider"></div>
+        </div>
+
+        <div class="membersGrid">
+            <?php
+            if($members && mysqli_num_rows($members) > 0) {
+                while($member = mysqli_fetch_assoc($members)) {
+                    echo '<div class="flipCard memberCard smCard" data-aos="flip">
+                        <div class="flipInner">
+                            <div class="flipSide flipFront">
+                                <img src="./assets/img/backCardCrew.png" loading="lazy" />
+                            </div>
+                            <div class="flipSide flipBack">
+                                <div class="card" style="width: 18rem;">
+  <img src="./assets/img/default-user.png" class="card-img-top" alt="">
+  <div class="card-body">
+    <h5 class="card-title">' . $member['user_name'] . '</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Workshop: ' . $member['workshop_name'] . '</li>
+  </ul>
+  <div class="card-body">
+    <a href="#" class="card-link">Profile</a>
+  </div>
+</div>
+                            </div>
+                        </div>
+                    </div>';
+                }
+            } else {
+                echo '<p>No members found for this committee.</p>';
+            }
+            ?>
+        </div>
+    </section>
+
+    <!-- Scroll Top Button -->
+    <div class="scrollTopBtn" id="scrollTopBtn">
+        &#8593;
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/crew.js"></script>
+</body>
+</html>
