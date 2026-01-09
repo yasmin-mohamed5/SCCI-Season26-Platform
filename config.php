@@ -1,11 +1,18 @@
 <?php
 
+session_start();
+
 $localhost = "localhost";
 $username = "root";
 $password = "";
-$database = "SCCi";
+$database ="SCCi";
 
-$connect = mysqli_connect($localhost, $username, $password, $database);
+$connect = mysqli_connect($localhost, $username ,$password , $database);
 
-session_start();
+if(isset($_POST['logout'])) {
+    session_destroy();
+    unset($_SESSION['user_id']);
+    header('location:./auth/login.php');
+
+}
 ?>
