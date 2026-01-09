@@ -76,32 +76,32 @@
 <section class="cardRowSection">
     <div class="cardRow">
         <div style="--r:-15;" class="glass">
-            <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#C52525"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm560-550L518-398 360-556 200-396v114l160-160 162 162 238-270v-120Z"/></svg>
+            <i class="fas fa-chart-line" style="font-size: 80px; color: #C52525;"></i>
             <h4>GROWTH TRACKING</h4>
             <p>Participants gain hands-on experience through real activities.</p>
         </div>
 
         <div style="--r:10;" class="glass">
-            <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#C52525"><path d="M520-120v-320h320v320H520Zm0-400v-320h320v320H520Zm-400 0v-320h320v320H120Zm0 400v-320h320v320H120Z"/></svg>
+            <i class="fas fa-calendar-alt" style="font-size: 80px; color: #C52525;"></i>
             <h4>SEASON STRUCTURE</h4>
             <p>Participants collaborate in small groups to solve challenges</p>
         </div>
 
         <div style="--r:0;" class="glass">
-            <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#C52525"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm560-550L518-398 360-556 200-396v114l160-160 162 162 238-270v-120Z"/></svg>
+            <i class="fas fa-hands-helping" style="font-size: 80px; color: #C52525;"></i>
             <h4>PRACTICAL LEARNING</h4>
             <p>The program is divided into focused, time-limited sessions.</p>
         </div>
 
         <div style="--r:-10;" class="glass">
-            <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#C52525"><path d="M160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-160q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm200-280 100-60 100 60v-280H520v280Z"/></svg>
+            <i class="fas fa-users" style="font-size: 80px; color: #C52525;"></i>
             <h4>TEAM-BASED SYSTEM</h4>
             <p>Progress is monitored to highlight improvement over time.</p>
         </div>
 
         <div style="--r:15;" class="glass">
-            <svg xmlns="http://www.w3.org/2000/svg" height="80px" viewBox="0 -960 960 960" width="80px" fill="#C52525"><path d="M450-80q-33 0-66.5-7.5T315-109q12-121 70-226t149-185q-110 56-190.5 148T231-162q-4-3-7.5-6.5L216-176q-47-47-71.5-105T120-402q0-68 27-130t75-110q81-81 210-105.5t362-4.5q18 239-6 364.5T684-182q-49 49-109.5 75.5T450-80Z"/></svg>
-            <h4>ENVIROMENT</h4>
+            <i class="fas fa-seedling" style="font-size: 80px; color: #C52525;"></i>
+            <h4>ENVIRONMENT</h4>
             <p>Participants take the lead, growing through hands-on involvement.</p>
         </div>
     </div>
@@ -135,7 +135,7 @@
 </section>
 
 <?php include "./includes/footer.php"; ?>
-
+<script src="./assets/js/all.min.js"></script>
 <script src="./assets/js/about.js"></script>
 </body>
 </html>
