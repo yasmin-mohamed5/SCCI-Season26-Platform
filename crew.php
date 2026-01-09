@@ -34,7 +34,7 @@ include './includes/config.php';
                         <img src="./assets/img/backCardCrew.png" loading="lazy" alt="President" />
                     </div>
                     <div class="flipSide flipBack">
-
+                        <img src="./assets/uploadedImages/Mohamed Ali.jpg" loading="lazy" alt="President" />
                     </div>
                 </div>
             </div >
@@ -71,7 +71,7 @@ include './includes/config.php';
                             <img src="./assets/img/backCardCrew.png" loading="lazy">
                         </div>
                         <div class="flipSide flipBack">
-
+                            <img src="./assets/uploadedImages/Marwan Wael.jpg" loading="lazy" alt="Technical" />
                         </div>
                     </div>
                      
@@ -135,7 +135,7 @@ include './includes/config.php';
                             <img src="./assets/img/backCardCrew.png" alt="Academic" />
                         </div>
                         <div class="flipSide flipBack">
-
+                            <img src="./assets/uploadedImages/Mohamed Ahmed.jpg" alt="Academic" />
                         </div>
                     </div>
                 </div>
