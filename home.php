@@ -16,8 +16,10 @@
     <link rel="icon" type="image/png" href="./assets/icons/logoSCCI.png" />
 
     <!-- css other link -->
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="./assets/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/root.css">
+    <link rel="stylesheet" href="./assets/css/nav.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
 
     <!-- css registration link -->
     <link rel="stylesheet" href="./assets/css/registerParticipant.css">
@@ -31,6 +33,7 @@
 </head>
 
 <body>
+    <?php include './includes/nav.php'; ?>
     <!-- Main Hero section -->
     <section class="heroSection">
         <div class="heroContainer">
@@ -253,7 +256,9 @@
         </div>
     </section>
 
-    <script src="../assets/js/all.min.js" defer></script>
+    <?php include './includes/footer.php'; ?>
+
+    <script src="./assets/js/all.min.js" defer></script>
     <script src="./assets/js/home.validation.js" defer></script>
     <!-- AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
