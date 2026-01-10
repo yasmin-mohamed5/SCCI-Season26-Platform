@@ -52,7 +52,7 @@ if(isset($_GET['committee_id'])) {
 
     <!-- Committee Details Section -->
     <section class="sectionBlock container">
-        <div class="titleWrapper" data-aos="fade-down">
+        <div class="titleWrapper" >
             <h1 class="mainTitle">
                 <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
                 <span class="textDark">Head</span>
@@ -62,28 +62,26 @@ if(isset($_GET['committee_id'])) {
 
         <div class="headLayout">
             <a href="profile.php?user_id=<?php echo $head_id; ?>" class="memberCardLink">
-                <div class="flipCard headCard smCard" data-aos="flip">
+                <div class="flipCard headCard smCard" >
                     <div class="flipInner">
                         <div class="flipSide flipFront">
-                            <img src="./assets/img/backCardCrew.png" loading="lazy" alt="Head" />
+                            <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="Head" />
                         </div>
                         <div class="flipSide flipBack">
                             <div class="backCard">
-                                <div class="memberInfo">
                                     <div class="memberImageContainer">
                                         <img src="<?php echo $head['image']; ?>" class="memberImage" alt="<?php echo $head['user_name']; ?>">
                                     </div>
                                     <div class="memberName">
                                         <h3><?php echo $head['user_name']; ?></h3>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
 
-            <div class="paperScroll" data-aos="fade-left">
+            <div class="paperScroll" >
                 <div class="paperContent">
                     <h2 class="paperTitle">Job Description</h2>
                     <p class="paperText">
@@ -95,7 +93,7 @@ if(isset($_GET['committee_id'])) {
     </section>
 
     <section class="sectionBlock container">
-        <div class="titleWrapper" data-aos="fade-up">
+        <div class="titleWrapper" >
             <h1 class="mainTitle">
                 <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
                 <span class="textDark">Members</span>
@@ -111,21 +109,16 @@ if(isset($_GET['committee_id'])) {
                         <div class="flipCard memberCard smCard" data-aos="flip">
                             <div class="flipInner">
                                 <div class="flipSide flipFront">
-                                    <img src="./assets/img/backCardCrew.png" loading="lazy" />
+                                    <img src="./assets/img/crew/backCardCrew.png" loading="lazy" />
                                 </div>
                                 <div class="flipSide flipBack">
                                     <div class="backCard">
-                                        <div class="memberInfo">
-                                            <div class="memberImageContainer">
+                                        <div class="memberImageContainer">
                                                 <img src="./assets/img/default-user.png" class="memberImage" alt="' . $member['user_name'] . '">
                                             </div>
                                             <div class="memberName">
                                                 <h5>' . $member['user_name'] . '</h5>
                                             </div>
-                                            <div class="memberTitle">
-                                                <p>' . $member['workshop_name'] . '</p>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
