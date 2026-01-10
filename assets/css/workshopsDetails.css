@@ -518,3 +518,14 @@
         gap: var(--space-5);
     }
 }
+
+/* Clickable Card Link Styling */
+a.memberCardLink {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+a.memberCardLink:hover {
+    text-decoration: none;
+}

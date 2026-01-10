@@ -141,26 +141,28 @@ if (isset($_GET['category_id'])) {
                 <div class="workshopDetailsGrid">
                     <?php foreach ($run_members as $members) { ?>
                         <!--  member card  -->
-                        <div class="cardsContainer" data-aos="flip">
-                            <div class="flipCard card1">
-                                <div class="frontCard">
-                                    <img src="assets/img/backCardCrew.png" alt="<?php echo $members['user_name']; ?>"
-                                        loading="lazy">
-                                </div>
-                                <div class="backCard">
-                                    <div class="memberInfo">
-                                        <div class="memberImageContainer">
-                                            <img src="assets/uploadedImages/<?php echo $members['Image']; ?>"
-                                                alt="<?php echo $members['user_name']; ?>" loading="lazy"
-                                                class="memberImage">
-                                        </div>
-                                        <div class="memberName">
-                                            <h3><?php echo $members['user_name']; ?></h3>
+                        <a href="profile.php?user_id=<?php echo $members['user_id']; ?>" class="memberCardLink">
+                            <div class="cardsContainer" data-aos="flip">
+                                <div class="flipCard card1">
+                                    <div class="frontCard">
+                                        <img src="assets/img/crew/backCardCrew.png" alt="<?php echo $members['user_name']; ?>"
+                                            loading="lazy">
+                                    </div>
+                                    <div class="backCard">
+                                        <div class="memberInfo">
+                                            <div class="memberImageContainer">
+                                                <img src="assets/uploadedImages/<?php echo $members['Image']; ?>"
+                                                    alt="<?php echo $members['user_name']; ?>" loading="lazy"
+                                                    class="memberImage">
+                                            </div>
+                                            <div class="memberName">
+                                                <h3><?php echo $members['user_name']; ?></h3>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     <?php } ?>
 
 

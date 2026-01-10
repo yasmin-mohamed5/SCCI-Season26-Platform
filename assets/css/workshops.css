@@ -3,15 +3,6 @@
    WORKSHOPS PAGE STYLES
    =============================================================================== */
 
-:root {
-    --fs-5xl: 6.4rem;
-    --fs-6xl: 7.2rem;
-    --fs-7xl: 8rem;
-    --fs-8xl: 9.6rem;
-    --fs-9xl: 12.8rem;
-    --fs-10xl: 16rem;
-}
-
 /* Hero Section */
 .workshopsHero {
     position: relative;

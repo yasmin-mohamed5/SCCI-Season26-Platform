@@ -31,7 +31,7 @@ include './includes/config.php';
             <div class="flipCard " data-aos="flip">
                 <div class="flipInner">
                     <div class="flipSide flipFront">
-                        <img src="./assets/img/backCardCrew.png" loading="lazy" alt="President" />
+                        <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" />
                     </div>
                     <div class="flipSide flipBack">
                         <img src="./assets/uploadedImages/Mohamed Ali.jpg" loading="lazy" alt="President" />
@@ -68,15 +68,26 @@ include './includes/config.php';
                     <span class="sideLabel right purpleText">MP SMM</span>
                     <div class="flipInner  ">
                         <div class="flipSide  flipFront">
-                            <img src="./assets/img/backCardCrew.png" loading="lazy">
+                            <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" />
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/uploadedImages/Marwan Wael.jpg" loading="lazy" alt="Technical" />
+                            <div class="backCard">
+                                <div class="memberInfo">
+                                    <div class="memberImageContainer">
+                                        <img src="./assets/uploadedImages/Marwan Wael.jpg" loading="lazy" alt="Marwan Wael" class="memberImage" />
+                                    </div>
+                                    <div class="memberName">
+                                        <h3>Marwan Wael</h3>
+                                    </div>
+                                    <div class="memberTitle">
+                                        <p>Technical Head</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                      
                 </div>
-               <a href="crewDetails.php" class="btn btnPrimary btnSm">Discover More</a>
 
                 <!-- Sub Cards Container -->
                 <div class="subCrewGrid hiddenGrid">
@@ -85,7 +96,9 @@ include './includes/config.php';
                        <span class="subRoleTitle">IT</span>
                        <div class="flipCard smCard card1" data-aos="flip">
                            <div class="flipInner">
-                               <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
+                               <div class="flipSide flipFront">
+                                <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" />
+                            </div>
                                <div class="flipSide flipBack">
                                 <img src="./assets/uploadedImages/Mahmoud Alaam.jpg" loading="lazy" alt="Technical" />
                                </div>
@@ -98,7 +111,7 @@ include './includes/config.php';
                        <span class="subRoleTitle">DD</span>
                        <div class="flipCard smCard card2" data-aos="flip">
                            <div class="flipInner">
-                               <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
+                               <div class="flipSide flipFront"><img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" /></div>
                                <div class="flipSide flipBack">
                                 <img src="./assets/uploadedImages/Mohamed El Hossiny.jpg" loading="lazy" alt="Technical" />
                                </div>
@@ -111,7 +124,7 @@ include './includes/config.php';
                        <span class="subRoleTitle">MP</span>
                        <div class="flipCard smCard card3" data-aos="flip">
                            <div class="flipInner">
-                               <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
+                               <div class="flipSide flipFront"><img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" /></div>
                                <div class="flipSide flipBack">
                                 <img src="./assets/uploadedImages/Omar Ahmed.jpg" loading="lazy" alt="Technical" />
                                </div>
@@ -124,7 +137,7 @@ include './includes/config.php';
                        <span class="subRoleTitle">SMM</span>
                        <div class="flipCard smCard card4" data-aos="flip">
                            <div class="flipInner">
-                               <div class="flipSide flipFront"><img src="./assets/img/backCardCrew.png" loading="lazy"></div>
+                               <div class="flipSide flipFront"><img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" /></div>
                                <div class="flipSide flipBack">
                                 <img src="./assets/uploadedImages/Nour Mohamed.jpg" loading="lazy" alt="Technical" />
                                </div>
@@ -140,10 +153,22 @@ include './includes/config.php';
                 <div class="flipCard" data-aos="flip">
                     <div class="flipInner">
                         <div class="flipSide flipFront">
-                            <img src="./assets/img/backCardCrew.png" alt="Academic" />
+                            <img src="./assets/img/crew/backCardCrew.png" alt="backCard" />
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/uploadedImages/Mohamed Ahmed.jpg" alt="Academic" />
+                            <div class="backCard">
+                                <div class="memberInfo">
+                                    <div class="memberImageContainer">
+                                        <img src="./assets/uploadedImages/Mohamed Ahmed.jpg" alt="Mohamed Ahmed" class="memberImage" />
+                                    </div>
+                                    <div class="memberName">
+                                        <h3>Mohamed Ahmed</h3>
+                                    </div>
+                                    <div class="memberTitle">
+                                        <p>Academic Head</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -155,10 +180,22 @@ include './includes/config.php';
                 <div class="flipCard" data-aos="flip">
                     <div class="flipInner">
                         <div class="flipSide flipFront">
-                            <img src="./assets/img/backCardCrew.png" alt="HR" />
+                            <img src="./assets/img/crew/backCardCrew.png" alt="backCard" />
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/uploadedImages/Alaa Aboelazm.jpg" alt="HR" />
+                            <div class="backCard">
+                                <div class="memberInfo">
+                                    <div class="memberImageContainer">
+                                        <img src="./assets/uploadedImages/Alaa Aboelazm.jpg" alt="Alaa Aboelazm" class="memberImage" />
+                                    </div>
+                                    <div class="memberName">
+                                        <h3>Alaa Aboelazm</h3>
+                                    </div>
+                                    <div class="memberTitle">
+                                        <p>HR Head</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -171,15 +208,25 @@ include './includes/config.php';
                     <span class="sideLabel right purpleText">CR PR</span>
                     <div class="flipInner">
                         <div class="flipSide flipFront">
-                            <img src="./assets/img/backCardCrew.png" loading="lazy">
+                            <img src="./assets/img/crew/backCardCrew.png" loading="lazy">
                         </div>
                         <div class="flipSide flipBack">
-                            <img src="./assets/uploadedImages/Mohamed Hesham.jpg" alt="ER" />
+                            <div class="backCard">
+                                <div class="memberInfo">
+                                    <div class="memberImageContainer">
+                                        <img src="./assets/uploadedImages/Mohamed Hesham.jpg" alt="Mohamed Hesham" class="memberImage" />
+                                    </div>
+                                    <div class="memberName">
+                                        <h3>Mohamed Hesham</h3>
+                                    </div>
+                                    <div class="memberTitle">
+                                        <p>ER Head</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <a href="crewDetails.php" class="btn btnPrimary btnSm">Discover More</a>
-
                 <!-- Sub Cards Container -->
                 <div class="subCrewGrid hiddenGrid">
                     <!-- 1. BD -->

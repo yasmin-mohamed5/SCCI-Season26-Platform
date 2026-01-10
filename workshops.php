@@ -38,7 +38,7 @@ $result = mysqli_query($connect, $select);
     <!-- Navigation -->
 
     <!-- Hero Section -->
-    <header class="workshopsHero">
+    <section class="workshopsHero">
         <div class="container">
             <h1 class="heroTitle" data-aos="fade-down" data-aos-duration="1000">DISCOVER THE <span>MAGIC WORKSHOPS</span></h1>
             <p class="heroSubtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">EACH WORKSHOP UNLOCKS A NEW SKILL</p>
@@ -49,7 +49,7 @@ $result = mysqli_query($connect, $select);
                 <i class="fas fa-hat-wizard magic-icon"></i> <!-- Wizard Hat Icon -->
             </div>
         </div>
-    </header>
+    </section>
     <main>
         <!-- Workshops Grid -->
 <section class="workshopsSection">
@@ -60,10 +60,10 @@ $result = mysqli_query($connect, $select);
                     <div class="flipCard card1">
                         <div class="frontCard">
                     
-                                 <img src="assets/img/backCardCrew.png" alt="<?php echo $workshops['workshop_name']; ?>" loading="lazy">
+                                 <img src="assets/img/crew/backCardCrew.png" alt="<?php echo $workshops['workshop_name']; ?>" loading="lazy">
                         </div>
                         <div class="backCard">
-                            <img src="assets/img/<?php echo $workshops['workshop_image']; ?>" 
+                            <img src="assets/img/workshops/<?php echo $workshops['workshop_image']; ?>" 
                                  alt="<?php echo $workshops['workshop_name']; ?>" 
                                  loading="lazy">
                             <div class="cardContent">

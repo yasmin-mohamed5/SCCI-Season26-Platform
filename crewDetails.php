@@ -61,27 +61,27 @@ if(isset($_GET['committee_id'])) {
         </div>
 
         <div class="headLayout">
-            <div class="flipCard headCard smCard" data-aos="flip">
-                <div class="flipInner">
-                    <div class="flipSide flipFront">
-                        <img src="./assets/img/backCardCrew.png" loading="lazy" alt="Head" />
-                    </div>
-                    <div class="flipSide flipBack">
-                        <div class="card" style="width: 18rem;">
-  <img src="<?php echo $head['image']; ?>" class="card-img-top" alt="">
-  <div class="card-body">
-    <h5 class="card-title"><?php echo $head['user_name']; ?></h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"></li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">profile</a>
-  </div>
-</div>
+            <a href="profile.php?user_id=<?php echo $head_id; ?>" class="memberCardLink">
+                <div class="flipCard headCard smCard" data-aos="flip">
+                    <div class="flipInner">
+                        <div class="flipSide flipFront">
+                            <img src="./assets/img/backCardCrew.png" loading="lazy" alt="Head" />
+                        </div>
+                        <div class="flipSide flipBack">
+                            <div class="backCard">
+                                <div class="memberInfo">
+                                    <div class="memberImageContainer">
+                                        <img src="<?php echo $head['image']; ?>" class="memberImage" alt="<?php echo $head['user_name']; ?>">
+                                    </div>
+                                    <div class="memberName">
+                                        <h3><?php echo $head['user_name']; ?></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <div class="paperScroll" data-aos="fade-left">
                 <div class="paperContent">
@@ -107,27 +107,30 @@ if(isset($_GET['committee_id'])) {
             <?php
             if($members && mysqli_num_rows($members) > 0) {
                 while($member = mysqli_fetch_assoc($members)) {
-                    echo '<div class="flipCard memberCard smCard" data-aos="flip">
-                        <div class="flipInner">
-                            <div class="flipSide flipFront">
-                                <img src="./assets/img/backCardCrew.png" loading="lazy" />
-                            </div>
-                            <div class="flipSide flipBack">
-                                <div class="card" style="width: 18rem;">
-  <img src="./assets/img/default-user.png" class="card-img-top" alt="">
-  <div class="card-body">
-    <h5 class="card-title">' . $member['user_name'] . '</h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Workshop: ' . $member['workshop_name'] . '</li>
-  </ul>
-  <div class="card-body">
-    <a href="#" class="card-link">Profile</a>
-  </div>
-</div>
+                    echo '<a href="profile.php?user_id=' . $member['user_id'] . '" class="memberCardLink">
+                        <div class="flipCard memberCard smCard" data-aos="flip">
+                            <div class="flipInner">
+                                <div class="flipSide flipFront">
+                                    <img src="./assets/img/backCardCrew.png" loading="lazy" />
+                                </div>
+                                <div class="flipSide flipBack">
+                                    <div class="backCard">
+                                        <div class="memberInfo">
+                                            <div class="memberImageContainer">
+                                                <img src="./assets/img/default-user.png" class="memberImage" alt="' . $member['user_name'] . '">
+                                            </div>
+                                            <div class="memberName">
+                                                <h5>' . $member['user_name'] . '</h5>
+                                            </div>
+                                            <div class="memberTitle">
+                                                <p>' . $member['workshop_name'] . '</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>';
+                    </a>';
                 }
             } else {
                 echo '<p>No members found for this committee.</p>';
