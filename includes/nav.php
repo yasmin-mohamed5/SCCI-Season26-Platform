@@ -18,6 +18,9 @@ if(isset($_SESSION['user_id'])){
     }
 }
 ?>
+<head>
+    <link rel="icon" href="assets/icons/logoSCCI.png" type="image/png">
+</head>
 <header>
     <a href="/SCCI-Season26-Platform/home.php" class="logo">
         <img src="/SCCI-Season26-Platform/assets/icons/logoSCCI.png" alt="SCCI logo" loading="lazy" />

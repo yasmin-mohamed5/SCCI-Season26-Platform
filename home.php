@@ -227,8 +227,6 @@
 
             <form class="form-content" id="form" action="" method="POST" enctype="multipart/form-data">
                 <img class="homeBird" loading="lazy" src="./assets/img/bird.png" alt="">
-
-
                 <!-- inputs -->
                 <div class="input-group">
                     <label for="">Full Name</label>

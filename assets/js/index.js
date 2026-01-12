@@ -26,29 +26,60 @@ if (scrollTopBtn) {
     });
 }
 
-// ===============================================navBar===============================================
+// =============================================== NAVBAR GLASSMORPHISM SCROLL EFFECT ===============================================
+// Add scroll effect to navbar for enhanced glass effect
+const header = document.querySelector("header");
+
+if (header) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+}
+
+// =============================================== NAVBAR ===============================================
 // variables
 const body = document.querySelector("body");
 const sideBtn = document.querySelector(".sideBtn");
 const sideBg = document.querySelector(".sideNav");
 const x = document.querySelector(".closeNav");
 
+// Create overlay for mobile menu
+let overlay = document.querySelector(".overlay");
+if (!overlay && sideBg) {
+  overlay = document.createElement("div");
+  overlay.className = "overlay";
+  document.body.appendChild(overlay);
+}
+
 // open side navbar
-sideBtn.addEventListener("click", () => {
-  body.classList.add("no-scrolling");
-  sideBg.classList.add("active");
-});
+if (sideBtn && sideBg) {
+  sideBtn.addEventListener("click", () => {
+    body.classList.add("no-scrolling");
+    sideBg.classList.add("active");
+    if (overlay) overlay.classList.add("active");
+  });
+}
 
 // close side navbar
-x.addEventListener("click", () => {
+const closeSideNav = () => {
   body.classList.remove("no-scrolling");
-  sideBg.classList.remove("active");
-});
+  if (sideBg) sideBg.classList.remove("active");
+  if (overlay) overlay.classList.remove("active");
+};
 
-sideBtn.addEventListener("click", () => {
-  console.log("clicked");
+if (x) {
+  x.addEventListener("click", closeSideNav);
+}
 
-});
+// Close sidebar when clicking overlay
+if (overlay) {
+  overlay.addEventListener("click", closeSideNav);
+}
+
 
 // AOS
 AOS.init({
