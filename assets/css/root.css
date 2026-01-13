@@ -275,9 +275,8 @@ h3,
 h4,
 h5,
 h6 {
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
   text-align: center;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   /* Primary red for all headlines */
   font-family: "Irish Grover", system-ui;
   font-weight: var(--fw-bold);
@@ -313,7 +312,8 @@ h6 {
 
 /* Paragraph global styling */
 p {
-  color: var(--color-primary);
+  text-transform: lowercase;
+  color: black;
   /* Secondary blue for paragraphs */
   font-family: "Stencil", system-ui;
   font-size: var(--fs-base);
@@ -525,6 +525,7 @@ p {
   margin-bottom: var(--space-4);
   border-radius: var(--card-radius) var(--card-radius) 0 0;
 }
+
 /* .containerCard{
     text-align: center;
     display: flex;
@@ -704,21 +705,33 @@ hr::after {
 }
 
 /* ===============================================================================
-   🦶 GLASSMORPHISM NAVBAR STYLES
+   🦶 NAVBAR STYLES
    =============================================================================== */
 
 header {
-  font-family: "Irish Grover", system-ui;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8rem;
-  padding: 1rem;
-  --webkit-backdrop-filter: blur(20px) saturate(180%);
+  padding: 0.5rem 4rem;
+  background-color: var(--color-parchment);
+  background-image: radial-gradient(circle at 50% 50%,
+      rgba(255, 250, 240, 0.9) 0%,
+      transparent 55%),
+    radial-gradient(circle at 50% 50%,
+      transparent 70%,
+      rgba(61, 42, 24, 0.22) 100%),
+    radial-gradient(circle at 20% 30%,
+      rgba(139, 69, 19, 0.05) 0%,
+      transparent 60%),
+    radial-gradient(circle at 80% 80%,
+      rgba(160, 82, 45, 0.07) 0%,
+      transparent 70%);
+  box-shadow: 0px 0px 5px 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 2100;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -738,22 +751,11 @@ header.navbar-hidden {
   align-items: center;
   gap: 16px;
   text-decoration: none;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: translateY(-2px);
 }
 
 .logo img {
   height: auto;
-  width: 50px;
-  filter: drop-shadow(0 2px 8px rgba(197, 37, 37, 0.3));
-  transition: filter 0.3s ease;
-}
-
-.logo:hover img {
-  filter: drop-shadow(0 4px 12px rgba(197, 37, 37, 0.5));
+  width: 43px;
 }
 
 .logo h1 {
@@ -763,7 +765,6 @@ header.navbar-hidden {
   font-weight: bold;
   position: relative;
   color: var(--color-primary-dark);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Navigation Links */
@@ -776,49 +777,63 @@ header.navbar-hidden {
 }
 
 .navLinks a {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-white);
-  padding: 10px 24px;
-  border-radius: 25px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    0 4px 15px rgba(197, 37, 37, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  font-size: 18px;
+  color: var(--color-primary-dark);
+  position: relative;
+  transition: ease-in-out 0.3s;
+  text-transform: capitalize;
+  background: none;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  font-weight: normal;
+  text-shadow: none;
+}
+
+.navLinks a::after {
+  content: "";
+  height: 4px;
+  width: 0%;
+  background-color: var(--color-primary-dark);
+  border-radius: 30px 30px 0px 0px;
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  transition: ease-in-out 0.3s;
+}
+
+.navLinks a:hover::after {
+  left: 0%;
+  width: 100%;
 }
 
 .navLinks a:hover {
-  background-position: right;
-  transform: translateY(-2px);
-  box-shadow:
-    0 6px 20px rgba(197, 37, 37, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: none;
+  transform: none;
+  box-shadow: none;
 }
 
 
-/* Login Button with Glass Effect */
+/* Login Button */
 #loginNav {
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, #5f1212, #c52525, #5f1212);
+  background-size: 200% 100%;
+  background-position: left;
   color: var(--color-white);
-  padding: 10px 24px;
-  border-radius: 25px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    0 4px 15px rgba(197, 37, 37, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  font-weight: 600;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  padding: 7px 14px;
+  border-radius: 20px;
+  transition: background-position 0.6s ease-in-out;
+  border: none;
+  box-shadow: none;
+  font-weight: normal;
+  text-shadow: none;
 }
 
 #loginNav:hover {
   background-position: right;
-  transform: translateY(-2px);
-  box-shadow:
-    0 6px 20px rgba(197, 37, 37, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: none;
+  box-shadow: none;
 }
 
 /* Profile Button */
@@ -826,61 +841,50 @@ header.navbar-hidden {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.0rem 2rem;
-  transition: transform 0.3s ease;
+  padding: 0.3rem 2rem;
+  transition: none;
 }
 
 #profileNav:hover {
-  transform: scale(1.05);
+  transform: none;
 }
 
 #profileNav img {
-  height: 60px;
+  height: auto;
   width: 60px;
   border-radius: 50%;
   object-fit: contain;
-  box-shadow:
-    0 4px 12px rgba(197, 37, 37, 0.3),
-    0 0 0 6px rgba(255, 255, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: none;
+  border: none;
+  transition: none;
 }
 
 #profileNav img:hover {
-  border-color: var(--color-primary);
-  box-shadow:
-    0 6px 20px rgba(197, 37, 37, 0.5),
-    0 0 0 8px rgba(255, 255, 255, 0.3);
+  border-color: transparent;
+  box-shadow: none;
 }
 
 /* Mobile Menu Button */
 .sideBtn:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 4px;
-  border-radius: 8px;
+  outline: none;
 }
 
 .sideBtn {
   border: none;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  background: none;
   display: none;
+  /* Hidden by default, shown in media query */
   cursor: pointer;
-  padding: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
-  width: 45px;
-  height: 45px;
-  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 5px;
+  padding: 5px;
 }
 
 .sideBtn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.05);
+  background: none;
+  transform: none;
 }
 
 /* Burger menu lines */
@@ -1048,58 +1052,18 @@ header.navbar-hidden {
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (max-width: 1050px) {
   header {
-    gap: 4rem;
-    padding: 1rem 2rem;
-  }
-
-  .navLinks {
-    gap: 2rem;
-  }
-
-  .navLinks a {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 768px) {
-  header {
-    gap: 1rem;
-    padding: 0.8rem 1rem;
-  }
-
-  .navRespnsive {
-    display: none;
+    padding: 1rem 3rem;
   }
 
   .sideBtn {
     display: flex;
+    /* Changed from inline-block to flex */
   }
 
-  .logo h1 {
-    font-size: 28px;
-  }
-
-  .logo img {
-    width: 35px;
-  }
-
-
-}
-
-@media (max-width: 480px) {
-  header {
-    gap: 0.5rem;
-    padding: 0.8rem 1rem;
-  }
-
-  .logo h1 {
-    font-size: 24px;
-  }
-
-  .logo img {
-    width: 30px;
+  .navRespnsive {
+    display: none;
   }
 }
 
