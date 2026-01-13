@@ -525,6 +525,21 @@ p {
   margin-bottom: var(--space-4);
   border-radius: var(--card-radius) var(--card-radius) 0 0;
 }
+.containerCard{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+    background: linear-gradient(135deg, rgba(93, 46, 31, 0.5) 0%, rgba(45, 24, 16, 0.6) 100%);
+    backdrop-filter: blur(2px) saturate(100%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    padding: 3rem 2.5rem;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
 
 /* ===============================================================================
    📐 UTILITY CLASSES
@@ -703,17 +718,11 @@ header {
   align-items: center;
   gap: 8rem;
   padding: 1rem;
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  --webkit-backdrop-filter: blur(20px) saturate(180%);
   z-index: 2100;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced glass effect on scroll */
-header.scrolled {
-  /* background: rgba(224, 192, 143, 0.35);
-  backdrop-filter: blur(50px) saturate(200%);
-  -webkit-backdrop-filter: blur(50px) saturate(200%); */
-}
 
 /* Hide navbar when scrolling down */
 header.navbar-hidden {
