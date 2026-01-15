@@ -1,4 +1,63 @@
+// Add Task Section
+// validate form
+const submitForm = document.getElementById('validForm');
 
+submitForm.addEventListener('submit', (event) => {
+    event.preventDefault(); 
+    let taskNameInput = document.getElementById('taskName').value.trim();
+    let descriptionInput = document.getElementById('description').value.trim();
+    let deadlineInput = document.getElementById('dueDate').value;
+    let taskFileInput = document.getElementById('taskFile').files[0];
+    console.log(taskFileInput,taskNameInput);
+    
+
+    let taskNameMessage = document.getElementById('taskNameMessage');
+    let fileMessage = document.getElementById('fileMessage');
+    let descriptionMessage = document.getElementById('descriptionMessage');
+    let deadlineMessage = document.getElementById('dueDateMessage');
+
+    taskNameMessage.textContent = "";
+    fileMessage.textContent = "";
+    descriptionMessage.textContent = "";
+    deadlineMessage.textContent = "";
+
+    var isValid = true;
+    
+    
+    if (taskNameInput === "") {
+        taskNameMessage.textContent = "Task Name is required.";
+        taskNameMessage.style.color = "red";
+        taskNameMessage.style.fontSize = "12px";
+        isValid = false;
+    }
+    if (!taskFileInput) {
+        fileMessage.textContent = "Please upload a file.";
+        fileMessage.style.color = "red";
+        fileMessage.style.fontSize = "12px";
+        isValid = false;
+    }
+    if (deadlineInput === "") {
+        deadlineMessage.textContent = "Deadline is required.";
+        deadlineMessage.style.color = "red";
+        deadlineMessage.style.fontSize = "12px";
+        isValid = false;
+    }
+    if (descriptionInput === "") {
+        descriptionMessage.textContent = "Description is required.";
+        descriptionMessage.style.color = "red"; 
+        descriptionMessage.style.fontSize = "12px";
+        isValid = false;
+    }
+
+    if (isValid) {
+        // alert("Form submitted successfully!");
+        submitForm.submit();
+    }
+    
+});
+
+
+// Add Materials Section
 // Select the necessary elements
 const technicalBtn = document.querySelectorAll('.materialTypeButton')[0];
 const softSkillsBtn = document.querySelectorAll('.materialTypeButton')[1];

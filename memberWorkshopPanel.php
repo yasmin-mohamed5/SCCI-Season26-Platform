@@ -29,6 +29,57 @@
 <body>
   <!-- add materials section -->
   <main class="materialPage">
+
+    <!-- Add Task Section -->
+    <section class="taskContainer">
+        <h2 class="sectionTitle">Add Tasks</h2>
+        <form id="validForm" action="" method="post">
+            <div class="materialForm">  
+                <div class="sideInputs">
+                    <!-- add task name -->
+                    <div class="groupInputs">
+                        <label class="formLabel" for="taskName">Task Name:</label>
+                        <input class="textInput"  type="text" name="taskName" id="taskName">
+                        <p id="taskNameMessage"></p>
+                    </div>
+                    <!-- add task deadline -->
+                    <div class="groupInputs">
+                        <label class="formLabel" for="dueDate">Deadline:</label>
+                        <input class="textInput" type="datetime-local" name="dueDate" id="dueDate">
+                        <p id="dueDateMessage"></p>
+                    </div>
+                </div>
+                    <!-- add task Description -->
+                <div class="descriptionContainer">
+                    <label class="formLabel" for="description" id="descriptionLabel">Task Description:</label>
+                    <textarea class="textInput" name="description" id="descriptionInput"  rows="5"></textarea> 
+                    <p id="descriptionMessage"></p>
+                </div>
+
+            </div>
+
+                <!-- upload task file -->
+            <div class="fileUpload" id="taskUpload">
+                <div class="uploadContainer" id ="taskUploadContainer">
+                    <label class="formLabel" for="taskFile">
+                        <div class="uploadIcon"></div>
+                    </label>
+                    
+                    <p class="uploadText">
+                    Drag and drop or click to browse
+                    </p>
+                    <label class="btn btn-primary btn-sm" for="taskFile">Upload File</label>
+                    <input  type="file" name="taskFile" id="taskFile">
+                    
+                    <p id="fileMessage"></p>
+                </div>
+            </div>
+            <div>
+                <button id="submitBtn" class="btn btn-primary btn-sm" type="submit">Add Task</button>
+            </div>
+        </form>
+    </section>
+
     <!-- adding materials name -->
     <section class="addMaterial">
       <h2 class="sectionTitle">Add Materials</h2>
