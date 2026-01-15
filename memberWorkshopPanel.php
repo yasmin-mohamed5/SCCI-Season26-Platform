@@ -69,7 +69,7 @@
                     Drag and drop or click to browse
                     </p>
                     <p id="fileUploadedName"></p>
-                    <label class="btn btn-primary btn-sm" for="taskFile">Upload File</label>
+                    <label  class=" btn btn-secondary btn-sm" for="taskFile">Upload File</label>
                     <input  type="file" name="taskFile" id="taskFile">
                     
                     <p id="fileMessage"></p>
