@@ -47,7 +47,7 @@ if(isset($_GET['committee_id'])) {
     <!-- Committee Details Section -->
     <section class="sectionBlock container">
         <div class="titleWrapper" >
-            <h1 class="mainTitle">
+            <h1 class="mainTitle" data-aos="zoom-in">
                 <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
                 <span class="textDark">Head</span>
             </h1>
@@ -56,7 +56,7 @@ if(isset($_GET['committee_id'])) {
 
         <div class="headLayout">
             <a href="profile.php?user_id=<?php echo $head_id; ?>" class="memberCardLink">
-                <div class="flipCard headCard smCard" >
+                <div class="flipCard headCard smCard" data-aos="flip">
                     <div class="flipInner">
                         <div class="flipSide flipFront">
                             <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="Head" />
@@ -76,7 +76,7 @@ if(isset($_GET['committee_id'])) {
                 </div>
             </a>
 
-            <div class="paperScroll" >
+            <div class="paperScroll " data-aos="fade-left" >
                 <div class="paperContent">
                     <h2 class="paperTitle">Job Description</h2>
                     <p class="paperText">
@@ -89,7 +89,7 @@ if(isset($_GET['committee_id'])) {
 
     <section class="sectionBlock container">
         <div class="titleWrapper" >
-            <h1 class="mainTitle">
+            <h1 class="mainTitle" data-aos="fade-up>
                 <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
                 <span class="textDark">Members</span>
             </h1>
@@ -97,7 +97,22 @@ if(isset($_GET['committee_id'])) {
         </div>
 
         <div class="membersGrid">
-           <?php foreach ($members as $member) { ?>
+           <?php 
+           // Fetch all members into an array
+           $membersList = [];
+           while($row = mysqli_fetch_assoc($members)) {
+               $membersList[] = $row;
+           }
+           
+           // If no members, create a dummy one for visualization if needed, or handle empty.
+           // Assuming at least one member or cycling logic:
+           $count = count($membersList);
+           
+           for ($i = 0; $i < 12; $i++) { 
+                // Cycle through members if fewer than 10
+                $member = ($count > 0) ? $membersList[$i % $count] : null;
+                if (!$member) continue; // Skip if absolutely no data
+           ?>
     <a href="profile.php?user_id=<?= $member['user_id'] ?>" class="memberCardLink">
         <div class="flipCard memberCard smCard" data-aos="flip">
             <div class="flipInner">

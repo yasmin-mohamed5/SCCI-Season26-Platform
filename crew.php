@@ -237,11 +237,11 @@
                 </div>
                 <a href="crewDetails.php?committee_id=12" class="btn btnPrimary btnSm">Know Us !</a>
             </div>
-            <div class="boardItem" data-aos="fade-up" data-aos-delay="400" onclick="openModal(this)">
+            <div class="boardItem" data-aos="fade-up" data-aos-delay="400">
                 <h3 class="roleTitle" style="cursor: pointer;">External Relations</h3>
                 <div class="flipCard" data-aos="flip">
-                    <span class="sideLabel left">BD L</span>
-                    <span class="sideLabel right purpleText">CR PR</span>
+                    
+                    
                     <div class="flipInner">
                         <div class="flipSide flipFront">
                             <img src="./assets/img/crew/backCardCrew.png" loading="lazy">

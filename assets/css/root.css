@@ -173,13 +173,13 @@ body {
   text-transform: capitalize;
   font-size: var(--fs-base);
   color: var(--text-main);
- background:
-        radial-gradient(circle at 30% 50%,
-            #f7eabf 0%,
-            #f4eade 40%,
-            #ead3bd 70%,
-            #f4e4b1 100%);
-    filter: brightness(1.1);
+  background:
+    radial-gradient(circle at 30% 50%,
+      #f7eabf 0%,
+      #f4eade 40%,
+      #ead3bd 70%,
+      #f4e4b1 100%);
+  filter: brightness(1.1);
   line-height: var(--lh-normal);
   overflow-x: hidden;
   transition: background-color var(--transition-normal), color var(--transition-normal);
@@ -238,6 +238,7 @@ img {
   margin-bottom: var(--space-4);
   opacity: 0.8;
 }
+
 i {
   color: var(--color-secondary);
 }
@@ -290,8 +291,8 @@ h6 {
 
 /* Paragraph global styling */
 p {
-  text-transform:lowercase;
-     color: var(--color-gray-dark);
+  text-transform: lowercase;
+  color: var(--color-gray-dark);
   /* Secondary blue for paragraphs */
   font-family: "system-ui", system-ui;
   font-size: var(--fs-base);

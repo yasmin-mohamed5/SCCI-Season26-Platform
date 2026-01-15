@@ -6,7 +6,6 @@
 .workshopPanelSection {
     min-height: 100vh;
     padding: calc(var(--space-10) * 2) var(--space-5) var(--space-10);
-    background: linear-gradient(135deg, var(--color-parchment) 0%, var(--color-parchment) 100%);
     position: relative;
 }
 
@@ -31,7 +30,6 @@
 .weekTab {
     padding: var(--space-3) var(--space-6);
     font-size: var(--fs-base);
-    font-family: "Irish Grover", system-ui;
     text-transform: capitalize;
     color: var(--color-gray-dark);
     background: linear-gradient(to bottom,
@@ -117,7 +115,6 @@
 }
 
 .workshopCard .cardHeader h2 {
-    font-family: "Irish Grover", system-ui;
     font-size: var(--fs-2xl);
     color: var(--color-white);
     margin: 0;
@@ -147,7 +144,6 @@
 }
 
 .taskLabel {
-    font-family: "Irish Grover", system-ui;
     font-size: var(--fs-md);
     color: var(--color-black);
     margin-right: var(--space-5);
@@ -156,7 +152,6 @@
 }
 
 .taskValue {
-    font-family: "Stencil", system-ui;
     font-size: var(--fs-md);
     color: var(--color-black);
     flex: 1;
@@ -182,7 +177,6 @@
 }
 
 .taskBioContent {
-    font-family: "Stencil", system-ui;
     font-size: var(--fs-base);
     color: var(--color-black);
     line-height: var(--lh-normal);
@@ -218,7 +212,7 @@
 }
 
 .resourceInfo span {
-    font-family: "Stencil", system-ui;
+    font-family: "Stencil";
     font-size: var(--fs-base);
     color: var(--color-black);
     flex: 1;
@@ -235,7 +229,6 @@
             var(--color-white-neutral) 45%,
             var(--color-gray-lighter) 100%);
     color: var(--color-gray-dark);
-    font-family: "Irish Grover", system-ui;
     font-size: var(--fs-sm);
     text-transform: capitalize;
     border-radius: 50px;

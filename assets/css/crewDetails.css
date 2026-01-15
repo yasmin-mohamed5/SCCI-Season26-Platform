@@ -1,4 +1,8 @@
 /* ===== Layout Utilities ===== */
+body {
+  padding-top: calc(8vh + 3rem);
+}
+
 .sectionBlock {
   padding: var(--space-8) 0;
 }
@@ -25,17 +29,18 @@
 
 /* ===== Head Section Layout ===== */
 .headLayout {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.5fr);
+  gap: var(--space-6);
   align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
-  flex-wrap: wrap;
+  margin-bottom: var(--space-8);
 }
 
 .headCard {
   width: 100%;
-  max-width: 360px;
-  flex: 1 1 280px;
+  max-width: 480px;
+  /* Increased to 480px */
+  margin: 0 auto;
 }
 
 /* ===== Paper Scroll Component ===== */
@@ -43,14 +48,14 @@
   position: relative;
   width: 100%;
   max-width: 700px;
-  flex: 2 1 300px;
+  /* flex: 2 1 300px; Removed flex */
   min-width: 280px;
-  aspect-ratio: 1.5 / 1;
+  min-height: 450px;
   background-image: url('../img/paperHome.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 10% 12%;
+  padding: 16% 14%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,7 +89,7 @@
   font-weight: var(--fw-bold);
   color: var(--color-primary-dark);
   line-height: 1.6;
-  text-align: center;
+  text-align: left;
   padding: 0 10px;
 }
 
@@ -94,6 +99,8 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-8) var(--space-6);
   justify-items: center;
+  justify-content: center;
+  /* Centers the grid tracks */
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--space-4);
@@ -102,6 +109,8 @@
 .memberCard {
   width: 100%;
   max-width: 320px;
+  margin: 0 auto;
+  /* Ensure card is centered in its cell */
   /* Larger cards for better visibility */
 }
 
@@ -192,21 +201,26 @@
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
+  .headLayout {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    justify-items: center;
+    /* Center items in single column */
+  }
+
   .headCard {
-    max-width: 280px;
+    max-width: 340px;
   }
 
   .paperScroll {
-    max-width: 550px;
+    max-width: 600px;
   }
 }
 
-@media (max-width: 768px) {
-  .headLayout {
-    flex-direction: column;
-    gap: var(--space-6);
-  }
+/* Removed redundant max-width 768px flex adjustments */
 
+/* Restored 768px Media Query */
+@media (max-width: 768px) {
   .sectionBlock {
     padding: var(--space-6) 0;
   }
@@ -215,33 +229,29 @@
     font-size: var(--fs-3xl);
   }
 
-  .headLayout {
-    gap: var(--space-4);
-  }
-
   .headCard {
     max-width: 100%;
-    width: 300px;
+    width: 320px;
   }
 
   .paperScroll {
-    width: 100%;
-    max-width: 450px;
-    padding: 70px 35px;
-    aspect-ratio: unset;
-    min-height: 400px;
+    width: 94%;
+    max-width: 600px;
+    padding: 20% 18%;
+    min-height: auto;
     background-size: 100% 100%;
   }
 
   .paperTitle {
-    font-size: var(--fs-xl);
+    font-size: 1.4rem;
     margin-bottom: var(--space-2);
   }
 
   .paperText {
-    font-size: var(--fs-sm);
+    font-size: 0.85rem;
     padding: 0;
-    text-align: justify;
+    text-align: left;
+    /* Left align to match Figma */
   }
 
   .membersGrid {
@@ -250,10 +260,6 @@
     gap: var(--space-4);
     padding: 0 var(--space-4);
   }
-
-  .memberCard {
-    max-width: 320px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -261,6 +267,10 @@
     grid-template-columns: 1fr;
     /* Force 1 column on very small screens */
     place-items: center;
+  }
+
+  .headLayout {
+    align-items: center;
   }
 
   .headCard,

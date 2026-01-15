@@ -47,6 +47,11 @@
   z-index: 10;
   padding: 3rem 2.5rem;
 }
+
+.heroText {
+  color: var(--color-white);
+}
+
 /* about us */
 
 .aboutSection {

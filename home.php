@@ -33,7 +33,7 @@
         <div class="heroContainer">
             <h1>seek the peak</h1>
             <hr>
-            <p>
+            <p class="heroText">
                 SCCI is an abbreviation for Student's Conference for Communication and Information,
                 which helps you in bringing the gap between the technical life and the practical
                 life in the market place. You can know more about our organization right here.

@@ -1,4 +1,8 @@
 /* ===== Layout & Typography ===== */
+body {
+  padding-top: calc(8vh + 3rem);
+}
+
 .sectionBlock {
   padding: var(--space-8) 0;
 }
@@ -13,17 +17,23 @@
 /* ===== President Grid (Card + Paper) ===== */
 .presidentGrid {
   display: grid;
-  grid-template-columns: 1fr 1.8fr;
+  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.5fr);
   gap: var(--space-6);
   align-items: center;
   margin-bottom: var(--space-10);
+}
+
+.presidentGrid .flipCard {
+  max-width: 380px;
+  margin: 0 auto;
 }
 
 /* ===== Paper Scroll Styling ===== */
 .paperScroll {
   position: relative;
   width: 100%;
-  min-height: 450px;
+  max-width: 700px;
+  min-height: 500px;
   background-image: url("../../assets/img/paperHome.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -31,7 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-8) var(--space-10);
+  padding: 16% 14%;
 }
 
 .paperContent {
@@ -51,24 +61,25 @@
   /* to make it one column */
   .presidentGrid {
     grid-template-columns: 1fr;
-    gap: 30px;
-    margin-bottom: 50px;
+    gap: var(--space-8);
+    margin-bottom: var(--space-10);
+    align-items: center;
   }
 
   /* fix the card*/
   .presidentGrid .flipCard {
-    max-width: 320px;
+    max-width: 340px;
     /* Larger president card for better visibility */
     margin: 0 auto;
   }
 
   /* fix the paper*/
   .paperScroll {
-    width: 95%;
-    max-width: 500px;
+    width: 94%;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 150px 30px 140px 30px;
-    height: auto;
+    padding: 20% 18%;
+    /* Larger side padding to avoid rolls */
     min-height: auto;
     background-size: 100% 100%;
   }
@@ -82,15 +93,17 @@
   }
 
   .paperTitle {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    /* Smaller title */
+    margin-bottom: var(--space-2);
     margin-top: 0;
     line-height: 1.2;
   }
 
   .paperScroll p.textPrimary {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    /* Smaller text */
+    line-height: 1.5;
     font-weight: 700;
     text-align: center;
     margin: 0;
@@ -256,7 +269,7 @@
   position: absolute;
   color: var(--color-warning);
   font-size: 2rem;
-  animation:  star 3s ease-in-out infinite;
+  animation: star 3s ease-in-out infinite;
   z-index: 10;
   pointer-events: none;
 }
@@ -678,8 +691,8 @@
   }
 
   .paperScroll {
-    max-width: 380px;
-    padding: 120px 25px 110px 25px;
+    max-width: 100%;
+    padding: 22% 16%;
   }
 }
 
@@ -697,8 +710,8 @@
   }
 
   .paperScroll {
-    max-width: 320px;
-    padding: 100px 20px 90px 20px;
+    max-width: 100%;
+    padding: 25% 14%;
   }
 
   .paperTitle {
