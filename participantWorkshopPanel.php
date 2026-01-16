@@ -79,7 +79,7 @@
                     <!-- Task Resource Row -->
                     <div class="taskResource">
                         <label class="taskLabel">Task Resource:</label>
-                        <div class="resourceInfo">
+                        <div class="resourCeInfo">
                             <i class="fas fa-file-alt"></i>
                             <span>task.HTML</span>
                             <a href="#" class="downloadBtn">

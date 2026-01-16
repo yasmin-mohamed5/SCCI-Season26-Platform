@@ -153,7 +153,7 @@
 
 .taskValue {
     font-size: var(--fs-md);
-    color: var(--color-black);
+    color: var(--color-primary);
     flex: 1;
     text-transform: lowercase;
 }
@@ -178,7 +178,7 @@
 
 .taskBioContent {
     font-size: var(--fs-base);
-    color: var(--color-black);
+    color: var(--color-primary);
     line-height: var(--lh-normal);
     text-align: center;
     text-transform: lowercase;
