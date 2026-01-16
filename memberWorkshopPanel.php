@@ -80,6 +80,43 @@
             </div>
         </form>
     </section>
+    <!-- View Task Section -->
+    <section class="materialList">
+      <h3 class="materialTitle">Task</h3>
+      <div class="materialContent">
+
+        <!-- material type -->
+        <aside class="materialType">
+          <button class="materialTypeButton">
+            Task Details
+          </button>
+        </aside>
+
+        <!-- materials items List -->
+        <div class="materialItemsList">
+          <article class="materialItem">
+
+            <div class="materialInfo">
+              <span class="viewTasks" id="viewTaskName">
+                    view Task Name
+              </span>
+              <span class="viewTasks" id="viewTaskDesctiption">
+                    view Task Desctiption
+              </span>
+              <span class="viewTasks" id="viewTaskDeadline">
+                    view Tas kDeadline
+              </span>
+              <span id="viewTaskFile" class="materialFileName">
+                    view Task File
+              </span>
+            </div>
+            <div class="materialActions">
+              <button id="deleteTask" class="deleteMaterialButton">Delete</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <!-- adding materials name -->
     <section class="addMaterial">

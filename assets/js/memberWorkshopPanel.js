@@ -1,3 +1,11 @@
+// make submit button able
+const submitBtn = document.getElementById('submitBtn');
+let deleteTask = document.getElementById('deleteTask');
+deleteTask.addEventListener('click',(event)=>{
+    event.preventDefault();
+    submitBtn.disabled = false;
+});
+
 // Add Task Section
 
 let taskNameMessage = document.getElementById('taskNameMessage');
@@ -80,6 +88,7 @@ submitForm.addEventListener('submit', (event) => {
     if (isValid) {
         // alert("Form submitted successfully!");
         submitForm.submit();
+        submitBtn.disabled = true;
     }
     
 });
