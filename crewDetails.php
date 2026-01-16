@@ -61,7 +61,7 @@ if(isset($_GET['committee_id'])) {
                         <div class="flipSide flipFront">
                             <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="Head" />
                         </div>
-                        <div class="flipSide flipBack">
+                        <div class="flipSide flipBack" data-title="HEAD">
                             <div class="backCard">
                                     <div class="memberImageContainer">
                                         <img src="./assets/uploadedImages/<?php echo $head['image']; ?>" class="memberImage" alt="<?php echo $head['user_name']; ?>">
@@ -119,7 +119,7 @@ if(isset($_GET['committee_id'])) {
                 <div class="flipSide flipFront">
                     <img src="./assets/img/crew/backCardCrew.png" loading="lazy" />
                 </div>
-                <div class="flipSide flipBack">
+                <div class="flipSide flipBack" data-title="<?php echo strtoupper(htmlspecialchars($member['workshop_name'])); ?>">
                     <div class="backCard">
                         <div class="memberInfo">
                             <div class="memberImageContainer">

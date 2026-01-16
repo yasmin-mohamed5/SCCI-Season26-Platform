@@ -264,7 +264,8 @@ h6 {
 }
 
 
-h1 {
+h1:not(#logo) {
+  margin-top: var(--space-6);
   font-size: var(--fs-4xl);
 }
 

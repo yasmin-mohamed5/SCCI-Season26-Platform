@@ -217,8 +217,8 @@
                     or for any sponsorship deals, don't hesitate to contact us right here.
                 </div>
 
-                <img loading="lazy" src="./assets/img/paperContact.png" alt="">
-
+                <img class="contactPaper" loading="lazy" src="./assets/img/paperContact.png" alt="">
+                <img class="contactPaperResponsive" loading="lazy" src="./assets/img/paperHomeResponsive.png" alt="">
             </div>
 
             <form class="form-content card" id="form" action="" method="POST" enctype="multipart/form-data">

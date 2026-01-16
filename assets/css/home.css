@@ -421,58 +421,121 @@
 
 .contactUsContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
   padding: 0 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* form */
 
+/* Contact Paper Container */
 .homeContactPaper {
   position: relative;
-  align-content: center;
+  display: block;
 }
 
+/* Contact Paper Images */
+.contactPaper {
+  display: block;
+  width: 600px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.contactPaperResponsive {
+  display: none;
+}
+
+/* Contact Text Positioning */
 .contactText {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 55%;
+  left: 45%;
   transform: translate(-50%, -50%);
+  width: 60%;
   text-align: center;
   color: var(--btn-primary-hover);
-  font-size: 23px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  z-index: 2;
 }
 
 .homeBird {
   position: absolute;
-  top: -17%;
-  right: -20px;
-  width: 130px;
-  transform: rotate(30deg);
+  top: -60px;
+  right: -40px;
+  width: 100px;
+  transform: rotate(15deg);
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+  z-index: 5;
+}
+
+/* Form Styling Improvement */
+.form-content {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 500px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.8rem;
+  color: var(--color-primary);
+  font-family: 'Irish Grover', cursive;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
 }
 
 .input-group input,
 .input-group textarea,
 select {
   width: 100%;
-  padding: var(--space-3);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-dark);
-  background: linear-gradient(to bottom, #5a5a5a, #6d6d6d);
-  color: var(--color-white);
-  font-size: var(--fs-sm);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.4);
+  padding: 1.2rem 1.5rem;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.03);
+  color: #333;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
   outline: none;
-  resize: both;
+  resize: vertical;
 }
 
+.input-group input::placeholder,
 .input-group textarea::placeholder {
-  color: var(--text-light);
-  font-style: italic;
+  color: #999;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-style: normal;
+  font-size: 0.95rem;
+  opacity: 0.8;
 }
 
+.input-group input:focus,
 .input-group textarea:focus {
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.4), 0 0 6px rgba(197, 37, 37, 0.4);
+  background: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(171, 32, 32, 0.15);
+  transform: translateY(-2px);
 }
+
+/* Removed old focus styles as they are now handled above */
 
 /* validation form */
 
@@ -497,6 +560,38 @@ select {
 
   .contactUsContainer {
     padding: 0 3rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+  }
+
+  .homeContactPaper {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .contactPaper {
+    display: none;
+  }
+
+  .contactPaperResponsive {
+    display: block;
+    width: 100%;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+  }
+
+  .contactText {
+    top: 50%;
+    left: 50%;
+    width: 70%;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .form-content {
+    width: 100%;
   }
 
   .statContainer {
@@ -505,13 +600,9 @@ select {
 }
 
 @media (max-width: 1000px) {
-  .contactUsContainer {
-    justify-content: center;
-  }
+  /* Removed duplicate contactUsContainer block */
 
-  .homeContactPaper {
-    display: none;
-  }
+  /* Removed display:none from homeContactPaper */
 
   .heroContainer {
     width: 75%;
