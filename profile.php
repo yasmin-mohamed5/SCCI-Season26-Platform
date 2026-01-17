@@ -315,38 +315,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
 
   <!-- History Section -->
 
-  <section class="historySection">
-    <div class="card-container">
-      <div class="vertical-line"></div>
-
-      <div class="role-item">
-        <div class="diamond"></div>
-        <div class="role-content">
-          <h3 class="role-title">IT Head</h3>
-          <p class="role-description">The IT head has a lot of responsibilities to take care of, like making the system
-            all the SCU user in their daily bases, he leads the IT members to accomplish this goal.</p>
-        </div>
-      </div>
-
-      <div class="role-item">
-        <div class="diamond"></div>
-        <div class="role-content">
-          <h3 class="role-title">IT Member</h3>
-          <p class="role-description">The IT member makes the system all the SCU user in their daily bases, and support
-            the workshops</p>
-        </div>
-      </div>
-
-      <div class="role-item">
-        <div class="diamond"></div>
-        <div class="role-content">
-          <h3 class="role-title">DEYO Participant</h3>
-          <p class="role-description">They take course on how to build websites from scratch using cutting edge
-            technologies, and then participate in the conference</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  
   </main>
   <?php include './includes/footer.php'; ?>
 
