@@ -1103,6 +1103,46 @@
                     </div>
                 </div>
             </div>
+
+            <!-- add feedback -->
+            <section class="feedbackSection">
+              <div class="feedbackHeader">
+                Feedback
+              </div>
+              <!-- id="feedbackLabel" -->
+              <form action="" method= "post" id="feedbackForm">
+                <div class="materialForm"> 
+                  <label class="formLabel" id="feedbackLabel" for="addFeedback">Add feedback:</label>
+                  <textarea class="textInput" name="addFeedback" id="addFeedback" rows="5" ></textarea>
+                </div>
+                <div class="rateInput"> 
+                  <label for="star1">
+                    <i class="fa-regular fa-star"></i>
+                  </label>
+                  <input class="rates" name="rates" type="radio" id="star1" value="star1">
+                  <label for="star2">
+                    <i class="fa-regular fa-star"></i>
+                  </label>
+                  <input class="rates" name="rates" type="radio" id="star2" value="star2">
+                  <label for="star3">
+                    <i class="fa-regular fa-star"></i>
+                  </label>
+                  <input class="rates" name="rates" type="radio" id="star3" value="star3">
+                  <label for="star4">
+                    <i class="fa-regular fa-star"></i>
+                  </label>
+                  <input class="rates" name="rates" type="radio" id="star4" value="star4">
+                  <label for="star5">
+                    <i class="fa-regular fa-star"></i>
+                  </label>
+                  <input class="rates" name="rates" type="radio" id="star5" value="star5">
+                </div>
+                <div class="feedbackSubmit">
+                  <input class="btn btn-primary btn-sm" type="submit" value="Submit">
+                </div>
+              </form>
+            </section>
+
         </section>
 
 
@@ -2861,7 +2901,7 @@
                     </div>
                 </div>
             </div>
-            
+                <!-- add task section -->
             <div class="panelWhiteBox">
                 <form id="validForm" action="" method="post">
                     <div class="materialForm">
@@ -2925,42 +2965,6 @@
                         <div class="materialInfo">
                             <span class="materialFileName">
                                 Session 1: Session Name
-                            </span>
-                        </div>
-                        <div class="materialActions">
-                            <button class="deleteMaterialButton">Delete</button>
-                        </div>
-                    </article>
-
-                    <article class="materialItem">
-
-                        <div class="materialInfo">
-                            <span class="materialFileName">
-                                Session 2: Session Name
-                            </span>
-                        </div>
-                        <div class="materialActions">
-                            <button class="deleteMaterialButton">Delete</button>
-                        </div>
-                    </article>
-
-                    <article class="materialItem">
-
-                        <div class="materialInfo">
-                            <span class="materialFileName">
-                                Session 3: Session Name
-                            </span>
-                        </div>
-                        <div class="materialActions">
-                            <button class="deleteMaterialButton">Delete</button>
-                        </div>
-                    </article>
-
-                    <article class="materialItem">
-
-                        <div class="materialInfo">
-                            <span class="materialFileName">
-                                Session 4: Session Name
                             </span>
                         </div>
                         <div class="materialActions">

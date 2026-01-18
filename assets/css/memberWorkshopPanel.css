@@ -697,16 +697,17 @@ Table
 
 .textInput,
 .selectInput {
-  flex: 1;
-  border: 2px solid var(--color-secondary);
-  border-radius: 20px;
-  padding: 0.6rem 1.2rem;
-  font-family: inherit;
-  font-size: var(--fs-sm);
-  color: var(--color-secondary);
-  background: transparent;
-  outline: none;
-  transition: box-shadow var(--transition-fast);
+    resize: none;
+    flex: 1;
+    border: 2px solid var(--color-secondary);
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    font-family: inherit;
+    font-size: var(--fs-sm);
+    color: var(--color-secondary);
+    background: transparent;
+    outline: none;
+    transition: box-shadow var(--transition-fast);
 }
 
 .textInput:focus,
@@ -1053,6 +1054,47 @@ Table
   gap: var(--space-5);
 }
 
+/* rates & add feedback section */
+.feedbackSection{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: var(--color-white);
+    border-radius: var(--radius-xl);
+    width: 50%;
+}
+.feedbackHeader{
+    font-size: var(--fs-2xl);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    background-color: var(--color-secondary);
+    padding: 15px 0;
+}
+#feedbackLabel{
+    vertical-align: top;
+}
+#addFeedback{
+    width: 70%;
+}
+.feedbackInput{
+    margin: 5% 0;
+}
+.rateInput{
+    margin: 5% 0;
+}
+.rates{
+    display: none;
+}
+
+.fa-star{
+    font-size: 24px;
+    cursor: pointer;
+    color: gold;
+}
+.feedbackSubmit{
+    margin-bottom: 20px;
+}
+
 /* MEDIA QUERIES for responsiveness */
 @media (max-width: 800px) {
   .materialForm .formGroup:first-child {
@@ -1114,6 +1156,15 @@ Table
     flex-direction: row;
     /* min-width: 220px; */
   }
+  .feedbackSection{
+        width: 70%;
+    }
+    #feedbackLabel{
+        text-align: start;
+    }
+    #addFeedback{
+    width: 100%;
+    }
 }
 
 @media (max-width: 500px) {
