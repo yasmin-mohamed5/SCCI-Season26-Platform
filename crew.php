@@ -77,7 +77,7 @@ if ($result) {
                     <div class="flipSide flipBack" data-title="PRESIDENT">
                          <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/SCCI Board/SCCI Board/Mohamed Ali.jpg" loading="lazy" alt="Mohamed Ali" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Mohamed Ali.jpg" loading="lazy" alt="Mohamed Ali" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Mohamed Ali</h3>
@@ -150,7 +150,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="IT">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Mahmoud Alaam.jpg" alt="Mahmoud Alaam" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Mahmoud Alaam.jpg" alt="Mahmoud Alaam" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Mahmoud Alaam</h3>
@@ -170,7 +170,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="DD">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Mohamed El Hossiny.jpg" alt="Mohamed El Hossiny" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Mohamed El Hossiny.jpg" alt="Mohamed El Hossiny" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Mohamed El Hossiny</h3>
@@ -190,7 +190,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="MP">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Omar Ahmed.jpg" alt="Omar Ahmed" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Omar Ahmed.jpg" alt="Omar Ahmed" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Omar Ahmed</h3>
@@ -210,7 +210,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="SMM">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Nour Mohamed.jpg" alt="Nour Mohamed" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Nour Mohamed.jpg" alt="Nour Mohamed" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Nour Mohamed</h3>
@@ -237,7 +237,7 @@ if ($result) {
                             <div class="backCard">
 
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Mohamed Ahmed.jpg" alt="Mohamed Ahmed" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Mohamed Ahmed.jpg" alt="Mohamed Ahmed" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Mohamed Ahmed</h3>
@@ -263,7 +263,7 @@ if ($result) {
                             <div class="backCard">
 
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Alaa Aboelazm.jpg" alt="Alaa Aboelazm" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Alaa Aboelazm.jpg" alt="Alaa Aboelazm" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Alaa Aboelazm</h3>
@@ -289,7 +289,7 @@ if ($result) {
                         <div class="flipSide flipBack" data-title="ER">
                             <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Mohamed Hesham.jpg" alt="Mohamed Hesham" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Mohamed Hesham.jpg" alt="Mohamed Hesham" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Mohamed Hesham</h3>
@@ -310,7 +310,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="BD">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Omar Hesham.jpg" alt="Omar Hesham" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Omar Hesham.jpg" alt="Omar Hesham" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Omar Hesham</h3>
@@ -324,14 +324,14 @@ if ($result) {
                     </div>
                     <!-- 2. L -->
                     <div class="subCard">
-                       >L</span>
+                     
                        <div class="flipCard smCard card2" data-aos="flip">
                            <div class="flipInner">
                                <div class="flipSide flipFront"><img src="./assets/img/crew/backCardCrew.png" loading="lazy"></div>
                                <div class="flipSide flipBack" data-title="LOGISTICS">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Asser El-Sayed.jpg" alt="Asser El-Sayed" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Asser El-Sayed.jpg" alt="Asser El-Sayed" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Asser El-Sayed</h3>
@@ -351,7 +351,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="CR">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Belal Omar.jpg" alt="Belal Omar" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Belal Omar.jpg" alt="Belal Omar" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Belal Omar</h3>
@@ -371,7 +371,7 @@ if ($result) {
                                <div class="flipSide flipBack" data-title="PR">
                                  <div class="backCard">
                                     <div class="memberImageContainer">
-                                        <img src="./assets/uploadedImages/Yasmine Gawish.jpg" alt="Yasmine Gawish" class="memberImage" />
+                                        <img src="./assets/uploadedImages/SCCI Board/Yasmine Gawish.jpg" alt="Yasmine Gawish" class="memberImage" />
                                     </div>
                                     <div class="memberName">
                                         <h3>Yasmine Gawish</h3>
