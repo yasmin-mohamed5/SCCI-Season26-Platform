@@ -140,7 +140,7 @@ if (isset($_GET['category_id'])) {
                 <div class="workshopDetailsGrid">
                     <?php foreach ($run_members as $members) { ?>
                         <!--  member card  -->
-                        <a href="profile.php?user_id=<?php echo $members['user_id']; ?>" class="memberCardLink">
+                        <a href="ViewProfile.php?user_id=<?= $members['user_id'] ?>" class="memberCardLink">
                             <div class="cardsContainer" data-aos="flip">
                                 <div class="flipCard card1">
                                     <div class="frontCard">

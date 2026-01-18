@@ -3,10 +3,10 @@ include('./includes/nav.php');
 
 // Check if user is logged in
 
-// if (isset($_GET['member_id'])) {
-//     $user_id = $_GET['member_id'];
-// }
- $user_id = 36;
+if (isset($_GET['user_id'])) {
+  $user_id = $_GET['user_id'];
+}
+
 // Fetch user data using prepared statement
 $select_user = "SELECT u.user_name, u.email, u.image, u.githup, u.phone, u.password, u.linkedin, u.role, c.committe_name, w.workshop_name 
                 FROM users u 
@@ -19,10 +19,13 @@ mysqli_stmt_execute($stmt);
 $run_user = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($run_user);
 
-if (!$user) {
-    header("Location: home.php");
-    exit();
+// Determine image path based on role
+$imagePath = $user['image'] ?? 'default.png';
+if (isset($user['role']) && $user['role'] == 4) {
+  $imagePath = 'SCCI Board/' . $imagePath;
 }
+?>
+
 
 
 
@@ -59,8 +62,8 @@ if (!$user) {
       <!-- Cover -->
       <div class="profileCover">
         <div class="profileImageWrapper">
-          <img src="assets/uploadedImages/<?php echo htmlspecialchars($user['image'] ?? 'default.png'); ?>" alt="Profile Photo" class="profileImage"
-            loading="lazy">
+          <img src="assets/uploadedImages/<?php echo htmlspecialchars($imagePath); ?>" alt="Profile Photo"
+            class="profileImage" loading="lazy">
         </div>
       </div>
 
@@ -69,87 +72,87 @@ if (!$user) {
 
         <!-- Name + Settings -->
         <div class="profileHeaderName">
-          <h2 class="profileName"><?php echo $user ['user_name']; ?></h2>
+          <h2 class="profileName"><?php echo $user['user_name']; ?></h2>
 
-          
-          </div>
+
         </div>
+      </div>
 
-        <!-- Info Papers -->
-        <div class="infoPapersContainer">
+      <!-- Info Papers -->
+      <div class="infoPapersContainer">
 
-          <!-- Contact -->
-          <div class="infoPaperWrapper">
-            <img src="assets/img/infoPaper.png" class="infoPaperImg" loading="lazy" alt="">
+        <!-- Contact -->
+        <div class="infoPaperWrapper">
+          <img src="assets/img/infoPaper.png" class="infoPaperImg" loading="lazy" alt="">
 
-            <div class="infoPaperContent">
-              <div class="infoLabel">Contacts</div>
-              <div class="profileSocial">
-                <!-- Email -->
-                <div class="socialItem">
-                  <i class="fa-solid fa-envelope"></i>
-                  <a href="mailto:<?php echo htmlspecialchars($user['email']); ?>">
-                    <?php echo htmlspecialchars($user['email']); ?>
-                  </a>
-                </div>
-                <!-- LinkedIn -->
-                <div class="socialItem">
-                                    <?php if (!empty($user['linkedin'])): ?>
+          <div class="infoPaperContent">
+            <div class="infoLabel">Contacts</div>
+            <div class="profileSocial">
+              <!-- Email -->
+              <div class="socialItem">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:<?php echo htmlspecialchars($user['email']); ?>">
+                  <?php echo htmlspecialchars($user['email']); ?>
+                </a>
+              </div>
+              <!-- LinkedIn -->
+              <div class="socialItem">
+                <?php if (!empty($user['linkedin'])): ?>
 
                   <i class="fa-brands fa-linkedin"></i>
                   <a href="<?php echo htmlspecialchars($user['linkedin']); ?>" target="_blank">
                     <?php echo htmlspecialchars($user['linkedin']); ?>
                   </a>
-                  <?php endif; ?>
-                </div>
-                <!-- GitHub -->
-                <div class="socialItem">
-                  <?php if (!empty($user['githup'])): ?>
+                <?php endif; ?>
+              </div>
+              <!-- GitHub -->
+              <div class="socialItem">
+                <?php if (!empty($user['githup'])): ?>
                   <i class="fa-brands fa-github"></i>
                   <a href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
                     <?php echo htmlspecialchars($user['githup']); ?>
                   </a>
-                  <?php endif; ?>
-                </div>
-                <div class="socialItem">
-                  <i class="fa-solid fa-phone"></i>
-                  <a href="tel:<?php echo htmlspecialchars($user['phone']); ?>">
-                    <?php echo htmlspecialchars($user['phone']); ?>
-                  </a>
-                </div>
+                <?php endif; ?>
+              </div>
+              <div class="socialItem">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:<?php echo htmlspecialchars($user['phone']); ?>">
+                  <?php echo htmlspecialchars($user['phone']); ?>
+                </a>
               </div>
             </div>
           </div>
-
-          <!-- Department -->
-          <div class="infoPaperWrapper">
-            <img src="assets/img/infoPaper.png" class="infoPaperImg" loading="lazy" alt="">
-
-            <div class="infoPaperContent">
-              <div class="infoLabel">Department</div>
-              <div class="infoValue">
-                <?php 
-                if ($user['role'] == 4) {
-                  $dept = !empty($user['committe_name']) ? $user['committe_name'] . " Head" : "Head";
-                  echo htmlspecialchars($dept);
-                } else {
-                  $parts = [];
-                  if (!empty($user['committe_name'])) {
-                    $parts[] = $user['committe_name'];
-                  }
-                  if (!empty($user['workshop_name'])) {
-                    $parts[] = $user['workshop_name'];
-                  }
-                  if (!empty($parts)) {
-                    echo htmlspecialchars(implode(' - ', $parts));
-                  }
-                }
-                    ?>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <!-- Department -->
+        <div class="infoPaperWrapper">
+          <img src="assets/img/infoPaper.png" class="infoPaperImg" loading="lazy" alt="">
+
+          <div class="infoPaperContent">
+            <div class="infoLabel">Department</div>
+            <div class="infoValue">
+              <?php
+              if ($user['role'] == 4) {
+                $dept = !empty($user['committe_name']) ? $user['committe_name'] . " Head" : "Head";
+                echo htmlspecialchars($dept);
+              } else {
+                $parts = [];
+                if (!empty($user['committe_name'])) {
+                  $parts[] = $user['committe_name'];
+                }
+                if (!empty($user['workshop_name'])) {
+                  $parts[] = $user['workshop_name'];
+                }
+                if (!empty($parts)) {
+                  echo htmlspecialchars(implode(' - ', $parts));
+                }
+              }
+              ?>
+            </div>
+          </div>
+        </div>
+
+      </div>
       </div>
     </article>
   </section>
@@ -167,8 +170,8 @@ if (!$user) {
 
           <div class="input-group">
             <label for="user_name">Name</label>
-            <input type="text" name="user_name" id="user_name" value="<?php echo htmlspecialchars($user['user_name']); ?>"
-              placeholder="Enter your name" required>
+            <input type="text" name="user_name" id="user_name"
+              value="<?php echo htmlspecialchars($user['user_name']); ?>" placeholder="Enter your name" required>
           </div>
 
           <div class="input-group">
@@ -215,7 +218,7 @@ if (!$user) {
 
   <!-- History Section -->
 
-  
+
   </main>
   <?php include './includes/footer.php'; ?>
 
