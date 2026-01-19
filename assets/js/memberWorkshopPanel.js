@@ -228,3 +228,30 @@ fileInput.addEventListener("change", () => {
 switchTab("technical");
 
 // ==============================================================
+
+// add feedback 
+
+
+const submitFeedback = document.getElementById("feedbackForm");
+submitFeedback.addEventListener("submit", (event) => {
+  event.preventDefault();
+  let addFeedback = document.getElementById("addFeedback").value.trim();
+  let addFeedbackMessage = document.getElementById("addFeedbackMessage");
+  addFeedbackMessage.textContent = ""
+  var isValidFeedback = true;
+  if(addFeedback ==""){
+    addFeedbackMessage.textContent = "feedback is required";
+    addFeedbackMessage.style.color = "red";
+    addFeedbackMessage.style.fontSize = "12px";
+    isValidFeedback = false;
+  }
+  if (!isValidFeedback){
+    event.preventDefault();
+  }
+  if (isValidFeedback) {
+    // alert("Form submitted successfully!");
+    submitFeedback.submit();
+  }
+
+});
+

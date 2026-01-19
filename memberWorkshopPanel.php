@@ -1106,45 +1106,6 @@
                 </div>
             </div>
 
-            <!-- add feedback -->
-            <section class="feedbackSection">
-              <div class="feedbackHeader">
-                Feedback
-              </div>
-              <!-- id="feedbackLabel" -->
-              <form action="" method= "post" id="feedbackForm">
-                <div class="materialForm"> 
-                  <label class="formLabel" id="feedbackLabel" for="addFeedback">Add feedback:</label>
-                  <textarea class="textInput" name="addFeedback" id="addFeedback" rows="5" ></textarea>
-                </div>
-                <div class="rateInput"> 
-                  <label for="star1">
-                    <i class="fa-regular fa-star"></i>
-                  </label>
-                  <input class="rates" name="rates" type="radio" id="star1" value="star1">
-                  <label for="star2">
-                    <i class="fa-regular fa-star"></i>
-                  </label>
-                  <input class="rates" name="rates" type="radio" id="star2" value="star2">
-                  <label for="star3">
-                    <i class="fa-regular fa-star"></i>
-                  </label>
-                  <input class="rates" name="rates" type="radio" id="star3" value="star3">
-                  <label for="star4">
-                    <i class="fa-regular fa-star"></i>
-                  </label>
-                  <input class="rates" name="rates" type="radio" id="star4" value="star4">
-                  <label for="star5">
-                    <i class="fa-regular fa-star"></i>
-                  </label>
-                  <input class="rates" name="rates" type="radio" id="star5" value="star5">
-                </div>
-                <div class="feedbackSubmit">
-                  <input class="btn btn-primary btn-sm" type="submit" value="Submit">
-                </div>
-              </form>
-            </section>
-
         </section>
 
 
@@ -3922,70 +3883,57 @@
             <!-- Modal Body -->
             <div class="modalBody">
                 <form id="feedbackForm">
-                    <!-- Session Information -->
-                    <div class="feedbackSessionInfo">
-                        <label class="feedbackSessionLabel">Participant:</label>
-                        <span class="feedbackSessionValue" id="participantName">Omar Raslan</span>
-                    </div>
 
-                    <!-- Session Selection -->
-                    <div class="feedbackFormGroup">
-                        <label class="feedbackLabel">Session:</label>
-                        <select id="sessionSelect" class="feedbackInput" required>
-                            <option value="">Select Session</option>
-                            <option value="1">Session 1 - Build your first website</option>
-                            <option value="2">Session 2 - JavaScript Basics</option>
-                            <option value="3">Session 3 - DOM Manipulation</option>
-                            <option value="4">Session 4 - Responsive Design</option>
-                            <option value="5">Session 5 - Bootstrap Framework</option>
-                            <option value="6">Session 6 - API Integration</option>
-                            <option value="7">Session 7 - Final Project</option>
-                        </select>
-                    </div>
-
-                    <!-- Rating Section -->
+                <div class="materialForm"> 
+                        <label class="formLabel" id="feedbackLabel" for="addFeedback">Add feedback:</label>
+                        <textarea class="textInput" name="addFeedback" id="addFeedback" rows="5" ></textarea>
+                        <p id="addFeedbackMessage"></p>
+                        </div>
+                        <!-- Rating Section -->
                     <div class="feedbackFormGroup">
                         <label class="feedbackLabel">Rating:</label>
                         <div class="feedbackStarsInput">
-                            <i class="far fa-star" data-rating="1"></i>
-                            <i class="far fa-star" data-rating="2"></i>
-                            <i class="far fa-star" data-rating="3"></i>
-                            <i class="far fa-star" data-rating="4"></i>
-                            <i class="far fa-star" data-rating="5"></i>
+                            <label for="star1">
+                                <i class="far fa-star" data-rating="1"></i>
+                            </label>
+                            <input class="rates" type="radio" name="stars" id="star1">
+
+                            <label for="star2">
+                                <i class="far fa-star" data-rating="2"></i>
+                            </label>
+                            <input class="rates" type="radio" name="stars" id="star2">
+
+                            <label for="star3">
+                                <i class="far fa-star" data-rating="3"></i>
+                            </label>
+                            <input class="rates" type="radio" name="stars" id="star3">
+
+                            <label for="star4">
+                                <i class="far fa-star" data-rating="4"></i>
+                            </label>
+                            <input class="rates" type="radio" name="stars" id="star4">
+
+                            <label for="star5">
+                                <i class="far fa-star" data-rating="5"></i>
+                            </label>
+                            <input class="rates" type="radio" name="stars" id="star5">
                         </div>
                         <input type="hidden" id="ratingValue" name="rating" value="0" required>
                     </div>
-
-                    <!-- Feedback Message -->
-                    <div class="feedbackFormGroup">
-                        <label class="feedbackLabel">Feedback Message:</label>
-                        <textarea 
-                            id="feedbackMessage" 
-                            class="feedbackTextarea" 
-                            rows="8" 
-                            placeholder="Enter your detailed feedback here...&#10;&#10;Example:&#10;✅ Great work on...&#10;⚠️ Consider improving...&#10;💡 Suggestion for next time..."
-                            required
-                        ></textarea>
+                    <!-- Modal Footer -->
+                    <div class="modalFooter">
+                        <button class="modalCancelBtn" onclick="closeFeedbackModal()">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                        <!-- <button  class="modalSaveBtn" onclick="saveFeedback()">
+                            <i class="fas fa-save"></i>
+                            Save Feedback
+                        </button> -->
+                        <input type="submit" class="btn btn-primary btn-sm" value="Save Feedback" >
+                        </form>
                     </div>
-
-                    <!-- Instructor Info (Auto-filled) -->
-                    <div class="feedbackInstructor">
-                        <i class="fas fa-user-tie"></i>
-                        <span>Instructor: Dr. Ahmed Mohamed</span>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="modalFooter">
-                <button class="modalCancelBtn" onclick="closeFeedbackModal()">
-                    <i class="fas fa-times"></i>
-                    Cancel
-                </button>
-                <button class="modalSaveBtn" onclick="saveFeedback()">
-                    <i class="fas fa-save"></i>
-                    Save Feedback
-                </button>
+            
             </div>
         </div>
     </div>
