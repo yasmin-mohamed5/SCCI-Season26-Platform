@@ -45,6 +45,11 @@ if(isset($_SESSION['user_id'])){
             echo '<a href="/SCCI-Season26-Platform/participantWorkshopPanel.php" id="homeNavLine">participant panel</a>';
         }
         ?>
+        <?php
+        if($role == 4) {
+            echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
+        }
+        ?>
         
 
         <a href="/SCCI-Season26-Platform/about.php" id="aboutNavLine">about us</a>
