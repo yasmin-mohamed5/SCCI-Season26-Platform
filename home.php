@@ -255,7 +255,7 @@ if ($run_contact) {
             </div>
 
 
-            <form class="form-content card" id="form"  method="POST" enctype="multipart/form-data">
+            <form class="form-content card" data-aos="fade-left" id="form"  method="POST" enctype="multipart/form-data">
                 <img class="homeBird" loading="lazy" src="./assets/img/bird.png" alt="">
                 <!-- inputs -->
                 <div class="input-group">
@@ -294,3 +294,4 @@ if ($run_contact) {
 </body>
 
 </html>
+
