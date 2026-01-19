@@ -22,14 +22,33 @@
     <link rel="stylesheet" href="assets/css/navbar.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/memberWorkshopPanel.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="assets/css/feedbackModal.css?v=<?php echo time(); ?>">
     <!-- Custom Page Styles -->
 
     <title>SCCI-Panel</title>
 </head>
 
 <body>
-    <!-- add materials section -->
+    <!-- REVIEW Popup ----------------------------------------------------------------------------- -->
+    <div id="feedbackPopup1" class="reviewFeedbackPopup">
+        <div class="reviewFeedbackContainer">
+            <div class="FeedbackContainerTop">
+                <h6>Feedback Review</h6>
+                <div class="closeFeedback">X</div>
+            </div>
+
+            <div class="FeedbackBox">
+                <h6>Omar Raslan . IT</h6>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis corrupti repellendus quaerat,
+                        animi deleniti hic consequuntur accusantium. Rem doloremque vero reiciendis voluptate nobis 
+                        quasi temporibus error veritatis, atque tenetur repudiandae hic ab voluptatem recusandae nesciunt. 
+                        Assumenda magnam, neque illum, suscipit laborum cum eos enim expedita quo consectetur esse harum amet 
+                        quis cupiditate deleniti impedit quasi quia.</p>
+            </div>
+
+        </div>
+    </div>
+    
+
     <main class="materialPage">
 
         <!-- panel ----------------------------------------------------------------- -->
@@ -108,120 +127,18 @@
             <a data-page="addTask" class="">add task</a>
             <a data-page="addMaterial" class="">add materials</a>
             <a data-page="quiz" class="">quiz</a>
-        </div>
+        </div>        
 
         <!-- EVALUATE --------------------------------------------------------------------------- -->
         <section
             id="evaluate"
             class="panelSection panelSectionActive evaluateContainer">
-            <h4>dashboard</h4>
 
-            <div class="panelWhiteBox">
+            <div class="panelWhiteBox sessionsBox">
                 <!-- Sessions -->
                 <div class="sessionsSelectorFrame">
                     <div class="sessionsSelector">
-                        <!-- Not Active Session -->
-                        <div class="sessionBtn">
-                            <!-- svg shape -->
-                            <div class="panelSvg panelSession">
-                                <!-- left edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-
-                                <!-- center -->
-
-                                <div class="panelBody sessionWhite"></div>
-                                <!-- right edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </div>
-
-                            <p>session 1</p>
-                        </div>
-
-                        <!-- Not Active Session -->
-                        <div class="sessionBtn">
-                            <!-- svg shape -->
-                            <div class="panelSvg panelSession">
-                                <!-- left edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-
-                                <!-- center -->
-
-                                <div class="panelBody sessionWhite"></div>
-                                <!-- right edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </div>
-
-                            <p>session 2</p>
-                        </div>
-
+                        
                         <!-- Active Session -->
                         <div class="sessionBtn sessionActive">
                             <!-- svg shape -->
@@ -236,9 +153,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="#1f184e"
                                         stroke="#1f184e"
                                         stroke-width="2"
@@ -259,11 +176,113 @@
                                     aria-hidden="true">
                                     <path
                                         d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
                                         fill="#1f184e"
                                         stroke="#1f184e"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <p>session 1</p>
+                        </div>
+                        
+                        <!-- Not Active Session -->
+                        <div class="sessionBtn">
+                            <!-- svg shape -->
+                            <div class="panelSvg panelSession">
+                                <!-- left edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M50 0
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+
+                                <!-- center -->
+
+                                <div class="panelBody sessionWhite"></div>
+                                <!-- right edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M0 0
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <p>session 2</p>
+                        </div>
+
+                        <!-- Not Active Session -->
+                        <div class="sessionBtn">
+                            <!-- svg shape -->
+                            <div class="panelSvg panelSession">
+                                <!-- left edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M50 0
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+
+                                <!-- center -->
+
+                                <div class="panelBody sessionWhite"></div>
+                                <!-- right edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M0 0
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -287,9 +306,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -310,9 +329,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -937,7 +956,9 @@
                         </div>
                     </div>
                 </div>
-            
+            </div>
+
+            <div class="panelWhiteBox">
                 <!-- Table -->
                 <div class="tableScrollFrame">
                     <div class="tableScroll">
@@ -994,9 +1015,9 @@
                                     </td>
                                     <td>
                                         <button
-                                            class="btn evaluateFeedback btn-primary addFeedbackBtn"
-                                            type="button"
-                                            onclick="openFeedbackModal('Omar Raslan', '1')">
+                                            data-popup="feedbackModal"
+                                            class="btn evaluateFeedback btn-primary"
+                                            type="submit">
                                             Add Feedback
                                         </button>
                                     </td>
@@ -1028,6 +1049,7 @@
                                     </td>
                                     <td>
                                         <button
+                                            data-popup="feedbackModal"
                                             class="btn evaluateFeedback btn-primary"
                                             type="submit">
                                             Add Feedback
@@ -1061,6 +1083,7 @@
                                     </td>
                                     <td>
                                         <button
+                                            data-popup="feedbackModal"
                                             class="btn evaluateFeedback btn-primary"
                                             type="submit">
                                             Add Feedback
@@ -1094,6 +1117,7 @@
                                     </td>
                                     <td>
                                         <button
+                                            data-popup="feedbackModal"
                                             class="btn evaluateFeedback btn-primary"
                                             type="submit">
                                             Add Feedback
@@ -1105,20 +1129,20 @@
                     </div>
                 </div>
             </div>
-
         </section>
 
 
-        <!-- REVIEW ----------------------------------------------------------------------------- -->
-        <section id="review" class="panelSection evaluateContainer">
-            <h4>dashboard</h4>
 
-            <div>
+        <!-- REVIEW ----------------------------------------------------------------------------- -->
+        <section id="review" class="panelSection evaluateContainer">            
+
+            <div class="panelWhiteBox sessionsBox">
                 <!-- Sessions -->
                 <div class="sessionsSelectorFrame">
                     <div class="sessionsSelector">
-                        <!-- Not Active Session -->
-                        <div class="sessionBtn">
+                        
+                        <!-- Active Session -->
+                        <div class="sessionBtn sessionActive">
                             <!-- svg shape -->
                             <div class="panelSvg panelSession">
                                 <!-- left edge -->
@@ -1131,11 +1155,11 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
+                                        fill="#1f184e"
+                                        stroke="#1f184e"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -1143,7 +1167,7 @@
 
                                 <!-- center -->
 
-                                <div class="panelBody sessionWhite"></div>
+                                <div class="panelBody sessionBlue"></div>
                                 <!-- right edge -->
                                 <svg
                                     shape-rendering="geometricPrecision"
@@ -1154,11 +1178,11 @@
                                     aria-hidden="true">
                                     <path
                                         d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
+                                        fill="#1f184e"
+                                        stroke="#1f184e"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -1167,7 +1191,7 @@
 
                             <p>session 1</p>
                         </div>
-
+                        
                         <!-- Not Active Session -->
                         <div class="sessionBtn">
                             <!-- svg shape -->
@@ -1219,8 +1243,8 @@
                             <p>session 2</p>
                         </div>
 
-                        <!-- Active Session -->
-                        <div class="sessionBtn sessionActive">
+                        <!-- Not Active Session -->
+                        <div class="sessionBtn">
                             <!-- svg shape -->
                             <div class="panelSvg panelSession">
                                 <!-- left edge -->
@@ -1236,8 +1260,8 @@
                     C40 0 30 20 10 50
                     C30 80 40 100 50 100
                     Z"
-                                        fill="#1f184e"
-                                        stroke="#1f184e"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -1245,7 +1269,7 @@
 
                                 <!-- center -->
 
-                                <div class="panelBody sessionBlue"></div>
+                                <div class="panelBody sessionWhite"></div>
                                 <!-- right edge -->
                                 <svg
                                     shape-rendering="geometricPrecision"
@@ -1259,8 +1283,8 @@
                     C10 0 20 20 40 50
                     C20 80 10 100 0 100
                     Z"
-                                        fill="#1f184e"
-                                        stroke="#1f184e"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -1934,7 +1958,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <div class="panelWhiteBox">    
                 <!-- Table -->
                 <div class="tableScrollFrame">
                     <div class="tableScroll">
@@ -1943,11 +1969,10 @@
                             cellspacing="0"
                             summary="participants dashboard">
                             <colgroup>
-                                <col span="1" style="width: 20%" />
-                                <col span="1" style="width: 20%" />
-                                <col span="1" style="width: 20%" />
-                                <col span="1" style="width: 20%" />
-                                <col span="1" style="width: 20%" />
+                                <col span="1" style="width: 25%" />
+                                <col span="1" style="width: 25%" />
+                                <col span="1" style="width: 25%" />
+                                <col span="1" style="width: 25%" />
                             </colgroup>
 
                             <!-- Table head -->
@@ -1961,7 +1986,6 @@
                                     <th scope="col">
                                         <i class="fa-solid fa-splotch"></i> feedback
                                     </th>
-                                    <th scope="col"><i class="fa-solid fa-plus"></i> added by</th>
                                 </tr>
                             </thead>
 
@@ -1988,16 +2012,13 @@
 
                                     <td>
                                         <button
+                                            data-popup="feedbackPopup1"
                                             class="btn evaluateFeedback btn-primary"
                                             type="submit">
                                             view feedback
                                         </button>
                                     </td>
 
-                                    <td>
-                                        <!-- added by -->
-                                        <p class="reviewAddedBy">omar raslan</p>
-                                    </td>
                                 </tr>
                                 
                                 <!-- table row -->
@@ -2020,14 +2041,11 @@
 
                                     <td>
                                         <button
+                                            data-popup="feedbackPopup1"
                                             class="btn evaluateFeedback btn-primary"
                                             type="submit">
                                             view Feedback
                                         </button>
-                                    </td>
-                                    <td>
-                                        <!-- added by -->
-                                        <p class="reviewAddedBy">omar raslan</p>
                                     </td>
                                 </tr>
 
@@ -2041,113 +2059,11 @@
 
         <!-- Add Task Section ------------------------------------- -->
         <section id="addTask" class="taskContainer panelSection evaluateContainer">
-            <h4>Add Tasks</h4>
-            <div class="panelWhiteBox">
+            <div class="panelWhiteBox sessionsBox">
                 <!-- Sessions -->
                 <div class="sessionsSelectorFrame">
                     <div class="sessionsSelector">
-                        <!-- Not Active Session -->
-                        <div class="sessionBtn">
-                            <!-- svg shape -->
-                            <div class="panelSvg panelSession">
-                                <!-- left edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-
-                                <!-- center -->
-
-                                <div class="panelBody sessionWhite"></div>
-                                <!-- right edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </div>
-
-                            <p>session 1</p>
-                        </div>
-
-                        <!-- Not Active Session -->
-                        <div class="sessionBtn">
-                            <!-- svg shape -->
-                            <div class="panelSvg panelSession">
-                                <!-- left edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-
-                                <!-- center -->
-
-                                <div class="panelBody sessionWhite"></div>
-                                <!-- right edge -->
-                                <svg
-                                    shape-rendering="geometricPrecision"
-                                    class="panelEdge sessionEdge"
-                                    preserveAspectRatio="none"
-                                    viewBox="0 0 50 100"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true">
-                                    <path
-                                        d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
-                                        stroke-width="2"
-                                        stroke-linejoin="round"
-                                        stroke-linecap="round" />
-                                </svg>
-                            </div>
-
-                            <p>session 2</p>
-                        </div>
-
+                        
                         <!-- Active Session -->
                         <div class="sessionBtn sessionActive">
                             <!-- svg shape -->
@@ -2162,9 +2078,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="#1f184e"
                                         stroke="#1f184e"
                                         stroke-width="2"
@@ -2185,9 +2101,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
                                         fill="#1f184e"
                                         stroke="#1f184e"
                                         stroke-width="2"
@@ -2196,7 +2112,58 @@
                                 </svg>
                             </div>
 
-                            <p>session 3</p>
+                            <p>session 1</p>
+                        </div>
+                        
+                        <!-- Not Active Session -->
+                        <div class="sessionBtn">
+                            <!-- svg shape -->
+                            <div class="panelSvg panelSession">
+                                <!-- left edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M50 0
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+
+                                <!-- center -->
+
+                                <div class="panelBody sessionWhite"></div>
+                                <!-- right edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M0 0
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <p>session 2</p>
                         </div>
 
                         <!-- Not Active Session -->
@@ -2213,9 +2180,61 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+
+                                <!-- center -->
+
+                                <div class="panelBody sessionWhite"></div>
+                                <!-- right edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M0 0
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
+                                        stroke-width="2"
+                                        stroke-linejoin="round"
+                                        stroke-linecap="round" />
+                                </svg>
+                            </div>
+
+                            <p>session 3</p>
+                        </div>
+
+
+                        <!-- Not Active Session -->
+                        <div class="sessionBtn">
+                            <!-- svg shape -->
+                            <div class="panelSvg panelSession">
+                                <!-- left edge -->
+                                <svg
+                                    shape-rendering="geometricPrecision"
+                                    class="panelEdge sessionEdge"
+                                    preserveAspectRatio="none"
+                                    viewBox="0 0 50 100"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    aria-hidden="true">
+                                    <path
+                                        d="M50 0
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2264,9 +2283,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2315,9 +2334,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2366,9 +2385,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2417,9 +2436,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2468,9 +2487,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2519,9 +2538,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2570,9 +2589,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2621,9 +2640,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2672,9 +2691,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2723,9 +2742,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2774,9 +2793,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2825,9 +2844,9 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
                                         fill="var(--color-white-gradient)"
                                         stroke="var(--color-white-gradient)"
                                         stroke-width="2"
@@ -2864,64 +2883,71 @@
                     </div>
                 </div>
             </div>
-                <!-- add task section -->
-            <div>
+            
+            <div class="panelWhiteBox">
                 <form id="validForm" action="" method="post">
                     <div class="materialForm">
                         <div class="sideInputs">
                             <!-- add task name -->
-                            <div class="groupInputs">
-                                <label class="formLabel" for="taskName">Task Name:</label>
-                                <input class="textInput" type="text" name="taskName" id="taskName">
+                            <div class="inputsBox">
+                                <div class="groupInputs">
+                                     <label class="formLabel" for="taskName">Task Name:</label>
+                                     <input class="textInput" type="text" name="taskName" id="taskName">
+                                </div>
                                 <p id="taskNameMessage"></p>
                             </div>
+
                             <!-- add task deadline -->
-                            <div class="groupInputs">
-                                <label class="formLabel" for="dueDate">Deadline:</label>
-                                <input class="textInput" type="datetime-local" name="dueDate" id="dueDate">
+                            <div class="inputsBox">
+                                <div class="groupInputs">
+                                     <label class="formLabel" for="dueDate">Deadline:</label>
+                                    <input class="textInput" type="datetime-local" name="dueDate" id="dueDate">
+                                </div>
                                 <p id="dueDateMessage"></p>
                             </div>
+                            
                         </div>
                         <!-- add task Description -->
-                        <div class="groupInputs">
-                            <label class="formLabel" for="description" id="descriptionLabel">Task Description:</label>
-                            <textarea class="textInput" name="description" id="descriptionInput" rows="5"></textarea>
+                        <div class="inputsBox">
+                            <div class="groupInputs">
+                                <label class="formLabel" for="description" id="descriptionLabel">Task Description:</label>
+                                <textarea class="textInput" name="description" id="descriptionInput" rows="5"></textarea>
+                            </div>
                             <p id="descriptionMessage"></p>
                         </div>
 
                     </div>
 
                     <!-- upload task file -->
-                    <div class="fileUpload" id="taskUpload">
-                        <div class="uploadContainer" id ="taskUploadContainer">
-                            <label class="formLabel" for="taskFile">
+                    <div class="fileUpload">
+                        <div class="formLabel">Upload File:</div>
+                        <div class="uploadContainer">
+                            <label class="formLabel uploadLabel">
                                 <div class="uploadIcon"></div>
+                                <p class="uploadText">Drag and drop or click to browse</p>
                             </label>
-                            
-                            <p class="uploadText" id="fileUploadState">
-                            Drag and drop or click to browse
-                            </p>
-                            <p id="fileUploadedName"></p>
-                            <label  class=" btn btn-secondary btn-sm" for="taskFile">Upload File</label>
-                            <input  type="file" name="taskFile" id="taskFile">
-                            
-                            <p id="fileMessage"></p>
+
+                            <input type="file" name="taskFile" class="taskFileInput" style="display:none;">
+
+                            <!-- Shows uploaded file name -->
+                            <p class="fileUploadedName" style="display:none;"></p>
+                            <p class="fileMessage"></p>
+
+                            <label class="btn btn-secondary btn-sm" id="uploadBtn">Upload File</label>
                         </div>
                     </div>
+
 
                     <button id="submitBtn" class="btn btn-primary btn-sm" type="submit">Add Task</button>
                 </form>
             </div>
-            
-            <!-- <div class="taskSeparator"></div> -->
-            
+                        
             <!--task list section ----------------------------- -->
-            <!-- materials items List -->
             <div class="panelWhiteBox">
                 <h4>Tasks</h4>
-                <!-- <div class="materialItemsList"> -->
 
                 <div class="articleFiles">
+                    <!-- uploaded task -->
                     <article class="materialItem">
 
                         <div class="materialInfo">
@@ -2935,21 +2961,20 @@
                     </article>
                 </div>
 
-                <!-- </div> -->
             </div>
         </section>
         
         
         <!-- adding materials section ---------------------------------- -->
-        <section class="evaluateContainer panelSection" class="addMaterial" id="addMaterial">
-            <h4>Add Materials</h4>
+        <section class="evaluateContainer panelSection" id="addMaterial">
 
-            <div class="panelWhiteBox">
+            <div class="panelWhiteBox sessionsBox">
                 <!-- Sessions -->
                 <div class="sessionsSelectorFrame">
                     <div class="sessionsSelector">
-                        <!-- Not Active Session -->
-                        <div class="sessionBtn">
+                        
+                        <!-- Active Session -->
+                        <div class="sessionBtn sessionActive">
                             <!-- svg shape -->
                             <div class="panelSvg panelSession">
                                 <!-- left edge -->
@@ -2962,11 +2987,11 @@
                                     aria-hidden="true">
                                     <path
                                         d="M50 0
-                    C40 0 30 20 10 50
-                    C30 80 40 100 50 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
+                                        C40 0 30 20 10 50
+                                        C30 80 40 100 50 100
+                                        Z"
+                                        fill="#1f184e"
+                                        stroke="#1f184e"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -2974,7 +2999,7 @@
 
                                 <!-- center -->
 
-                                <div class="panelBody sessionWhite"></div>
+                                <div class="panelBody sessionBlue"></div>
                                 <!-- right edge -->
                                 <svg
                                     shape-rendering="geometricPrecision"
@@ -2985,11 +3010,11 @@
                                     aria-hidden="true">
                                     <path
                                         d="M0 0
-                    C10 0 20 20 40 50
-                    C20 80 10 100 0 100
-                    Z"
-                                        fill="var(--color-white-gradient)"
-                                        stroke="var(--color-white-gradient)"
+                                        C10 0 20 20 40 50
+                                        C20 80 10 100 0 100
+                                        Z"
+                                        fill="#1f184e"
+                                        stroke="#1f184e"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -2998,7 +3023,7 @@
 
                             <p>session 1</p>
                         </div>
-
+                        
                         <!-- Not Active Session -->
                         <div class="sessionBtn">
                             <!-- svg shape -->
@@ -3050,8 +3075,8 @@
                             <p>session 2</p>
                         </div>
 
-                        <!-- Active Session -->
-                        <div class="sessionBtn sessionActive">
+                        <!-- Not Active Session -->
+                        <div class="sessionBtn">
                             <!-- svg shape -->
                             <div class="panelSvg panelSession">
                                 <!-- left edge -->
@@ -3067,8 +3092,8 @@
                     C40 0 30 20 10 50
                     C30 80 40 100 50 100
                     Z"
-                                        fill="#1f184e"
-                                        stroke="#1f184e"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -3076,7 +3101,7 @@
 
                                 <!-- center -->
 
-                                <div class="panelBody sessionBlue"></div>
+                                <div class="panelBody sessionWhite"></div>
                                 <!-- right edge -->
                                 <svg
                                     shape-rendering="geometricPrecision"
@@ -3090,8 +3115,8 @@
                     C10 0 20 20 40 50
                     C20 80 10 100 0 100
                     Z"
-                                        fill="#1f184e"
-                                        stroke="#1f184e"
+                                        fill="var(--color-white-gradient)"
+                                        stroke="var(--color-white-gradient)"
                                         stroke-width="2"
                                         stroke-linejoin="round"
                                         stroke-linecap="round" />
@@ -3767,51 +3792,53 @@
                 </div>
             </div>
             
-            <div>
-                <form id="validMaterialForm" action="" method="post">
-                  <div class="materialForm">
-                    <div class="formGroup">
-                <!-- adding materials name -->
-                      <label class="formLabel" for="materialName">Material Name</label>
-                      <input class="textInput" type="text" id="materialName"name="materialName" />
-                      <p id="materialNameMessage"></p>
+            <div class="panelWhiteBox">
+                <form id="validForm" action="" method="post">
+                    <div class="sideInputs">
+
+                        <div class="inputsBox">
+                            <div class="formGroup">
+                                <label class="formLabel">Material Name</label>
+                                <input class="textInput" type="text" />
+                            </div>
+                            <p id="taskNameMessage"></p>
+                        </div>
+
+                        <!-- Session Type Select -->
+                        <div class="inputsBox">
+
+                             <div class="formGroup">
+                                <label class="formLabel">Session Type</label>
+                                <select class="selectInput">
+                                    <option>Technical</option>
+                                    <option>Soft Skills</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Session Type Select -->
-                    <div class="formGroup">
-                      <label class="formLabel" for="sessionType">Session Type</label>
-                      <select class="selectInput"  id="sessionType" name="sessionType">
-                        <option value="">Select Type</option>
-                        <option value="Technical">Technical</option>
-                        <option value="Soft Skills">Soft Skills</option>
-                      </select>
-                      <p id="sessionTypeMessage"></p>
+    
+                    <!-- upload material file -->
+                    <div class="fileUpload">
+                        <div class="formLabel">Upload File:</div>
+                        <div class="uploadContainer">
+                            <label class="formLabel uploadLabel">
+                                <div class="uploadIcon"></div>
+                                <p class="uploadText">Drag and drop or click to browse</p>
+                            </label>
+
+                            <input type="file" name="taskFile" class="taskFileInput" style="display:none;">
+
+                            <!-- Shows uploaded file name -->
+                            <p class="fileUploadedName" style="display:none;"></p>
+                            <p class="fileMessage"></p>
+
+                            <label class="btn btn-secondary btn-sm" id="uploadBtn">Upload File</label>
+                        </div>
                     </div>
-                  </div>
-            
-            <!--file upload section-->
-            <div class="fileUpload" id="materialUpload">
-              <div class="uploadContainer" id="materialUploadContainer">
-                <label class="formLabel" for="materialFile">
-                <div class="uploadIcon"></div>
-                </label>
-                <p class="uploadText"  id="materialFileState">
-                  Drag and drop or click to browse
-                </p>
-                <p id="materialFileUploadedName"></p>
-                <label class="btn btn-secondary btn-sm" for="materialFile">Upload File</label>
-                <input type="file" name="materialFile" id="materialFile">
-                    <p id="materialFileMessage"></p>
 
-                </div>
-              </div>
-
-                <!--end of file upload section-->
-
-                <div>
-                  <button id="addMaterialBtn" class="btn btn-primary btn-sm" type="submit">Add Material</button>
-                </div>
-
-              </form>
+    
+                    <button id="submitBtn" class="btn btn-primary btn-sm" type="submit">Add Task</button>
+                </form>
             </div>
 
             <!--materials list section ----------------------------- -->
@@ -3831,9 +3858,9 @@
     
                     <!-- materials items List -->
                     <div class="materialItemsList">
-                        <div class="articleFiles">
-                            <article class="materialItemJs materialItem">
-    
+                        <article class="materialItemJs articleFiles">
+
+                            <div class="materialItem">
                                 <div class="materialInfo">
                                     <span class="materialFileName">
                                         Session 1: Introduction to HTML
@@ -3842,11 +3869,11 @@
                                 <div class="materialActions">
                                     <button class="deleteMaterialButton">Delete</button>
                                 </div>
-                            </article>
-                        </div>
+                            </div> 
+                        </article>
     
-                        <div class="articleFiles">
-                            <article class="materialItemJs materialItem" style="display: none;">
+                        <article class="materialItemJs articleFiles" style="display: none;">
+                            <div class="materialItem">
                                 <div class="materialInfo">
                                     <span class="materialFileName">
                                         Session 1: Soft Skills & Communication
@@ -3855,8 +3882,8 @@
                                 <div class="materialActions">
                                     <button class="deleteMaterialButton">Delete</button>
                                 </div>
-                            </article>
-                        </div>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -3864,76 +3891,68 @@
 
     </main>
     <!-- end add materials section-->
-
-
+    
     <!-- Feedback Modal Popup (Instructor Input Form) -->
-    <div id="feedbackModal" class="modalOverlay">
-        <div class="modalContainer">
+    <div id="feedbackModal" class="reviewFeedbackPopup">
+        <div class="reviewFeedbackContainer">
             <!-- Modal Header -->
-            <div class="modalHeader">
-                <h3>
+            <div class="FeedbackContainerTop">
+                <h6>
                     <i class="fas fa-comment-dots"></i>
-                    Add Session Feedback
-                </h3>
-                <button class="modalCloseBtn" onclick="closeFeedbackModal()">
+                    Add Feedback
+                </h6>
+                <button class="closeFeedback" onclick="closeFeedbackModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
 
             <!-- Modal Body -->
-            <div class="modalBody">
+            <div class="modalBody FeedbackBox">
                 <form id="feedbackForm">
 
-                <div class="materialForm"> 
+                    <div class="materialForm"> 
                         <label class="formLabel" id="feedbackLabel" for="addFeedback">Add feedback:</label>
-                        <textarea class="textInput" name="addFeedback" id="addFeedback" rows="5" ></textarea>
+                        <textarea class="textInput popupInput" name="addFeedback" id="addFeedback" rows="4" ></textarea>
                         <p id="addFeedbackMessage"></p>
-                        </div>
-                        <!-- Rating Section -->
+                    </div>
+                    <!-- Rating Section -->
                     <div class="feedbackFormGroup">
                         <label class="feedbackLabel">Rating:</label>
                         <div class="feedbackStarsInput">
                             <label for="star1">
-                                <i class="far fa-star" data-rating="1"></i>
+                                <i class="fa-regular fa-star feedbackStars" data-rating="1"></i>
                             </label>
-                            <input class="rates" type="radio" name="stars" id="star1">
+                            <input class="rates" type="radio" name="stars" value="1" id="star1">
 
                             <label for="star2">
-                                <i class="far fa-star" data-rating="2"></i>
+                                <i class="fa-regular fa-star feedbackStars" data-rating="2"></i>
                             </label>
-                            <input class="rates" type="radio" name="stars" id="star2">
+                            <input class="rates" type="radio" name="stars" value="2" id="star2">
 
                             <label for="star3">
-                                <i class="far fa-star" data-rating="3"></i>
+                                <i class="fa-regular fa-star feedbackStars" data-rating="3"></i>
                             </label>
-                            <input class="rates" type="radio" name="stars" id="star3">
+                            <input class="rates" type="radio" name="stars" value="3" id="star3">
 
                             <label for="star4">
-                                <i class="far fa-star" data-rating="4"></i>
+                                <i class="fa-regular fa-star feedbackStars" data-rating="4"></i>
                             </label>
-                            <input class="rates" type="radio" name="stars" id="star4">
+                            <input class="rates" type="radio" name="stars" value="4" id="star4">
 
                             <label for="star5">
-                                <i class="far fa-star" data-rating="5"></i>
+                                <i class="fa-regular fa-star feedbackStars" data-rating="5"></i>
                             </label>
-                            <input class="rates" type="radio" name="stars" id="star5">
+                            <input class="rates" type="radio" name="stars" value="5" id="star5">
                         </div>
                         <input type="hidden" id="ratingValue" name="rating" value="0" required>
                     </div>
                     <!-- Modal Footer -->
                     <div class="modalFooter">
-                        <button class="modalCancelBtn" onclick="closeFeedbackModal()">
-                            <i class="fas fa-times"></i>
-                            Cancel
-                        </button>
-                        <!-- <button  class="modalSaveBtn" onclick="saveFeedback()">
-                            <i class="fas fa-save"></i>
-                            Save Feedback
-                        </button> -->
+
                         <input type="submit" class="btn btn-primary btn-sm" value="Save Feedback" >
                         </form>
                     </div>
-            
+                </form>
             </div>
         </div>
     </div>
@@ -3942,8 +3961,6 @@
 
     <script src="assets/js/all.min.js" defer></script>
     <script src="assets/js/memberWorkshopPanel.js" defer></script>
-    <script src="assets/js/feedbackModal.js" defer></script>
-
 
 </body>
 
