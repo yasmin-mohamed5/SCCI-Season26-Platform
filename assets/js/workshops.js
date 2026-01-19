@@ -1,4 +1,3 @@
-
 // Workshop Journey Navigation
 document.addEventListener('DOMContentLoaded', function () {
     const journeyBtns = document.querySelectorAll('.journeyBtn');
