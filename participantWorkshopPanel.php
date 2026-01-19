@@ -1,3 +1,112 @@
+<?php
+include('./includes/nav.php');
+
+// /* =====================
+//    Auth & Role Check
+// ===================== */
+// if (!isset($_SESSION['user_id'])) {
+//   header("Location:./auth/login.php");
+//   exit;
+// }
+
+// $userId = (int)$_SESSION['user_id'];
+
+// // participant = 1
+// $role = (int)($_SESSION['role'] ?? -1);
+// if ($role !== 1) {
+//   http_response_code(403);
+//   die("Access denied");
+// }
+
+// $userName = $_SESSION['user_name'] ?? 'User';
+
+// /* =====================
+//    Get workshop_id for this participant
+// ===================== */
+// $stW = $connect->prepare("SELECT workshop_id FROM users WHERE user_id = ? AND status = 1");
+// $stW->bind_param("i", $userId);
+// $stW->execute();
+// $uRow = $stW->get_result()->fetch_assoc();
+
+// if (!$uRow || empty($uRow['workshop_id'])) {
+//   die("You are not assigned to a workshop");
+// }
+// $workshopId = (int)$uRow['workshop_id'];
+
+/* =====================
+   Sessions
+===================== */
+
+// 1) Get all sessions
+$sessions = [];
+$sq = $connect->query("SELECT session_id, session_name FROM sessions ORDER BY session_id ASC");
+if ($sq) {
+    $sessions = $sq->fetch_all(MYSQLI_ASSOC);
+}
+
+// 2) Selected session (from URL) OR default first session
+$selectedSessionId = isset($_GET['session_id']) ? (int) $_GET['session_id'] : 0;
+if ($selectedSessionId <= 0 && count($sessions) > 0) {
+    $selectedSessionId = (int) $sessions[0]['session_id'];
+}
+
+// 3) Current tab
+$currentTab = isset($_GET['tab']) ? $_GET['tab'] : 'evaluate';
+
+// 4) Helper: current session name
+$currentSessionName = "Session";
+foreach ($sessions as $s) {
+    if ((int) $s['session_id'] === $selectedSessionId) {
+        $currentSessionName = $s['session_name'];
+        break;
+    }
+}
+
+// 5) Get workshop_session_id for this workshop + selected session
+$workshopSessionId = 0;
+
+if (!empty($workshopId) && $selectedSessionId > 0) {
+    $ws = $connect->prepare("
+        SELECT workshop_session_id
+        FROM workshop_session
+        WHERE workshop_id = ? AND session_id = ?
+        LIMIT 1
+    ");
+    $ws->bind_param("ii", $workshopId, $selectedSessionId);
+    $ws->execute();
+    $wsRes = $ws->get_result();
+    if ($wsRes && $wsRes->num_rows > 0) {
+        $wsRow = $wsRes->fetch_assoc();
+        $workshopSessionId = (int) $wsRow['workshop_session_id'];
+    }
+    $ws->close();
+}
+
+// 6) Get tasks ONLY by workshop_session_id (no fallback)
+$tasks = [];
+
+if ($workshopSessionId > 0) {
+    $stTasks = $connect->prepare("
+        SELECT task_id, workshop_session_id, taskName, taskDeadline, taskBio, task_file
+        FROM tasks
+        WHERE workshop_session_id = ?
+        ORDER BY task_id DESC
+    ");
+    $stTasks->bind_param("i", $workshopSessionId);
+    $stTasks->execute();
+    $resTasks = $stTasks->get_result();
+    if ($resTasks) {
+        $tasks = $resTasks->fetch_all(MYSQLI_ASSOC);
+    }
+    $stTasks->close();
+}
+
+// دلوقتي عندك:
+// $sessions, $selectedSessionId, $currentTab, $currentSessionName, $workshopSessionId, $tasks
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,10 +135,10 @@
 
 <body>
     <?php include './includes/nav.php'; ?>
-<!-- panel ----------------------------------------------------------------- -->
+    <!-- panel ----------------------------------------------------------------- -->
 
     <div class="navbar-spacer"></div>
-    
+
     <!-- Floating Background Decorations -->
     <div class="floatingDecorations">
         <i class="fas fa-star decoration-icon" style="top: 10%; left: 5%; animation-delay: 0s;"></i>
@@ -43,83 +152,52 @@
         <i class="fas fa-lightbulb decoration-icon" style="top: 45%; left: 3%; animation-delay: 3.5s;"></i>
         <i class="fas fa-certificate decoration-icon" style="top: 60%; right: 10%; animation-delay: 4.5s;"></i>
     </div>
-     
-        <div class="miniNav">
-            <div class="panelSvg">
-                <!-- left edge -->
-                <svg
-                    shape-rendering="geometricPrecision"
-                    class="panelEdge"
-                    preserveAspectRatio="none"
-                    viewBox="0 0 50 100"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true">
-                    <path
-                        d="M50 0
+
+    <div class="miniNav">
+        <div class="panelSvg">
+            <!-- left edge -->
+            <svg shape-rendering="geometricPrecision" class="panelEdge" preserveAspectRatio="none" viewBox="0 0 50 100"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M50 0
                         C40 0 30 20 10 50
                         C30 80 40 100 50 100
-                        Z"
-                        fill="var(--color-primary-darker)"
-                        stroke="var(--color-primary-darker)"
-                        stroke-width="2"
-                        stroke-linejoin="round"
-                        stroke-linecap="round" />
-                </svg>
+                        Z" fill="var(--color-primary-darker)" stroke="var(--color-primary-darker)" stroke-width="2"
+                    stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
 
-                <!-- center -->
-                <svg
-                    shape-rendering="geometricPrecision"
-                    class="panelBody"
-                    viewBox="0 0 300 100"
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true">
-                    <defs>
-                        <linearGradient id="fillCenter" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="var(--color-primary-darker)" />
-                            <stop offset="50%" stop-color="var(--color-primary)" />
-                            <stop offset="100%" stop-color="var(--color-primary-darker)" />
-                        </linearGradient>
-                    </defs>
+            <!-- center -->
+            <svg shape-rendering="geometricPrecision" class="panelBody" viewBox="0 0 300 100" preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                    <linearGradient id="fillCenter" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="var(--color-primary-darker)" />
+                        <stop offset="50%" stop-color="var(--color-primary)" />
+                        <stop offset="100%" stop-color="var(--color-primary-darker)" />
+                    </linearGradient>
+                </defs>
 
-                    <rect
-                        x="0"
-                        y="0"
-                        width="300"
-                        height="100"
-                        fill="url(#fillCenter)"
-                        stroke="var(--color-primary-darker)"
-                        stroke-width="2" />
-                </svg>
+                <rect x="0" y="0" width="300" height="100" fill="url(#fillCenter)" stroke="var(--color-primary-darker)"
+                    stroke-width="2" />
+            </svg>
 
-                <!-- right edge -->
-                <svg
-                    shape-rendering="geometricPrecision"
-                    class="panelEdge"
-                    preserveAspectRatio="none"
-                    viewBox="0 0 50 100"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true">
-                    <path
-                        d="M0 0
+            <!-- right edge -->
+            <svg shape-rendering="geometricPrecision" class="panelEdge" preserveAspectRatio="none" viewBox="0 0 50 100"
+                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M0 0
                         C10 0 20 20 40 50
                         C20 80 10 100 0 100
-                        Z"
-                        fill="var(--color-primary-darker)"
-                        stroke="var(--color-primary-darker)"
-                        stroke-width="2"
-                        stroke-linejoin="round"
-                        stroke-linecap="round" />
-                </svg>
-            </div>
-
-            <!-- Name the "data-page" in the mini nav the same as its section -->
-            <a data-page="evaluate" class="activePanelLine">view task</a>
-            <a data-page="review" class="">review Task</a>
-            <a data-page="addTask" class="">materials</a>
-            <a data-page="addMaterial" class="">activity time </a>
+                        Z" fill="var(--color-primary-darker)" stroke="var(--color-primary-darker)" stroke-width="2"
+                    stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
         </div>
-        
+
+        <!-- Name the "data-page" in the mini nav the same as its section -->
+        <a data-page="evaluate" class="activePanelLine">view task</a>
+        <a data-page="review" class="">review Task</a>
+        <a data-page="addTask" class="">materials</a>
+        <a data-page="addMaterial" class="">activity time </a>
+    </div>
+
     <!-- Main Workshop Panel Section -->
     <section class="workshopPanelSection">
         <div class="container">
@@ -127,67 +205,73 @@
             <!-- Panel Section: View Task (Evaluate) -->
             <div id="evaluate" class="panelSection panelSectionActive">
                 <!-- Week Navigation Tabs -->
-                <!-- Week Navigation Tabs: Allows switching between workshop weeks -->
-                <div class="workshopNav">
-                    <button class="weekTab active" data-week="1">session 1</button>
-                    <button class="weekTab" data-week="2">session 2</button>
-                    <button class="weekTab" data-week="3">session 3</button>
-                    <button class="weekTab" data-week="4">session 4</button>
-                    <button class="weekTab" data-week="5">session 5</button>
-                    <button class="weekTab" data-week="6">session6</button>
-                    <button class="weekTab" data-week="7">session 7</button>
-                </div>
+                <a class="weekTab <?= ($selectedSessionId === $sid) ? 'active' : '' ?>"
+                    href="?workshop_id=<?= (int) $workshopId ?>&tab=evaluate&session_id=<?= $sid ?>">
+                    <?= htmlspecialchars($s['session_name']) ?>
+                </a>
 
                 <!-- Workshop Card -->
-                <article class="workshopCard">
-                    <!-- Card Header -->
-                    <header class="cardHeader">
-                        <h2>WEEKLY TASK</h2>
-                    </header>
+                <?php if (count($tasks) > 0): ?>
+                    <article class="workshopCard">
+                        <!-- Loop through tasks -->
+                        <?php foreach ($tasks as $task): ?>
+                            <div class="taskItem"> <!-- Added wrapper for each task if multiple -->
+                                <!-- Card Header -->
+                                <header class="cardHeader">
+                                    <h2>WEEKLY TASK - <?= htmlspecialchars($currentSessionName); ?></h2>
+                                </header>
+                                <!-- Card Body -->
+                                <div class="cardBody">
+                                    <!-- Task Name Row -->
 
-                    <!-- Card Body -->
-                    <div class="cardBody">
-                        <!-- Task Name Row -->
-                        <div class="taskRow">
-                            <label class="taskLabel">Task Name:</label>
-                            <div class="taskValue">build your first website</div>
-                        </div>
+                                    <div class="taskRow">
+                                        <label class="taskLabel">Task Name:</label>
+                                        <div class="taskValue"><?= htmlspecialchars($task['taskName']); ?></div>
+                                    </div>
 
-                        <!-- Deadline Row -->
-                        <div class="taskRow">
-                            <label class="taskLabel">Deadline:</label>
-                            <div class="taskValue">12/12/2025</div>
-                        </div>
+                                    <!-- Deadline Row -->
+                                    <div class="taskRow">
+                                        <label class="taskLabel">Deadline:</label>
+                                        <div class="taskValue"><?= htmlspecialchars($task['taskDeadline']); ?></div>
+                                    </div>
 
-                        <!-- Session Row -->
-                        <div class="taskRow">
-                            <label class="taskLabel">Session:</label>
-                            <div class="taskValue">1</div>
-                        </div>
+                                    <!-- Session Row -->
+                                    <div class="taskRow">
+                                        <label class="taskLabel">Session:</label>
+                                        <div class="taskValue"><?= htmlspecialchars($currentSessionName); ?></div>
+                                    </div>
 
-                        <!-- Task Bio Box -->
-                        <div class="taskBio">
-                            <label class="taskLabel">Task bio:</label>
-                            <div class="taskBioContent">
-                                Your required to use semantic elements and make the page responsive with clean folder
-                                structure
+                                    <!-- Task Bio Box -->
+                                    <div class="taskBio">
+                                        <label class="taskLabel">Task bio:</label>
+                                        <div class="taskBioContent">
+                                            <?= htmlspecialchars($task['taskBio']); ?>
+                                        </div>
+                                    </div>
+
+                                    <!-- Task Resource Row -->
+                                    <div class="taskResource">
+                                        <label class="taskLabel">Task Resource:</label>
+                                        <div class="resourceInfo">
+                                            <i class="fas fa-file-alt"></i>
+                                            <?php if (!empty($task['task_file'])): ?>
+                                                <a href="<?= htmlspecialchars($task['task_file']); ?>" target="_blank">Download</a>
+                                            <?php else: ?>
+                                                —
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        <?php endforeach; ?>
+                    </article>
+                <?php else: ?>
+                    <article class="workshopCard">
+                        <div class="cardBody">
+                            <p>No tasks assigned for this session yet.</p>
                         </div>
-
-                        <!-- Task Resource Row -->
-                        <div class="taskResource">
-                            <label class="taskLabel">Task Resource:</label>
-                            <div class="resourceInfo">
-                                <i class="fas fa-file-alt"></i>
-                                <span>task.HTML</span>
-                                <a href="#" class="downloadBtn">
-                                    <i class="fas fa-download"></i>
-                                    Download
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                <?php endif; ?>
 
                 <!-- Submit Task Form Section -->
                 <form class="fileUpload" id="validForm" action="" method="post" enctype="multipart/form-data">
@@ -487,7 +571,8 @@
                         <!-- Motivational Message -->
                         <div class="motivationalBox">
                             <i class="fas fa-bullseye"></i>
-                            <p><strong>Ready to prove yourself?</strong> Challenge your skills and climb the leaderboard! 🚀</p>
+                            <p><strong>Ready to prove yourself?</strong> Challenge your skills and climb the
+                                leaderboard! 🚀</p>
                         </div>
 
                         <!-- Play Button -->
@@ -537,7 +622,7 @@
                     <span class="feedbackSessionLabel">Session:</span>
                     <span id="feedbackSessionName" class="feedbackSessionValue">Session 1</span>
                 </div>
-                
+
                 <!-- Rating -->
                 <div class="feedbackRating">
                     <span class="feedbackLabel">Rating:</span>
@@ -554,9 +639,11 @@
                 <div class="feedbackContent">
                     <p class="feedbackLabel"><i class="fas fa-comment-alt"></i> Feedback Message:</p>
                     <div id="feedbackText" class="feedbackTextArea">
-                        <p>Great work on your HTML structure! Your code is clean and well-organized. However, I noticed a few areas for improvement:</p>
+                        <p>Great work on your HTML structure! Your code is clean and well-organized. However, I noticed
+                            a few areas for improvement:</p>
                         <ul>
-                            <li>Use semantic HTML elements more consistently (e.g., &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;)</li>
+                            <li>Use semantic HTML elements more consistently (e.g., &lt;header&gt;, &lt;nav&gt;,
+                                &lt;main&gt;)</li>
                             <li>Add more descriptive class names for better maintainability</li>
                             <li>Consider adding comments to complex sections</li>
                         </ul>
