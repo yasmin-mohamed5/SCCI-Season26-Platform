@@ -240,26 +240,30 @@
 
 .infoPaperWrapper {
   position: relative;
-  width: min(320px, 92%);
+  width: min(500px, 92%);
   margin: 10px 20px;
+  /* Use background image to allow height to grow with content */
+  background-image: url('../img/infoPaper.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  /* Add padding to ensure content stays inside the paper borders */
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .infoPaperImg {
-  width: 120%;
-  max-width: none;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%) scaleY(1.1);
+  /* Hide the static image so we rely on background */
+  display: none;
 }
 
 .infoPaperContent {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 75%;
+  /* Remove absolute positioning so it flows naturally */
+  position: relative;
+  width: 100%;
   text-align: center;
-
 }
 
 .infoLabel {
@@ -289,7 +293,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .socialItem {
@@ -309,7 +313,9 @@
   text-decoration: none;
   font-weight: var(--fw-bold);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-
+  word-break: break-all;
+  /* Ensure long links/emails wrap */
+  overflow-wrap: anywhere;
 }
 
 .socialItem a:hover {

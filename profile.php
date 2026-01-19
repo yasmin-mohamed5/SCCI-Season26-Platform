@@ -236,15 +236,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
                   $dept = !empty($user['committe_name']) ? $user['committe_name'] . " Head" : "Head";
                   echo htmlspecialchars($dept);
                 } else {
-                  $parts = [];
+                
                   if (!empty($user['committe_name'])) {
-                    $parts[] = $user['committe_name'];
+                    echo "<div>" . htmlspecialchars($user['committe_name']) . "</div>";
                   }
+                  
+                  if (!empty($user['committe_name']) && !empty($user['workshop_name'])) {
+                      echo "<br>";
+                  }
+
                   if (!empty($user['workshop_name'])) {
-                    $parts[] = $user['workshop_name'];
-                  }
-                  if (!empty($parts)) {
-                    echo htmlspecialchars(implode(' - ', $parts));
+                    echo "<div>" . htmlspecialchars($user['workshop_name']) . "</div>";
                   }
                 }
                     ?>
