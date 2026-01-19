@@ -1,3 +1,21 @@
+<?php
+    include('./includes/nav.php');
+
+if (isset($_POST['contact'])) {
+  $name = mysqli_real_escape_string($connect, $_POST['name']);
+  $email = mysqli_real_escape_string($connect, $_POST['email']);
+  $message = mysqli_real_escape_string($connect, $_POST['message']);
+
+$contact="INSERT INTO contact_us (name, email, text) VALUES ('{$name}', '{$email}', '{$message}')";
+$run_contact=mysqli_query($connect,$contact);
+if ($run_contact) {
+    echo "<script>alert('Message Sent Successfully')</script>";
+}
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +45,7 @@
 </head>
 
 <body>
-    <?php include './includes/nav.php'; ?>
+
     <!-- Main Hero section -->
     <section class="heroSection">
         <div class="heroContainer">
@@ -221,7 +239,7 @@
                 <img class="contactPaperResponsive" loading="lazy" src="./assets/img/paperHomeResponsive.png" alt="">
             </div>
 
-            <form class="form-content card" id="form" action="" method="POST" enctype="multipart/form-data">
+            <form class="form-content card" id="form"  method="POST" enctype="multipart/form-data">
                 <img class="homeBird" loading="lazy" src="./assets/img/bird.png" alt="">
                 <!-- inputs -->
                 <div class="input-group">
@@ -244,7 +262,7 @@
 
 
                 <!-- submit-button -->
-                <button type="submit" name="submit" class="btn btn-primary submit-btn">Register</button>
+                <button type="submit" name="contact" class="btn btn-primary submit-btn">Submit</button>
             </form>
 
         </div>
