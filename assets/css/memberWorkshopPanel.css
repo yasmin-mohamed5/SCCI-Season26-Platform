@@ -9,6 +9,7 @@
 .materialPage {
   width: 97%;
   margin: 0 auto;
+  padding-top: 5rem;
   font-family: "Irish Grover", cursive;
 }
 
@@ -18,7 +19,8 @@
 
 .miniNav {
   position: relative;
-  margin: 5rem auto;
+  margin: auto;
+  /* padding: 5rem 0; */
   /* width: 95%; */
   height: 7rem;
   gap: 11%;
@@ -82,45 +84,6 @@
   width: 100%;
 }
 
-@media (min-width: 950px) {
-  .materialPage {
-    width: 88%;
-    margin: 0 auto;
-    font-family: "Irish Grover", cursive;
-  }
-}
-
-@media (max-width: 800px) {
-  .miniNav {
-    height: 6rem;
-    gap: 7%;
-    /* padding: 0 3.7rem; */
-  }
-
-  .miniNav a {
-    font-size: 14.5px;
-  }
-
-  .miniNav a::after {
-    bottom: -19px;
-  }
-}
-
-@media (max-width: 500px) {
-  .miniNav {
-    height: 5rem;
-    gap: 4%;
-  }
-
-  .miniNav a {
-    font-size: 12px;
-  }
-
-  .miniNav a::after {
-    bottom: -16px;
-  }
-}
-
 /* ======================================================== 
   EVALUATE 
   ======================================================== */
@@ -147,6 +110,9 @@
   border-radius: 20px;
 }
 
+.sessionsBox {
+  padding: var(--space-6) var(--space-4);
+}
 /* session section */
 
 .sessionsSelector {
@@ -204,7 +170,6 @@
 }
 
 .sessionBtn {
-  position: relative;
   cursor: pointer;
   min-width: 110px;
   width: 9rem;
@@ -263,7 +228,6 @@ Table
   width: 100%;
   overflow: hidden; /* critical */
   border-radius: 12px;
-  margin-top: 4rem;
 }
 
 .tableScrollFrame::before {
@@ -273,7 +237,7 @@ Table
   left: -10px;
   width: 40px;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
   pointer-events: none;
   z-index: 10;
 }
@@ -285,7 +249,7 @@ Table
   right: -10px;
   width: 40px;
   height: 100%;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
   pointer-events: none;
   z-index: 10;
 }
@@ -298,7 +262,7 @@ Table
 }
 
 .evaluateContainer .tableScroll::-webkit-scrollbar-track {
-  background: #14038157;
+  background: #200ca027;
   border-radius: 0;
 }
 
@@ -470,6 +434,147 @@ Table
    REVIEW WORKSHOP PANEL 
    =============================================================================== */
 
+/* add feedback popup */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+  filter: none;
+}
+
+#feedbackForm {
+  width: 100%;
+}
+
+.rates {
+  display: none;
+}
+
+/* Star style */
+.feedbackStarsInput {
+  margin: 2.3rem;
+}
+
+.feedbackStarsInput .feedbackStars {
+  cursor: pointer;
+  font-size: 2rem;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.feedbackStarsInput .feedbackStars:hover {
+  transform: scale(1.15);
+}
+
+/* Review Feedback Popup */
+
+.reviewFeedbackPopup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(7px);
+  z-index: 999999;
+
+  display: grid;
+  place-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.reviewFeedbackPopup.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reviewFeedbackContainer {
+  width: 65%;
+  max-width: 900px;
+  min-width: 270px;
+
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: rgba(231, 231, 231, 0.84);
+  backdrop-filter: blur(4px);
+  border-radius: 15px;
+  padding: var(--space-7);
+
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  transform: scale(0.96);
+  transition: transform 0.3s ease;
+}
+
+.reviewFeedbackPopup.active .reviewFeedbackContainer {
+  transform: scale(1);
+}
+
+.FeedbackContainerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: var(--space-7);
+  position: relative;
+}
+
+.FeedbackContainerTop::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(66, 66, 66);
+}
+
+.FeedbackContainerTop h6 {
+  margin-bottom: 0;
+}
+
+.closeFeedback {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  height: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeFeedback:hover {
+  background-color: var(--color-gray-lighter);
+}
+
+.FeedbackBox {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  gap: var(--space-1);
+  background-color: white;
+  padding: var(--space-5);
+  border-radius: 10px;
+}
+
+.FeedbackBox h6 {
+  font-size: 16px;
+  margin-bottom: 0;
+  color: var(--color-secondary);
+}
+
+.FeedbackBox p {
+  margin: 0 0 0 5px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: center;
+}
+
 /* Review attendance */
 .reviewAttended {
   display: flex;
@@ -535,33 +640,36 @@ Table
 
 /* The layout for Material Name | Session Type */
 .materialForm {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: var(--color-white-neutral);
-    padding: var(--space-3) var(--space-6);
-    border-radius: 50px;
-    box-shadow: var(--shadow-light);
-    border: 1px solid var(--border-light);
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    margin-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  justify-content: space-around;
 }
 
 .sideInputs {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-4);
-    align-items: start;
-    padding-left: 10%;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-9);
+}
+
+.inputsBox {
+  width: 100%;
+}
+
+.inputsBox p {
+  text-align: right;
 }
 
 .groupInputs {
-    align-items: center;
-    /* text-align: center; */
-    gap: var(--space-3);
-    flex: 1;
+  display: flex;
+  /* align-items: center; */
+  gap: var(--space-3);
+  flex: 1;
+}
+
+.groupInputs textarea {
+  resize: none;
 }
 
 .descriptionContainer {
@@ -587,28 +695,34 @@ Table
 #taskFile {
   display: none;
 }
-#materialFile{
-    display: none;
+
+.uploadLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.addMaterial {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-    margin: 0 auto var(--space-8);
+
+.uploadText {
+  display: inline-block;
+  white-space: normal;
+  font-weight: normal;
+  text-align: center;
+  max-width: 100%;
 }
-#fileUploadedName {
+
+.fileUploadedName {
   background-color: var(--color-white);
   width: 60%;
   color: var(--color-gray-dark);
   border-radius: 10px;
   margin: 8px;
   margin-bottom: 0;
-  text-align: center;
   display: none;
+  padding: 5px 10px;
+  font-size: 0.9em;
 }
 
-#fileUploadedName::before {
+.fileUploadedName::before {
   display: inline-block;
   font-family: "Font Awesome 6 Free";
   font-weight: 400;
@@ -664,33 +778,6 @@ Table
   align-items: center;
 }
 
-@media (max-width: 1000px) {
-  .groupInputs {
-    width: 100%;
-    flex-direction: column;
-    text-align: start;
-    gap: 0.5rem;
-  }
-
-  .descriptionContainer {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  #descriptionInput {
-    width: 100%;
-  }
-}
-
-@media (max-width: 620px) {
-  .sideInputs,
-  .materialInput {
-    flex-direction: column;
-    gap: var(--space-5);
-    padding-left: 0;
-  }
-}
-
 /* ================================
    ADD MATERIALS SECTION
 ===================================*/
@@ -718,17 +805,16 @@ Table
 
 .textInput,
 .selectInput {
-    resize: none;
-    flex: 1;
-    border: 2px solid var(--color-secondary);
-    border-radius: 20px;
-    padding: 0.6rem 1.2rem;
-    font-family: inherit;
-    font-size: var(--fs-sm);
-    color: var(--color-secondary);
-    background: transparent;
-    outline: none;
-    transition: box-shadow var(--transition-fast);
+  flex: 1;
+  border: 2px solid var(--color-secondary);
+  border-radius: 20px;
+  padding: 0.6rem 1.2rem;
+  font-family: inherit;
+  font-size: var(--fs-sm);
+  color: var(--color-secondary);
+  background: transparent;
+  outline: none;
+  transition: box-shadow var(--transition-fast);
 }
 
 .textInput:focus,
@@ -749,12 +835,9 @@ Table
    FILE UPLOAD SECTION
 =================================== */
 .fileUpload {
-    margin-bottom: var(--space-8);
-    border-radius: 20px;
-    padding: var(--space-4);
-    background-color: var(--color-white-neutral);
-    max-width: 1000px;
-    margin: 0 auto var(--space-8);
+  border-radius: 20px;
+  background-color: transparent;
+  margin: var(--space-5) 0 var(--space-8);
 }
 
 .uploadContainer {
@@ -799,6 +882,7 @@ Table
 }
 
 .uploadText {
+  text-align: center;
   color: var(--color-gray-dark);
   font-size: var(--fs-lg);
   line-height: 1.4;
@@ -881,6 +965,7 @@ Table
 }
 
 .articleFiles {
+  padding: 0.5rem;
   overflow: hidden;
   border-radius: 14px;
   background-color: var(--color-gray-light);
@@ -1078,56 +1163,95 @@ Table
   gap: var(--space-5);
 }
 
-/* rates & add feedback section */
-.feedbackSection{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+/* ================================
+   RESPONSIVE SECTION
+=================================== */
+
+@media (min-width: 950px) {
+  .materialPage {
+    width: 88%;
     margin: 0 auto;
-    background-color: var(--color-white);
-    border-radius: var(--radius-xl);
-    width: 50%;
-}
-.feedbackHeader{
-    font-size: var(--fs-2xl);
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    background-color: var(--color-secondary);
-    padding: 15px 0;
-}
-#feedbackLabel{
-    vertical-align: top;
-}
-#addFeedback{
-    width: 70%;
-}
-.feedbackInput{
-    margin: 5% 0;
-}
-.rateInput{
-    margin: 5% 0;
-}
-.rates{
-    display: none;
+    font-family: "Irish Grover", cursive;
+  }
 }
 
-.fa-star{
-    font-size: 24px;
-    cursor: pointer;
-    color: gold;
+@media (max-width: 800px) {
+  .miniNav {
+    height: 6rem;
+    gap: 7%;
+    /* padding: 0 3.7rem; */
+  }
+
+  .miniNav a {
+    font-size: 14.5px;
+  }
+
+  .miniNav a::after {
+    bottom: -19px;
+  }
 }
-.feedbackSubmit{
-    margin-bottom: 20px;
+
+@media (max-width: 500px) {
+  .miniNav {
+    height: 5rem;
+    gap: 4%;
+  }
+
+  .miniNav a {
+    font-size: 12px;
+  }
+
+  .miniNav a::after {
+    bottom: -16px;
+  }
+}
+
+@media (max-width: 350px) {
+  .miniNav {
+    height: 5rem;
+    gap: 4%;
+  }
+
+  .miniNav a {
+    font-size: 10px;
+  }
+
+  .miniNav a::after {
+    bottom: -16px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .groupInputs {
+    width: 100%;
+    flex-direction: column;
+    text-align: start;
+    gap: 0.5rem;
+  }
+
+  .descriptionContainer {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  #descriptionInput {
+    width: 100%;
+  }
 }
 
 /* MEDIA QUERIES for responsiveness */
 @media (max-width: 800px) {
-  .materialForm {
-        flex-direction: column;
-        border-radius: 20px;
-        padding: var(--space-4);
-        align-items: stretch;
-        /* Stretch children */
-    }
+  .materialForm .formGroup:first-child {
+    border-right: none;
+    border-bottom: 2px solid var(--color-gray-light);
+    padding-right: 0;
+    margin-right: 0;
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-3);
+    flex: none;
+    width: 100%;
+  }
+
   .formGroup {
     width: 100%;
     flex-direction: column;
@@ -1176,18 +1300,50 @@ Table
     flex-direction: row;
     /* min-width: 220px; */
   }
-  .feedbackSection{
-        width: 70%;
-    }
-    #feedbackLabel{
-        text-align: start;
-    }
-    #addFeedback{
-    width: 100%;
-    }
+}
+
+@media (max-width: 620px) {
+  .sessionsSelector {
+    gap: 7px;
+    padding: 0.3rem 0;
+  }
+
+  .sessionBtn {
+    min-width: 83px;
+    width: 9rem;
+    height: 3.4rem;
+  }
+
+  .sessionBtn p {
+    font-size: 13px;
+  }
+
+  .sideInputs,
+  .materialInput {
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .reviewFeedbackContainer {
+    width: 85%;
+    min-width: 270px;
+    padding: var(--space-2);
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    transform: scale(0.96);
+    transition: transform 0.3s ease;
+  }
 }
 
 @media (max-width: 500px) {
+  .evaluateContainer table {
+    min-width: 80rem;
+  }
+
+  .panelWhiteBox {
+    padding: var(--space-3);
+  }
+
   .materialItem {
     flex-direction: column;
     gap: var(--space-3);
