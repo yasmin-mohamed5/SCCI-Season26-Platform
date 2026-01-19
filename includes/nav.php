@@ -3,6 +3,7 @@ include(__DIR__ . '/config.php');
 
 // Fetch user's profile image if logged in
 $user_image = 'default.png'; // Default fallback
+$role = 0;
 if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 0;
