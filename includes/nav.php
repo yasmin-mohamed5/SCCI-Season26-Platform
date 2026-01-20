@@ -16,6 +16,11 @@ if(isset($_SESSION['user_id'])){
         if($row = mysqli_fetch_assoc($result)) {
             $user_image = $row['image'] ?? 'default.png';
             $role = $row['role']; // Fetch role from DB to ensure it's available
+            
+            // Add SCCI Board prefix for role 4 users
+            if($role == 4) {
+                $user_image = 'SCCI Board/' . $user_image;
+            }
         }
         mysqli_stmt_close($stmt);
     }

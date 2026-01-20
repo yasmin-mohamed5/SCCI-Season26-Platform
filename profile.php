@@ -55,10 +55,7 @@ mysqli_stmt_bind_param($stmt, "i", $user_id);
 mysqli_stmt_execute($stmt);
 $run_user = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($run_user);
-$imagePath = $user['image'] ?? 'default.png';
-if (isset($user['role']) && $user['role'] == 4) {
-  $imagePath = 'SCCI Board/' . $imagePath;
-}
+
 // Check if user exists
 if (!$user) {
     session_destroy();
@@ -117,8 +114,6 @@ $imagePath = $user['image'] ?? 'default.png';
 if (isset($user['role']) && $user['role'] == 4) {
   $imagePath = 'SCCI Board/' . $imagePath;
 }
-
-
 ?>
   <?php if ($success_message): ?>
     <div style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
@@ -148,7 +143,7 @@ if (isset($user['role']) && $user['role'] == 4) {
       <!-- Cover -->
       <div class="profileCover">
         <div class="profileImageWrapper">
-          <img src="assets/uploadedImages/<?php echo htmlspecialchars($user['image'] ?? 'default.png'); ?>" alt="Profile Photo" class="profileImage"
+          <img src="assets/uploadedImages/<?php echo htmlspecialchars($imagePath); ?>" alt="Profile Photo" class="profileImage"
             loading="lazy">
         </div>
       </div>
