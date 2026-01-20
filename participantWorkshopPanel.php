@@ -1,6 +1,5 @@
 <?php
-include('./includes/nav.php');
-
+require_once './includes/config.php';
 /* =====================
    Auth & Role Check
 ===================== */

@@ -1,35 +1,4 @@
-<?php
-include './includes/config.php';
 
-// Define names to fetch
-$target_names = [
-    'Mohamed Ali',
-    'Marwan Wael',
-    'Mohamed Ahmed',
-    'Alaa Aboelazm',
-    'Mohamed Hesham',
-    'Mahmoud Alaam', 
-    'Mohamed El Hossiny',
-    'Omar Ahmed',
-    'Nour Mohamed',
-    'Omar Hesham',
-    'Asser El-Sayed',
-    'Belal Omar',
-    'Yasmine Gawish'
-];
-
-$names_string = "'" . implode("','", $target_names) . "'";
-// Fetch IDs
-$crew_ids = [];
-$query = "SELECT user_id, user_name FROM users WHERE user_name IN ($names_string)";
-$result = mysqli_query($connect, $query);
-
-if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $crew_ids[trim($row['user_name'])] = $row['user_id'];
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,8 +41,39 @@ if ($result) {
 </head>
 
 <body>
-    <?php include './includes/nav.php'; ?>
-    
+
+    <?php
+   include './includes/nav.php'; 
+
+// Define names to fetch
+$target_names = [
+    'Mohamed Ali',
+    'Marwan Wael',
+    'Mohamed Ahmed',
+    'Alaa Aboelazm',
+    'Mohamed Hesham',
+    'Mahmoud Alaam', 
+    'Mohamed El Hossiny',
+    'Omar Ahmed',
+    'Nour Mohamed',
+    'Omar Hesham',
+    'Asser El-Sayed',
+    'Belal Omar',
+    'Yasmine Gawish'
+];
+
+$names_string = "'" . implode("','", $target_names) . "'";
+// Fetch IDs
+$crew_ids = [];
+$query = "SELECT user_id, user_name FROM users WHERE user_name IN ($names_string)";
+$result = mysqli_query($connect, $query);
+
+if ($result) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $crew_ids[trim($row['user_name'])] = $row['user_id'];
+    }
+}
+?>
     <script>
         // Add loaded class to header after page loads to prevent FOUC
         document.addEventListener('DOMContentLoaded', function() {

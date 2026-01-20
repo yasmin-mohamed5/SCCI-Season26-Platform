@@ -1,6 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile – SCCI 26</title>
+
+  <!-- Root -->
+  <link rel="stylesheet" href="assets/css/root.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="assets/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/profile.css?v=<?php echo time(); ?>">
+  <!-- AOS library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="assets/js/profile.js"></script>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+</head>
+
+<body>
 <?php
 
-require_once './config.php';
+include('./includes/nav.php');
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -95,31 +120,6 @@ if (isset($user['role']) && $user['role'] == 4) {
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile – SCCI 26</title>
-
-  <!-- Root -->
-  <link rel="stylesheet" href="assets/css/root.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" href="assets/css/all.min.css">
-  <link rel="stylesheet" href="assets/css/profile.css?v=<?php echo time(); ?>">
-  <!-- AOS library -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="assets/js/profile.js"></script>
-
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-</head>
-
-<body>
-<?php include('./includes/nav.php');?>
   <?php if ($success_message): ?>
     <div style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
       <?php echo htmlspecialchars($success_message); ?>

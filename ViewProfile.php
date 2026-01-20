@@ -1,30 +1,4 @@
-<?php
-require_once './config.php';
-    
-// Check if user is logged in
 
-if (isset($_GET['user_id'])) {
-  $user_id = $_GET['user_id'];  
-}
-
-// Fetch user data using prepared statement
-$select_user = "SELECT u.user_name, u.email, u.image, u.githup, u.phone, u.password, u.linkedin, u.role, c.committe_name, w.workshop_name 
-                FROM users u 
-                LEFT JOIN committees c ON u.committee_id = c.committee_id 
-                LEFT JOIN workshops w ON u.workshop_id = w.workshop_id 
-                WHERE u.user_id = ? AND u.status=1";
-$stmt = mysqli_prepare($connect, $select_user);
-mysqli_stmt_bind_param($stmt, "i", $user_id);
-mysqli_stmt_execute($stmt);
-$run_user = mysqli_stmt_get_result($stmt);
-$user = mysqli_fetch_assoc($run_user);
-
-// Determine image path based on role
-$imagePath = $user['image'] ?? 'default.png';
-if (isset($user['role']) && $user['role'] == 4) {
-  $imagePath = 'SCCI Board/' . $imagePath;
-}
-?>
 
 
 
@@ -56,7 +30,33 @@ if (isset($user['role']) && $user['role'] == 4) {
 
 <body>
 
-<?php include('./includes/nav.php');?>
+<?php
+include('./includes/nav.php');
+    
+// Check if user is logged in
+
+if (isset($_GET['user_id'])) {
+  $user_id = $_GET['user_id'];  
+}
+
+// Fetch user data using prepared statement
+$select_user = "SELECT u.user_name, u.email, u.image, u.githup, u.phone, u.password, u.linkedin, u.role, c.committe_name, w.workshop_name 
+                FROM users u 
+                LEFT JOIN committees c ON u.committee_id = c.committee_id 
+                LEFT JOIN workshops w ON u.workshop_id = w.workshop_id 
+                WHERE u.user_id = ? AND u.status=1";
+$stmt = mysqli_prepare($connect, $select_user);
+mysqli_stmt_bind_param($stmt, "i", $user_id);
+mysqli_stmt_execute($stmt);
+$run_user = mysqli_stmt_get_result($stmt);
+$user = mysqli_fetch_assoc($run_user);
+
+// Determine image path based on role
+$imagePath = $user['image'] ?? 'default.png';
+if (isset($user['role']) && $user['role'] == 4) {
+  $imagePath = 'SCCI Board/' . $imagePath;
+}
+?>
 
 
   <section class="profileSection">

@@ -1,3 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCCI - CrewDetails</title>
+    <link rel="stylesheet" href="./assets/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/css/root.css" />
+    <link rel="stylesheet" href="./assets/css/crewDetails.css" />
+     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+</head>
+
+<body>
 <?php
 include('./includes/nav.php');
 
@@ -31,25 +50,6 @@ if(isset($_GET['committee_id'])) {
     $members = mysqli_query($connect, $select_members);
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SCCI - CrewDetails</title>
-    <link rel="stylesheet" href="./assets/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/css/root.css" />
-    <link rel="stylesheet" href="./assets/css/crewDetails.css" />
-     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- font  -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-</head>
-
-<body>
-
       <!-- Back Button -->
     <a href="crew.php" class="backBtn">
         <i class="fas fa-arrow-left"></i>
