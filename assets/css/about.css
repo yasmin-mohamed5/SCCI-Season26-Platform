@@ -245,135 +245,251 @@ h1 {
   }
 }
 
-/* ===============================
-   SECTION WRAPPER
+/* =============================== 
+   SECTION WRAPPER 
 ================================ */
 .aboutSection {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 60px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px; /* Added horizontal padding */
 }
 
 .aboutComponents {
-  width: 100%;
+    width: 100%;
 }
 
-/* ===============================
-   CARD CONTAINER
+/* =============================== 
+   CARD CONTAINER 
 ================================ */
 .cardAbout {
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(
-    135deg,
-    rgba(247, 234, 191, 0.85) 0%,
-    /* lighter parchment tone */ rgba(244, 234, 222, 0.8) 30%,
-    /* soft cream */ rgba(234, 211, 189, 0.9) 60%,
-    /* warmer tan */ rgba(244, 228, 177, 0.85) 100% /* golden parchment */
-  );
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px); /* Safari support */
-
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  width: 100rem;
-  height: 35rem;
-  border: 1px solid var(--cardabout-border);
-  position: relative;
-  padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(
+        135deg,
+        rgba(247, 234, 191, 0.85) 0%,
+        rgba(244, 234, 222, 0.8) 30%,
+        rgba(234, 211, 189, 0.9) 60%,
+        rgba(244, 228, 177, 0.85) 100%
+    );
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 100rem; /* Changed from fixed width */
+    height: auto; /* Changed from fixed height */
+    min-height: 35rem;
+    border: 1px solid var(--cardabout-border);
+    position: relative;
+    padding: 2rem;
 }
 
 .cardAbout .corner {
-  width: 0.5rem;
-  height: 0.5rem;
-  border: 1px solid var(--cardabout-border);
-  position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 1px solid var(--cardabout-border);
+    position: absolute;
 }
 
 .cardAbout .corner::after,
 .cardAbout .corner::before {
-  content: "";
-  position: absolute;
+    content: "";
+    position: absolute;
 }
 
 .cardAbout .corner::after {
-  width: 2rem;
-  height: calc(1rem - 1px);
+    width: 2rem;
+    height: calc(1rem - 1px);
 }
 
 .cardAbout .corner::before {
-  width: calc(1rem - 1px);
-  height: 2rem;
+    width: calc(1rem - 1px);
+    height: 2rem;
 }
 
 .cardAbout .corner.left {
-  left: -0.5rem;
+    left: -0.5rem;
 }
 
 .cardAbout .corner.left::after {
-  left: calc(-2px + 1rem);
-  border-left: 1px solid var(--cardabout-border);
+    left: calc(-2px + 1rem);
+    border-left: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.left::before {
-  left: -1px;
-  border-left: 1px solid var(--cardabout-border);
+    left: -1px;
+    border-left: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.right {
-  right: -0.5rem;
+    right: -0.5rem;
 }
 
 .cardAbout .corner.right::after {
-  right: calc(-2px + 1rem);
-  border-right: 1px solid var(--cardabout-border);
+    right: calc(-2px + 1rem);
+    border-right: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.right::before {
-  right: -1px;
-  border-right: 1px solid var(--cardabout-border);
+    right: -1px;
+    border-right: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.top {
-  top: -0.5rem;
+    top: -0.5rem;
 }
 
 .cardAbout .corner.top::after {
-  top: -1px;
-  border-top: 1px solid var(--cardabout-border);
+    top: -1px;
+    border-top: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.top::before {
-  top: calc(-2px + 1rem);
-  border-top: 1px solid var(--cardabout-border);
+    top: calc(-2px + 1rem);
+    border-top: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.bottom {
-  bottom: -0.5rem;
+    bottom: -0.5rem;
 }
 
 .cardAbout .corner.bottom::after {
-  bottom: -1px;
-  border-bottom: 1px solid var(--cardabout-border);
+    bottom: -1px;
+    border-bottom: 1px solid var(--cardabout-border);
 }
 
 .cardAbout .corner.bottom::before {
-  bottom: calc(-2px + 1rem);
-  border-bottom: 1px solid var(--cardabout-border);
+    bottom: calc(-2px + 1rem);
+    border-bottom: 1px solid var(--cardabout-border);
 }
 
 .cardAbout h1 {
-  color: var(--color-primary);
-  text-shadow: none;
+    color: var(--color-primary);
+    text-shadow: none;
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
 }
 
 .cardAbout p {
-  color: var(--color-black);
-  text-align: center;
-  text-transform: none !important;
-  padding-right: 5%;
-  padding-left: 5%;
+    color: var(--color-black);
+    text-align: center;
+    text-transform: none !important;
+    padding-right: 5%;
+    padding-left: 5%;
+    font-size: 2rem;
+    margin-top: 30px;
+    line-height: 1.6;
+}
+
+.cardAbout hr {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* =============================== 
+   TABLET STYLES (768px - 1024px)
+================================ */
+@media screen and (max-width: 1024px) {
+    .aboutSection {
+        padding: 40px 20px;
+    }
+
+    .cardAbout {
+        min-height: 30rem;
+        padding: 1.5rem;
+    }
+
+    .cardAbout h1 {
+        margin: 1.2rem 0;
+    }
+
+    .cardAbout p {
+        font-size: 2rem;
+        padding-right: 3%;
+        padding-left: 3%;
+    }
+}
+
+/* =============================== 
+   MOBILE STYLES (< 768px)
+================================ */
+@media screen and (max-width: 768px) {
+    .aboutSection {
+        padding: 30px 15px;
+    }
+
+    .cardAbout {
+        min-height: auto;
+        padding: 1.5rem 1rem;
+        border-radius: 6px;
+    }
+
+    .cardAbout h1 {
+        margin: 1rem 0;
+    }
+
+    .cardAbout p {
+        font-size: 1.5rem;
+        padding-right: 2%;
+        padding-left: 2%;
+        line-height: 1.5;
+    }
+
+    .cardAbout hr {
+        width: 90%;
+    }
+
+    /* Smaller corner decorations on mobile */
+    .cardAbout .corner::after {
+        width: 1.5rem;
+    }
+
+    .cardAbout .corner::before {
+        height: 1.5rem;
+    }
+}
+
+/* =============================== 
+   SMALL MOBILE STYLES (< 480px)
+================================ */
+@media screen and (max-width: 480px) {
+    .aboutSection {
+        padding: 20px 10px;
+    }
+
+    .cardAbout {
+        padding: 1.25rem 0.75rem;
+        border-radius: 4px;
+    }
+
+    .cardAbout h1 {
+        margin: 0.8rem 0;
+    }
+
+    .cardAbout p {
+        font-size: 1.5rem;
+        padding-right: 1%;
+        padding-left: 1%;
+    }
+
+    .cardAbout hr {
+        width: 95%;
+    }
+
+    /* Even smaller corner decorations */
+    .cardAbout .corner {
+        width: 0.4rem;
+        height: 0.4rem;
+    }
+
+    .cardAbout .corner::after {
+        width: 1.2rem;
+    }
+
+    .cardAbout .corner::before {
+        height: 1.2rem;
+    }
 }
 
 /*==============================
@@ -728,26 +844,7 @@ body.red-theme .decorative-element {
 }
 
 /* Arrows */
-.arrow {
-  position: absolute;
-  top: 51.5%;
-  transform: translateY(-50%);
-  z-index: 20;
-  background-color: var(--color-primary-dark);
-  border: none;
-  color: white;
-  font-size: 5rem;
-  cursor: pointer;
-  width: 115px;
-  height: 115px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.3s
-  ;
-  
-}
+
 
 .arrow.left {
   left: calc(43% - 750px / 2 - 150px);
@@ -786,8 +883,28 @@ body.red-theme .decorative-element {
     top: -120px;
     align-items: flex-start;
   }
-}
 
+  .crewCard {
+    left: 90px;
+  }
+
+  #prevBtn,
+  #nextBtn {
+    position: relative;
+    margin: 0 40px;
+
+  }
+
+  #prevBtn {
+    left: -500px;
+    bottom: -220px;
+  }
+
+  #nextBtn {
+    bottom: -250px;
+    right: 300px;
+  }
+}
 /* Tablet and below */
 @media (max-width: 992px) {
   .sliderWrapper {
@@ -817,28 +934,35 @@ body.red-theme .decorative-element {
     width: auto;
   }
 
-  .arrow {
-    position: static;
-    /* normal flow */
-    transform: none;
-    width: 80px;
-    height: 80px;
-    font-size: 3.5rem;
+  #prevBtn,
+  #nextBtn {
+    position: relative;
+    margin: 0 20px;
+    bottom: 100px;
+
+  }
+
+  #prevBtn {
+    left: -60px;
+  }
+
+  #nextBtn {
+    right: -60px;
   }
 }
 
+
 /* Small phones */
 @media (max-width: 600px) {
-  .arrow {
-    width: 70px;
-    height: 70px;
-    font-size: 3rem;
-  }
-
   .cardStack {
     width: 90vw;
     height: calc(90vw * 0.8);
   }
-}
 
+  #prevBtn,
+  #nextBtn {
+    position: relative;
+    margin-bottom: 20%;
+  }
+}
 
