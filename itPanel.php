@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,27 +22,37 @@
 
 <body>
     <?php
-include('./includes/nav.php');
+    include('./includes/nav.php');
 
-if (isset($_GET['accept'])) {
-    $id = intval($_GET['accept']);
-    mysqli_query($connect, "UPDATE users SET status = 1 WHERE user_id = $id");
-    header("Location: itPanel.php");
-    exit();
-}
+    if (isset($_GET['accept'])) {
+        $id = intval($_GET['accept']);
+        mysqli_query($connect, "UPDATE users SET status = 1 WHERE user_id = $id");
+        header("Location: itPanel.php");
+        exit();
+    }
 
-if (isset($_GET['delete'])) {
-    $id = intval($_GET['delete']);
-    mysqli_query($connect, "DELETE FROM users WHERE user_id = $id");
-    header("Location: itPanel.php");
-    exit();
-}
+    if (isset($_GET['delete'])) {
+        $id = intval($_GET['delete']);
 
-$result = mysqli_query(
-    $connect,
-    "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
-);
-?>
+        // Fetch image before deletion
+        $result = mysqli_query($connect, "SELECT image FROM users WHERE user_id = $id");
+        if ($result && $row = mysqli_fetch_assoc($result)) {
+            $image_path = './assets/uploadedImages/' . $row['image'];
+            if (file_exists($image_path) && $row['image'] != 'default.png') {
+                unlink($image_path);
+            }
+        }
+
+        mysqli_query($connect, "DELETE FROM users WHERE user_id = $id");
+        header("Location: itPanel.php");
+        exit();
+    }
+
+    $result = mysqli_query(
+        $connect,
+        "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
+    );
+    ?>
     <main>
         <h1>Contact Panel</h1>
         <div class="userTableScroll">
@@ -73,13 +80,11 @@ $result = mysqli_query(
 
                             <td class="tableData">
 
-                                <a href="itPanel.php?accept=<?= $row['user_id'] ?>"
-                                    class="btn accept">
+                                <a href="itPanel.php?accept=<?= $row['user_id'] ?>" class="btn accept">
                                     Accept
                                 </a>
 
-                                <a href="itPanel.php?delete=<?= $row['user_id'] ?>"
-                                    class="btn block">
+                                <a href="itPanel.php?delete=<?= $row['user_id'] ?>" class="btn block">
                                     Delete
                                 </a>
                             </td>

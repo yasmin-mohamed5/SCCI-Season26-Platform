@@ -70,7 +70,7 @@
 }
 
 /* ================= Table ================= */
-.HeadTableScroll {
+.headTableScroll {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-light);
     margin-top: var(--space-5);
@@ -79,7 +79,7 @@
     margin: 7rem auto;
 }
 
-.HeadTable {
+.headTable {
     width: 100%;
     min-width: 700px;
     /* max-width: 600px; */
