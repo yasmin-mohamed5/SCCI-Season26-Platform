@@ -843,21 +843,7 @@ body.red-theme .decorative-element {
     transform: scale(0.9);
 }
 
-/* Arrows */
 
-
-.arrow.left {
-  left: calc(43% - 750px / 2 - 150px);
-}
-
-.arrow.right {
-  right: calc(43% - 750px / 2 - 150px);
-}
-
-.arrow.arrow.left:hover,
-.arrow.arrow.right:hover {
-  background-color: #850404;
-}
 
 /* ===============================
    RESPONSIVE
