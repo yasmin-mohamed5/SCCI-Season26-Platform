@@ -11,10 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
   ================================ */
   if (typeof AOS !== "undefined") {
     AOS.init({
-      duration: 900,
-      easing: "ease-out-cubic",
+      startEvent: 'load',
+      duration: 1000,
+      easing: "ease-in-out",
       once: true,
-      offset: 120
+      offset: 0,
+      anchorPlacement: 'top-bottom'
     });
   }
 

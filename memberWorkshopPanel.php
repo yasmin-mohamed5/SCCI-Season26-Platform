@@ -29,6 +29,8 @@ include('./includes/nav.php');
     <link rel="stylesheet" href="assets/css/navbar.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="assets/css/memberWorkshopPanel.css?v=<?php echo time(); ?>">
+    <!-- AOS library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Custom Page Styles -->
 
     <title>SCCI-Panel</title>

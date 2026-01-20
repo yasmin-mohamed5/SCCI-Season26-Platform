@@ -107,6 +107,8 @@ if (isset($user['role']) && $user['role'] == 4) {
   <link rel="stylesheet" href="assets/css/root.css?v=<?php echo time(); ?>">
   <link rel="stylesheet" href="assets/css/all.min.css">
   <link rel="stylesheet" href="assets/css/profile.css?v=<?php echo time(); ?>">
+  <!-- AOS library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="assets/js/profile.js"></script>
 
   <!-- Font -->
@@ -116,7 +118,6 @@ if (isset($user['role']) && $user['role'] == 4) {
 </head>
 
 <body>
-
   <?php if ($success_message): ?>
     <div style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
       <?php echo htmlspecialchars($success_message); ?>
@@ -326,6 +327,17 @@ if (isset($user['role']) && $user['role'] == 4) {
   </main>
   <?php include './includes/footer.php'; ?>
 
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+      AOS.init({
+          startEvent: 'load',
+          once: true,
+          offset: 0,
+          duration: 1000,
+          easing: 'ease-in-out',
+          anchorPlacement: 'top-bottom'
+      });
+  </script>
   <script src="assets/js/profile.js" defer></script>
   <script src="assets/js/all.min.js" defer></script>
 </body>

@@ -1,6 +1,5 @@
 <?php
-include('./includes/nav.php');
-
+include('./includes/config.php');
 /* =====================
    Auth & Role Check
 ===================== */
@@ -255,6 +254,8 @@ function renderStars($rating)
 
     <!-- css page link -->
     <link rel="stylesheet" href="./assets/css/participantWorkshopPanel.css">
+    <!-- AOS library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Page Title -->
     <title>SCCI - Workshop Panel</title>
@@ -740,6 +741,17 @@ function renderStars($rating)
     </div>
 
     <!-- Page Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            startEvent: 'load',
+            once: true,
+            offset: 0,
+            duration: 1000,
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
     <script src="./assets/js/all.min.js" defer></script>
     <script src="./assets/js/participantWorkshopPanel.js" defer></script>
 </body>

@@ -164,6 +164,16 @@ foreach ($membersList as $member) {
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            startEvent: 'load',
+            once: true,
+            offset: 0,
+            duration: 1000,
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
     <script src="./assets/js/index.js"></script>
     <script src="./assets/js/crew.js"></script>
     <script src="./assets/js/all.min.js"></script>

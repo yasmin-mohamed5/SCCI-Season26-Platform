@@ -432,10 +432,12 @@ if ($result) {
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            once: false,
-            offset: 50,
+            startEvent: 'load',
+            once: true,
+            offset: 0,
             duration: 1000,
-            easing: 'ease-in-out'
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
         });
     </script>
     <script src="./assets/js/index.js"></script>

@@ -197,12 +197,12 @@ if (isset($_GET['category_id'])) {
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({
-
+            startEvent: 'load',
             once: true,
-
-            offset: 100,
-
+            offset: 0,
+            duration: 1000,
             easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
         });
     </script>
 </body>

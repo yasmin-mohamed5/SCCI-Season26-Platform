@@ -24,6 +24,8 @@ $result = mysqli_query(
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/contactPanel.css">
     <link rel="stylesheet" href="./assets/css/all.min.css">
+    <!-- AOS library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -57,6 +59,17 @@ $result = mysqli_query(
             </table>
         </div>
     </main>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            startEvent: 'load',
+            once: true,
+            offset: 0,
+            duration: 1000,
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
 </body>
 
 </html>
