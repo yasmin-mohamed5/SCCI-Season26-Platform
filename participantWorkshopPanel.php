@@ -1,5 +1,5 @@
 <?php
-require_once './config.php';
+include('./includes/nav.php');
 
 /* =====================
    Auth & Role Check
@@ -256,33 +256,32 @@ function renderStars($rating) {
 
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- google font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <!-- Irish Grover font -->
-        <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet" />
-        
-        <!-- site icon -->
-        <link rel="icon" type="image/png" href="./assets/icons/logoSCCI.png" />
-        
-        <!-- css other link -->
-        <link rel="stylesheet" href="./assets/css/all.min.css">
-        <link rel="stylesheet" href="./assets/css/root.css">
-        
-        <!-- css page link -->
-        <link rel="stylesheet" href="./assets/css/participantWorkshopPanel.css">
-        
-        <!-- Page Title -->
-        <title>SCCI - Workshop Panel</title>
-    </head>
-    
-    <body>
-        
-       <?php include './includes/nav.php';?>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Irish Grover font -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet" />
+
+    <!-- site icon -->
+    <link rel="icon" type="image/png" href="./assets/icons/logoSCCI.png" />
+
+    <!-- css other link -->
+    <link rel="stylesheet" href="./assets/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/root.css">
+
+    <!-- css page link -->
+    <link rel="stylesheet" href="./assets/css/participantWorkshopPanel.css">
+
+    <!-- Page Title -->
+    <title>SCCI - Workshop Panel</title>
+</head>
+
+<body>
+    <?php include './includes/nav.php'; ?>
     <!-- panel ----------------------------------------------------------------- -->
 
     <div class="navbar-spacer"></div>
@@ -760,6 +759,17 @@ function renderStars($rating) {
     </div>
 
     <!-- Page Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            startEvent: 'load',
+            once: true,
+            offset: 0,
+            duration: 1000,
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
     <script src="./assets/js/all.min.js" defer></script>
     <script src="./assets/js/participantWorkshopPanel.js" defer></script>
 </body>

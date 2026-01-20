@@ -1,3 +1,6 @@
+<?php
+include('./includes/config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +14,8 @@
     <link rel="stylesheet" href="./assets/css/root.css">
     <link rel="stylesheet" href="./assets/css/about.css">
     <link rel="stylesheet" href="./assets/css/all.min.css">
+    <!-- AOS library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +26,7 @@
 
     <?php include "./includes/nav.php"; ?>
 
-    <section class="heroSection">
+    <section class="heroSection" data-aos="fade-in" data-aos-duration="800">
         <div class="hero">
             <div class="heroBackground">
                 <picture>
@@ -29,23 +34,23 @@
                 </picture>
             </div>
 
-            <div class="heroLogo">
+            <div class="heroLogo" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
                 <img src="./assets/icons/logoSCCI.png" class="logoSCCI" alt="SCCI Logo" loading="lazy">
                 <h5>SEEK THE PEEK</h5>
             </div>
         </div>
     </section>
 
-    <section class="aboutSection">
+    <section class="aboutSection" data-aos="fade-up" data-aos-duration="1000">
         <div class="cardAbout">
             <div class="corner top left"></div>
             <div class="corner top right"></div>
             <div class="corner bottom left"></div>
             <div class="corner bottom right"></div>
             <hr>
-            <h1>WHO ARE WE?</h1>
+            <h1 data-aos="fade-down" data-aos-duration="800" data-aos-delay="200">WHO ARE WE?</h1>
             <hr>
-            <p>SCCI is an abbreviation for Student's Conference for Communication and Information,
+            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">SCCI is an abbreviation for Student's Conference for Communication and Information,
                 which helps you in bringing the gap between the technical life and the practical life
                 in the marketplace. You can know more about SCCI in this page.</p>
         </div>
@@ -81,7 +86,7 @@
     </div>
 </section> -->
 
-    <div class="title2Cards">
+    <div class="title2Cards" data-aos="fade-up" data-aos-duration="1000">
         <div class="titleWrapper2">
             <hr>
             <h2 class="aboutTitle text-primary">WHAT MAKES US DIFFERENT?</h2>
@@ -91,7 +96,7 @@
 
     <section class="card2Container">
 
-        <div class="card2Items">
+        <div class="card2Items" data-aos="fade-up" data-aos-duration="1000">
             <div class="card2">
                 <div class="corner-ornament top-left"></div>
                 <div class="corner-ornament top-right"></div>
@@ -117,7 +122,7 @@
             </div>
         </div>
 
-        <div class="card2Items">
+        <div class="card2Items" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
             <div class="card2">
                 <div class="corner-ornament top-left"></div>
                 <div class="corner-ornament top-right"></div>
@@ -143,7 +148,7 @@
             </div>
         </div>
 
-        <div class="card2Items">
+        <div class="card2Items" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
             <div class="card2">
                 <div class="corner-ornament top-left"></div>
                 <div class="corner-ornament top-right"></div>
@@ -169,7 +174,7 @@
             </div>
         </div>
 
-        <div class="card2Items">
+        <div class="card2Items" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
             <div class="card2">
                 <div class="corner-ornament top-left"></div>
                 <div class="corner-ornament top-right"></div>
@@ -195,7 +200,7 @@
             </div>
         </div>
 
-        <div class="card2Items">
+        <div class="card2Items" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
             <div class="card2">
                 <div class="corner-ornament top-left"></div>
                 <div class="corner-ornament top-right"></div>
@@ -227,11 +232,11 @@
 
 
     <!-- CREW CARDS SLIDER -->
-    <section>
+    <section data-aos="fade-up" data-aos-duration="1000">
         <hr>
-        <h1>BEHIND THE SCENES</h1>
+        <h1 data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">BEHIND THE SCENES</h1>
         <hr>
-        <div class="sliderWrapper">
+        <div class="sliderWrapper" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
 
             <div class="cardStack">
                 <img src="./assets/img/crewImg/workshopCard1.png" class="crewCard" alt="Crew Photo #1" loading="lazy">
@@ -254,6 +259,17 @@
     </section>
 
     <?php include "./includes/footer.php"; ?>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            startEvent: 'load',
+            once: true,
+            offset: 0,
+            duration: 1000,
+            easing: 'ease-in-out',
+            anchorPlacement: 'top-bottom'
+        });
+    </script>
     <script src="./assets/js/all.min.js"></script>
     <script src="./assets/js/about.js"></script>
 </body>

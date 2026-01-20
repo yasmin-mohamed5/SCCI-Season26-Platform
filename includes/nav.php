@@ -35,6 +35,11 @@ if(isset($_SESSION['user_id'])){
     </a>
     <nav class="navLinks navRespnsive">
         <a href="/SCCI-Season26-Platform/home.php" id="homeNavLine">home</a>
+        <a href="/SCCI-Season26-Platform/about.php" id="aboutNavLine">about us</a>
+        <a href="/SCCI-Season26-Platform/gallary.php" id="galleryNavLine">gallery</a>
+        <a href="/SCCI-Season26-Platform/workshops.php" id="workshopsNavLine">workshops</a>
+        <a href="/SCCI-Season26-Platform/crew.php" id="crewNavLine">crew</a>
+        
         <?php
         if($role == 2) {
             echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php" id="homeNavLine">member panel</a>';
@@ -50,12 +55,6 @@ if(isset($_SESSION['user_id'])){
             echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
         }
         ?>
-        
-
-        <a href="/SCCI-Season26-Platform/about.php" id="aboutNavLine">about us</a>
-        <a href="/SCCI-Season26-Platform/gallary.php" id="galleryNavLine">gallery</a>
-        <a href="/SCCI-Season26-Platform/workshops.php" id="workshopsNavLine">workshops</a>
-        <a href="/SCCI-Season26-Platform/crew.php" id="crewNavLine">crew</a>
     </nav>
     <nav class="navAccount navRespnsive">
         <?php
