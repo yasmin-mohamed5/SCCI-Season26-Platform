@@ -1,24 +1,28 @@
 <?php
 
+ include './includes/nav.php'; 
 
+// Handle contact form submission BEFORE any HTML output
 if (isset($_POST['contact'])) {
-
+    // Escape user input
     $name = mysqli_real_escape_string($connect, $_POST['name']);
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $message = mysqli_real_escape_string($connect, $_POST['message']);
 
+    // Insert into DB
     $contact = "INSERT INTO contact_us (name, email, text)
                 VALUES ('$name', '$email', '$message')";
 
     $run_contact = mysqli_query($connect, $contact);
 
     if ($run_contact) {
+        // Redirect to prevent resubmission
         header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
-        exit();
+        exit;
+    } else {
+        $error_message = "Failed to submit. Please try again.";
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +90,6 @@ if (isset($_POST['contact'])) {
     }
     ?>
 
-    <?php include './includes/nav.php'; ?>
     
     <script>
         // Add loaded class to header after page loads to prevent FOUC
