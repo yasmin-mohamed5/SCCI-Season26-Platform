@@ -1,5 +1,6 @@
 <?php
-include('./includes/nav.php');
+
+require_once './config.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -116,7 +117,7 @@ if (isset($user['role']) && $user['role'] == 4) {
 </head>
 
 <body>
-
+<?php include('./includes/nav.php');?>
   <?php if ($success_message): ?>
     <div style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
       <?php echo htmlspecialchars($success_message); ?>

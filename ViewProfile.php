@@ -1,10 +1,10 @@
 <?php
-include('./includes/nav.php');
-
+require_once './config.php';
+    
 // Check if user is logged in
 
 if (isset($_GET['user_id'])) {
-  $user_id = $_GET['user_id'];
+  $user_id = $_GET['user_id'];  
 }
 
 // Fetch user data using prepared statement
@@ -54,6 +54,7 @@ if (isset($user['role']) && $user['role'] == 4) {
 
 <body>
 
+<?php include('./includes/nav.php');?>
 
 
   <section class="profileSection">
@@ -131,23 +132,25 @@ if (isset($user['role']) && $user['role'] == 4) {
           <div class="infoPaperContent">
             <div class="infoLabel">Department</div>
             <div class="infoValue">
-              <?php
-              if ($user['role'] == 4) {
-                $dept = !empty($user['committe_name']) ? $user['committe_name'] . " Head" : "Head";
-                echo htmlspecialchars($dept);
-              } else {
-                $parts = [];
-                if (!empty($user['committe_name'])) {
-                  $parts[] = $user['committe_name'];
+                <?php 
+                if ($user['role'] == 4) {
+                  $dept = !empty($user['committe_name']) ? $user['committe_name'] . " Head" : "Head";
+                  echo htmlspecialchars($dept);
+                } else {
+                
+                  if (!empty($user['committe_name'])) {
+                    echo "<div>" . htmlspecialchars($user['committe_name']) . "</div>";
+                  }
+                  
+                  if (!empty($user['committe_name']) && !empty($user['workshop_name'])) {
+                      echo "<br>";
+                  }
+
+                  if (!empty($user['workshop_name'])) {
+                    echo "<div>" . htmlspecialchars($user['workshop_name']) . "</div>";
+                  }
                 }
-                if (!empty($user['workshop_name'])) {
-                  $parts[] = $user['workshop_name'];
-                }
-                if (!empty($parts)) {
-                  echo htmlspecialchars(implode(' - ', $parts));
-                }
-              }
-              ?>
+                    ?>
             </div>
           </div>
         </div>

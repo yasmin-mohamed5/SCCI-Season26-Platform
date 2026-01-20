@@ -1,18 +1,17 @@
 <?php
-include('./includes/nav.php');
+require_once './config.php';
 
 /* =====================
    Auth & Role Check
 ===================== */
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ./auth/login.php");
     exit;
 }
 
-$userId = (int) $_SESSION['user_id'];
+$userId = (int)$_SESSION['user_id'];
+$role   = (int)($_SESSION['role'] ?? -1);
 
-// participant = 1
-$role = (int) ($_SESSION['role'] ?? -1);
 if ($role !== 1) {
     http_response_code(403);
     die("Access denied");
@@ -21,247 +20,269 @@ if ($role !== 1) {
 $userName = $_SESSION['user_name'] ?? 'User';
 
 /* =====================
-   Get workshop_id for this participant
+   Get workshop_id
 ===================== */
-$stW = $connect->prepare("SELECT workshop_id FROM users WHERE user_id = ? AND status = 1");
+$stW = $connect->prepare("
+    SELECT workshop_id 
+    FROM users 
+    WHERE user_id = ? AND status = 1
+");
 $stW->bind_param("i", $userId);
 $stW->execute();
 $uRow = $stW->get_result()->fetch_assoc();
+$stW->close();
 
 if (!$uRow || empty($uRow['workshop_id'])) {
     die("You are not assigned to a workshop");
 }
 
-$workshopId = (int) $uRow['workshop_id'];
+$workshopId = (int)$uRow['workshop_id'];
 
-
-
-// 1) Get all sessions
+/* =====================
+   Sessions
+===================== */
 $sessions = [];
-$sq = $connect->query("SELECT session_id, session_name FROM sessions ORDER BY session_id ASC");
-if ($sq) {
-    $sessions = $sq->fetch_all(MYSQLI_ASSOC);
+$res = $connect->query("
+    SELECT session_id, session_name 
+    FROM sessions 
+    ORDER BY session_id ASC
+");
+if ($res) {
+    $sessions = $res->fetch_all(MYSQLI_ASSOC);
 }
 
-// 2) Selected session (from URL) OR default first session
-$selectedSessionId = isset($_GET['session_id']) ? (int) $_GET['session_id'] : 0;
-if ($selectedSessionId <= 0 && count($sessions) > 0) {
-    $selectedSessionId = (int) $sessions[0]['session_id'];
-}
+$selectedSessionId = isset($_GET['session_id']) 
+    ? (int)$_GET['session_id'] 
+    : ($sessions[0]['session_id'] ?? 0);
 
-// 3) Current tab
-$currentTab = isset($_GET['tab']) ? $_GET['tab'] : 'evaluate';
+$currentTab = $_GET['tab'] ?? 'evaluate';
 
-// 4) Helper: current session name
-$currentSessionName = "Session";
+$currentSessionName = 'Session';
 foreach ($sessions as $s) {
-    if ((int) $s['session_id'] === $selectedSessionId) {
+    if ($s['session_id'] == $selectedSessionId) {
         $currentSessionName = $s['session_name'];
         break;
     }
 }
 
-// 5) Get workshop_session_id for this workshop + selected session
+/* =====================
+   workshop_session_id
+===================== */
 $workshopSessionId = 0;
 
-if (!empty($workshopId) && $selectedSessionId > 0) {
-    $ws = $connect->prepare("
-        SELECT workshop_session_id
-        FROM workshop_session
-        WHERE workshop_id = ? AND session_id = ?
-        LIMIT 1
-    ");
-    $ws->bind_param("ii", $workshopId, $selectedSessionId);
-    $ws->execute();
-    $wsRes = $ws->get_result();
-    if ($wsRes && $wsRes->num_rows > 0) {
-        $wsRow = $wsRes->fetch_assoc();
-        $workshopSessionId = (int) $wsRow['workshop_session_id'];
-    }
-    $ws->close();
-}
+$ws = $connect->prepare("
+    SELECT workshop_session_id
+    FROM workshop_session
+    WHERE workshop_id = ? AND session_id = ?
+    LIMIT 1
+");
+$ws->bind_param("ii", $workshopId, $selectedSessionId);
+$ws->execute();
+$wsRow = $ws->get_result()->fetch_assoc();
+$workshopSessionId = (int)($wsRow['workshop_session_id'] ?? 0);
+$ws->close();
 
-// 6) Get tasks ONLY by workshop_session_id (no fallback)
+/* =====================
+   Tasks
+===================== */
 $tasks = [];
 
 if ($workshopSessionId > 0) {
-    $stTasks = $connect->prepare("
-        SELECT task_id, workshop_session_id, taskName, taskDeadline, taskBio, task_file
+    $st = $connect->prepare("
+        SELECT task_id, taskName, taskDeadline, taskBio, task_file
         FROM tasks
         WHERE workshop_session_id = ?
         ORDER BY task_id DESC
     ");
-    $stTasks->bind_param("i", $workshopSessionId);
-    $stTasks->execute();
-    $resTasks = $stTasks->get_result();
-    if ($resTasks) {
-        $tasks = $resTasks->fetch_all(MYSQLI_ASSOC);
-    }
-    $stTasks->close();
+    $st->bind_param("i", $workshopSessionId);
+    $st->execute();
+    $tasks = $st->get_result()->fetch_all(MYSQLI_ASSOC);
+    $st->close();
 }
 
 /* =====================
-   Handle Submit Upload 
+   Handle Task Submission (AJAX)
 ===================== */
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submit_task') {
 
-    // Validate file
-    $maxSize = 10 * 1024 * 1024; // 10MB
-    $allowedExt = ['pdf', 'doc', 'docx', 'zip', 'rar', 'png', 'jpg', 'jpeg'];
+    header('Content-Type: application/json');
+    $response = ['status' => 'error', 'message' => ''];
 
-    if ($_FILES['submit_link']['size'] > $maxSize) {
+    $taskId = (int)($_POST['task_id'] ?? 0);
+    if ($taskId <= 0) {
+        $response['message'] = 'Invalid task.';
+        echo json_encode($response);
+        exit;
+    }
+
+    if (!isset($_FILES['submit_link']) || $_FILES['submit_link']['error'] !== 0) {
+        $response['message'] = 'Please select a file.';
+        echo json_encode($response);
+        exit;
+    }
+
+    if ($_FILES['submit_link']['size'] > 10 * 1024 * 1024) {
         $response['message'] = 'File too large (max 10MB).';
         echo json_encode($response);
         exit;
     }
 
+    $allowedExt = ['pdf','doc','docx','zip','rar','png','jpg','jpeg'];
     $fileName = $_FILES['submit_link']['name'];
-    $tmpName = $_FILES['submit_link']['tmp_name'];
-
+    $tmpName  = $_FILES['submit_link']['tmp_name'];
     $ext = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
     if (!in_array($ext, $allowedExt, true)) {
         $response['message'] = 'File type not allowed.';
         echo json_encode($response);
         exit;
     }
 
-    // Upload folder
     $uploadDir = __DIR__ . "/assets/taskSubmissions/";
-    if (!is_dir($uploadDir))
+    if (!is_dir($uploadDir)) {
         mkdir($uploadDir, 0777, true);
+    }
 
-    $safeBase = preg_replace("/[^a-zA-Z0-9_-]/", "_", pathinfo($fileName, PATHINFO_FILENAME));
-    $newName = "u{$userId}_t{$taskId}_" . time() . "_" . $safeBase . "." . $ext;
+    $safeName = preg_replace("/[^a-zA-Z0-9_-]/", "_", pathinfo($fileName, PATHINFO_FILENAME));
+    $newName  = "u{$userId}_t{$taskId}_" . time() . "_{$safeName}.{$ext}";
+    $fullPath = $uploadDir . $newName;
 
-    $destination = $uploadDir . $newName;
-    if (!move_uploaded_file($tmpName, $destination)) {
-        $response['message'] = 'Failed to save file.';
+    if (!move_uploaded_file($tmpName, $fullPath)) {
+        $response['message'] = 'Upload failed.';
         echo json_encode($response);
         exit;
     }
 
     $dbPath = "assets/taskSubmissions/" . $newName;
 
-    // Insert/Update submission
     $sql = "
-    INSERT INTO task_submissions (task_id, user_id, submit_link, status)
-    VALUES (?, ?, ?, 'submitted')
-    ON DUPLICATE KEY UPDATE
-      submit_link = VALUES(submit_link),
-      status = 'submitted'
-  ";
+        INSERT INTO task_submissions (task_id, user_id, submit_link, status)
+        VALUES (?, ?, ?, 'submitted')
+        ON DUPLICATE KEY UPDATE
+            submit_link = VALUES(submit_link),
+            status = 'submitted'
+    ";
     $stmt = $connect->prepare($sql);
     $stmt->bind_param("iis", $taskId, $userId, $dbPath);
     $stmt->execute();
+    $stmt->close();
 
-    $response['status'] = 'success';
-    $response['message'] = 'Submitted successfully.';
-    echo json_encode($response);
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Task submitted successfully.'
+    ]);
     exit;
 }
 
 /* =====================
-   Review rows (all tasks for this workshop across sessions ✅)
+   Review Table
 ===================== */
 $reviewRows = [];
-$q = "
-  SELECT 
-    s.session_id,
-    s.session_name,
-    t.task_id,
-    t.taskName,
-    ts.status,
-    ts.submit_link,
-    tf.rating AS feedback_rating,
-    tf.feedback_text,
-    u.user_name
-  FROM tasks t
-  JOIN workshop_session ws ON ws.workshop_session_id = t.workshop_session_id
-  JOIN sessions s ON s.session_id = ws.session_id
-  LEFT JOIN task_submissions ts 
-    ON ts.task_id = t.task_id AND ts.user_id = $userId
-  LEFT JOIN task_feedback tf 
-    ON tf.submission_id = ts.submission_id
-  LEFT JOIN users u ON u.user_id = ts.user_id
-  WHERE ws.workshop_id = $workshopId
-  ORDER BY s.session_id ASC, t.task_id ASC
-";
-$rr = mysqli_query($connect, $q);
-if ($rr)
-    $reviewRows = mysqli_fetch_all($rr, MYSQLI_ASSOC);
+
+$q = $connect->prepare("
+    SELECT 
+        s.session_name,
+        t.taskName,
+        ts.status,
+        ts.submit_link,
+        tf.rating AS feedback_rating,
+        tf.feedback_text
+    FROM tasks t
+    JOIN workshop_session ws ON ws.workshop_session_id = t.workshop_session_id
+    JOIN sessions s ON s.session_id = ws.session_id
+    LEFT JOIN task_submissions ts 
+        ON ts.task_id = t.task_id AND ts.user_id = ?
+    LEFT JOIN task_feedback tf 
+        ON tf.submission_id = ts.submission_id
+    WHERE ws.workshop_id = ?
+    ORDER BY s.session_id, t.task_id
+
+");
+$q->bind_param("ii", $userId, $workshopId);
+$q->execute();
+$res = $q->get_result();
+if ($res) {
+    $reviewRows = $res->fetch_all(MYSQLI_ASSOC);
+}
+$q->close();
 
 /* =====================
-   Materials (per session) - left as session-based ✅
+   Materials (PER workshop_session)
 ===================== */
 $technicalMaterials = [];
 $softMaterials = [];
 
-if ($selectedSessionId > 0) {
-    $qTech = "
-    SELECT material_title, file_path
-    FROM session_materials
-    WHERE  workshop_session_id = $selectedSessionId
-      AND material_type = 'technical'
-  ";
-    $rTech = mysqli_query($connect, $qTech);
-    if ($rTech)
-        $technicalMaterials = mysqli_fetch_all($rTech, MYSQLI_ASSOC);
+if ($workshopSessionId > 0) {
 
-    $qSoft = "
-    SELECT material_title, file_path
-    FROM session_materials
-    WHERE workshop_session_id = $selectedSessionId
-      AND material_type = 'soft'
-  ";
-    $rSoft = mysqli_query($connect, $qSoft);
-    if ($rSoft)
-        $softMaterials = mysqli_fetch_all($rSoft, MYSQLI_ASSOC);
+    $qTech = $connect->prepare("
+        SELECT material_title, file_path
+        FROM session_materials
+        WHERE workshop_session_id = ?
+          AND material_type = 'technical'
+    ");
+    $qTech->bind_param("i", $workshopSessionId);
+    $qTech->execute();
+    $technicalMaterials = $qTech->get_result()->fetch_all(MYSQLI_ASSOC);
+    $qTech->close();
+
+    $qSoft = $connect->prepare("
+        SELECT material_title, file_path
+        FROM session_materials
+        WHERE workshop_session_id = ?
+          AND material_type = 'soft'
+    ");
+    $qSoft->bind_param("i", $workshopSessionId);
+    $qSoft->execute();
+    $softMaterials = $qSoft->get_result()->fetch_all(MYSQLI_ASSOC);
+    $qSoft->close();
 }
 
-function renderStars($rating)
-{
-    $rating = (int) $rating;
-    if ($rating < 1 || $rating > 5)
-        return "—";
-    $out = "";
-    for ($i = 1; $i <= 5; $i++) {
-        $out .= ($i <= $rating) ? "⭐" : "☆";
-    }
-    return $out;
+/* =====================
+   Helpers
+===================== */
+function renderStars($rating) {
+    $rating = (int)$rating;
+    if ($rating < 1 || $rating > 5) return "—";
+    return str_repeat("⭐", $rating) . str_repeat("☆", 5 - $rating);
 }
+
+/* =====================
+   Include UI
+===================== */
 ?>
+
 
 
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Irish Grover font -->
-    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet" />
-
-    <!-- site icon -->
-    <link rel="icon" type="image/png" href="./assets/icons/logoSCCI.png" />
-
-    <!-- css other link -->
-    <link rel="stylesheet" href="./assets/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/root.css">
-
-    <!-- css page link -->
-    <link rel="stylesheet" href="./assets/css/participantWorkshopPanel.css">
-
-    <!-- Page Title -->
-    <title>SCCI - Workshop Panel</title>
-</head>
-
-<body>
-    <?php include './includes/nav.php'; ?>
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- google font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <!-- Irish Grover font -->
+        <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet" />
+        
+        <!-- site icon -->
+        <link rel="icon" type="image/png" href="./assets/icons/logoSCCI.png" />
+        
+        <!-- css other link -->
+        <link rel="stylesheet" href="./assets/css/all.min.css">
+        <link rel="stylesheet" href="./assets/css/root.css">
+        
+        <!-- css page link -->
+        <link rel="stylesheet" href="./assets/css/participantWorkshopPanel.css">
+        
+        <!-- Page Title -->
+        <title>SCCI - Workshop Panel</title>
+    </head>
+    
+    <body>
+        
+       <?php include './includes/nav.php';?>
     <!-- panel ----------------------------------------------------------------- -->
 
     <div class="navbar-spacer"></div>
@@ -337,27 +358,32 @@ function renderStars($rating)
                         <?php foreach ($sessions as $s): ?>
                             <?php $sid = (int) $s['session_id']; ?>
                             <?php $isActive = ($selectedSessionId === $sid); ?>
-                            
-                            <a href="?tab=evaluate&session_id=<?= $sid ?>" class="sessionBtn <?= $isActive ? 'sessionActive' : '' ?>">
+
+                            <a href="?tab=<?= htmlspecialchars($currentTab) ?>&session_id=<?= $sid ?>"
+                                class="sessionBtn <?= $isActive ? 'sessionActive' : '' ?>">
                                 <!-- svg shape -->
                                 <div class="panelSvg panelSession">
                                     <!-- left edge -->
-                                    <svg shape-rendering="geometricPrecision" class="panelEdge sessionEdge" preserveAspectRatio="none" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path d="M50 0 C40 0 30 20 10 50 C30 80 40 100 50 100 Z" 
-                                              fill="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>" 
-                                              stroke="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>" 
-                                              stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+                                    <svg shape-rendering="geometricPrecision" class="panelEdge sessionEdge"
+                                        preserveAspectRatio="none" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true">
+                                        <path d="M50 0 C40 0 30 20 10 50 C30 80 40 100 50 100 Z"
+                                            fill="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>"
+                                            stroke="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>"
+                                            stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
                                     </svg>
 
                                     <!-- center -->
                                     <div class="panelBody <?= $isActive ? 'sessionBlue' : 'sessionWhite' ?>"></div>
-                                    
+
                                     <!-- right edge -->
-                                    <svg shape-rendering="geometricPrecision" class="panelEdge sessionEdge" preserveAspectRatio="none" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                        <path d="M0 0 C10 0 20 20 40 50 C20 80 10 100 0 100 Z" 
-                                              fill="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>" 
-                                              stroke="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>" 
-                                              stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+                                    <svg shape-rendering="geometricPrecision" class="panelEdge sessionEdge"
+                                        preserveAspectRatio="none" viewBox="0 0 50 100" xmlns="http://www.w3.org/2000/svg"
+                                        aria-hidden="true">
+                                        <path d="M0 0 C10 0 20 20 40 50 C20 80 10 100 0 100 Z"
+                                            fill="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>"
+                                            stroke="<?= $isActive ? '#1f184e' : 'var(--color-white-gradient)' ?>"
+                                            stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
                                     </svg>
                                 </div>
 
@@ -499,15 +525,15 @@ function renderStars($rating)
                                             <tr>
                                                 <td class="sessionName"><?= htmlspecialchars($r['session_name']) ?></td>
                                                 <td class="taskLink">
-                                                    <a href="#" class="taskLinkBtn">
-                                                        <i class="fas fa-link"></i>
-                                                        <?php if (!empty($r['submit_link'])): ?>
-                                                            <a href="<?= htmlspecialchars($r['submit_link']) ?>"
-                                                                target="_blank">View file</a>
-                                                        <?php else: ?>
-                                                            —
-                                                        <?php endif; ?>
-                                                    </a>
+                                                    <?php if (!empty($r['submit_link'])): ?>
+                                                        <a href="<?= htmlspecialchars($r['submit_link']) ?>" target="_blank"
+                                                            class="taskLinkBtn">
+                                                            <i class="fas fa-link"></i>
+                                                            View file
+                                                        </a>
+                                                    <?php else: ?>
+                                                        <span class="taskLinkBtn">—</span>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td>
                                                     <span class="statusBadge statusSubmitted">
@@ -561,50 +587,51 @@ function renderStars($rating)
                             <div class="materialsListContainer">
                                 <!-- Technical Materials -->
                                 <div id="technical" class="materialsList activeMaterialsList">
-                                    <div class="materialItem">
-                                        <i class="fas fa-file-alt materialIcon"></i>
-                                        <span class="materialName">Session_1: Introduction to HTML</span>
-                                        <a href="#" class="materialDownloadBtn">
-                                            <i class="fas fa-download"></i>
-                                            Download
-                                        </a>
-                                    </div>
-                              
+                                    <?php if (empty($technicalMaterials)): ?>
+                                        <div class="no-materials-msg"
+                                            style="text-align: center; padding: 20px; color: #666;">
+                                            <i class="fas fa-folder-open"
+                                                style="font-size: 2em; margin-bottom: 10px; color: #ccc;"></i>
+                                            <p>No technical materials available for this session.</p>
+                                        </div>
+                                    <?php else: ?>
+                                        <?php foreach ($technicalMaterials as $tm): ?>
+                                            <div class="materialItem">
+                                                <i class="fas fa-file-alt materialIcon"></i>
+                                                <span class="materialName"><?= htmlspecialchars($tm['material_title']) ?></span>
+                                                <a href="<?= htmlspecialchars($tm['file_path']) ?>" class="materialDownloadBtn"
+                                                    target="_blank" download>
+                                                    <i class="fas fa-download"></i>
+                                                    Download
+                                                </a>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+
 
                                 <!-- Soft-skills Materials -->
                                 <div id="softskills" class="materialsList">
-                                    <div class="materialItem">
-                                        <i class="fas fa-file-alt materialIcon"></i>
-                                        <span class="materialName">Communication Skills for Developers</span>
-                                        <a href="#" class="materialDownloadBtn">
-                                            <i class="fas fa-download"></i>
-                                            Download
-                                        </a>
-                                    </div>
-                                    <div class="materialItem">
-                                        <i class="fas fa-file-alt materialIcon"></i>
-                                        <span class="materialName">Time Management & Productivity</span>
-                                        <a href="#" class="materialDownloadBtn">
-                                            <i class="fas fa-download"></i>
-                                            Download
-                                        </a>
-                                    </div>
-                                    <div class="materialItem">
-                                        <i class="fas fa-file-alt materialIcon"></i>
-                                        <span class="materialName">Teamwork & Collaboration</span>
-                                        <a href="#" class="materialDownloadBtn">
-                                            <i class="fas fa-download"></i>
-                                            Download
-                                        </a>
-                                    </div>
-                                    <div class="materialItem">
-                                        <i class="fas fa-file-alt materialIcon"></i>
-                                        <span class="materialName">Problem Solving Techniques</span>
-                                        <a href="#" class="materialDownloadBtn">
-                                            <i class="fas fa-download"></i>
-                                            Download
-                                        </a>
-                                    </div>
+                                    <?php if (empty($softMaterials)): ?>
+                                        <div class="no-materials-msg"
+                                            style="text-align: center; padding: 20px; color: #666;">
+                                            <i class="fas fa-folder-open"
+                                                style="font-size: 2em; margin-bottom: 10px; color: #ccc;"></i>
+                                            <p>No soft-skills materials available for this session.</p>
+                                        </div>
+                                    <?php else: ?>
+                                        <?php foreach ($softMaterials as $sm): ?>
+                                            <div class="materialItem">
+                                                <i class="fas fa-file-alt materialIcon"></i>
+                                                <span class="materialName"><?= htmlspecialchars($sm['material_title']) ?></span>
+                                                <a href="<?= htmlspecialchars($sm['file_path']) ?>" class="materialDownloadBtn"
+                                                    target="_blank" download>
+                                                    <i class="fas fa-download"></i>
+                                                    Download
+                                                </a>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -708,22 +735,15 @@ function renderStars($rating)
 
                 <!-- Rating -->
                 <div class="feedbackRating">
-                    <span
-                        class="feedbackLabel">Rating:<?= !empty($r['feedback_rating']) ? renderStars($r['feedback_rating']) : "—" ?></span>
-                    <div class="feedbackStars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
+                    <span class="feedbackLabel">Rating:</span>
+                    <div id="feedbackRatingStars" class="feedbackStars"></div>
                 </div>
 
                 <!-- Feedback Content -->
                 <div class="feedbackContent">
                     <p class="feedbackLabel"><i class="fas fa-comment-alt"></i> Feedback Message:</p>
                     <div id="feedbackText" class="feedbackTextArea">
-                        <p><?= !empty($r['feedback_text']) ? htmlspecialchars($r['feedback_text']) : "—" ?>
+                        <p></p>
                     </div>
                 </div>
 
