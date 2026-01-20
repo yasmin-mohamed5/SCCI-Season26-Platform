@@ -953,18 +953,18 @@
           <div class="fileUpload">
             <div class="formLabel">Upload File:</div>
             <div class="uploadContainer">
-              <label class="formLabel uploadLabel" for="task_file">
+              <label class="formLabel uploadLabel" for="taskUpload">
                 <div class="uploadIcon"></div>
-                <p class="uploadText">Drag and drop or click to browse</p>
               </label>
+              <p class="uploadText">Drag and drop or click to browse</p>
 
-              <input type="file" name="task_file" class="taskFileInput" style="display:none;">
+              <input id="taskUpload" type="file" name="task_file" class="taskFileInput" style="display:none;">
 
               <!-- Shows uploaded file name -->
               <p class="fileUploadedName" style="display:none;"></p>
               <p class="fileMessage"></p>
 
-              <label class="btn btn-secondary btn-sm uploadBtn">Upload File</label>
+              <label for="taskUpload" class="btn btn-secondary btn-sm uploadBtn">Upload File</label>
 
             </div>
           </div>
