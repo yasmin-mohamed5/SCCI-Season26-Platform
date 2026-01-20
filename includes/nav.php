@@ -7,7 +7,8 @@ $role = 0;
 if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 0;
-    $select_user_image = "SELECT image, role FROM users WHERE user_id = ?";
+    $committeeId = 0;
+    $select_user_image = "SELECT image, role, committee_id FROM users WHERE user_id = ?";
     $stmt = mysqli_prepare($connect, $select_user_image);
     if($stmt) {
         mysqli_stmt_bind_param($stmt, "i", $user_id);
@@ -16,6 +17,7 @@ if(isset($_SESSION['user_id'])){
         if($row = mysqli_fetch_assoc($result)) {
             $user_image = $row['image'] ?? 'default.png';
             $role = $row['role']; // Fetch role from DB to ensure it's available
+            $committeeId = $row['committee_id'] ?? 0; // Fetch committee_id from DB
             
             // Add SCCI Board prefix for role 4 users
             if($role == 4) {
@@ -60,6 +62,11 @@ if(isset($_SESSION['user_id'])){
             echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
         }
         ?>
+        <?php
+        if($committeeId == 6) {
+            echo '<a href="/SCCI-Season26-Platform/itPanel.php" id="homeNavLine">IT panel</a>';
+        }
+        ?>
     </nav>
     <nav class="navAccount navRespnsive">
         <?php
@@ -87,6 +94,11 @@ if(isset($_SESSION['user_id'])){
         <a href="/SCCI-Season26-Platform/gallary.php"><i class="fa-solid fa-images"></i> gallery</a>
         <a href="/SCCI-Season26-Platform/workshops.php"><i class="fa-solid fa-graduation-cap"></i> workshops</a>
         <a href="/SCCI-Season26-Platform/crew.php"><i class="fa-solid fa-users"></i> crew</a>
+        <?php
+        if($committeeId == 6) {
+            echo '<a href="/SCCI-Season26-Platform/itPanel.php"><i class="fa-solid fa-screwdriver-wrench"></i> IT panel</a>';
+        }
+        ?>
         <?php
         if(isset($_SESSION['user_id'])){
             echo '<a href="/SCCI-Season26-Platform/profile.php"><i class="fa-solid fa-user"></i> Profile</a>';

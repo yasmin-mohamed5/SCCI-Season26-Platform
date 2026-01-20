@@ -1,25 +1,4 @@
-<?php
-include('./includes/nav.php');
 
-if (isset($_GET['accept'])) {
-    $id = intval($_GET['accept']);
-    mysqli_query($connect, "UPDATE users SET status = 1 WHERE user_id = $id");
-    header("Location: itPanel.php");
-    exit();
-}
-
-if (isset($_GET['block'])) {
-    $id = intval($_GET['block']);
-    mysqli_query($connect, "UPDATE users SET status = 0 WHERE user_id = $id");
-    header("Location: itPanel.php");
-    exit();
-}
-
-$result = mysqli_query(
-    $connect,
-    "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
-);
-?>
 
 
 <!DOCTYPE html>
@@ -30,6 +9,7 @@ $result = mysqli_query(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Panel</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" href="assets/icons/logoSCCI.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Stencil&display=swap" rel="stylesheet">
@@ -44,6 +24,28 @@ $result = mysqli_query(
 </head>
 
 <body>
+    <?php
+include('./includes/nav.php');
+
+if (isset($_GET['accept'])) {
+    $id = intval($_GET['accept']);
+    mysqli_query($connect, "UPDATE users SET status = 1 WHERE user_id = $id");
+    header("Location: itPanel.php");
+    exit();
+}
+
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+    mysqli_query($connect, "DELETE FROM users WHERE user_id = $id");
+    header("Location: itPanel.php");
+    exit();
+}
+
+$result = mysqli_query(
+    $connect,
+    "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
+);
+?>
     <main>
         <h1>Contact Panel</h1>
         <div class="userTableScroll">
@@ -76,9 +78,9 @@ $result = mysqli_query(
                                     Accept
                                 </a>
 
-                                <a href="itPanel.php?block=<?= $row['user_id'] ?>"
+                                <a href="itPanel.php?delete=<?= $row['user_id'] ?>"
                                     class="btn block">
-                                    Block
+                                    Delete
                                 </a>
                             </td>
                         </tr>
