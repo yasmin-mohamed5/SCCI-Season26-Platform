@@ -1,0 +1,184 @@
+@import url("root.css");
+
+/* Wrapper around everything under nav */
+.panelWrapper {
+    position: relative;
+    padding-top: 120px;
+    /* leave space for included nav */
+}
+
+/* Mini Navbar */
+.miniNav {
+    position: relative;
+    /* keep it relative to flow */
+    margin: 0 auto 2rem auto;
+    /* center horizontally, 2rem below itself */
+    height: 80px;
+    /* adjust height as needed */
+    gap: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    z-index: 1;
+}
+
+/* The SVG background */
+.panelSvg {
+    position: absolute;
+    /* keep it behind the links */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    overflow: hidden;
+    filter: drop-shadow(0 5px 11px rgba(0, 0, 0, 0.7));
+    z-index: -1;
+    /* behind the links */
+}
+
+/* Mini Navbar links */
+.miniNav a {
+    text-decoration: none;
+    font-size: 19px;
+    color: var(--color-parchment);
+    position: relative;
+    transition: 0.3s ease-in-out;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.miniNav a::after {
+    content: "";
+    height: 4px;
+    width: 0%;
+    background-color: var(--color-parchment);
+    border-radius: 3px 3px 0 0;
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transition: 0.3s ease-in-out;
+}
+
+.miniNav a:hover::after,
+.miniNav a.activePanelLine::after {
+    left: 0;
+    width: 100%;
+}
+
+/* ================= Table ================= */
+.HeadTableScroll {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-light);
+    margin-top: var(--space-5);
+    overflow-x: auto;
+    width: 95%;
+    margin: 7rem auto;
+}
+
+.HeadTable {
+    width: 100%;
+    min-width: 700px;
+    /* max-width: 600px; */
+    margin-inline: auto;
+    border-collapse: collapse;
+    background-color: var(--card-bg);
+
+}
+
+/* ================= Header ================= */
+.tableHead {
+    background: var(--gradient-nav-red);
+}
+
+.tableHeader {
+    text-align: center;
+    padding: var(--space-6);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bold);
+    color: var(--color-white);
+    letter-spacing: 0.5px;
+    border: none;
+}
+
+.tableHeader:last-child {
+    border-right: none;
+}
+
+
+/* ================= Zebra Rows ================= */
+.tableBody .tableRow:nth-child(odd) {
+    background-color: var(--color-white-neutral);
+    color: var(--color-black);
+}
+
+.tableBody .tableRow:nth-child(even) {
+    background-color: var(--color-primary-lighter);
+    color: var(--color-white);
+}
+
+/* ================= Data cells ================= */
+.tableData {
+    padding: var(--space-7);
+    font-size: var(--fs-md);
+    border-right: 3px solid var(--color-gray-lighter);
+    line-height: var(--lh-loose);
+}
+
+.tableData {
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 19px;
+    color: inherit;
+}
+
+.tableData:last-child {
+    border-right: none;
+}
+
+.tableBody .tableRow:last-child .tableData {
+    border-bottom: none;
+}
+
+
+/* ================= Responsive ================= */
+/* ===== Tablet ===== */
+@media (max-width: 992px) {
+    .contactTable {
+        display: block;
+        width: 100%;
+    }
+
+    .tableHeader,
+    .tableData {
+        white-space: normal;
+        padding: var(--space-3);
+        font-size: var(--fs-sm);
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+}
+
+
+/* ===== Mobile ===== */
+@media (max-width: 769px) {
+
+    .contactTable {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .tableHeader,
+    .tableData {
+        white-space: normal;
+        padding: var(--space-2);
+        font-size: var(--fs-xs);
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+}
