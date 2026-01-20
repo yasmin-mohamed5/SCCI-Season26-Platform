@@ -55,7 +55,8 @@
 .miniNav a {
   text-decoration: none;
   font-size: 19.3px;
-  color: var(--color-parchment); /* #e0c08f; */
+  color: var(--color-parchment);
+  /* #e0c08f; */
   position: relative;
   transition: ease-in-out 0.3s;
   text-transform: capitalize;
@@ -113,6 +114,7 @@
 .sessionsBox {
   padding: var(--space-6) var(--space-4);
 }
+
 /* session section */
 
 .sessionsSelector {
@@ -138,12 +140,10 @@
   left: 0;
   width: 50px;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    var(--color-white-neutral),
-    rgb(255 255 255 / 20%),
-    transparent
-  );
+  background: linear-gradient(to right,
+      var(--color-white-neutral),
+      rgb(255 255 255 / 20%),
+      transparent);
   pointer-events: none;
   z-index: 10;
 }
@@ -155,12 +155,10 @@
   right: 0;
   width: 50px;
   height: 100%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgb(255 255 255 / 20%),
-    var(--color-white-neutral)
-  );
+  background: linear-gradient(to right,
+      transparent,
+      rgb(255 255 255 / 20%),
+      var(--color-white-neutral));
   pointer-events: none;
   z-index: 10;
 }
@@ -201,12 +199,10 @@
 
 .sessionWhite {
   border: var(--color-white-gradient) 2px solid;
-  background: linear-gradient(
-    90deg,
-    var(--color-white-gradient),
-    var(--color-white),
-    var(--color-white-gradient)
-  );
+  background: linear-gradient(90deg,
+      var(--color-white-gradient),
+      var(--color-white),
+      var(--color-white-gradient));
 }
 
 .sessionBlue {
@@ -226,7 +222,8 @@ Table
 .tableScrollFrame {
   position: relative;
   width: 100%;
-  overflow: hidden; /* critical */
+  overflow: hidden;
+  /* critical */
   border-radius: 12px;
 }
 
@@ -314,10 +311,15 @@ Table
 }
 
 /* attendance */
+.radioOption {
+  cursor: pointer;
+  position: relative;
+}
+
 .radioOption input {
   position: absolute;
   opacity: 0;
-  pointer-events: none;
+  z-index: -1;
 }
 
 .evaluateAttendanceCircle {
@@ -331,18 +333,16 @@ Table
   align-items: center;
   color: var(--color-secondary);
   border: grey 2px solid;
-  background: linear-gradient(
-    90deg,
-    var(--color-white-gradient),
-    var(--color-white),
-    var(--color-white-gradient)
-  );
+  background: linear-gradient(90deg,
+      var(--color-white-gradient),
+      var(--color-white),
+      var(--color-white-gradient));
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 /* attended */
-.radioOption input:checked + .evaluateCheckTask {
+.radioOption input:checked+.evaluateCheckTask {
   color: white;
   border: 1px solid #017001;
   background: linear-gradient(90deg, #017001, #39b839, #017001);
@@ -351,16 +351,14 @@ Table
 .evaluateCheckTask:hover {
   color: #017001;
   border: 1px solid rgba(1, 112, 1, 0.4);
-  background: linear-gradient(
-    90deg,
-    rgba(1, 112, 1, 0.4),
-    rgba(57, 184, 57, 0.4),
-    rgba(1, 112, 1, 0.4)
-  );
+  background: linear-gradient(90deg,
+      rgba(1, 112, 1, 0.4),
+      rgba(57, 184, 57, 0.4),
+      rgba(1, 112, 1, 0.4));
 }
 
 /* not attended */
-.radioOption input:checked + .evaluateXtask {
+.radioOption input:checked+.evaluateXtask {
   color: white;
   border: 1px solid #9b1313;
   background: linear-gradient(90deg, #9b1313, #d64141, #9b1313);
@@ -369,12 +367,10 @@ Table
 .evaluateXtask:hover {
   color: #9b1313;
   border: 1px solid rgba(155, 19, 19, 0.4);
-  background: linear-gradient(
-    90deg,
-    rgba(155, 19, 19, 0.4),
-    rgba(214, 65, 65, 0.4),
-    rgba(155, 19, 19, 0.4)
-  );
+  background: linear-gradient(90deg,
+      rgba(155, 19, 19, 0.4),
+      rgba(214, 65, 65, 0.4),
+      rgba(155, 19, 19, 0.4));
 }
 
 /* task link */
@@ -744,6 +740,7 @@ body.no-scroll {
   font-family: "Inter", sans-serif;
   /* Cleaner font for file names usually */
 }
+
 #materialTypeButton {
   display: flex;
   align-items: center;
@@ -769,6 +766,7 @@ body.no-scroll {
   max-width: 1000px;
   margin: 10% auto;
 }
+
 #materialItem {
   background-color: #d1d1d1;
   padding: 12px 20px;
@@ -856,11 +854,9 @@ body.no-scroll {
 .uploadIcon {
   width: 70px;
   height: 70px;
-  background: linear-gradient(
-    135deg,
-    var(--color-secondary),
-    var(--color-secondary-dark)
-  );
+  background: linear-gradient(135deg,
+      var(--color-secondary),
+      var(--color-secondary-dark));
   /* background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark)); */
   border-radius: 50%;
   display: flex;
@@ -1270,15 +1266,18 @@ body.no-scroll {
     justify-content: center;
     white-space: nowrap;
   }
+
   #materialTypeButton {
     flex: 1;
     justify-content: center;
     white-space: nowrap;
   }
+
   .uploadContainer {
     padding: var(--space-5);
     min-height: 200px;
   }
+
   #uploadText {
     font-size: var(--fs-sm);
     text-transform: capitalize;
@@ -1355,6 +1354,7 @@ body.no-scroll {
     gap: var(--space-3);
     align-items: flex-start;
   }
+
   .materialActions {
     width: 100%;
     justify-content: flex-end;
