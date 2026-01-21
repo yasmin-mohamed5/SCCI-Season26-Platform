@@ -953,3 +953,265 @@ body.red-theme .decorative-element {
   }
 }
 
+/* ===============================
+   1366 x 768 RESPONSIVE ADJUSTMENTS
+================================ */
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  
+  /* ===============================
+     Hero Section Adjustments
+  ================================ */
+  .hero {
+    height: 85vh;
+  }
+
+  .heroBackground picture {
+    height: 85vh;
+  }
+
+  .logoSCCI {
+    width: 18%;
+    height: auto;
+  }
+
+  .heroLogo {
+    bottom: 10%;
+  }
+
+  .heroLogo h5 {
+    font-size: 2rem;
+    margin-top: 2%;
+  }
+
+  .heroBackground::after {
+    height: 90px;
+  }
+
+  /* ===============================
+     About Section Card
+  ================================ */
+  .aboutSection {
+    padding: 50px 20px;
+  }
+
+  .cardAbout {
+    max-width: 90rem;
+    min-height: 30rem;
+    padding: 1.8rem;
+  }
+
+  .cardAbout h1 {
+    font-size: 2.2rem;
+    margin: 1.3rem 0;
+  }
+
+  .cardAbout p {
+    font-size: 1.8rem;
+    padding-right: 4%;
+    padding-left: 4%;
+    margin-top: 25px;
+    line-height: 1.5;
+  }
+
+  .cardAbout hr {
+    width: 75%;
+  }
+
+  /* ===============================
+     Title for Cards Section
+  ================================ */
+  .title2Cards {
+    padding: 40px 20px 20px;
+  }
+
+  .titleWrapper2 h2 {
+    font-size: 2rem;
+  }
+
+  /* ===============================
+     What Makes Us Different Cards
+  ================================ */
+  .card2Container {
+    padding: 40px 15px;
+    gap: 1.5rem;
+    max-width: 100%;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .card2Items {
+    width: 240px;
+    flex-shrink: 0;
+  }
+
+  .card2 {
+    padding: 30px 25px;
+  }
+
+  .card2I {
+    font-size: 4.5rem !important;
+    margin-bottom: 1.5%;
+  }
+
+  .card2 h4 {
+    font-size: 1.8rem;
+    margin: 15px 0;
+  }
+
+  .card2 p {
+    font-size: 1.5rem;
+    line-height: 1.4;
+  }
+
+  .corner-ornament {
+    width: 45px;
+    height: 45px;
+  }
+
+  .corner-ornament.top-left::before,
+  .corner-ornament.top-right::before,
+  .corner-ornament.bottom-left::before,
+  .corner-ornament.bottom-right::before {
+    width: 45px;
+  }
+
+  .corner-ornament.top-left::after,
+  .corner-ornament.top-right::after,
+  .corner-ornament.bottom-left::after,
+  .corner-ornament.bottom-right::after {
+    height: 45px;
+  }
+
+  .divider {
+    width: 75%;
+    margin: 15px auto;
+  }
+
+  .decorative-element {
+    font-size: 20px;
+    margin: 12px 0;
+  }
+
+  /* ===============================
+     Behind the Scenes Section
+  ================================ */
+  section > hr {
+    margin: 30px auto;
+    width: 60%;
+  }
+
+  section > h1 {
+    font-size: 2.2rem;
+    margin: 20px 0;
+  }
+
+  .sliderWrapper {
+    margin-top: 0;
+    margin-bottom: 80px;
+  }
+
+  .cardStack {
+    margin-top: 8%;
+    margin-bottom: 8%;
+    width: min(85vw, 900px);
+    height: calc(min(85vw, 900px) * 0.68);
+  }
+
+  .crewCard {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  /* ===============================
+     Slider Button Adjustments
+  ================================ */
+  .sliderBtn.prev {
+    left: 20rem;
+    top: 35rem;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-right: 22px solid #8B0000;
+  }
+
+  .sliderBtn.next {
+    right: 20rem;
+    top: 35rem;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 22px solid #8B0000;
+  }
+
+  .sliderBtn:hover {
+    transform: scale(1.15);
+  }
+}
+
+/* ===============================
+   Fine-tuning for exactly 1366x768
+================================ */
+@media screen and (width: 1366px) and (height: 768px) {
+  
+  .hero {
+    height: 80vh;
+  }
+
+  .heroBackground picture {
+    height: 80vh;
+  }
+
+  .aboutSection {
+    padding: 45px 20px;
+  }
+
+  .cardAbout {
+    min-height: 28rem;
+  }
+
+  .card2Container {
+    padding: 35px 15px;
+    gap: 2rem;
+  }
+
+  .sliderWrapper {
+    margin-bottom: 60px;
+  }
+
+  .cardStack {
+    margin-top: 6%;
+    margin-bottom: 6%;
+  }
+}
+
+/* ===============================
+   Optimization for laptop screens
+   1280px - 1440px width range
+================================ */
+@media screen and (min-width: 1280px) and (max-width: 1440px) and (min-height: 700px) and (max-height: 900px) {
+  
+  /* Ensure content doesn't overflow vertically */
+  .hero {
+    min-height: 70vh;
+    max-height: 85vh;
+  }
+
+  /* Compact spacing for better fit */
+  .aboutSection,
+  .card2Container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  /* Optimize card grid for this screen size */
+  .card2Container {
+    justify-content: space-evenly;
+  }
+
+  /* Ensure slider doesn't push footer off-screen */
+  .sliderWrapper {
+    margin-top: 20px;
+    margin-bottom: 60px;
+  }
+}
