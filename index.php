@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +27,7 @@
 
             <header class="landingContent">
                 <figure>
-                    <img src="./assets/icons/logoSCCI.png" class="landingLogo" alt="SCCI Logo">
+                    <img src="./assets/img/scciOwl.png" class="landingLogo" alt="SCCI Logo">
                 </figure>
 
                 <h1>SEEK THE PEAK</h1>
