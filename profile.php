@@ -297,13 +297,13 @@ if (isset($user['role']) && $user['role'] == 4) {
           <div class="input-group">
             <label for="githup">GitHub</label>
             <input type="text" name="githup" id="githup" value="<?php echo htmlspecialchars($user['githup']); ?>"
-              placeholder="Enter your GitHub" required>
+              placeholder="Enter your GitHub">
           </div>
 
           <div class="input-group">
             <label for="linkedin">LinkedIn</label>
             <input type="text" name="linkedin" id="linkedin" value="<?php echo htmlspecialchars($user['linkedin']); ?>"
-              placeholder="Enter your LinkedIn" required>
+              placeholder="Enter your LinkedIn">
           </div>
 
           <button class="saveProfile">Save Changes</button>
