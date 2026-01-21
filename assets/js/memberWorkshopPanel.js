@@ -1,4 +1,5 @@
 // Mini navbar change pages
+// <!-- ana radwan -->
 const links = document.querySelectorAll(".miniNav a");
 const pages = document.querySelectorAll(".panelSection");
 
