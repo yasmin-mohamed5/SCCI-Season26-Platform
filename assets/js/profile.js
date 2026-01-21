@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     e.stopPropagation();
     if (isOpen) return;
 
+    
     settingsMenu.classList.remove('closing');
     settingsMenu.classList.add('opening');
     isOpen = true;

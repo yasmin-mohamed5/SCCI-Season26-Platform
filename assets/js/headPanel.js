@@ -10,6 +10,7 @@ const membersSchedule = document.getElementById('membersSchedule');
 const urlParams = new URLSearchParams(window.location.search);
 const currentSection = urlParams.get('section') || 'participants';
 
+
 // show participants
 participantBtn.addEventListener('click', () => {
     participantsSchedule.style.display = 'block';

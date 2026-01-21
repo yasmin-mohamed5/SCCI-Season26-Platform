@@ -274,6 +274,7 @@ function renderStars($rating)
     <!-- site icon -->
     <link rel="icon" type="image/png" href="./assets/icons/logoSCCI.png" />
 
+    
     <!-- css other link -->
     <link rel="stylesheet" href="./assets/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/root.css">

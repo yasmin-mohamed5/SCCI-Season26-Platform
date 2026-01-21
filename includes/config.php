@@ -7,6 +7,7 @@ $username = "root";
 $password = "";
 $database ="SCCi";
 
+
 $connect = mysqli_connect($localhost, $username ,$password , $database);
 
 if(isset($_POST['logout'])) {

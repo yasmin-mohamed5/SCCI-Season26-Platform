@@ -1,11 +1,12 @@
 <?php
+
 include('./includes/nav.php');
 if (isset($_GET['category_id'])) {
     $workshop_id = $_GET['category_id'];
     $select_workshop = "SELECT * FROM `workshops` WHERE `workshop_id` = '$workshop_id'";
     $run_workshop = mysqli_query($connect, $select_workshop);
 
-    $select_members = "SELECT * FROM `users` WHERE `workshop_id` = '$workshop_id' && `status` = 1";
+    $select_members = "SELECT * FROM `users` WHERE `workshop_id` = '$workshop_id' && `status` = 1 && `role` = 2";
     $run_members = mysqli_query($connect, $select_members);
 
 

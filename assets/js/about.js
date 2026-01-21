@@ -3,6 +3,7 @@
 const cards = Array.from(document.querySelectorAll('.crewCard'));
 const exitedStack = [];
 
+
 const nextBtn = document.getElementById('nextBtn');
 const prevBtn = document.getElementById('prevBtn');
 

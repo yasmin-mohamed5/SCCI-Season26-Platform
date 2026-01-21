@@ -2,6 +2,7 @@
 // FEEDBACK MODAL FUNCTIONS
 // ===============================================================================
 
+
 // Open Feedback Modal
 function openFeedbackModal(participantName, participantId) {
     const modal = document.getElementById('feedbackModal');

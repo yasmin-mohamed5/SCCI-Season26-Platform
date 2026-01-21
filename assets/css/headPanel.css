@@ -53,6 +53,7 @@
 
 .miniNav a::after {
     content: "";
+    
     height: 4px;
     width: 0%;
     background-color: var(--color-parchment);

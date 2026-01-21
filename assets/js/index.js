@@ -10,6 +10,7 @@ if (scrollTopBtn) {
     if (firstSection) {
       const firstSectionHeight = firstSection.offsetHeight;
 
+      
       if (window.pageYOffset > firstSectionHeight) {
         scrollTopBtn.classList.add('show');
       } else {

@@ -9,6 +9,7 @@ function activatePage(pageId) {
     link.classList.toggle("activePanelLine", link.dataset.page === pageId);
   });
 
+  
   // activate panel
   pages.forEach((page) => {
     page.classList.toggle("panelSectionActive", page.id === pageId);

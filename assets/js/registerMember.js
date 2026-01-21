@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const committeeSelect = document.getElementById('committeeId');
 
     // Error Containers
+    
     const errorName = document.getElementById('error-name');
     const errorEmail = document.getElementById('error-email');
     const errorPhone = document.getElementById('error-phone');

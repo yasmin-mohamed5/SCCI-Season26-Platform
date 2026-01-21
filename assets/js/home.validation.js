@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     let isValid = true;
 
+    
     // NAME
     if (nameInput.value.trim().length < 3) {
       showError(nameInput, "Name must be at least 3 characters");

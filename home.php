@@ -2,6 +2,8 @@
 
  include './includes/nav.php'; 
 
+
+ 
 // Handle contact form submission BEFORE any HTML output
 if (isset($_POST['contact'])) {
     // Escape user input

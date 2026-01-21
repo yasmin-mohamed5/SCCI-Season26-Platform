@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const workshopSelect = document.getElementById('workshop');
     const imageInput = document.getElementById('image');
 
+    
     // Error Containers
     const errorName = document.getElementById('error-name');
     const errorEmail = document.getElementById('error-email');

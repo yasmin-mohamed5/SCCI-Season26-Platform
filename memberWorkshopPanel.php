@@ -720,6 +720,7 @@
               </thead>
 
               <!-- Table body -->
+               
               <tbody>
                 <?php if (count($participants) === 0): ?>
                   <tr>

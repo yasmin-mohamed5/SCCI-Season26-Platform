@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const journeyBtns = document.querySelectorAll('.journeyBtn');
     const contentBlocks = document.querySelectorAll('.contentBlock');
 
+    
     if (journeyBtns.length > 0 && contentBlocks.length > 0) {
         journeyBtns.forEach(btn => {
             btn.addEventListener('click', function () {

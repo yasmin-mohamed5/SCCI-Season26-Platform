@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mirror: true
   });
 
+  
   const flipCards = document.querySelectorAll(".flipCard");
 
   flipCards.forEach(card => {
