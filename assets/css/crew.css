@@ -1,6 +1,6 @@
 /* ===== Layout & Typography ===== */
 body {
-  
+
   padding-top: calc(8vh + 3rem);
 }
 
@@ -809,13 +809,13 @@ body {
 .scroll-indicator {
   position: fixed;
   right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 20%;
+  transform: translateY(-20%);
   z-index: 1001;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 15px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
@@ -828,6 +828,7 @@ body {
 }
 
 .scroll-arrow {
+  color: var(--color-white);
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
@@ -849,12 +850,16 @@ body {
 
 .scroll-text {
   font-family: 'Irish Grover', cursive;
-  font-size: 0.9rem;
-  color: var(--color-primary);
+  font-size: 1.1rem;
+  color: var(--color-parchment);
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
 }
 
 @keyframes bounceArrow {
@@ -862,10 +867,12 @@ body {
   0%,
   100% {
     transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(197, 37, 37, 0.4);
   }
 
   50% {
     transform: translateY(10px);
+    box-shadow: 0 8px 25px rgba(197, 37, 37, 0.6);
   }
 }
 
@@ -885,7 +892,8 @@ body {
   }
 
   .scroll-text {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
+    padding: 4px 8px;
   }
 }
 
@@ -895,8 +903,17 @@ body {
   right: auto;
 }
 
+.scroll-indicator-right {
+  right: 30px;
+  flex-direction: row-reverse;
+}
+
 @media (max-width: 768px) {
   .scroll-indicator-left {
     left: 15px;
+  }
+
+  .scroll-indicator-right {
+    right: 15px;
   }
 }

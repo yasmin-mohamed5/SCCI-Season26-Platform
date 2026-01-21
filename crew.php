@@ -442,7 +442,7 @@ if ($result) {
         });
     </script>
     <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/crew.js"></script>
+    <script src="./assets/js/crew.js?v=<?php echo time(); ?>_2"></script>
     <script src="./assets/js/all.min.js"></script>
 </body>
 <?php

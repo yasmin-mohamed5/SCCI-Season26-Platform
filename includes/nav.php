@@ -51,6 +51,12 @@ if (isset($_SESSION['user_id'])) {
         <a href="/SCCI-Season26-Platform/crew.php" id="crewNavLine">crew</a>
 
         <?php
+        if ($role == 2 || $role == 1 || $role == 4 || $committeeId == 6) {
+           echo '<div class="nav-separator"></div>';
+        }
+        ?>
+
+        <?php
         if ($role == 2) {
             echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php" id="homeNavLine">member panel</a>';
         }
@@ -76,7 +82,7 @@ if (isset($_SESSION['user_id'])) {
         <?php
         if (isset($_SESSION['user_id'])) {
             echo '<a href="/SCCI-Season26-Platform/profile.php" id="profileNav">
-            <img loading="lazy" src="/SCCI-Season26-Platform/assets/uploadedImages/' . htmlspecialchars($user_image) . '" alt="profile img">
+            <img loading="lazy" src="/SCCI-Season26-Platform/assets/img/profilePhoto.png" alt="profile img">
         </a>';
         } else {
             echo '<a href="/SCCI-Season26-Platform/auth/login.php" id="loginNav">Log In</a>';
@@ -104,9 +110,7 @@ if (isset($_SESSION['user_id'])) {
         }
         ?>
         <?php
-        if (isset($_SESSION['user_id'])) {
-            echo '<a href="/SCCI-Season26-Platform/profile.php"><i class="fa-solid fa-user"></i> Profile</a>';
-        } else {
+        if (!isset($_SESSION['user_id'])) {
             echo '<a href="/SCCI-Season26-Platform/auth/login.php"><i class="fa-solid fa-user"></i> LogIn</a>';
         }
         ?>
@@ -114,7 +118,7 @@ if (isset($_SESSION['user_id'])) {
         <?php if (isset($_SESSION['user_id'])): ?>
             <a href="/SCCI-Season26-Platform/profile.php" id="profileNav">
                 <img loading="lazy"
-                    src="/SCCI-Season26-Platform/assets/uploadedImages/<?php echo htmlspecialchars($user_image); ?>"
+                    src="/SCCI-Season26-Platform/assets/img/profilePhoto.png"
                     alt="profile img">
             </a>
         <?php endif; ?>

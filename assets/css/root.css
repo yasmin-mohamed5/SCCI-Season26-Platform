@@ -796,6 +796,15 @@ header.navbar-hidden {
   box-shadow: none;
 }
 
+.nav-separator {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, transparent, var(--color-primary-dark), transparent);
+    display: inline-block;
+    border-radius: 2px;
+    opacity: 0.7;
+}
+
 
 /* Login Button */
 #loginNav {
