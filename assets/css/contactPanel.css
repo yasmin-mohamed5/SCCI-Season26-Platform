@@ -1,4 +1,3 @@
-
 @import url("root.css");
 
 /* ================= Table ================= */
@@ -81,15 +80,6 @@
 /* ===== Tablet ===== */
 @media (max-width: 992px) {
 
-    .search-wrapper {
-        justify-content: center;
-        margin-top: 9rem;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
     .contactTable {
         display: block;
         width: 100%;
@@ -115,16 +105,7 @@
 
 /* ===== Mobile ===== */
 @media (max-width: 769px) {
-
-    .search-wrapper {
-        justify-content: center;
-        margin-top: 9rem;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
+    
     .contactTable {
         display: block;
         width: 100%;
