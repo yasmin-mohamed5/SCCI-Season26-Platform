@@ -120,6 +120,7 @@ if(isset($_POST['login1'])){
         </section>
     </main>
     <script src="../assets/js/all.min.js"></script>
+    <script src="../assets/js/index.js?v=<?php echo time(); ?>"></script>
 </body>
 
 </html>

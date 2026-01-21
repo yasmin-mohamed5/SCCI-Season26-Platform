@@ -10,7 +10,7 @@ if (scrollTopBtn) {
     if (firstSection) {
       const firstSectionHeight = firstSection.offsetHeight;
 
-      
+
       if (window.pageYOffset > firstSectionHeight) {
         scrollTopBtn.classList.add('show');
       } else {
@@ -121,16 +121,14 @@ function createGlobalFlyingIcons() {
         width: 100%;
         height: 100%;
         pointer-events: none;
-        z-index: 0;
+        z-index: 100;
         overflow: hidden;
     `;
   document.body.appendChild(iconsContainer);
 
-  // Workshop and tech-related icons
+  // Stars related icons
   const icons = [
-    '💻', '🎯', '🚀', '✨', '📱', '🔧',
-    '⚡', '🎨', '📊', '🔬', '💡', '🎓',
-    '🌟', '⭐', '🔥', '💫'
+    '✦', '★', '☆', '✨', '✴', '✶', '✷', '✸'
   ];
   const iconCount = 16; // 16 icons spread across the entire page
 

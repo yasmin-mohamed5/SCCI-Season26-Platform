@@ -634,7 +634,8 @@
 
     .memberImageContainer {
         width: 220px;
-        height: 220px;
+        height: auto;
+        aspect-ratio: 2/3;
     }
 
     .memberName {
@@ -694,7 +695,8 @@
 
     .memberImageContainer {
         width: 180px;
-        height: 180px;
+        height: auto;
+        aspect-ratio: 2/3;
     }
 
     .memberName {

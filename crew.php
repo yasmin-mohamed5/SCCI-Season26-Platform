@@ -140,8 +140,6 @@ if ($result) {
                 <h3 class="roleTitle">Technical</h3>
                 <a href="ViewProfile.php?user_id=<?= $crew_ids['Marwan Wael'] ?? '#' ?>" class="memberCardLink">
                 <div class="flipCard  " data-aos="flip">
-                    <span class="sideLabel left">IT DD</span>
-                    <span class="sideLabel right purpleText">MP SMM</span>
                     <div class="flipInner  ">
                         <div class="flipSide  flipFront">
                             <img src="./assets/img/crew/backCardCrew.png" loading="lazy" alt="backCard" />

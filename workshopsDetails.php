@@ -6,7 +6,10 @@ if (isset($_GET['category_id'])) {
     $select_workshop = "SELECT * FROM `workshops` WHERE `workshop_id` = '$workshop_id'";
     $run_workshop = mysqli_query($connect, $select_workshop);
 
-    $select_members = "SELECT * FROM `users` WHERE `workshop_id` = '$workshop_id' && `status` = 1 && `role` = 2";
+    $select_members = "SELECT u.*, c.committee_member 
+                       FROM users u 
+                       LEFT JOIN committees c ON u.committee_id = c.committee_id 
+                       WHERE u.workshop_id = '$workshop_id' && u.status = 1 && u.role = 2";
     $run_members = mysqli_query($connect, $select_members);
 
 
@@ -148,7 +151,7 @@ if (isset($_GET['category_id'])) {
                                         <img src="assets/img/crew/backCardCrew.png" alt="<?php echo $members['user_name']; ?>"
                                             loading="lazy">
                                     </div>
-                                    <div class="backCard">
+                                    <div class="backCard" data-title="<?php echo htmlspecialchars($members['committee_member']); ?>">
                                         <div class="memberInfo">
                                             <div class="memberImageContainer">
                                                 <img src="assets/uploadedImages/<?php echo $members['Image']; ?>"

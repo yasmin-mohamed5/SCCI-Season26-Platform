@@ -44,6 +44,7 @@
         </section>
     </main>
 
+    <script src="./assets/js/index.js?v=<?php echo time(); ?>"></script>
 </body>
 
 </html>

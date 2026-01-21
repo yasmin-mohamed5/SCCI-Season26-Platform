@@ -26,7 +26,7 @@ function createFlyingIcons() {
   if (!paperScroll) return;
 
   // Workshop-related icons
-  const icons = ['💻', '🎯', '🚀', '✨', '📱', '🔧'];
+  const icons = ['✦', '★', '☆', '✨', '✴', '✶'];
   const iconCount = 6;
 
   for (let i = 0; i < iconCount; i++) {
