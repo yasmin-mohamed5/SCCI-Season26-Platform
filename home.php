@@ -150,7 +150,7 @@ if (isset($_POST['contact'])) {
                     </div>
                     <h4 data-aos="zoom-in" data-aos-duration="3000" class="card-title">OUR WORKSHOPS</h4>
 
-                    <button data-aos="zoom-in" data-aos-duration="3000" class="btn btn-primary card2Button">EXPLORE MORE</button>
+                    <a data-aos="zoom-in" data-aos-duration="3000" href="./workshops.php" class="btn btn-primary card2Button">EXPLORE MORE</a>
                 </div>
             </div>
         </div>
@@ -168,7 +168,7 @@ if (isset($_POST['contact'])) {
                     </div>
                     <h4 data-aos="zoom-in" data-aos-duration="3000" class="card-title">OUR CREW</h4>
 
-                    <button data-aos="zoom-in" data-aos-duration="3000" class="btn btn-primary card2Button">EXPLORE MORE</button>
+                    <a data-aos="zoom-in" data-aos-duration="3000" href="./crew.php" class="btn btn-primary card2Button">EXPLORE MORE</a>
                 </div>
             </div>
         </div>

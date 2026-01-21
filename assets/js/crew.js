@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mirror: true
   });
 
-  
+
   const flipCards = document.querySelectorAll(".flipCard");
 
   flipCards.forEach(card => {
@@ -127,9 +127,9 @@ function openModal(element) {
     scrollIndicatorLeft.className = "scroll-indicator scroll-indicator-left";
     scrollIndicatorLeft.innerHTML = `
       <div class="scroll-arrow">
-        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-solid fa-chevron-down"></i>
       </div>
-      <div class="scroll-text">Scroll</div>
+      <div class="scroll-text">Scroll Down</div>
     `;
     document.body.appendChild(scrollIndicatorLeft);
   }
@@ -140,9 +140,9 @@ function openModal(element) {
     scrollIndicatorRight.className = "scroll-indicator scroll-indicator-right";
     scrollIndicatorRight.innerHTML = `
       <div class="scroll-arrow">
-        <i class="fas fa-chevron-down"></i>
+        <i class="fas fa-solid fa-chevron-down"></i>
       </div>
-      <div class="scroll-text">Scroll</div>
+      <div class="scroll-text">Scroll Down</div>
     `;
     document.body.appendChild(scrollIndicatorRight);
   }
@@ -151,6 +151,10 @@ function openModal(element) {
   setTimeout(() => {
     scrollIndicatorLeft.classList.add("active");
     scrollIndicatorRight.classList.add("active");
+    // Force Font Awesome to re-scan for new icons
+    if (window.FontAwesome && window.FontAwesome.dom) {
+      window.FontAwesome.dom.i2svg();
+    }
   }, 500);
 
   // Activate
