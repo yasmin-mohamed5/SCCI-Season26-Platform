@@ -299,7 +299,7 @@ main {
     }
 
     .landingLogo {
-        width: 15rem;
+        width: 22rem;
     }
 
     .word-split {
@@ -327,7 +327,7 @@ main {
 /* Small Mobile */
 @media (max-width: 480px) {
     .landingLogo {
-        width: 12rem;
+        width: 18rem;
         margin-bottom: 1rem;
     }
 
