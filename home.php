@@ -1,9 +1,9 @@
 <?php
 
- include './includes/nav.php'; 
+include './includes/nav.php';
 
 
- 
+
 // Handle contact form submission BEFORE any HTML output
 if (isset($_POST['contact'])) {
     // Escape user input
@@ -19,7 +19,7 @@ if (isset($_POST['contact'])) {
 
     if ($run_contact) {
         // Redirect to prevent resubmission
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1");
+        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1#contact");
         exit;
     } else {
         $error_message = "Failed to submit. Please try again.";
@@ -33,11 +33,11 @@ if (isset($_POST['contact'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Preload critical CSS files -->
     <link rel="preload" href="./assets/css/root.css" as="style">
     <link rel="preload" href="./assets/css/home.css" as="style">
-    
+
     <!-- Inline critical CSS to prevent FOUC -->
     <style>
         /* Prevent FOUC by hiding content until CSS loads */
@@ -45,11 +45,12 @@ if (isset($_POST['contact'])) {
             opacity: 0;
             transition: opacity 0.3s ease-in-out;
         }
+
         header.loaded {
             opacity: 1;
         }
     </style>
-    
+
     <!-- google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,24 +76,6 @@ if (isset($_POST['contact'])) {
 </head>
 
 <body>
-    <?php
-    if (isset($_GET['success'])) {
-        echo "
-    <script>
-        alert('Message Sent Successfully');
-
-        // remove success from url after showing alert
-        if (window.history.replaceState) {
-            const url = new URL(window.location);
-            url.searchParams.delete('success');
-            window.history.replaceState({}, document.title, url);
-        }
-    </script>
-    ";
-    }
-    ?>
-
-    
     <script>
         // Add loaded class to header after page loads to prevent FOUC
         document.addEventListener('DOMContentLoaded', function() {
@@ -103,7 +86,7 @@ if (isset($_POST['contact'])) {
         });
     </script>
     <!-- Main Hero section -->
-    <section  class="heroSection">
+    <section class="heroSection">
         <div class="heroContainer">
             <h1 data-aos="fade-up" data-aos-duration="1000">SEEK THE PEAK</h1>
             <hr data-aos="fade-up" data-aos-duration="1000">
@@ -187,7 +170,7 @@ if (isset($_POST['contact'])) {
         <div class="statContainer">
             <!-- stats container -->
             <div class="stat">
-                <i  class="fas fa-calendar-alt statIcon"></i>
+                <i class="fas fa-calendar-alt statIcon"></i>
                 <h4 data-aos="fade-down" data-aos-duration="3500" class="statNumber" data-target="21">0</h4>
                 <h4 data-aos="fade-up" data-aos-duration="3000" class="statUnit">years</h4>
             </div>
@@ -225,7 +208,7 @@ if (isset($_POST['contact'])) {
         <!-- sponsors slider wrapper -->
         <div class="sponsorSliderWrapper">
             <div class="sponsorSliderTrack">
-                
+
                 <!-- sponsor card -->
                 <div class="sponsorCardItems">
                     <div class="sponsorsCard card2">
@@ -322,7 +305,7 @@ if (isset($_POST['contact'])) {
 
 
     <!-- Main Contact us -->
-    <section class="homeContactUs">
+    <section class="homeContactUs" id="contact">
         <!-- title -->
         <div class="homeTitles">
             <h1 data-aos="fade-up" data-aos-duration="2000">CONTACT US</h1>
@@ -336,18 +319,18 @@ if (isset($_POST['contact'])) {
                     <div class="corner top right"></div>
                     <div class="corner bottom left"></div>
                     <div class="corner bottom right"></div>
-                    
+
                     <div class="contactInfoContent">
                         <i class="fas fa-envelope contactInfoIcon"></i>
                         <h3 class="contactInfoTitle">Get In Touch</h3>
                         <hr class="contactDivider">
                         <p class="contactInfoText">
-                            Have questions or want to collaborate? We'd love to hear from you! 
-                            Whether it's about our workshops, sponsorship opportunities, membership inquiries, 
+                            Have questions or want to collaborate? We'd love to hear from you!
+                            Whether it's about our workshops, sponsorship opportunities, membership inquiries,
                             or general questions about SCCI, feel free to reach out using the contact form.
                         </p>
                         <p class="contactInfoText">
-                            We're committed to responding to all inquiries within 24-48 hours. 
+                            We're committed to responding to all inquiries within 24-48 hours.
                             Your feedback and questions help us improve and serve you better.
                         </p>
                         <hr class="contactDivider">
@@ -364,7 +347,24 @@ if (isset($_POST['contact'])) {
 
             <form class="form-content card" data-aos="fade-left" id="form" method="POST" enctype="multipart/form-data">
                 <img class="homeBird" loading="lazy" src="./assets/img/bird.png" alt="Decorative bird">
-                
+
+                <?php if (isset($_GET['success'])): ?>
+                    <div class="success-message">
+                        Thank you for reaching out.<br>
+                        Your message has been sent successfully!
+
+                    </div>
+
+                    <script>
+                        // remove success from url after showing message
+                        if (window.history.replaceState) {
+                            const url = new URL(window.location);
+                            url.searchParams.delete('success');
+                            window.history.replaceState({}, document.title, url);
+                        }
+                    </script>
+                <?php endif; ?>
+
                 <!-- inputs -->
                 <div class="input-group">
                     <label for="name">Full Name</label>
