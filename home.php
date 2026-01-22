@@ -2,9 +2,7 @@
 
  include './includes/nav.php'; 
 
-
- 
-// Handle contact form submission BEFORE any HTML output
+ // Handle contact form submission BEFORE any HTML output
 if (isset($_POST['contact'])) {
     // Escape user input
     $name = mysqli_real_escape_string($connect, $_POST['name']);
@@ -75,25 +73,7 @@ if (isset($_POST['contact'])) {
     <title>SCCI - Home</title>
 </head>
 
-<body>
-    <?php
-    if (isset($_GET['success'])) {
-        echo "
-    <script>
-        alert('Message Sent Successfully');
-
-        // remove success from url after showing alert
-        if (window.history.replaceState) {
-            const url = new URL(window.location);
-            url.searchParams.delete('success');
-            window.history.replaceState({}, document.title, url);
-        }
-    </script>
-    ";
-    }
-    ?>
-
-    
+<body>    
     <script>
         // Add loaded class to header after page loads to prevent FOUC
         document.addEventListener('DOMContentLoaded', function() {
