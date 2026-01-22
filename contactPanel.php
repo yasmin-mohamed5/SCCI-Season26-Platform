@@ -1,14 +1,3 @@
-<?php
-include('./includes/nav.php');
-
-$result = mysqli_query(
-    $connect,
-    "SELECT * FROM contact_us ORDER BY contactUs_id DESC"
-);
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +22,14 @@ $result = mysqli_query(
 </head>
 
 <body>
+    <?php
+    include('./includes/nav.php');
+
+    $result = mysqli_query(
+        $connect,
+        "SELECT * FROM contact_us ORDER BY contactUs_id DESC"
+    );
+    ?>
     <main>
         <h1>Contact Panel</h1>
         <div class="contactTableScroll" id="contactTableScroll">
@@ -80,9 +77,9 @@ $result = mysqli_query(
     <script src="assets/js/pagination.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            setupPagination('contactTableScroll', 'contactPagination'); 
+            setupPagination('contactTableScroll', 'contactPagination');
         });
-    </script> 
+    </script>
 </body>
 
 </html>
