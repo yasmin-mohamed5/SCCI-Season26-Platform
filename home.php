@@ -1,29 +1,22 @@
 <?php
-
- include './includes/nav.php'; 
-
- // Handle contact form submission BEFORE any HTML output
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+include "./includes/config.php";
 if (isset($_POST['contact'])) {
-    // Escape user input
+
     $name = mysqli_real_escape_string($connect, $_POST['name']);
     $email = mysqli_real_escape_string($connect, $_POST['email']);
     $message = mysqli_real_escape_string($connect, $_POST['message']);
 
-    // Insert into DB
-    $contact = "INSERT INTO contact_us (name, email, text)
-                VALUES ('$name', '$email', '$message')";
+    $sql = "INSERT INTO contact_us (name, email, text)
+            VALUES ('$name', '$email', '$message')";
 
-    $run_contact = mysqli_query($connect, $contact);
-
-    if ($run_contact) {
-        // Redirect to prevent resubmission
-        header("Location: " . $_SERVER['PHP_SELF'] . "?success=1#contact");
+    if (mysqli_query($connect, $sql)) {
+        header("Location: home.php?success=1#contact");
         exit;
-    } else {
-        $error_message = "Failed to submit. Please try again.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,16 +66,8 @@ if (isset($_POST['contact'])) {
     <title>SCCI - Home</title>
 </head>
 
-<body>    
-    <script>
-        // Add loaded class to header after page loads to prevent FOUC
-        document.addEventListener('DOMContentLoaded', function() {
-            const header = document.querySelector('header');
-            if (header) {
-                header.classList.add('loaded');
-            }
-        });
-    </script>
+<body>
+    <?php include "./includes/nav.php"; ?>
     <!-- Main Hero section -->
     <section class="heroSection">
         <div class="heroContainer">
