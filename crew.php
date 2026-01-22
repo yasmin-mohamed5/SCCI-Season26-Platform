@@ -122,8 +122,8 @@ if ($result) {
                         Helping Members To Discover Their Own Skills And What Can They Do.
                         Responsible For The Budget And The Cash Inflow And Outflow.
                         Making CR Outing For All Members To Create Connections Between CR Members.
-                        After Each Phase Creating One To One Meeting For Each Member To Evaluate The Members And
-                        Incentivize Them.
+                        After Each Phase Creating One To One Meeting
+                         For Each Member To Evaluate The Members And Incentivize Them.
                     </p>
                 </div>
             </div>
