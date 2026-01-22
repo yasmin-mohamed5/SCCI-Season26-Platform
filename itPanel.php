@@ -1,3 +1,35 @@
+<?php
+include('./includes/nav.php');
+
+if (isset($_GET['accept'])) {
+    $id = intval($_GET['accept']);
+    mysqli_query($connect, "UPDATE users SET status = 1 WHERE user_id = $id");
+    header("Location: itPanel.php");
+    exit();
+}
+
+if (isset($_GET['delete'])) {
+    $id = intval($_GET['delete']);
+
+    // Fetch image before deletion
+    $result = mysqli_query($connect, "SELECT image FROM users WHERE user_id = $id");
+    if ($result && $row = mysqli_fetch_assoc($result)) {
+        $image_path = './assets/uploadedImages/' . $row['image'];
+        if (file_exists($image_path) && $row['image'] != 'default.png') {
+            unlink($image_path);
+        }
+    }
+
+    mysqli_query($connect, "DELETE FROM users WHERE user_id = $id");
+    header("Location: itPanel.php");
+    exit();
+}
+
+$result = mysqli_query(
+    $connect,
+    "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
+);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,61 +41,24 @@
     <link rel="icon" type="image/x-icon" href="./assets/icons/logoSCCI.png" />
     <meta property="og:image" content="./assets/images/seo/itPanel.png" />
     <meta property="og:title" content="SCCI`26" />
-    <meta
-      property="og:description"
-      content="SCCI is the university's premier student community, uniting creative minds to build the future of tech, media, business, and entrepreneurship."  
-    />
-    <meta
-      name="keywords"
-      content="SCCI, Student Community, Creative Minds, Tech, Media, Business, Entrepreneurship, University, Community, College"
-    />
+    <meta property="og:description"
+        content="SCCI is the university's premier student community, uniting creative minds to build the future of tech, media, business, and entrepreneurship." />
+    <meta name="keywords"
+        content="SCCI, Student Community, Creative Minds, Tech, Media, Business, Entrepreneurship, University, Community, College" />
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/itPanel.css">
     <link rel="stylesheet" href="./assets/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>SCCI - IT Panel</title>
-  </head>
+</head>
 
 <body>
-    <?php
-    include('./includes/nav.php');
-
-    if (isset($_GET['accept'])) {
-        $id = intval($_GET['accept']);
-        mysqli_query($connect, "UPDATE users SET status = 1 WHERE user_id = $id");
-        header("Location: itPanel.php");
-        exit();
-    }
-
-    if (isset($_GET['delete'])) {
-        $id = intval($_GET['delete']);
-
-        // Fetch image before deletion
-        $result = mysqli_query($connect, "SELECT image FROM users WHERE user_id = $id");
-        if ($result && $row = mysqli_fetch_assoc($result)) {
-            $image_path = './assets/uploadedImages/' . $row['image'];
-            if (file_exists($image_path) && $row['image'] != 'default.png') {
-                unlink($image_path);
-            }
-        }
-
-        mysqli_query($connect, "DELETE FROM users WHERE user_id = $id");
-        header("Location: itPanel.php");
-        exit();
-    }
-
-    $result = mysqli_query(
-        $connect,
-        "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
-    );
-    ?>
     <main>
         <h1>Contact Panel</h1>
         <div class="userTableScroll" id="userTableScroll">
@@ -113,7 +108,7 @@
     <script src="assets/js/pagination.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            setupPagination('userTableScroll', 'itPagination'); 
+            setupPagination('userTableScroll', 'itPagination');
         });
     </script>
 </body>

@@ -10,7 +10,7 @@ function showMessage(text, type = 'info', duration = 3000) {
         'info': 'info'
     };
 
-    
+
     const swalType = typeMap[type] || 'info';
 
     Swal.fire({

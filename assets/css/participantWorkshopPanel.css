@@ -468,6 +468,8 @@
         var(--shadow-strong),
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
     border: 2px solid var(--border-light);
+    margin-bottom: 8rem;
+}
 }
 
 /* Card Header */

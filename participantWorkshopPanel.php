@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
 $reviewRows = [];
 
 $q = $connect->prepare("
-    SELECT 
+    SELECT
         s.session_name,
         t.taskName,
         ts.status,
@@ -228,16 +228,16 @@ $q = $connect->prepare("
     FROM tasks t
     JOIN workshop_session ws ON ws.workshop_session_id = t.workshop_session_id
     JOIN sessions s ON s.session_id = ws.session_id
-    LEFT JOIN task_submissions ts 
+    LEFT JOIN task_submissions ts
         ON ts.task_id = t.task_id AND ts.user_id = ?
-    LEFT JOIN task_feedback tf 
+    LEFT JOIN task_feedback tf
         ON tf.submission_id = ts.submission_id
     LEFT JOIN users u ON u.user_id = tf.given_by
-    WHERE ws.workshop_id = ?
+    WHERE ws.workshop_id = ? AND ws.session_id = ?
     ORDER BY s.session_id, t.task_id
 
 ");
-$q->bind_param("ii", $userId, $workshopId);
+$q->bind_param("iii", $userId, $workshopId, $selectedSessionId);
 $q->execute();
 $res = $q->get_result();
 if ($res) {
@@ -305,28 +305,23 @@ function renderStars($rating)
     <link rel="icon" type="image/x-icon" href="./assets/icons/logoSCCI.png" />
     <meta property="og:image" content="./assets/images/seo/participantPanel.png" />
     <meta property="og:title" content="SCCI`26" />
-    <meta
-      property="og:description"
-      content="SCCI is the university's premier student community, uniting creative minds to build the future of tech, media, business, and entrepreneurship."  
-    />
-    <meta
-      name="keywords"
-      content="SCCI, Student Community, Creative Minds, Tech, Media, Business, Entrepreneurship, University, Community, College"
-    />
+    <meta property="og:description"
+        content="SCCI is the university's premier student community, uniting creative minds to build the future of tech, media, business, and entrepreneurship." />
+    <meta name="keywords"
+        content="SCCI, Student Community, Creative Minds, Tech, Media, Business, Entrepreneurship, University, Community, College" />
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet" />
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/root.css">
     <link rel="stylesheet" href="./assets/css/message-toast.css">
     <link rel="stylesheet" href="./assets/css/participantWorkshopPanel.css">
     <title>SCCI - Workshop Panel</title>
-  </head>
+</head>
 
 <body>
     <?php include './includes/nav.php'; ?>
@@ -448,9 +443,8 @@ function renderStars($rating)
 
                 <!-- Workshop Card -->
                 <?php if (count($tasks) > 0): ?>
-                    <article class="workshopCard">
-                        <!-- Loop through tasks -->
-                        <?php foreach ($tasks as $task): ?>
+                    <?php foreach ($tasks as $task): ?>
+                        <article class="workshopCard">
                             <div class="taskItem"> <!-- Added wrapper for each task if multiple -->
                                 <!-- Card Header -->
                                 <header class="cardHeader">
@@ -499,8 +493,8 @@ function renderStars($rating)
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-                    </article>
+                        </article>
+                    <?php endforeach; ?>
                 <?php else: ?>
                     <article class="workshopCard">
                         <div class="cardBody">

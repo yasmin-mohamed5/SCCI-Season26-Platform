@@ -116,6 +116,17 @@ document.addEventListener("DOMContentLoaded", () => {
         // Safety: check if response is ok
         if (!response.ok) throw new Error("Server error (HTTP " + response.status + ")");
 
+        // Check if redirected (session expired)
+        if (response.redirected) {
+          throw new Error("Session expired. Please refresh the page and try again.");
+        }
+
+        // Check if response is JSON
+        const contentType = response.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Session expired or invalid response. Please refresh the page and try again.");
+        }
+
         const data = await response.json();
         console.log("Server data:", data);
 
@@ -154,6 +165,21 @@ document.addEventListener("DOMContentLoaded", () => {
               method: "POST",
               body: formData2
             });
+
+            // Safety: check if response is ok
+            if (!response2.ok) throw new Error("Server error (HTTP " + response2.status + ")");
+
+            // Check if redirected (session expired)
+            if (response2.redirected) {
+              throw new Error("Session expired. Please refresh the page and try again.");
+            }
+
+            // Check if response is JSON
+            const contentType2 = response2.headers.get("content-type");
+            if (!contentType2 || !contentType2.includes("application/json")) {
+              throw new Error("Session expired or invalid response. Please refresh the page and try again.");
+            }
+
             const data2 = await response2.json();
             if (data2.status === "success") {
               await Swal.fire({
@@ -173,6 +199,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: "POST",
                 body: formData2
               });
+
+              // Safety: check if response is ok
+              if (!response2.ok) throw new Error("Server error (HTTP " + response2.status + ")");
+
+              // Check if response is JSON
+              const contentType2 = response2.headers.get("content-type");
+              if (!contentType2 || !contentType2.includes("application/json")) {
+                throw new Error("Session expired or invalid response. Please refresh the page and try again.");
+              }
+
               const data2 = await response2.json();
               if (data2.status === "success") {
                 alert("Task resubmitted successfully!");
