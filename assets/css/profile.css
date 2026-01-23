@@ -522,7 +522,7 @@
   position: relative;
   width: min(420px, 90%);
   padding: 40px 30px;
-  background: var(--color-parchment);
+  background: linear-gradient(135deg, #f4e4c1 0%, #e8d5b5 100%);
   border-radius: 6px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
@@ -582,7 +582,7 @@
 .input-group input:focus {
   box-shadow:
     inset 0 3px 5px rgba(0, 0, 0, 0.4),
-    0 0 6px rgba(197, 37, 37, 0.4);
+    0 0 6px rgba(255, 255, 255, 0.4);
 }
 
 .closePopup {
