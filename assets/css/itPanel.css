@@ -1,9 +1,21 @@
 @import url("root.css");
 
+/* ================= Main ================= */
+html,
+body {
+    height: auto;
+    overflow-y: auto;
+    /* vertical scroll allowed */
+}
+
 main {
     padding-top: 15vh;
     width: 90%;
     margin: 0 auto;
+    overflow-x: auto;
+    /* horizontal scroll if needed */
+    overflow-y: visible;
+    /* vertical scroll works */
 }
 
 /* ================= Search ================= */
@@ -20,7 +32,6 @@ main {
     width: 100%;
     padding: var(--space-3) var(--space-5);
     padding-left: 4.5rem;
-    /* space for icon */
     font-size: var(--fs-sm);
     border: 2px solid var(--border-light);
     border-radius: 50px;
@@ -53,8 +64,7 @@ main {
 .filter-container {
     width: 90%;
     max-width: 450px;
-    margin: 0rem auto 2rem auto;
-    /* 0 top because search has 2rem margin */
+    margin: 0 auto 2rem auto;
 }
 
 #workshopFilter {
@@ -74,8 +84,6 @@ main {
     background-position: right 1.5rem center;
     background-size: 1.5rem;
     appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
 }
 
 #workshopFilter:focus {
@@ -83,28 +91,31 @@ main {
     box-shadow: var(--shadow-medium);
 }
 
-/* ================= Table ================= */
+/* ================= Table Container ================= */
 .userTableScroll {
+    width: 100%;
+    max-width: 100%;
+    max-height: 70vh;
+    overflow-x: auto;
+    overflow-y: auto;
+    margin: 60px auto;
+    padding: 0;
+    box-sizing: border-box;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-light);
-    margin-top: var(--space-5);
-    overflow-x: auto;
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 0;
+    -webkit-overflow-scrolling: touch;
 }
 
 
+/* ================= Table ================= */
 .userTable {
     width: 100%;
-    min-width: max-content;
-    /* max-width: 600px; */
-    margin-inline: auto;
+    min-width: 600px;
     border-collapse: collapse;
+    table-layout: fixed;
     background-color: var(--card-bg);
-
 }
+
 
 /* ================= Header ================= */
 .tableHead {
@@ -125,7 +136,6 @@ main {
     border-right: none;
 }
 
-
 /* ================= Rows ================= */
 .tableBody .tableRow {
     background-color: var(--color-white);
@@ -138,15 +148,17 @@ main {
     padding: var(--space-4);
     font-size: var(--fs-md);
     text-align: center;
-    color: black !important;
+    color: black;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
+/* Last column shrink */
 .userTable .tableData:last-child {
-    white-space: nowrap;
-    width: 73%;
+    white-space: normal !important;
+    width: 100% !important;
 }
-
-
 
 /* ================= Pagination ================= */
 .pagination-controls {
@@ -184,64 +196,85 @@ main {
     letter-spacing: 2px;
 }
 
+/* ================= Responsive Breakpoints ================= */
 
-/* ================= Responsive ================= */
-/* ===== Tablet ===== */
-@media (max-width: 992px) {
+/* ===== Large tablets / small desktops ===== */
+@media (max-width: 1200px) {
     main {
-        padding-top: 12vh;
         width: 95%;
+        padding-top: 13vh;
     }
 
-    .userTable {
-        display: block;
-        width: 100%;
+    .tableHeader {
+        font-size: 1.3rem;
     }
 
-    .tableHeader,
     .tableData {
-        white-space: normal;
-        padding: var(--space-3);
-        font-size: var(--fs-sm);
-        word-break: normal;
-        overflow-wrap: break-word;
+        font-size: 1.3rem;
+        padding: 0.6rem 0.85rem;
     }
-
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 768px) {
-
+/* ===== Medium tablets / iPads ===== */
+@media (max-width: 1024px) {
     main {
+        width: 95%;
+        padding-top: 12vh;
+    }
+
+    .tableHeader {
+        font-size: 1.3rem;
+    }
+
+    .tableData {
+        font-size: 1.3rem;
+        padding: 0.55rem 0.8rem;
+    }
+}
+
+/* ===== Small tablets / large phones ===== */
+@media (max-width: 900px) {
+    main {
+        width: 95%;
+        padding-top: 11vh;
+    }
+
+    .tableHeader {
+        font-size: 1.3rem;
+    }
+
+    .tableData {
+        font-size: 1.3rem;
+        padding: 0.5rem 0.7rem;
+    }
+}
+
+/* ===== Mobile phones ===== */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
         padding-top: 10vh;
     }
 
+    .userTableScroll {
+        max-height: 60vh;
+    }
+
     .userTable {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
+        min-width: 500px;
     }
 
-    .tableHeader,
+    .tableHeader {
+        font-size: 1.3rem;
+    }
+
     .tableData {
-        white-space: normal;
-        padding: var(--space-2);
-        font-size: var(--fs-xs);
-        word-break: normal;
-        overflow-wrap: break-word;
+        font-size: 1.3rem;
+        padding: 0.45rem 0.65rem;
     }
 
-    .pagination-controls {
-        gap: 1rem;
-        margin: 1rem auto 2rem auto;
+    .userTable .tableData:last-child .btn {
+        font-size: 1.3rem;
+        padding: 0.3rem 0.55rem;
     }
-
-    .nav-arrow {
-        font-size: 1.4rem;
-    }
-
-    .page-info {
-        font-size: 0.9rem;
-    }
-
 }
