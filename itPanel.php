@@ -1,5 +1,6 @@
 <?php
-include('./includes/nav.php');
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+include "./includes/config.php";
 
 if (isset($_GET['accept'])) {
     $id = intval($_GET['accept']);
@@ -25,9 +26,16 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
+// Fetch all workshops for filter
+$workshops = mysqli_query($connect, "SELECT * FROM workshops");
+
 $result = mysqli_query(
     $connect,
-    "SELECT * FROM users where status ='0' ORDER BY user_id DESC"
+    "SELECT u.*, w.workshop_name 
+     FROM users u 
+     LEFT JOIN workshops w ON u.workshop_id = w.workshop_id
+     WHERE u.status ='0' 
+     ORDER BY u.user_id DESC"
 );
 ?>
 <!DOCTYPE html>
@@ -59,14 +67,34 @@ $result = mysqli_query(
 </head>
 
 <body>
+    <?php include('./includes/nav.php'); ?>
     <main>
-        <h1>Contact Panel</h1>
+        <h1>IT Panel</h1>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search by name, email, or phone...">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+        <!-- Workshop Filter -->
+        <div class="filter-container">
+            <select id="workshopFilter">
+                <option value="">All Workshops</option>
+                <?php while ($ws = mysqli_fetch_assoc($workshops)) { ?>
+                    <option value="<?= htmlspecialchars($ws['workshop_name']) ?>">
+                        <?= htmlspecialchars($ws['workshop_name']) ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
         <div class="userTableScroll" id="userTableScroll">
             <table class="userTable">
                 <thead class="tableHead">
                     <tr class="tableRow">
                         <th class="tableHeader">Full Name</th>
                         <th class="tableHeader">Email</th>
+                        <th class="tableHeader">Workshop</th>
                         <th class="tableHeader">phone</th>
                         <th class="tableHeader">status</th>
                         <th class="tableHeader">Action</th>
@@ -74,10 +102,11 @@ $result = mysqli_query(
                 </thead>
                 <tbody class="tableBody">
                     <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <tr class="tableRow">
+                        <tr class="tableRow" data-workshop="<?= htmlspecialchars($row['workshop_name'] ?? '') ?>">
 
                             <td class="tableData"><?= $row['user_name'] ?></td>
                             <td class="tableData"><?= $row['email'] ?></td>
+                            <td class="tableData"><?= htmlspecialchars($row['workshop_name'] ?? 'N/A') ?></td>
                             <td class="tableData"><?= $row['phone'] ?></td>
 
                             <td class="tableData">
@@ -105,10 +134,12 @@ $result = mysqli_query(
             <button class="nav-arrow next-btn"><i class="fa-solid fa-caret-right"></i></button>
         </div>
     </main>
-    <script src="assets/js/pagination.js"></script>
+    </main>
+    <script src="assets/js/all.min.js"></script>
+    <script src="assets/js/itPanel.js?v=<?= time() ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            setupPagination('userTableScroll', 'itPagination');
+             // Pagination setup is now handled inside itPanel.js automatically or via explicit call if needed
         });
     </script>
 </body>
