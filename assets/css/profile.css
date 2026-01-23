@@ -278,7 +278,7 @@
 }
 
 .infoLabel {
-  font-size: 1.6rem;
+  font-size: var(--fs-2xl);
   color: var(--color-secondary);
   text-transform: uppercase;
   font-weight: var(--fw-bold);
@@ -472,11 +472,14 @@
   }
 
   .infoLabel {
-    font-size: 1.3rem;
+    font-size: var(--fs-lg);
   }
 
   .infoValue {
-    font-size: 0.95rem;
+    font-size: var(--fs-sm);
+  }
+  .settingsCard{
+    margin-right: var(--space-10);
   }
 
   .role-title {

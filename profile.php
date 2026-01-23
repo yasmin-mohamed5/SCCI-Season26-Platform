@@ -134,6 +134,7 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
 
 include('./includes/nav.php');
 ?>
+<main>
   <?php if ($success_message): ?>
     <div style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
       <?php echo htmlspecialchars($success_message); ?>
@@ -228,14 +229,14 @@ include('./includes/nav.php');
                 <div class="socialItem">
                   <?php if (!empty($user['githup'])): ?>
                   <i class="fa-brands fa-github"></i>
-                  <a href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
+                  <a class="infoValue" href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
                     <?php echo htmlspecialchars($user['githup']); ?>
                   </a>
                   <?php endif; ?>
                 </div>
                 <div class="socialItem">
                   <i class="fa-solid fa-phone"></i>
-                  <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
+                  <a class="infoValue" href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
                     0<?php echo htmlspecialchars($user['phone']); ?>
                   </a>
                 </div>
@@ -280,7 +281,7 @@ include('./includes/nav.php');
 
 
   <!-- Edit Profile Popup -->
-  <section>
+  <section class="editProfileSection">
     <form method="POST" action="">
       <div class="editProfileOverlay" id="editProfileOverlay">
         <div class="editProfilePopup">
