@@ -78,7 +78,7 @@
                 <span class="textPrimary"><?php echo $committee['committe_name']; ?></span>
                 <span class="textDark">Head</span>
             </h1>
-            <div class="sectionDivider"></div>
+            <hr data-aos="fade-up" data-aos-duration="1000">
         </div>
 
         <div class="headLayout">

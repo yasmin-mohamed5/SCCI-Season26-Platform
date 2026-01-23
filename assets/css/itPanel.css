@@ -1,13 +1,96 @@
 @import url("root.css");
 
+main {
+    padding-top: 15vh;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* ================= Search ================= */
+.search-container {
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    margin: 2rem auto;
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    width: 100%;
+    padding: var(--space-3) var(--space-5);
+    padding-left: 4.5rem;
+    /* space for icon */
+    font-size: var(--fs-sm);
+    border: 2px solid var(--border-light);
+    border-radius: 50px;
+    outline: none;
+    transition: all var(--transition-normal);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-light);
+    font-family: var(--font-system);
+}
+
+#searchInput:focus {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-medium);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.5rem;
+    color: var(--color-gray-medium);
+    font-size: var(--fs-base);
+    pointer-events: none;
+    transition: color var(--transition-normal);
+}
+
+#searchInput:focus+.search-icon {
+    color: var(--color-primary);
+}
+
+/* ================= Filter ================= */
+.filter-container {
+    width: 90%;
+    max-width: 450px;
+    margin: 0rem auto 2rem auto;
+    /* 0 top because search has 2rem margin */
+}
+
+#workshopFilter {
+    width: 100%;
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--fs-sm);
+    border: 2px solid var(--border-light);
+    border-radius: 50px;
+    outline: none;
+    transition: all var(--transition-normal);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow-light);
+    font-family: var(--font-system);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.5rem center;
+    background-size: 1.5rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+#workshopFilter:focus {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-medium);
+}
+
 /* ================= Table ================= */
 .userTableScroll {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-light);
     margin-top: var(--space-5);
     overflow-x: auto;
-    width: 95%;
-    margin: 7rem auto;
+    width: 100%;
+    margin: 2rem auto;
 }
 
 
@@ -58,6 +141,7 @@
     font-size: var(--fs-md);
     border-right: 3px solid var(--color-gray-lighter);
     line-height: var(--lh-loose);
+    text-align: center;
 }
 
 .tableData {
@@ -82,6 +166,11 @@
 /* ================= Responsive ================= */
 /* ===== Tablet ===== */
 @media (max-width: 992px) {
+    main {
+        padding-top: 12vh;
+        width: 95%;
+    }
+
     .userTable {
         display: block;
         width: 100%;
@@ -100,6 +189,9 @@
 
 /* ===== Mobile ===== */
 @media (max-width: 769px) {
+    main {
+        padding-top: 10vh;
+    }
 
     .userTable {
         display: block;

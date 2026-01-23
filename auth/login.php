@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include('../includes/config.php');
 $error_msgp="";
 $error_msge="";
@@ -74,9 +75,9 @@ if(isset($_POST['login1'])){
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="../assets/css/root.css">
+    <link rel="stylesheet" href="../assets/css/root.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/login.css?v=<?php echo time(); ?>">
     <title>SCCI - Login</title>
 </head>
 
@@ -88,6 +89,9 @@ if(isset($_POST['login1'])){
                     </a>
     
         <section class="login-card">
+            <div class="logo-container">
+                <img src="../assets/icons/logoSCCI.png" alt="SCCI Logo" class="login-logo">
+            </div>
             <h1 class="login-title">LOGIN</h1>
             <hr>
             <?php
@@ -108,12 +112,21 @@ if(isset($_POST['login1'])){
             <form class="login-form" method="POST">
                 <div class="input-group">
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="Enter your email" value="<?php echo isset($_COOKIE['remember_email']) ? htmlspecialchars($_COOKIE['remember_email']) : ''; ?>" required>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" name="email" id="email" placeholder="Enter your email" value="<?php echo isset($_COOKIE['remember_email']) ? htmlspecialchars($_COOKIE['remember_email']) : ''; ?>" required>
+                    </div>
                 </div>
 
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder="Enter your pass" required>
+                    <div class="password-container input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" name="password" id="password" placeholder="Enter your pass" required oncopy="return false" oncut="return false" onpaste="return false">
+                        <span class="toggle-password-btn" id="togglePasswordBtn">
+                            <i class="fas fa-eye-slash"></i>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="form-footer">
@@ -130,6 +143,30 @@ if(isset($_POST['login1'])){
     </main>
     <script src="../assets/js/all.min.js"></script>
     <script src="../assets/js/index.js?v=<?php echo time(); ?>"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.querySelector('#togglePasswordBtn');
+            const password = document.querySelector('#password');
+
+                toggleBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    // Toggle the type attribute
+                    const currentType = password.getAttribute('type');
+                    const newType = currentType === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', newType);
+                    
+                    // Update the icon using innerHTML to handle potential SVG replacements by FontAwesome
+                    if (newType === 'text') {
+                        // Password visible -> Show Open Eye
+                        this.innerHTML = '<i class="fas fa-eye"></i>';
+                    } else {
+                        // Password hidden -> Show Closed Eye (Slash)
+                        this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                    }
+                });
+        });
+    </script>
 </body>
 
 </html>
