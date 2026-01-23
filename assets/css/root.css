@@ -314,6 +314,13 @@ a.email-text *,
   text-transform: none !important;
 }
 
+input,
+textarea,
+select,
+button {
+  font-family: "system-ui", system-ui;
+}
+
 
 /* ===============================================================================
    📦 CONTAINER
@@ -1276,14 +1283,9 @@ Back Button
   left: 20px;
 
   /* Using color palette - primary red */
-  background: linear-gradient(135deg,
-      var(--color-primary-dark) 0%,
-      var(--color-primary) 100%);
-  backdrop-filter: blur(15px) saturate(150%);
-  -webkit-backdrop-filter: blur(15px) saturate(150%);
-
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: var(--color-white);
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -1295,21 +1297,15 @@ Back Button
   justify-content: center;
   font-size: 1.2rem;
   text-decoration: none;
-  box-shadow:
-    0 4px 15px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: none;
 }
 
 .backBtn:hover {
-  background: linear-gradient(135deg,
-      var(--color-primary) 0%,
-      var(--color-primary-hover) 100%);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateX(-5px) scale(1.1);
+  background: var(--color-primary);
   color: var(--color-white);
-  box-shadow:
-    0 6px 25px rgba(197, 37, 37, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: var(--color-primary);
+  transform: translateX(-5px) scale(1.1);
+  box-shadow: 0 4px 15px rgba(197, 37, 37, 0.4);
 }
 
 @media (max-width: 768px) {
