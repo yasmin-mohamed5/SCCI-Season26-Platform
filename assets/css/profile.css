@@ -294,6 +294,11 @@
   font-weight: bold;
   text-align: center;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 /* ---------------------------------------------------------------------------
@@ -646,9 +651,8 @@
 .closePopup {
   flex: 1;
   padding: 12px 20px;
-  border: 2px solid var(--color-secondary-dark);
-  background: transparent;
-  color: var(--color-secondary-dark);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
   font-weight: bold;
   font-size: var(--fs-base);
   cursor: pointer;
@@ -659,17 +663,19 @@
 }
 
 .closePopup:hover {
-  background: var(--color-secondary-dark);
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 91, 0.3);
+  box-shadow: 0 6px 16px rgba(197, 37, 37, 0.4);
+
+  
 }
 
 .saveProfile {
   flex: 1;
   padding: 12px 20px;
   border: none;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border: 2px solid var(--color-secondary-dark);
+  background: var(--color-secondary-dark);
   color: white;
   font-weight: bold;
   font-size: var(--fs-base);
@@ -682,9 +688,9 @@
 }
 
 .saveProfile:hover {
-  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  
+  box-shadow: 0 4px 12px rgba(0, 0, 91, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(197, 37, 37, 0.4);
 }
 
 .saveProfile:active,

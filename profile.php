@@ -207,7 +207,7 @@ include('./includes/nav.php');
 
             <div class="infoPaperContent">
               <div class="infoLabel">Contacts</div>
-              <div class="profileSocial">
+              <div class="infoValue">
                 <!-- Email -->
                 <div class="socialItem">
                   <i class="fa-solid fa-envelope"></i>
@@ -215,6 +215,14 @@ include('./includes/nav.php');
                     <?php echo htmlspecialchars($user['email']); ?>
                   </a>
                 </div>
+                <!-- phone -->
+                <div class="socialItem">
+                  <i class="fa-solid fa-phone"></i>
+                  <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
+                    0<?php echo htmlspecialchars($user['phone']); ?>
+                  </a>
+                </div>
+
                 <!-- LinkedIn -->
                 <div class="socialItem">
                                     <?php if (!empty($user['linkedin'])): ?>
@@ -229,17 +237,12 @@ include('./includes/nav.php');
                 <div class="socialItem">
                   <?php if (!empty($user['githup'])): ?>
                   <i class="fa-brands fa-github"></i>
-                  <a class="infoValue" href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
+                  <a href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
                     <?php echo htmlspecialchars($user['githup']); ?>
                   </a>
                   <?php endif; ?>
                 </div>
-                <div class="socialItem">
-                  <i class="fa-solid fa-phone"></i>
-                  <a class="infoValue" href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
-                    0<?php echo htmlspecialchars($user['phone']); ?>
-                  </a>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -262,7 +265,7 @@ include('./includes/nav.php');
                   }
                   
                   if (!empty($user['committe_name']) && !empty($user['workshop_name'])) {
-                      echo "<br>";
+                      
                   }
 
                   if (!empty($user['workshop_name'])) {
