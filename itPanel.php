@@ -174,7 +174,7 @@ $rowCountUsers = mysqli_num_rows($usersResult);
     <?php include('./includes/nav.php'); ?>
     <main>
         <h1>IT Panel</h1>
-
+    <hr>
         <!-- Search Bar -->
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search by name, email, or phone...">
@@ -227,11 +227,11 @@ $rowCountUsers = mysqli_num_rows($usersResult);
                                 </td>
 
                                 <td class="tableData">
-                                    <a href="itPanel.php?accept=<?= $rowUser['user_id'] ?>" class="btn accept">
+                                    <a href="itPanel.php?accept=<?= $rowUser['user_id'] ?>" class="btn btn-primary accept">
                                         Accept
                                     </a>
 
-                                    <a href="itPanel.php?delete=<?= $rowUser['user_id'] ?>" class="btn block"
+                                    <a href="itPanel.php?delete=<?= $rowUser['user_id'] ?>" class="btn btn-secondary block"
                                         onclick="return confirmDelete()">
                                         Delete
                                     </a>
