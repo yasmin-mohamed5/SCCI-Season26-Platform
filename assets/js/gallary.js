@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "midYear", "comptition", "league", "academic", "confrence", "closing"
     ];
 
+    const DEFAULT_EVENT = "opening"; // ← default event
+
     const eventsData = EVENT_NAMES.reduce((acc, name) => {
         acc[name] = {
             book: { left: `assets/img/${name}/book1.jpg`, right: `assets/img/${name}/book2.jpg` },
@@ -73,20 +75,19 @@ document.addEventListener("DOMContentLoaded", () => {
             state.currentEventKey = key;
             triggerFlash();
 
+            // Book images
             DOM.bookLeft.src = data.book.left;
             DOM.bookRight.src = data.book.right;
             DOM.bookSection.classList.add("bookVisible");
 
-            // Reset Slider & Cards
-            state.images = [];
+            // Slider & Cards ← التعديل هنا: نملأ السلايدر والكروت مباشرة عند تغيير event
+            state.images = data.slider;
             state.currentIndex = 0;
-            DOM.slots.forEach(slot => {
-                slot.querySelector(".imgPrimary").src = "";
-                slot.querySelector(".imgSecondary").src = "";
-            });
-            DOM.cardsContainer.innerHTML = "";
-            DOM.eventsSection.classList.remove("eventsVisible");
-            DOM.cardsDivider.classList.remove("visible");
+            updateSlider();
+            updateCards(key);
+
+            DOM.eventsSection.classList.add("eventsVisible");
+            DOM.cardsDivider.classList.add("visible");
         });
     });
 
@@ -125,12 +126,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Lightbox Double Click
-    document.addEventListener("dblclick", (e) => {
-        if (e.target.tagName === "IMG" && e.target.src) {
-            DOM.lightboxImg.src = e.target.src;
-            toggleModal(DOM.lightboxModal, true);
-        }
-    });
+    // Lightbox Double Click
+document.addEventListener("dblclick", (e) => {
+    if (e.target.tagName === "IMG" && e.target.src) {
+        DOM.lightboxImg.src = e.target.src;
+        toggleModal(DOM.lightboxModal, true);
+    }
+});
+
+// Back button in Lightbox
+const lightboxBackBtn = document.getElementById("lightboxBackBtn");
+lightboxBackBtn.addEventListener("click", () => {
+    toggleModal(DOM.lightboxModal, false);
+    DOM.lightboxImg.src = "";
+});
 
     /* ================= UI UPDATES ================= */
     function updateCards(eventKey) {
@@ -202,4 +211,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     DOM.nextBtn.addEventListener("click", () => handleSlide("next"));
     DOM.prevBtn.addEventListener("click", () => handleSlide("prev"));
+
+    /* ================= INIT DEFAULT EVENT ================= */
+    (function initDefaultEvent() {
+        const key = DEFAULT_EVENT;
+        const data = eventsData[key];
+        if (!data) return;
+
+        state.currentEventKey = key;
+
+        // Book images
+        DOM.bookLeft.src = data.book.left;
+        DOM.bookRight.src = data.book.right;
+        DOM.bookSection.classList.add("bookVisible");
+
+        // Slider & Cards
+        state.images = data.slider;
+        state.currentIndex = 0;
+        updateSlider();
+        updateCards(key);
+
+        DOM.eventsSection.classList.add("eventsVisible");
+        DOM.cardsDivider.classList.add("visible");
+    })();
+
 });
