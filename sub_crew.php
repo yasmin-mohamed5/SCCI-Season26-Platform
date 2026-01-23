@@ -370,21 +370,7 @@ $group = $_GET['group'] ?? '';
         <?php endif; ?>
     </section>
 
-    <!-- Overlay for Blur Effect -->
-    <div class="pageOverlay" onclick="closeModal()"></div>
 
-    <!-- Scroll Top Button -->
-    <div class="scrollTopBtn" id="scrollTopBtn">
-        &#8593;
-    </div>
-
-    <!-- Modal Container -->
-    <div id="crewModal" class="crewModal">
-        <button class="modalCloseBtn" onclick="closeModal()" aria-label="Close Modal">×</button>
-        <div class="modalContent">
-            <!-- Content will be injected via JS -->
-        </div>
-    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -398,7 +384,7 @@ $group = $_GET['group'] ?? '';
         });
     </script>
     <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/crew.js?v=<?php echo time(); ?>_2"></script>
+    <script src="./assets/js/sub_crew.js"></script>
     <script src="./assets/js/all.min.js"></script>
 </body>
 <?php
