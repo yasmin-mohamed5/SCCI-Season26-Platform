@@ -139,10 +139,6 @@
     .miniNav a::after {
         display: none;
     }
-
-    .miniNav .panelSvg {
-        display: none;
-    }
 }
 
 @media (max-width: 480px) {
