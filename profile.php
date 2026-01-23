@@ -134,6 +134,7 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
 
 include('./includes/nav.php');
 ?>
+<main>
   <?php if ($success_message): ?>
     <div style="position: fixed; top: 20px; right: 20px; background: #4CAF50; color: white; padding: 15px 25px; border-radius: 5px; z-index: 9999; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
       <?php echo htmlspecialchars($success_message); ?>
@@ -206,7 +207,7 @@ include('./includes/nav.php');
 
             <div class="infoPaperContent">
               <div class="infoLabel">Contacts</div>
-              <div class="profileSocial">
+              <div class="infoValue">
                 <!-- Email -->
                 <div class="socialItem">
                   <i class="fa-solid fa-envelope"></i>
@@ -214,6 +215,14 @@ include('./includes/nav.php');
                     <?php echo htmlspecialchars($user['email']); ?>
                   </a>
                 </div>
+                <!-- phone -->
+                <div class="socialItem">
+                  <i class="fa-solid fa-phone"></i>
+                  <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
+                    0<?php echo htmlspecialchars($user['phone']); ?>
+                  </a>
+                </div>
+
                 <!-- LinkedIn -->
                 <div class="socialItem">
                                     <?php if (!empty($user['linkedin'])): ?>
@@ -233,12 +242,7 @@ include('./includes/nav.php');
                   </a>
                   <?php endif; ?>
                 </div>
-                <div class="socialItem">
-                  <i class="fa-solid fa-phone"></i>
-                  <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
-                    0<?php echo htmlspecialchars($user['phone']); ?>
-                  </a>
-                </div>
+                
               </div>
             </div>
           </div>
@@ -261,7 +265,7 @@ include('./includes/nav.php');
                   }
                   
                   if (!empty($user['committe_name']) && !empty($user['workshop_name'])) {
-                      echo "<br>";
+                      
                   }
 
                   if (!empty($user['workshop_name'])) {
@@ -280,7 +284,7 @@ include('./includes/nav.php');
 
 
   <!-- Edit Profile Popup -->
-  <section>
+  <section class="editProfileSection">
     <form method="POST" action="">
       <div class="editProfileOverlay" id="editProfileOverlay">
         <div class="editProfilePopup">
@@ -328,8 +332,10 @@ include('./includes/nav.php');
               placeholder="Enter your LinkedIn">
           </div>
 
-          <button class="saveProfile">Save Changes</button>
-          <button type="button" class="closePopup">Close</button>
+          <div class="button-group">
+            <button type="button" class="closePopup">Close</button>
+            <button type="submit" class="saveProfile">Save Changes</button>
+          </div>
         </div>
       </div>
     </form>
