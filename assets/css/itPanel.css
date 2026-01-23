@@ -90,13 +90,15 @@ main {
     margin-top: var(--space-5);
     overflow-x: auto;
     width: 100%;
-    margin: 2rem auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
 }
 
 
 .userTable {
     width: 100%;
-    min-width: 700px;
+    min-width: max-content;
     /* max-width: 600px; */
     margin-inline: auto;
     border-collapse: collapse;
@@ -139,52 +141,12 @@ main {
     color: black !important;
 }
 
-
-/* ================= Responsive ================= */
-/* ===== Tablet ===== */
-@media (max-width: 992px) {
-    main {
-        padding-top: 12vh;
-        width: 95%;
-    }
-
-    .userTable {
-        display: block;
-        width: 100%;
-    }
-
-    .tableHeader,
-    .tableData {
-        white-space: normal;
-        padding: var(--space-3);
-        font-size: var(--fs-sm);
-        word-break: normal;
-        overflow-wrap: break-word;
-    }
+.userTable .tableData:last-child {
+    white-space: nowrap;
+    width: 73%;
 }
 
 
-/* ===== Mobile ===== */
-@media (max-width: 769px) {
-    main {
-        padding-top: 10vh;
-    }
-
-    .userTable {
-        display: block;
-        width: 100%;
-        overflow-x: auto;
-    }
-
-    .tableHeader,
-    .tableData {
-        white-space: normal;
-        padding: var(--space-2);
-        font-size: var(--fs-xs);
-        word-break: normal;
-        overflow-wrap: break-word;
-    }
-}
 
 /* ================= Pagination ================= */
 .pagination-controls {
@@ -223,8 +185,52 @@ main {
 }
 
 
-/* Pagination Responsive */
+/* ================= Responsive ================= */
+/* ===== Tablet ===== */
+@media (max-width: 992px) {
+    main {
+        padding-top: 12vh;
+        width: 95%;
+    }
+
+    .userTable {
+        display: block;
+        width: 100%;
+    }
+
+    .tableHeader,
+    .tableData {
+        white-space: normal;
+        padding: var(--space-3);
+        font-size: var(--fs-sm);
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+}
+
+/* ===== Mobile ===== */
 @media (max-width: 768px) {
+
+    main {
+        padding-top: 10vh;
+    }
+
+    .userTable {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .tableHeader,
+    .tableData {
+        white-space: normal;
+        padding: var(--space-2);
+        font-size: var(--fs-xs);
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
     .pagination-controls {
         gap: 1rem;
         margin: 1rem auto 2rem auto;
