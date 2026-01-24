@@ -58,14 +58,18 @@ if (isset($_POST['contact'])) {
     <!-- Main Hero section -->
     <section class="heroSection">
         <div class="heroContainer">
-            <h1 data-aos="fade-up" data-aos-duration="1000">SEEK THE PEAK</h1>
+            <h1 data-aos="fade-up" data-aos-duration="1000" class="heroTitle">SEEK THE PEAK</h1>
             <hr data-aos="fade-up" data-aos-duration="1000">
             <p class="heroText" data-aos="zoom-in" data-aos-duration="2000">
                 SCCI is an abbreviation for Student's Conference for Communication and Information,
                 which helps you in bringing the gap between the technical life and the practical
                 life in the market place. You can know more about our organization right here.
             </p>
-            <a data-aos="fade-up" data-aos-duration="2000" href="./about.php" class="btn btn-primary">EXPLORE MORE</a>
+            <p class="heroTextResponsive" data-aos="zoom-in" data-aos-duration="1000">
+                SCCI bridges technical learning with real-world practice, empowering students through
+                 hands-on experience.
+            </p>
+            <a data-aos="fade-up" data-aos-duration="1000" href="./about.php" class="btn btn-primary">EXPLORE MORE</a>
         </div>
     </section>
 
@@ -153,7 +157,7 @@ if (isset($_POST['contact'])) {
 
             <div class="stat">
                 <i class="fas fa-user-shield statIcon"></i>
-                <h4 data-aos="fade-down" data-aos-duration="3500" class="statNumber" data-target="200">0</h4>
+                <h4 data-aos="fade-down" data-aos-duration="3500" class="statNumber" data-target="100">0</h4>
                 <h4 data-aos="fade-up" data-aos-duration="3000" class="statUnit">MEMBERS</h4>
             </div>
 
@@ -406,3 +410,4 @@ if (isset($_POST['contact'])) {
 </body>
 
 </html>
+
