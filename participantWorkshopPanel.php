@@ -601,8 +601,8 @@ function renderStars($rating)
                     <div id="actionButtons"
                         style="display:none; justify-content:center; flex-wrap:wrap; gap:var(--space-4); padding: var(--space-5);">
                         <button type="button" class="btn btn-primary" id="removeFileBtn" style="min-width:200px;">
-                            <i class="fas fa-trash-alt"></i>
-                            Remove
+                            <i class="fas fa-solid fa-xmark"></i>
+                            Cancel
                         </button>
 
                         <button type="submit" class="btn btn-secondary" id="submitTaskBtn" style="min-width:200px;">
