@@ -809,7 +809,7 @@ if ($workshopSessionId > 0) {
                               </label>
 
                               <label class="radioOption">
-                                <input type="radio" name="status" value="absent" <?php echo (!isset($attMap[$participant['user_id']]) || $attMap[$participant['user_id']] !== 'present') ? 'checked' : ''; ?> />
+                                <input type="radio" name="status" value="absent" <?php echo (isset($attMap[$participant['user_id']]) && $attMap[$participant['user_id']] === 'absent') ? 'checked' : ''; ?> />
                                 <div class="evaluateAttendanceCircle evaluateXtask">
                                   <i class="fa-solid fa-x"></i>
                                 </div>
