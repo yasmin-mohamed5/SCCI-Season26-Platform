@@ -157,7 +157,7 @@ if (isset($_POST['contact'])) {
 
             <div class="stat">
                 <i class="fas fa-user-shield statIcon"></i>
-                <h4 data-aos="fade-down" data-aos-duration="3500" class="statNumber" data-target="100">0</h4>
+                <h4 data-aos="fade-down" data-aos-duration="3500" class="statNumber" data-target="200">0</h4>
                 <h4 data-aos="fade-up" data-aos-duration="3000" class="statUnit">MEMBERS</h4>
             </div>
 
@@ -243,6 +243,21 @@ if (isset($_POST['contact'])) {
                     </div>
                 </div>
 
+                <!-- Sponsor: Red Bull -->
+                <div class="sponsorCardItems">
+                    <div class="sponsorsCard card2">
+                        <div class="corner-ornament top-left"></div>
+                        <div class="corner-ornament top-right"></div>
+                        <div class="corner-ornament bottom-left"></div>
+                        <div class="corner-ornament bottom-right"></div>
+
+                        <div class="sponsorCardContent">
+                            <img src="./assets/img/sponser/red_bull.png" class="sponsorLogo" alt="Red Bull Logo" loading="lazy">
+                            <h4 class="sponsorTitle">RED BULL</h4>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Duplicate for seamless loop -->
 
                 <!-- Sponsor: Innovation Area -->
@@ -305,6 +320,21 @@ if (isset($_POST['contact'])) {
                     </div>
                 </div>
 
+                <!-- Sponsor: Red Bull -->
+                <div class="sponsorCardItems">
+                    <div class="sponsorsCard card2">
+                        <div class="corner-ornament top-left"></div>
+                        <div class="corner-ornament top-right"></div>
+                        <div class="corner-ornament bottom-left"></div>
+                        <div class="corner-ornament bottom-right"></div>
+
+                        <div class="sponsorCardContent">
+                            <img src="./assets/img/sponser/red_bull.png" class="sponsorLogo" alt="Red Bull Logo" loading="lazy">
+                            <h4 class="sponsorTitle">RED BULL</h4>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -353,7 +383,7 @@ if (isset($_POST['contact'])) {
 
 
             <form class="form-content card" data-aos="fade-left" id="form" method="POST" enctype="multipart/form-data">
-                <img class="homeBird" loading="lazy" src="./assets/img/bird.png" alt="Decorative bird">
+                <img class="homeBird" loading="lazy" src="./assets/img/home/homeBird.png" alt="Decorative bird">
 
                 <?php if (isset($_GET['success'])): ?>
                     <div class="success-message">
@@ -410,4 +440,3 @@ if (isset($_POST['contact'])) {
 </body>
 
 </html>
-
