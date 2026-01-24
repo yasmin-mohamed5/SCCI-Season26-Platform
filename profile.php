@@ -229,7 +229,7 @@ include('./includes/nav.php');
 
                   <i class="fa-brands fa-linkedin"></i>
                   <a href="<?php echo htmlspecialchars($user['linkedin']); ?>" target="_blank">
-                    <?php echo htmlspecialchars($user['linkedin']); ?>
+                    LinkedIn
                   </a>
                   <?php endif; ?>
                 </div>
@@ -238,7 +238,7 @@ include('./includes/nav.php');
                   <?php if (!empty($user['githup'])): ?>
                   <i class="fa-brands fa-github"></i>
                   <a href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
-                    <?php echo htmlspecialchars($user['githup']); ?>
+                    GitHub
                   </a>
                   <?php endif; ?>
                 </div>

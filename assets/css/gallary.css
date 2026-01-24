@@ -829,17 +829,7 @@ footer {
         width: 62vw;
     }
 
-    .sliderBtn.prev {
-        position: absolute;
-        top: 110%;
-        transform: translateY(-50%);
-    }
-
-    .sliderBtn.next {
-        position: absolute;
-        top: 110%;
-        transform: translateY(-50%);
-    }
+    /* Removed redundant sliderBtn overrides */
 
     .polaroidGallery {
         padding: 50px 0 100px;
@@ -1170,16 +1160,22 @@ footer {
     }
 
     .sliderBtn.prev {
+        position: absolute;
         left: 20px;
-        bottom: auto;
         top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
     }
 
     .sliderBtn.next {
+        position: absolute;
         right: 20px;
-        bottom: auto;
         top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
     }
+
+    /* Removed redundant sliderBtn overrides */
 
     .polaroidGallery {
         padding: 80px 0 180px;
@@ -1278,16 +1274,22 @@ footer {
     }
 
     .sliderBtn.prev {
+        position: absolute;
         left: 15px;
-        bottom: auto;
         top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
     }
 
     .sliderBtn.next {
+        position: absolute;
         right: 15px;
-        bottom: auto;
         top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
     }
+
+    /* Removed redundant sliderBtn overrides */
 
     .polaroidGallery {
         padding: 70px 0 160px;
@@ -1492,15 +1494,21 @@ footer {
 
     .sliderBtn.prev {
         position: absolute;
-        top: 110%;
+        left: 10px;
+        top: 50%;
         transform: translateY(-50%);
+        margin: 0;
     }
 
     .sliderBtn.next {
         position: absolute;
-        top: 110%;
+        right: 10px;
+        top: 50%;
         transform: translateY(-50%);
+        margin: 0;
     }
+
+    /* Removed redundant sliderBtn overrides */
 
     .polaroidGallery {
         padding: 50px 0 100px;
@@ -1606,25 +1614,23 @@ footer {
 
     .sliderBtn.prev {
         position: absolute;
+        left: 5px;
         top: 50%;
         transform: translateY(-50%);
-        bottom: auto;
-        border-right: 20px solid #8b0000;
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
-        left: 5px;
+        margin: 0;
     }
 
     .sliderBtn.next {
         position: absolute;
+        right: 5px;
         top: 50%;
         transform: translateY(-50%);
-        bottom: auto;
-        border-left: 20px solid #8b0000;
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
-        right: 5px;
+        margin: 0;
     }
+
+    /* Removed redundant sliderBtn overrides */
+
+
 
     .polaroidGallery {
         padding: 40px 0 80px;
