@@ -43,7 +43,7 @@ include './includes/config.php';
         <div class="hero">
             <div class="heroBackground">
                 <picture>
-                    <img src="./assets/img/heroImage1.png" alt="Hero Image" loading="lazy">
+                    <img src="./assets/img/heroImage.png" alt="Hero Image" loading="lazy">
                 </picture>
             </div>
 
