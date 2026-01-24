@@ -100,7 +100,7 @@ h1 {
   display: block;
   object-fit: cover;
   object-position: 77% 20%;
-  height: auto;
+  height: 100%;
   width: 100%;
 }
 
@@ -174,11 +174,22 @@ h1 {
 /* Small tablets / large phones */
 @media (max-width: 600px) {
   .hero {
-    height: 70vh;
+    height: auto;
+    min-height: 50vh;
+    /* Minimum height to ensure content is visible */
+    padding-top: 100px;
+    align-items: flex-start;
   }
 
   .heroBackground picture {
-    height: 70vh;
+    height: auto;
+  }
+
+  .heroBackground img {
+    height: auto;
+    /* Allow natural aspect ratio */
+    position: relative;
+    bottom: 0;
   }
 
 
@@ -189,16 +200,22 @@ h1 {
   .heroBackground::after {
     height: 80px;
   }
+
+  /* Center image on mobile for better visibility */
+  .heroBackground img {
+    object-position: center bottom;
+  }
 }
 
 /* Phones */
 @media (max-width: 400px) {
   .hero {
-    height: 60vh;
+    height: auto;
+    min-height: 40vh;
   }
 
   .heroBackground picture {
-    height: 60vh;
+    height: auto;
   }
 
 
