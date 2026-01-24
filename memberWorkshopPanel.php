@@ -793,7 +793,7 @@ if ($workshopSessionId > 0) {
                       <td class="tableParticipantName"><?php echo htmlspecialchars($participant['user_name']); ?></td>
                       <td>
                         <?php if (isset($attMap[$participant['user_id']])): ?>
-                          <span class="text-muted">Attendance Saved</span>
+                          <span class="attendance-saved-text">Attendance Saved</span>
                         <?php else: ?>
                           <form method="POST" class="attendanceForm">
                             <input type="hidden" name="action" value="mark_attendance">
@@ -843,7 +843,7 @@ if ($workshopSessionId > 0) {
                             <?php echo $hasFeedback ? 'Feedback Added' : 'Add Feedback'; ?>
                           </button>
                         <?php else: ?>
-                          <span class="text-muted">No submission</span>
+                          <span class="no-submission-text">No submission</span>
                         <?php endif; ?>
 
 
