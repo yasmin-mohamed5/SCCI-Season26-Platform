@@ -72,7 +72,7 @@ if (isset($_SESSION['user_id'])) {
         }
         ?>
         <?php
-         if ($role == 5 or $role == 4) {
+         if ($role == 5) {
             echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
         
         }
