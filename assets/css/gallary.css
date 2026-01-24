@@ -674,7 +674,7 @@ footer {
     margin: 0;
     filter: blur(4px);
     overflow: hidden;
-    bottom: -250px;
+    /* bottom: -250px; */
     /* <<< add this */
 }
 
@@ -685,15 +685,19 @@ footer {
     object-fit: cover;
     border: 1px solid #eee;
 }
+.polaroidItem {
+    transition: 0.3s ease;
+}
 
 @media (min-width: 769px) {
     .polaroidItem:hover {
-        transform: translateY(-180px) rotate(var(--rotation)) scale(1.05);
+        transform: rotate(var(--rotation)) scale(1.05);
         z-index: 200;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, z-index 0s, filter 0.3s ease;
         filter: blur(0);
     }
+
 
     footer {
         width: 100%;
@@ -858,10 +862,10 @@ footer {
     }
 
     /* Mobile Landscape & Small Tablets - Buttons go absolute again */
-    .sliderBtn.prev,
+    /* .sliderBtn.prev,
     .sliderBtn.next {
         display: none !important;
-    }
+    } */
 
     .polaroidItem {
         width: 45%;
@@ -1301,9 +1305,6 @@ footer {
         filter: blur(3px);
     }
 
-    .polaroidItem:hover {
-        transform: translateY(-150px) rotate(var(--rotation)) scale(1.05);
-    }
 
     footer {
         bottom: 32rem;
@@ -1414,7 +1415,7 @@ footer {
     }
 
     .polaroidItem:hover {
-        transform: translateY(-130px) rotate(var(--rotation)) scale(1.05);
+        transform: rotate(var(--rotation)) scale(1.05);
     }
 
     footer {
@@ -1603,19 +1604,15 @@ footer {
     }
 
     .sliderBtn.prev {
-        left: 32%;
-        bottom: -42px;
-        border-right: 22px solid #8B0000;
-        border-top: 13px solid transparent;
-        border-bottom: 13px solid transparent;
+        position: absolute;
+        top: 110%;
+        transform: translateY(-50%);
     }
 
     .sliderBtn.next {
-        right: 32%;
-        bottom: -42px;
-        border-left: 22px solid #8B0000;
-        border-top: 13px solid transparent;
-        border-bottom: 13px solid transparent;
+        position: absolute;
+        top: 110%;
+        transform: translateY(-50%);
     }
 
     .polaroidGallery {
@@ -1722,8 +1719,7 @@ footer {
 
     .sliderBtn.prev {
         position: absolute;
-        left: 5px;
-        top: 50%;
+        top: 110%;
         transform: translateY(-50%);
         bottom: auto;
         border-right: 20px solid #8B0000;
@@ -1733,8 +1729,7 @@ footer {
 
     .sliderBtn.next {
         position: absolute;
-        right: 5px;
-        top: 50%;
+        top: 110%;
         transform: translateY(-50%);
         bottom: auto;
         border-left: 20px solid #8B0000;
@@ -1839,7 +1834,7 @@ footer {
     }
 
     .polaroidGallery {
-        padding-bottom: 45rem;
+        padding-bottom: 15rem;
         /* Add padding to make room for footer overlap */
         margin-bottom: 0;
     }
