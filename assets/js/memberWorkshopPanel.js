@@ -621,7 +621,10 @@ window.deleteTask = function (taskId) {
   deleteType = "task";
   if (deleteConfirmTitle) deleteConfirmTitle.textContent = "Delete Task?";
   if (deleteConfirmMsg) deleteConfirmMsg.textContent = "This action cannot be undone. All task submissions will be affected.";
-  if (deleteModal) deleteModal.classList.add("show");
+  if (deleteModal) {
+    deleteModal.classList.add("show");
+    document.body.classList.add("no-scroll");
+  }
 };
 
 window.deleteMaterial = function (materialId) {
@@ -630,11 +633,17 @@ window.deleteMaterial = function (materialId) {
   deleteType = "material";
   if (deleteConfirmTitle) deleteConfirmTitle.textContent = "Delete Material?";
   if (deleteConfirmMsg) deleteConfirmMsg.textContent = "Are you sure you want to delete this material? This action cannot be undone.";
-  if (deleteModal) deleteModal.classList.add("show");
+  if (deleteModal) {
+    deleteModal.classList.add("show");
+    document.body.classList.add("no-scroll");
+  }
 };
 
 window.closeDeleteConfirm = function () {
-  if (deleteModal) deleteModal.classList.remove("show");
+  if (deleteModal) {
+    deleteModal.classList.remove("show");
+    document.body.classList.remove("no-scroll");
+  }
   deleteId = null;
   deleteType = null;
 };

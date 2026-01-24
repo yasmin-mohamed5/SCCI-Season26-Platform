@@ -1530,8 +1530,8 @@ if ($workshopSessionId > 0) {
       </div>
       <p id="deleteConfirmMsg">This action cannot be undone.</p>
       <div class="confirmBtnGroup">
-        <button type="button" class="btn btn-confirm-cancel" onclick="closeDeleteConfirm()">Cancel</button>
-        <button type="button" class="btn btn-confirm-delete" id="confirmDeleteBtn">Delete</button>
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteConfirm()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="confirmDeleteBtn">Delete</button>
       </div>
     </div>
   </div>

@@ -450,18 +450,6 @@ Table
   opacity: 0.85;
 }
 
-.btn-primary {
-  /* background: linear-gradient(
-    90deg,
-    #650d0d,
-    #9b1313,
-    #650d0d
-  ); */
-  background: linear-gradient(90deg, #931f1f, #c72b2b, #931f1f);
-  color: var(--color-white);
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(197, 37, 37, 0.3);
-}
 
 /* ===============================================================================
    REVIEW WORKSHOP PANEL 
