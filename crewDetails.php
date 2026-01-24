@@ -114,7 +114,19 @@ include './includes/config.php';
                 </div>
                 <div class="paperContent">
                     <p class="paperText">
-                        <?php echo $committee['missoin']; ?>
+                        <?php
+                        // Normalize text and split by periods to handle sentence-based lists
+                        $raw_text = $committee['missoin'];
+                        $mission_items = explode('.', $raw_text); 
+                        
+                        foreach ($mission_items as $item) {
+                            $item = trim($item);
+                            // Filter out empty items
+                            if (!empty($item)) {
+                                echo '<span>⚜ </span>' . htmlspecialchars($item) . '.<br>';
+                            }
+                        }
+                        ?>
                     </p>
                 </div>
             </div>

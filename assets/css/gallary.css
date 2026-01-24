@@ -703,7 +703,6 @@ footer {
         width: 100%;
         margin-top: 0;
         /* Override auto margin if needed */
-        margin-bottom: 50px;
         /* spacing */
         z-index: 10;
     }
@@ -1828,6 +1827,7 @@ footer {
     footer {
         position: relative;
         bottom: 0;
+        /* Negative margin pulls footer up over gallery */
         margin-bottom: 0;
         z-index: 100;
         width: 100%;
