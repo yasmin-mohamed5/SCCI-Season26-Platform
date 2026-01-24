@@ -106,7 +106,7 @@ $run_w = mysqli_query($connect, $select_w);
 <body>
 
 <div class="main-content">
-    <form class="form-content" id="form" action="" method="POST" enctype="multipart/form-data" novalidate>
+    <form class="form-content" id="form" method="POST" enctype="multipart/form-data" novalidate>
 
         <img src="../assets/icons/logoSCCI.png" alt="SCCI Logo" class="register-logo">
         <h1 class="register-title">Register</h1>
