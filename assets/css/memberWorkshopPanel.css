@@ -697,23 +697,13 @@ body.no-scroll {
 
 /* Ensure the feedback button is cleaner */
 .evaluateFeedback {
-  background: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
-  border-radius: 50px;
+  cursor: pointer;
+  border-radius: 10px;
   padding: 6px 20px;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   font-weight: 600;
   font-family: var(--font-system);
   transition: all 0.3s ease;
-  box-shadow: none;
-}
-
-.evaluateFeedback:hover {
-  background: var(--color-primary);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(197, 37, 37, 0.2);
 }
 
 /* ===============================================================================
@@ -2201,7 +2191,7 @@ body.no-scroll {
   border-radius: 12px;
   border: 1px solid var(--border-light);
   margin-bottom: 25px !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   gap: 40px !important;
 }
@@ -2245,7 +2235,7 @@ body.no-scroll {
 .filterBtn.active {
   background-color: var(--color-white);
   color: var(--color-secondary);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   border: none;
 }
 
