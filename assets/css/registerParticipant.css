@@ -1,5 +1,12 @@
 @import url("root.css");
 
+/* Prevent scroll when popup is open */
+body.no-scroll {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+}
+
 body {
     min-height: 100vh;
     padding: 0;

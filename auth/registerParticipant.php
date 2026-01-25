@@ -206,6 +206,12 @@ Swal.fire({
     },
     hideClass: {
         popup: 'animate__animated animate__fadeOutUp'
+    },
+    didOpen: () => {
+        document.body.classList.add('no-scroll');
+    },
+    willClose: () => {
+        document.body.classList.remove('no-scroll');
     }
 });
 </script>
@@ -231,6 +237,12 @@ Swal.fire({
     },
     hideClass: {
         popup: 'animate__animated animate__zoomOut'
+    },
+    didOpen: () => {
+        document.body.classList.add('no-scroll');
+    },
+    willClose: () => {
+        document.body.classList.remove('no-scroll');
     }
 }).then(() => {
     window.location.href = 'login.php';

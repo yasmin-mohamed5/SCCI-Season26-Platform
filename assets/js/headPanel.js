@@ -238,12 +238,14 @@ blockButtons.forEach(btn => {
         const formId = btn.dataset.formId;
         currentBlockForm = document.getElementById(formId);
         blockPopup.style.display = 'flex';
+        document.body.classList.add('no-scroll');
     });
 });
 
 // Close popup
 cancelBlockBtn.addEventListener('click', () => {
     blockPopup.style.display = 'none';
+    document.body.classList.remove('no-scroll');
     currentBlockForm = null;
 });
 
@@ -268,12 +270,14 @@ confirmBlockBtn.addEventListener('click', () => {
             });
     }
     blockPopup.style.display = 'none';
+    document.body.classList.remove('no-scroll');
 });
 
 // Optional: close when clicking outside content
 blockPopup.addEventListener('click', (e) => {
     if (e.target === blockPopup) {
         blockPopup.style.display = 'none';
+        document.body.classList.remove('no-scroll');
         currentBlockForm = null;
     }
 });
