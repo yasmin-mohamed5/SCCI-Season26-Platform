@@ -69,7 +69,7 @@ if (isset($_POST['contact'])) {
                 SCCI bridges technical learning with real-world practice, empowering students through
                  hands-on experience.
             </p>
-            <a data-aos="fade-up" data-aos-duration="1000" href="./about.php" class="btn btn-primary">EXPLORE MORE</a>
+            <a data-aos="fade-up" data-aos-duration="1000" href="./crew.php" class="btn btn-primary">EXPLORE MORE</a>
         </div>
     </section>
 
@@ -374,7 +374,7 @@ if (isset($_POST['contact'])) {
                         <div class="contactDetails">
                             <div class="contactDetailItem">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Cairo, Egypt</span>
+                                <span>Dokki , Cairo , Egypt</span>
                             </div>
                         </div>
                     </div>

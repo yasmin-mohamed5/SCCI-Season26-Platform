@@ -792,29 +792,33 @@ if ($workshopSessionId > 0) {
                     <tr>
                       <td class="tableParticipantName"><?php echo htmlspecialchars($participant['user_name']); ?></td>
                       <td>
-                        <form method="POST" class="attendanceForm">
-                          <input type="hidden" name="action" value="mark_attendance">
-                          <input type="hidden" name="participant_id" value="<?php echo $participant['user_id']; ?>">
-                          <input type="hidden" name="tab" value="<?php echo htmlspecialchars($currentTab); ?>">
-                          <input type="hidden" name="session_id" value="<?php echo $selectedSessionId; ?>"></label>
-                          <div class="evaluateTaskRow">
-                            <label class="radioOption">
-                              <input type="radio" name="status" value="present" <?php echo (isset($attMap[$participant['user_id']]) && $attMap[$participant['user_id']] === 'present') ? 'checked' : ''; ?> />
-                              <div class="evaluateAttendanceCircle evaluateCheckTask">
-                                <i class="fa-solid fa-check"></i>
-                              </div>
-                            </label>
+                        <?php if (isset($attMap[$participant['user_id']])): ?>
+                          <span class="attendance-saved-text">Attendance Saved</span>
+                        <?php else: ?>
+                          <form method="POST" class="attendanceForm">
+                            <input type="hidden" name="action" value="mark_attendance">
+                            <input type="hidden" name="participant_id" value="<?php echo $participant['user_id']; ?>">
+                            <input type="hidden" name="tab" value="<?php echo htmlspecialchars($currentTab); ?>">
+                            <input type="hidden" name="session_id" value="<?php echo $selectedSessionId; ?>"></label>
+                            <div class="evaluateTaskRow">
+                              <label class="radioOption">
+                                <input type="radio" name="status" value="present" <?php echo (isset($attMap[$participant['user_id']]) && $attMap[$participant['user_id']] === 'present') ? 'checked' : ''; ?> />
+                                <div class="evaluateAttendanceCircle evaluateCheckTask">
+                                  <i class="fa-solid fa-check"></i>
+                                </div>
+                              </label>
 
-                            <label class="radioOption">
-                              <input type="radio" name="status" value="absent" <?php echo (!isset($attMap[$participant['user_id']]) || $attMap[$participant['user_id']] !== 'present') ? 'checked' : ''; ?> />
-                              <div class="evaluateAttendanceCircle evaluateXtask">
-                                <i class="fa-solid fa-x"></i>
-                              </div>
-                            </label>
-                          </div>
-                          <button type="submit" class="btn btn-primary btn-sm attendanceSubmit"
-                            style="display: none;">Save</button>
-                        </form>
+                              <label class="radioOption">
+                                <input type="radio" name="status" value="absent" <?php echo (isset($attMap[$participant['user_id']]) && $attMap[$participant['user_id']] === 'absent') ? 'checked' : ''; ?> />
+                                <div class="evaluateAttendanceCircle evaluateXtask">
+                                  <i class="fa-solid fa-x"></i>
+                                </div>
+                              </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm attendanceSubmit"
+                              style="display: none;">Save</button>
+                          </form>
+                        <?php endif; ?>
                       </td>
                       <td>
                         <?php if (!empty($submitMap[$participant['user_id']])): ?>
@@ -830,15 +834,16 @@ if ($workshopSessionId > 0) {
                         <?php
                         $pid = (int) $participant['user_id'];
                         $submissionId = $latestByUser[$pid]['submission_id'] ?? 0;
+                        $hasFeedback = isset($latestByUser[$pid]['rating']);
                         ?>
 
                         <?php if ($submissionId > 0): ?>
                           <button data-popup="feedbackModal" data-submission-id="<?= (int) $submissionId ?>"
-                            class="evaluateFeedback btn-primary" type="button">
-                            Add Feedback
+                            class="evaluateFeedback btn-primary" type="button" <?php echo $hasFeedback ? 'disabled' : ''; ?>>
+                            <?php echo $hasFeedback ? 'Feedback Added' : 'Add Feedback'; ?>
                           </button>
                         <?php else: ?>
-                          <span class="text-muted">No submission</span>
+                          <span class="no-submission-text">No submission</span>
                         <?php endif; ?>
 
 
@@ -1086,11 +1091,8 @@ if ($workshopSessionId > 0) {
             <!-- add task Description -->
             <div class="inputsBox">
               <div class="groupInputs columnGroup">
-                <label class="formLabel" for="taskBio" id="taskBioLabel">Task Description:</label>
-                <div class="quill-wrapper">
-                  <div id="editor-container"></div>
-                </div>
-                <textarea name="taskBio" id="taskBioInput" style="display:none"></textarea>
+                <label class="formLabel" for="taskBioInput" id="taskBioLabel">Task Description:</label>
+                <textarea class="textInput" name="taskBio" id="taskBioInput" rows="5"></textarea>
               </div>
               <p id="taskBioMessage"></p>
             </div>
@@ -1475,46 +1477,8 @@ if ($workshopSessionId > 0) {
   <script src="assets/js/all.min.js" defer></script>
   <!-- <script src="assets/js/messages.js" defer></script> -->
   <!-- Quill JS -->
-  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      // Check if editor container exists
-      if (document.getElementById('editor-container')) {
-        var quill = new Quill('#editor-container', {
-          theme: 'snow',
-          placeholder: 'Write the task description here...',
-          modules: {
-            toolbar: [
-              [{
-                'header': [1, 2, 3, false]
-              }],
-              ['bold', 'italic', 'underline'],
-              [{
-                'list': 'ordered'
-              }, {
-                'list': 'bullet'
-              }],
-              ['clean']
-            ]
-          }
-        });
-
-        // Sync with hidden textarea
-        var taskBioInput = document.getElementById('taskBioInput');
-        quill.on('text-change', function() {
-          taskBioInput.value = quill.root.innerHTML;
-        });
-      }
-    });
-  </script>
+  <!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->
   <script src="assets/js/memberWorkshopPanel.js" defer></script>
-  <script src="assets/js/pagination.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      setupPagination('workshopTableScroll', 'workshopPagination');
-      setupPagination('reviewTableScroll', 'reviewPagination');
-    });
-  </script>
 
   <!-- delete confirmation popup -->
   <div class="deleteConfirmPopup" id="deleteConfirmPopup">
@@ -1525,8 +1489,8 @@ if ($workshopSessionId > 0) {
       </div>
       <p id="deleteConfirmMsg">This action cannot be undone.</p>
       <div class="confirmBtnGroup">
-        <button type="button" class="btn btn-confirm-cancel" onclick="closeDeleteConfirm()">Cancel</button>
-        <button type="button" class="btn btn-confirm-delete" id="confirmDeleteBtn">Delete</button>
+        <button type="button" class="btn btn-secondary" onclick="closeDeleteConfirm()">Cancel</button>
+        <button type="button" class="btn btn-primary" id="confirmDeleteBtn">Delete</button>
       </div>
     </div>
   </div>

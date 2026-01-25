@@ -42,8 +42,8 @@
             class="socialText"> instagram</span></a>
         <a target="_blank" href="https://www.linkedin.com/in/scci-cu-478a09390/"><i class="fa-brands fa-linkedin"></i>
           <span class="socialText"> linkedin</span></a>
-        <a target="_blank" href=""><i class="fa-solid fa-envelope"></i> <span class="socialText">
-            scci2026@gmail.com</span></a>
+        <a target="_blank" href="mailto:scci.cu.26@gmail.com"><i class="fa-solid fa-envelope"></i> <span class="socialText">
+         scci.cu.26@gmail.com</span></a>
       </div>
     </div>
   </div>
