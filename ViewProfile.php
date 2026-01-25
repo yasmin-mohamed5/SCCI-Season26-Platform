@@ -132,13 +132,20 @@ if (isset($user['role']) && $user['role'] == 4 or $user['role'] == 5) {
                   <?php echo htmlspecialchars($user['email']); ?>
                 </a>
               </div>
+              <!-- Phone -->
+               <div class="socialItem">
+                  <i class="fa-solid fa-phone"></i>
+                  <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
+                    0<?php echo htmlspecialchars($user['phone']); ?>
+                  </a>
+              </div>
               <!-- LinkedIn -->
               <div class="socialItem">
                 <?php if (!empty($user['linkedin'])): ?>
 
                   <i class="fa-brands fa-linkedin"></i>
                   <a href="<?php echo htmlspecialchars($user['linkedin']); ?>" target="_blank">
-                    <?php echo htmlspecialchars($user['linkedin']); ?>
+                    LinkedIn
                   </a>
                 <?php endif; ?>
               </div>
@@ -147,15 +154,9 @@ if (isset($user['role']) && $user['role'] == 4 or $user['role'] == 5) {
                 <?php if (!empty($user['githup'])): ?>
                   <i class="fa-brands fa-github"></i>
                   <a href="<?php echo htmlspecialchars($user['githup']); ?>" target="_blank">
-                    <?php echo htmlspecialchars($user['githup']); ?>
+                    GitHub
                   </a>
                 <?php endif; ?>
-              </div>
-              <div class="socialItem">
-                <i class="fa-solid fa-phone"></i>
-                <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
-                  0<?php echo htmlspecialchars($user['phone']); ?>
-                </a>
               </div>
             </div>
           </div>
