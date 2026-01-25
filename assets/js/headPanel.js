@@ -234,46 +234,50 @@ let currentBlockForm = null;
 
 // Open popup
 blockButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const formId = btn.dataset.formId;
-    currentBlockForm = document.getElementById(formId);
-    blockPopup.style.display = 'flex';
-  });
+    btn.addEventListener('click', () => {
+        const formId = btn.dataset.formId;
+        currentBlockForm = document.getElementById(formId);
+        blockPopup.style.display = 'flex';
+        document.body.classList.add('no-scroll');
+    });
 });
 
 // Close popup
 cancelBlockBtn.addEventListener('click', () => {
-  blockPopup.style.display = 'none';
-  currentBlockForm = null;
+    blockPopup.style.display = 'none';
+    document.body.classList.remove('no-scroll');
+    currentBlockForm = null;
 });
 
 // Confirm action
 confirmBlockBtn.addEventListener('click', () => {
-  if (currentBlockForm) {
-    const formData = new FormData(currentBlockForm);
-    fetch(window.location.href, {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => {
-      if (response.ok) {
-        location.reload();
-      } else {
-        alert('Error occurred. Please try again.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('Error occurred. Please try again.');
-    });
-  }
-  blockPopup.style.display = 'none';
+    if (currentBlockForm) {
+        const formData = new FormData(currentBlockForm);
+        fetch(window.location.href, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('Error occurred. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error occurred. Please try again.');
+            });
+    }
+    blockPopup.style.display = 'none';
+    document.body.classList.remove('no-scroll');
 });
 
 // Optional: close when clicking outside content
 blockPopup.addEventListener('click', (e) => {
-  if (e.target === blockPopup) {
-    blockPopup.style.display = 'none';
-    currentBlockForm = null;
-  }
+    if (e.target === blockPopup) {
+        blockPopup.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+        currentBlockForm = null;
+    }
 });
