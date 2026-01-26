@@ -227,6 +227,7 @@ if ($group === 'technical') {
                     </a>
                     <a href="crewDetails.php?committee_id=5" class="btn btn-primary">Know Us !</a>
                 </div>
+                
             </div>
 
 
