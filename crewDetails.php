@@ -188,7 +188,7 @@ if (isset($_GET['committee_id'])) {
                             </div>
 
                             <div class="flipSide flipBack"
-                                data-title="<?= strtoupper(htmlspecialchars($member['workshop_name'])) ?>">
+                                data-title="<?= strtoupper(htmlspecialchars($member['workshop_name'] ?? '')) ?>">
                                 <div class="backCard">
                                     <div class="memberInfo">
                                         <div class="memberImageContainer">
