@@ -211,7 +211,7 @@ h1 {
 @media (max-width: 400px) {
   .hero {
     height: auto;
-    min-height: 40vh;
+    min-height: 33vh;
   }
 
   .heroBackground picture {
