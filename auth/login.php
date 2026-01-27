@@ -5,48 +5,54 @@ $error_msgp="";
 $error_msge="";
 $error_notv="";
 if(isset($_POST['login1'])){
-    $email=$_POST["email"];
-    $password=$_POST["password"];
+    // 1. Trim inputs to avoid whitespace issues
+    $email = trim($_POST["email"]);
+    $password = $_POST["password"];
 
-    $select="SELECT * FROM `users` WHERE `email`='$email'";
-    $run_select=mysqli_query($connect,$select);
-    $rows=mysqli_num_rows($run_select);
+    // 2. Secure query with Prepared Statements
+    $stmt = mysqli_prepare($connect, "SELECT user_id, user_name, email, password, role, status FROM users WHERE email = ?");
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    
+    if($fetch = mysqli_fetch_assoc($result)){
+        $hashed_password = $fetch['password'];
+        $status = $fetch['status'];
 
-    if($rows>0){
-        $fetch=mysqli_fetch_assoc($run_select);
-        $hashed_password=$fetch['password'];
-        $status=$fetch['status'];
+        // 3. Verify Password
+        if(password_verify($password, $hashed_password)){
+            // 4. Check if account is active
+            if($status == 1){
+                // 5. SECURITY: Regenerate session ID to prevent session fixation attacks
+                session_regenerate_id(true);
+                
+                $_SESSION['user_id'] = $fetch['user_id'];
+                $_SESSION['role'] = $fetch['role'];
+                $_SESSION['user_name'] = $fetch['user_name'];
 
-        if(password_verify($password,$hashed_password)){
-       if($status== 1){
-     $user_id=$fetch['user_id'];
-            $_SESSION['user_id']=$user_id;
-            $_SESSION['role']=$fetch['role'];
-
-     if (isset($_POST['remember']) && $_POST['remember'] == '1') {
-                setcookie("remember_email", $email, time() + 3600 * 24 * 30, "/"); // 30 days
-                setcookie("remember", "1", time() + 3600 * 24 * 30, "/");
+                // 6. Handle 'Remember Me' cookies
+                if (isset($_POST['remember']) && $_POST['remember'] == '1') {
+                    setcookie("remember_email", $email, time() + 3600 * 24 * 30, "/"); 
+                    setcookie("remember", "1", time() + 3600 * 24 * 30, "/");
+                } else {
+                    setcookie("remember_email", "", time() - 3600, "/"); 
+                    setcookie("remember", "", time() - 3600, "/");
+                }
+                
+                header("Location: ../profile.php");
+                exit();
             } else {
-                // If 'Remember Me' is not checked, delete cookies
-                setcookie("remember_email", "", time() - 3600, "/"); 
-                setcookie("remember", "", time() - 3600, "/");
+                $error_notv = "your account is not activated";
             }
-            
-            // Redirect to profile page
-            header("Location: ../profile.php");
-            exit();
-}else{
-
-    $error_notv= "your account is not activated";
-}
-
-
-        }else{
-            $error_msgp="password incorrect";
+        } else {
+            $error_msgp = "password incorrect";
         }
-    }else{
-        $error_msge="incorrect email";
+    } else {
+        $error_msge = "incorrect email";
     }
+    
+    // 7. Close statement to free resources
+    mysqli_stmt_close($stmt);
 }
 ?>
 <!DOCTYPE html>
