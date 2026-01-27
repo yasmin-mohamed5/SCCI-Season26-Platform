@@ -84,7 +84,7 @@ if(isset($_POST['login1'])){
 
 <body>
     <main class="main-container">
-        <a href="../home.php" class="backBtn">
+        <a href="./registerParticipant.php" class="backBtn">
                         <i class="fas fa-arrow-left"></i>
                     </a>
     

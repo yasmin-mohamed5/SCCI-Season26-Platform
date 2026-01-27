@@ -140,9 +140,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 passwordErrors.push('one lowercase letter');
             }
 
-            // Check for special character
-            if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-                passwordErrors.push('one special character');
+            // Check for numbers
+            if (!/[0-9]/.test(password)) {
+                passwordErrors.push('one number');
             }
 
             if (passwordErrors.length > 0) {
@@ -186,13 +186,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasLength = password.length >= 8;
             const hasUppercase = /[A-Z]/.test(password);
             const hasLowercase = /[a-z]/.test(password);
-            const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
 
             // Update visual indicators
             updateRequirement('req-length', hasLength);
             updateRequirement('req-uppercase', hasUppercase);
             updateRequirement('req-lowercase', hasLowercase);
-            updateRequirement('req-special', hasSpecial);
+            updateRequirement('req-special', hasNumber);
         });
 
         // Helper function to update requirement status

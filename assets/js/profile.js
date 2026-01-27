@@ -128,4 +128,11 @@ document.addEventListener('DOMContentLoaded', () => {
       this.innerHTML = type === 'text' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
     });
   });
+
+  // === Auto-open if errors exist ===
+  if (document.body.dataset.hasErrors === 'true') {
+    overlay.classList.add('active');
+    document.body.classList.add('no-scroll');
+    captureInitialValues();
+  }
 });

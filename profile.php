@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
         $params[] = $user_name;
         $types .= "s";
       } else {
-        $errors[] = "Name must be at least 3 characters.";
+        $errors['user_name'] = "Name must be at least 3 characters.";
       }
     }
 
@@ -73,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
         $params[] = $email;
         $types .= "s";
       } else {
-        $errors[] = "Invalid email format.";
+        $errors['email'] = "Invalid email format.";
       }
     }
 
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
         $params[] = $phone;
         $types .= "s";
       } else {
-
+        $errors['phone'] = "Invalid Egyptian phone number format.";
       }
     }
 
@@ -105,11 +105,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
     // Password (Must provide confirm if setting new)
     if (!empty($password)) {
       if (strlen($password) < 8) {
-        $errors[] = "Password must be at least 8 characters.";
-      } elseif (!preg_match("/[A-Z]/", $password) || !preg_match("/[a-z]/", $password) || !preg_match("/[!@#$%^&*(),.?\":{}|<>]/", $password)) {
-        $errors[] = "Password must contain uppercase, lowercase, and special characters.";
+        $errors['password'] = "Password must be at least 8 characters.";
+      } elseif (!preg_match("/[A-Z]/", $password) || !preg_match("/[a-z]/", $password) || !preg_match("/[0-9]/", $password)) {
+        $errors['password'] = "Password must contain uppercase, lowercase, and numbers.";
       } elseif ($password !== $confirm_password) {
-        $errors[] = "Passwords do not match.";
+        $errors['confirm_password'] = "Passwords do not match.";
       } else {
         $updates[] = "password = ?";
         $params[] = password_hash($password, PASSWORD_DEFAULT);
@@ -137,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
         $_SESSION['err'] = "No changes detected.";
       }
     } else {
-      $_SESSION['err'] = implode("<br>", $errors);
+      $_SESSION['field_errors'] = $errors;
     }
     header("Location: profile.php");
     exit();
@@ -151,7 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['logout'])) {
 // Get and clear session messages
 $success_message = $_SESSION['msg'] ?? '';
 $error_message = $_SESSION['err'] ?? '';
-unset($_SESSION['msg'], $_SESSION['err']);
+$field_errors = $_SESSION['field_errors'] ?? [];
+unset($_SESSION['msg'], $_SESSION['err'], $_SESSION['field_errors']);
 
 // Determine image path based on role
 $imagePath = $user['image'] ?? 'default.png';
@@ -192,7 +193,7 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
   <title>SCCI - <?php echo htmlspecialchars($user['user_name']); ?> Profile</title>
 </head>
 
-<body>
+<body <?php echo !empty($field_errors) ? 'data-has-errors="true"' : ''; ?>>
   <?php
 
   include('./includes/nav.php');
@@ -289,7 +290,7 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
                   <div class="socialItem">
                     <i class="fa-solid fa-phone"></i>
                     <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
-                      0<?php echo htmlspecialchars($user['phone']); ?>
+                      <?php echo htmlspecialchars($user['phone']); ?>
                     </a>
                   </div>
 
@@ -366,21 +367,21 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
               <label for="user_name">Name</label>
               <input type="text" name="user_name" id="user_name"
                 value="<?php echo htmlspecialchars($user['user_name']); ?>" placeholder="Enter your name">
-              <span class="error-msg" id="error-user_name"></span>
+              <span class="error-msg" id="error-user_name"><?php echo $field_errors['user_name'] ?? ''; ?></span>
             </div>
 
             <div class="input-group">
               <label for="email">E-mail</label>
               <input type="email" name="email" id="email" value="<?php echo htmlspecialchars($user['email']); ?>"
                 placeholder="Enter your email">
-              <span class="error-msg" id="error-email"></span>
+              <span class="error-msg" id="error-email"><?php echo $field_errors['email'] ?? ''; ?></span>
             </div>
 
             <div class="input-group">
               <label for="phone">Phone</label>
               <input type="tel" name="phone" id="phone" value="<?php echo htmlspecialchars($user['phone']); ?>"
                 placeholder="Enter your phone">
-              <span class="error-msg" id="error-phone"></span>
+              <span class="error-msg" id="error-phone"><?php echo $field_errors['phone'] ?? ''; ?></span>
             </div>
 
             <div class="input-group passwordGroup">
@@ -392,7 +393,7 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
                   <i class="fas fa-eye-slash"></i>
                 </span>
               </div>
-              <span class="error-msg" id="error-password"></span>
+              <span class="error-msg" id="error-password"><?php echo $field_errors['password'] ?? ''; ?></span>
             </div>
 
             <div class="input-group">
@@ -404,7 +405,7 @@ if (isset($user['role']) && ($user['role'] == 4 or $user['role'] == 5)) {
                   <i class="fas fa-eye-slash"></i>
                 </span>
               </div>
-              <span class="error-msg" id="error-confirm_password"></span>
+              <span class="error-msg" id="error-confirm_password"><?php echo $field_errors['confirm_password'] ?? ''; ?></span>
             </div>
 
             <div class="input-group">

@@ -748,11 +748,16 @@ body.no-scroll {
 
 /* Validation Styles */
 .error-msg {
-  display: none;
+  display: block;
+  min-height: 1em;
   color: #ff3b3b;
   font-size: 0.8rem;
   margin-top: 4px;
   font-weight: 500;
+}
+
+.error-msg:empty {
+  display: none;
 }
 
 input.invalid {

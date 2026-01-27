@@ -17,20 +17,25 @@ function validatePassword($password) {
     
     // Check minimum length
     if (strlen($password) < 8) {
+        $errors[] = "at least 8 characters";
     }
     
     // Check for uppercase letter
     if (!preg_match('/[A-Z]/', $password)) {
+        $errors[] = "one uppercase letter";
     }
     
     // Check for lowercase letter
     if (!preg_match('/[a-z]/', $password)) {
+        $errors[] = "one lowercase letter";
     }
     
-    // Check for special character
-    if (!preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password)) {
+    // Check for numbers
+    if(!preg_match('/[0-9]/',$password)) {
+        $errors[] = "one number";
     }
-    
+
+    return $errors;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
@@ -185,7 +190,7 @@ $run_w = mysqli_query($connect, $select_w);
         <div class="input-group password-group">
             <label>Password</label>
             <div class="password-wrapper">
-                <input type="password" name="password" id="password" placeholder="••••••••" required oncopy="return false" oncut="return false" onpaste="return false">
+                <input type="password" name="password" id="password" placeholder="Aa123..." required oncopy="return false" oncut="return false" onpaste="return false">
                 <span class="toggle-password-btn" id="togglePasswordBtn">
                     <i class="fas fa-eye-slash"></i>
                 </span>
@@ -197,7 +202,7 @@ $run_w = mysqli_query($connect, $select_w);
         <div class="input-group password-group">
             <label>Confirm Password</label>
             <div class="password-wrapper">
-                <input type="password" name="cpassword" id="cpassword" placeholder="••••••••" required oncopy="return false" oncut="return false" onpaste="return false">
+                <input type="password" name="cpassword" id="cpassword" placeholder="Aa123..." required oncopy="return false" oncut="return false" onpaste="return false">
                 <span class="toggle-password-btn" id="toggleCPasswordBtn">
                     <i class="fas fa-eye-slash"></i>
                 </span>
@@ -281,7 +286,7 @@ setTimeout(() => {
     Swal.fire({
         icon: 'success',
         title: 'Account Created Successfully!',
-        html: '<p style="margin-bottom: 10px; font-size: 16px;">Your account has been created successfully.</p><p style="font-size: 15px; color: #666;">Your data is currently being reviewed by the <strong style="color: #d4a574; font-weight: 700; text-transform: uppercase;">IT Team</strong>.</p>',
+        html: '<p style="margin-bottom: 10px; font-size: 16px;">Your account has been created successfully.</p><p style="font-size: 15px; color: #666;">Your data is currently being reviewed by the <strong style="color: #be1919ff; font-weight: 700; text-transform: uppercase;">IT Team</strong>.</p>',
         confirmButtonText: 'OK',
         allowOutsideClick: false,
         customClass: {
@@ -305,7 +310,7 @@ setTimeout(() => {
             document.body.classList.remove('no-scroll');
         }
     }).then(() => {
-        window.location.href = '../index.php';
+        window.location.href = '../auth/registerParticipant.php';
     });
 }, 300);
 </script>

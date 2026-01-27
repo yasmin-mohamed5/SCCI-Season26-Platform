@@ -140,7 +140,7 @@ if (isset($user['role']) && $user['role'] == 4 or $user['role'] == 5) {
                <div class="socialItem">
                   <i class="fa-solid fa-phone"></i>
                   <a href="tel:0<?php echo htmlspecialchars($user['phone']); ?>">
-                    0<?php echo htmlspecialchars($user['phone']); ?>
+                    <?php echo htmlspecialchars($user['phone']); ?>
                   </a>
               </div>
               <!-- LinkedIn -->
