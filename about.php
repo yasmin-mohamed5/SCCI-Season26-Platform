@@ -27,9 +27,9 @@ include './includes/config.php';
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/root.css">
-    <link rel="stylesheet" href="./assets/css/about.css">
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/about.css?v=<?= ASSET_VERSION ?>">
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>SCCI - About</title>
@@ -259,8 +259,8 @@ include './includes/config.php';
             anchorPlacement: 'top-bottom'
         });
     </script>
-    <script src="./assets/js/all.min.js"></script>
-    <script src="./assets/js/about.js"></script>
+    <script src="./assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="./assets/js/about.js?v=<?= ASSET_VERSION ?>"></script>
 </body>
 
 </html>

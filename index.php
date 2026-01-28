@@ -24,7 +24,7 @@
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- css -->
-  <link rel="stylesheet" href="./assets/css/index.css" />
+  <link rel="stylesheet" href="./assets/css/index.css?v=<?= ASSET_VERSION ?>" />
   <title>SCCI - Landing</title>
 </head>
 
@@ -50,7 +50,7 @@
       </header>
     </section>
   </main>
-  <script src="./assets/js/indexRedirect.js" defer></script>
+  <script src="./assets/js/indexRedirect.js?v=<?= ASSET_VERSION ?>" defer></script>
 </body>
 
 </html>

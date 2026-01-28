@@ -62,13 +62,13 @@ if ($group === 'technical') {
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/css/root.css" />
-    <link rel="stylesheet" href="./assets/css/crew.css" />
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>" />
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>" />
+    <link rel="stylesheet" href="./assets/css/crew.css?v=<?= ASSET_VERSION ?>" />
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title> SCCI - <?php echo $crew_ids['head']; ?></title>
-    <link rel="stylesheet" href="./assets/css/sub_crew.css" />
+    <link rel="stylesheet" href="./assets/css/sub_crew.css?v=<?= ASSET_VERSION ?>" />
   </head>
 
 <body>
@@ -399,9 +399,9 @@ if ($group === 'technical') {
             anchorPlacement: 'top-bottom'
         });
     </script>
-    <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/sub_crew.js"></script>
-    <script src="./assets/js/all.min.js"></script>
+    <script src="./assets/js/index.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="./assets/js/sub_crew.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="./assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
 </body>
 <?php
 include './includes/footer.php';

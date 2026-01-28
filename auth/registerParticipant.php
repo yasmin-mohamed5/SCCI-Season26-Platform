@@ -150,8 +150,8 @@ $run_w = mysqli_query($connect, $select_w);
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- css -->
-     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/registerParticipant.css">
+     <link rel="stylesheet" href="../assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="../assets/css/registerParticipant.css?v=<?= ASSET_VERSION ?>">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>SCCI - Register</title>
   </head>
@@ -228,8 +228,8 @@ $run_w = mysqli_query($connect, $select_w);
             <div class="file-upload-wrapper">
                 <input type="file" name="image" id="image" accept="image/*" required style="display: none;">
                 <label for="image" class="file-upload-label" id="fileLabel">
-                    <span class="file-upload-btn">Choose File</span>
-                    <span class="file-upload-text" id="fileName">No file chosen</span>
+                    <span class="file-upload-btn">Choose Image</span>
+                    <span class="file-upload-text" id="fileName">No image chosen</span>
                 </label>
             </div>
             <div class="error-text" id="error-image"></div>
@@ -315,9 +315,9 @@ setTimeout(() => {
 }, 300);
 </script>
 <?php } ?>
-     <script src="../assets/js/all.min.js"></script>
-    <script src="../assets/js/registerParticipant.js?v=<?php echo time(); ?>"></script>
-    <script src="../assets/js/password-strength-indicator.js"></script>
+     <script src="../assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="../assets/js/registerParticipant.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="../assets/js/password-strength-indicator.js?v=<?= ASSET_VERSION ?>"></script>
     <script>
         // Client-side image size validation
         document.getElementById('image').addEventListener('change', function() {

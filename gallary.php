@@ -16,10 +16,10 @@ include './includes/config.php';
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/root.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="assets/css/gallary.css">
+    <link rel="stylesheet" href="assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="assets/css/navbar.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="assets/css/footer.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="assets/css/gallary.css?v=<?= ASSET_VERSION ?>">
     <!-- AOS library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -185,8 +185,8 @@ include './includes/config.php';
             anchorPlacement: 'top-bottom'
         });
     </script>
-    <script src="assets/js/gallary.js?v=<?php echo time(); ?>" defer></script>
-    <script src="assets/js/gallary-optimization.js" defer></script>
+    <script src="assets/js/gallary.js?v=<?= ASSET_VERSION ?>" defer></script>
+    <script src="assets/js/gallary-optimization.js?v=<?= ASSET_VERSION ?>" defer></script>
 </body>
 
 </html>

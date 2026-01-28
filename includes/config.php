@@ -1,5 +1,7 @@
 <?php
 date_default_timezone_set('Africa/Cairo');
+define('ASSET_VERSION', '1.0.1');
+
 
 // Error Reporting & Logging
 // Hide errors from the browser (Security)

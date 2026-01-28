@@ -81,9 +81,9 @@ if(isset($_POST['login1'])){
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="../assets/css/root.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/login.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="../assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="../assets/css/login.css?v=<?= ASSET_VERSION ?>">
     <title>SCCI - Login</title>
 </head>
 
@@ -147,8 +147,8 @@ if(isset($_POST['login1'])){
             </form>
         </section>
     </main>
-    <script src="../assets/js/all.min.js"></script>
-    <script src="../assets/js/index.js?v=<?php echo time(); ?>"></script>
+    <script src="../assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="../assets/js/index.js?v=<?= ASSET_VERSION ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleBtn = document.querySelector('#togglePasswordBtn');
