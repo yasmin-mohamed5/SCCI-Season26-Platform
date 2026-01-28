@@ -194,7 +194,7 @@ WHERE c.committee_id = ?
                             </div>
 
                             <div class="flipSide flipBack"
-                                data-title="<?= strtoupper(htmlspecialchars($member['workshop_name'] ?? '')) ?>">
+                                data-title="<?= strtoupper(htmlspecialchars($committee['committee_member'] ?? '')) ?>">
                                 <div class="backCard">
                                     <div class="memberInfo">
                                         <div class="memberImageContainer">
@@ -206,10 +206,11 @@ WHERE c.committee_id = ?
                                         <div class="memberName">
                                             <h5><?= htmlspecialchars($member['user_name'] ?? '') ?></h5>
                                         </div>
-
+                                    <?php if (!empty($member['workshop_name'])) : ?>
                                         <div class="memberTitle">
-                                            <p><?= htmlspecialchars($committee['committee_member'] ?? '') ?></p>
+                                            <p><?= htmlspecialchars($member['workshop_name'] ?? '') ?></p>
                                         </div>
+                                    <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
