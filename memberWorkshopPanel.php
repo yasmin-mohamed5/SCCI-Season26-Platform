@@ -1193,7 +1193,7 @@ if (isset($_POST['resetAttendance'])) {
 
           <!-- upload task file OR URL -->
           <div class="sideInputs">
-            <div class="fileUpload" style="flex: 1;">
+            <div class="inputsBox" style="flex: 1; display: flex; flex-direction: column;">
               <div class="formLabel">Upload File:</div>
               <div class="uploadContainer">
                 <label class="formLabel uploadLabel">
@@ -1216,12 +1216,12 @@ if (isset($_POST['resetAttendance'])) {
               </div>
             </div>
 
-            <div class="inputsBox" style="flex: 1; padding: 20px; border: 2px dashed #ddd; border-radius: 12px; display: flex; flex-direction: column; justify-content: center;">
-              <div class="groupInputs columnGroup">
-                <label class="formLabel" for="task_url">OR Paste URL Link:</label>
+            <div class="inputsBox" style="flex: 1; display: flex; flex-direction: column;">
+              <label class="formLabel" for="task_url">OR Paste URL Link:</label>
+              <div class="urlInputContainer">
+                <p style="font-size: 10px; color: #777; margin-bottom: 5px;">* If you provide a URL, the file upload will be ignored.</p>
                 <input class="textInput" type="url" name="task_url" id="task_url" placeholder="https://example.com/file">
               </div>
-              <p style="font-size: 10px; color: #777; margin-top: 5px;">* If you provide a URL, the file upload will be ignored.</p>
             </div>
           </div>
 
@@ -1326,7 +1326,7 @@ if (isset($_POST['resetAttendance'])) {
 
           <!-- upload material file OR URL -->
           <div class="sideInputs">
-            <div class="fileUpload" style="flex: 1;">
+            <div class="inputsBox" style="flex: 1; display: flex; flex-direction: column;">
               <div class="formLabel">Upload File:</div>
               <div class="uploadContainer">
                 <label class="formLabel uploadLabel">
@@ -1348,12 +1348,12 @@ if (isset($_POST['resetAttendance'])) {
               </div>
             </div>
 
-            <div class="inputsBox" style="flex: 1; padding: 20px; border: 2px dashed #ddd; border-radius: 12px; display: flex; flex-direction: column; justify-content: center;">
-              <div class="formGroup">
-                <label class="formLabel" for="material_url">OR Paste URL Link:</label>
+            <div class="inputsBox" style="flex: 1; display: flex; flex-direction: column;">
+              <label class="formLabel" for="material_url">OR Paste URL Link:</label>
+              <div class="urlInputContainer">
+                <p style="font-size: 10px; color: #777; margin-bottom: 5px;">* If you provide a URL, the file upload will be ignored.</p>
                 <input class="textInput" type="url" name="material_url" id="material_url" placeholder="https://example.com/material">
               </div>
-              <p style="font-size: 10px; color: #777; margin-top: 5px;">* If you provide a URL, the file upload will be ignored.</p>
             </div>
           </div>
 

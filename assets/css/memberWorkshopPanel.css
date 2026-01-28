@@ -261,12 +261,10 @@
 
 .sessionWhite {
   border: var(--color-white-gradient) 2px solid;
-  background: linear-gradient(
-    90deg,
-    var(--color-white-gradient),
-    var(--color-white),
-    var(--color-white-gradient)
-  );
+  background: linear-gradient(90deg,
+      var(--color-white-gradient),
+      var(--color-white),
+      var(--color-white-gradient));
 }
 
 .sessionBlue {
@@ -478,18 +476,16 @@ Table
   align-items: center;
   color: var(--color-secondary);
   border: grey 2px solid;
-  background: linear-gradient(
-    90deg,
-    var(--color-white-gradient),
-    var(--color-white),
-    var(--color-white-gradient)
-  );
+  background: linear-gradient(90deg,
+      var(--color-white-gradient),
+      var(--color-white),
+      var(--color-white-gradient));
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 /* attended */
-.radioOption input:checked + .evaluateCheckTask {
+.radioOption input:checked+.evaluateCheckTask {
   color: white;
   border: 1px solid #017001;
   background: linear-gradient(90deg, #017001, #39b839, #017001);
@@ -498,16 +494,14 @@ Table
 .evaluateCheckTask:hover {
   color: #017001;
   border: 1px solid rgba(1, 112, 1, 0.4);
-  background: linear-gradient(
-    90deg,
-    rgba(1, 112, 1, 0.4),
-    rgba(57, 184, 57, 0.4),
-    rgba(1, 112, 1, 0.4)
-  );
+  background: linear-gradient(90deg,
+      rgba(1, 112, 1, 0.4),
+      rgba(57, 184, 57, 0.4),
+      rgba(1, 112, 1, 0.4));
 }
 
 /* not attended */
-.radioOption input:checked + .evaluateXtask {
+.radioOption input:checked+.evaluateXtask {
   color: white;
   border: 1px solid #9b1313;
   background: linear-gradient(90deg, #9b1313, #d64141, #9b1313);
@@ -516,12 +510,10 @@ Table
 .evaluateXtask:hover {
   color: #9b1313;
   border: 1px solid rgba(155, 19, 19, 0.4);
-  background: linear-gradient(
-    90deg,
-    rgba(155, 19, 19, 0.4),
-    rgba(214, 65, 65, 0.4),
-    rgba(155, 19, 19, 0.4)
-  );
+  background: linear-gradient(90deg,
+      rgba(155, 19, 19, 0.4),
+      rgba(214, 65, 65, 0.4),
+      rgba(155, 19, 19, 0.4));
 }
 
 /* task link */
@@ -1217,11 +1209,9 @@ body.no-scroll {
 .uploadIcon {
   width: 70px;
   height: 70px;
-  background: linear-gradient(
-    135deg,
-    var(--color-secondary),
-    var(--color-secondary-dark)
-  );
+  background: linear-gradient(135deg,
+      var(--color-secondary),
+      var(--color-secondary-dark));
   /* background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark)); */
   border-radius: 50%;
   display: flex;
@@ -1545,7 +1535,35 @@ body.no-scroll {
    RESPONSIVE SECTION
 =================================== */
 
+.urlInputContainer {
+  margin-top: 0.5rem;
+  background-color: var(--color-gray-lighter) !important;
+  border: 2px dashed var(--color-secondary);
+  border-radius: 16px;
+  padding: 20px;
+  /* Reverted padding */
+  margin-bottom: 25px;
+  /* Added spacing between box and button */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* min-height removed for responsive, added in media query below */
+  transition: ease-in-out 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.urlInputContainer:hover {
+  border-color: var(--color-secondary);
+  background-color: #e6eaf5;
+}
+
 @media (min-width: 950px) {
+  .urlInputContainer {
+    min-height: 300px;
+    padding: var(--space-8);
+  }
+
   .materialPage {
     width: 88%;
     margin: 0 auto;
@@ -1783,12 +1801,10 @@ body.no-scroll {
 }
 
 .activityHeader {
-  background: linear-gradient(
-    135deg,
-    #ff6b6b 0%,
-    #ff4757 50%,
-    #c44569 100%
-  ) !important;
+  background: linear-gradient(135deg,
+      #ff6b6b 0%,
+      #ff4757 50%,
+      #c44569 100%) !important;
   position: sticky;
   padding: var(--space-5);
   /* border-radius: 15px; */
@@ -1799,6 +1815,7 @@ body.no-scroll {
 }
 
 @keyframes headerPulse {
+
   0%,
   100% {
     transform: scale(1);
@@ -1818,11 +1835,9 @@ body.no-scroll {
   text-align: center;
   margin-bottom: var(--space-6);
   padding: var(--space-6);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 107, 107, 0.1),
-    rgba(196, 69, 105, 0.1)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 107, 107, 0.1),
+      rgba(196, 69, 105, 0.1));
   border-radius: var(--radius-2xl);
   border: 3px dashed var(--color-secondary);
   position: relative;
@@ -1839,6 +1854,7 @@ body.no-scroll {
 }
 
 @keyframes avatarFloat {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
@@ -1860,11 +1876,9 @@ body.no-scroll {
 .avatarCircle {
   width: 120px;
   height: 120px;
-  background: linear-gradient(
-    135deg,
-    var(--color-secondary) 0%,
-    var(--color-secondary-dark) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--color-secondary) 0%,
+      var(--color-secondary-dark) 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1878,6 +1892,7 @@ body.no-scroll {
 }
 
 @keyframes avatarPulse {
+
   0%,
   100% {
     box-shadow:
@@ -1901,6 +1916,7 @@ body.no-scroll {
 }
 
 @keyframes iconBop {
+
   0%,
   100% {
     transform: scale(1);
@@ -1918,17 +1934,16 @@ body.no-scroll {
   transform: translate(-50%, -50%);
   width: 140px;
   height: 140px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 107, 107, 0.4),
-    transparent 70%
-  );
+  background: radial-gradient(circle,
+      rgba(255, 107, 107, 0.4),
+      transparent 70%);
   border-radius: 50%;
   z-index: 1;
   animation: glowPulse 2s ease-in-out infinite;
 }
 
 @keyframes glowPulse {
+
   0%,
   100% {
     transform: translate(-50%, -50%) scale(1);
@@ -1969,6 +1984,7 @@ body.no-scroll {
 }
 
 @keyframes iconBounce {
+
   0%,
   100% {
     transform: translateY(0) rotate(0deg);
@@ -2039,11 +2055,9 @@ body.no-scroll {
   width: 60px;
   height: 60px;
   min-width: 60px;
-  background: linear-gradient(
-    135deg,
-    var(--color-primary),
-    var(--color-primary-dark)
-  );
+  background: linear-gradient(135deg,
+      var(--color-primary),
+      var(--color-primary-dark));
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2118,11 +2132,9 @@ body.no-scroll {
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-5) var(--space-10);
-  background: linear-gradient(
-    135deg,
-    var(--color-secondary),
-    var(--color-secondary-dark)
-  );
+  background: linear-gradient(135deg,
+      var(--color-secondary),
+      var(--color-secondary-dark));
   color: var(--color-primary-dark);
   font-size: var(--fs-xl);
   font-weight: var(--fw-black);
@@ -2150,6 +2162,7 @@ body.no-scroll {
 }
 
 @keyframes btnPulse {
+
   0%,
   100% {
     box-shadow: 0 0 0 0 rgba(218, 165, 32, 0.4);
@@ -2170,12 +2183,10 @@ body.no-scroll {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
+  background: linear-gradient(45deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
   transform: rotate(45deg);
   animation: btnGlowMove 3s linear infinite;
 }
@@ -2214,11 +2225,9 @@ body.no-scroll {
   justify-content: center;
   gap: var(--space-8);
   padding: var(--space-5);
-  background: linear-gradient(
-    145deg,
-    rgba(0, 0, 91, 0.05),
-    rgba(0, 0, 91, 0.1)
-  );
+  background: linear-gradient(145deg,
+      rgba(0, 0, 91, 0.05),
+      rgba(0, 0, 91, 0.1));
   border-radius: var(--radius-xl);
 }
 
@@ -2415,7 +2424,7 @@ body.no-scroll {
   position: relative;
 }
 
-.filterGroup > span {
+.filterGroup>span {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
