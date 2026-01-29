@@ -382,7 +382,7 @@ function renderStars($rating)
     <div class="navbar-spacer"></div>
 
     <!-- Floating Background Decorations -->
-    <div class="floatingDecorations">
+    <!-- <div class="floatingDecorations">
         <i class="fas fa-star decoration-icon" style="top: 10%; left: 5%; animation-delay: 0s;"></i>
         <i class="fas fa-sparkles decoration-icon" style="top: 20%; right: 8%; animation-delay: 2s;"></i>
         <i class="fas fa-code decoration-icon" style="top: 35%; left: 10%; animation-delay: 4s;"></i>
@@ -393,7 +393,7 @@ function renderStars($rating)
         <i class="fas fa-laptop-code decoration-icon" style="top: 15%; right: 20%; animation-delay: 1.5s;"></i>
         <i class="fas fa-lightbulb decoration-icon" style="top: 45%; left: 3%; animation-delay: 3.5s;"></i>
         <i class="fas fa-certificate decoration-icon" style="top: 60%; right: 10%; animation-delay: 4.5s;"></i>
-    </div>
+    </div> -->
 
     <div class="miniNav">
         <div class="panelSvg">
