@@ -159,7 +159,7 @@ if (isset($_SESSION['user_id'])) {
         <?php endif; ?>
     </div>
 </aside>
-<script src="/SCCI-Season26-Platform/assets/js/index.js?v=<?php echo time(); ?>"></script>
+<script src="/SCCI-Season26-Platform/assets/js/index.js?v=<?= ASSET_VERSION ?>"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Get current path

@@ -42,9 +42,9 @@ if (!in_array($_SESSION['role'], [4, 5])) {
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/root.css">
-    <link rel="stylesheet" href="./assets/css/contactPanel.css">
-    <link rel="stylesheet" href="./assets/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/contactPanel.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -93,7 +93,7 @@ if (!in_array($_SESSION['role'], [4, 5])) {
             <button class="nav-arrow next-btn"><i class="fa-solid fa-caret-right"></i></button>
         </div>
     </main>
-    <script src="./assets/js/all.min.js"></script>
+    <script src="./assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -105,7 +105,7 @@ if (!in_array($_SESSION['role'], [4, 5])) {
             anchorPlacement: 'top-bottom'
         });
     </script>
-    <script src="assets/js/pagination.js"></script>
+    <script src="assets/js/pagination.js?v=<?= ASSET_VERSION ?>"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             setupPagination('contactTableScroll', 'contactPagination');

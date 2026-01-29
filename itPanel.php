@@ -170,9 +170,9 @@ $rowCountUsers = mysqli_num_rows($usersResult);
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet" />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/root.css">
-    <link rel="stylesheet" href="./assets/css/itPanel.css">
-    <link rel="stylesheet" href="./assets/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/itPanel.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>SCCI - IT Panel</title>
 </head>
@@ -294,8 +294,8 @@ $rowCountUsers = mysqli_num_rows($usersResult);
             <button class="nav-arrow next-btn"><i class="fa-solid fa-caret-right"></i></button>
         </div>
     </main>
-    <script src="assets/js/all.min.js"></script>
-    <script src="assets/js/itPanel.js?v=<?= time() ?>"></script>
+    <script src="assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="assets/js/itPanel.js?v=<?= ASSET_VERSION ?>"></script>
     <script>
         function confirmDelete() {
             return confirm('Are you sure you want to delete this user? This action cannot be undone.');

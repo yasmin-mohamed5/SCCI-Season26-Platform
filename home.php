@@ -46,9 +46,9 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/root.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/home.css?v=<?= ASSET_VERSION ?>">
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>SCCI - Home</title>
@@ -435,9 +435,9 @@ if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['message'
 
     <?php include './includes/footer.php'; ?>
     <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
-    <script src="./assets/js/all.min.js" defer></script>
-    <script src="./assets/js/home.validation.js" defer></script>
-    <script src="./assets/js/home.js" defer></script>
+    <script src="./assets/js/all.min.js?v=<?= ASSET_VERSION ?>" defer></script>
+    <script src="./assets/js/home.validation.js?v=<?= ASSET_VERSION ?>" defer></script>
+    <script src="./assets/js/home.js?v=<?= ASSET_VERSION ?>" defer></script>
 </body>
 
 </html>

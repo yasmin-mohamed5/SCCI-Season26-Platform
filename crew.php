@@ -29,9 +29,9 @@ include './includes/config.php';
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/css/root.css" />
-    <link rel="stylesheet" href="./assets/css/crew.css" />
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>" />
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>" />
+    <link rel="stylesheet" href="./assets/css/crew.css?v=<?= ASSET_VERSION ?>" />
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>SCCI - Crew</title>
@@ -258,9 +258,9 @@ if ($result) {
             anchorPlacement: 'top-bottom'
         });
     </script>
-    <script src="./assets/js/index.js"></script>
-    <script src="./assets/js/crew.js?v=<?php echo time(); ?>_2"></script>
-    <script src="./assets/js/all.min.js"></script>
+    <script src="./assets/js/index.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="./assets/js/crew.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="./assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
 </body>
 <?php
 include './includes/footer.php';

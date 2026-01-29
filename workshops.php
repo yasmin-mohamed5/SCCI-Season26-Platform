@@ -30,10 +30,10 @@ include './includes/config.php';
       rel="stylesheet"
     />
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/all.min.css" />
-    <link rel="stylesheet" href="./assets/css/root.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assets/css/navbar.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="./assets/css/workshops.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>" />
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/navbar.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/workshops.css?v=<?= ASSET_VERSION ?>">
     <!-- aos -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>SCCI - Workshops</title>
@@ -129,8 +129,8 @@ include './includes/config.php';
     <?php include 'includes/footer.php'; ?>
 
     <!-- Scripts -->
-    <script src="assets/js/all.min.js" defer></script>
-    <script src="assets/js/workshops.js" defer></script>
+    <script src="assets/js/all.min.js?v=<?= ASSET_VERSION ?>" defer></script>
+    <script src="assets/js/workshops.js?v=<?= ASSET_VERSION ?>" defer></script>
 
     <!-- AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>

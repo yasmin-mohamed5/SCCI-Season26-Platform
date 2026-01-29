@@ -57,12 +57,12 @@ if (isset($user['role']) && $user['role'] == 4 or $user['role'] == 5) {
     rel="stylesheet"
   />
   <!-- css -->
-  <link rel="stylesheet" href="./assets/css/root.css?v=<?php echo time(); ?>">
-  <link rel="stylesheet" href="./assets/css/all.min.css">
-  <link rel="stylesheet" href="./assets/css/profile.css?v=<?php echo time(); ?>">
+  <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
+  <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
+  <link rel="stylesheet" href="./assets/css/profile.css?v=<?= ASSET_VERSION ?>">
   <!-- aos -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <script src="./assets/js/profile.js"></script>
+  <script src="./assets/js/profile.js?v=<?= ASSET_VERSION ?>"></script>
   <title>SCCI - <?php echo htmlspecialchars($user['user_name']); ?> Profile</title>
 </head>
 
@@ -268,8 +268,8 @@ if (isset($user['role']) && $user['role'] == 4 or $user['role'] == 5) {
           anchorPlacement: 'top-bottom'
       });
   </script>
-  <script src="assets/js/profile.js" defer></script>
-  <script src="assets/js/all.min.js" defer></script>
+  <script src="assets/js/profile.js?v=<?= ASSET_VERSION ?>" defer></script>
+  <script src="assets/js/all.min.js?v=<?= ASSET_VERSION ?>" defer></script>
 </body>
 
 </html>

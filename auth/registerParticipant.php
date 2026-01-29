@@ -76,12 +76,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
             if (!in_array($imageExtension, $allowedExtensions)) {
                 $error = "Only Image files (JPG, PNG, GIF, WEBP) are allowed";
-            } elseif ($_FILES['image']['size'] > 1 * 1024 * 1024) {
-                // 1 * 1024 * 1024 = 1,048,576 bytes = 1MB
-                $error = "Image size must be less than 1MB";
+            } elseif ($_FILES['image']['size'] > 2 * 1024 * 1024) {
+                // 2 * 1024 * 1024 = 2,097,152 bytes = 2MB
+                $error = "Image size must be less than 2MB";
             } else {
                 $tempname = $_FILES['image']['tmp_name'];
-                $folder = "../assets/uploadedImages/" . $image;
+                
+                // Sanitize and ensure unique name
+                $originalName = pathinfo($image, PATHINFO_FILENAME);
+                $safeName = preg_replace("/[^a-zA-Z0-9_-]/", "_", $originalName);
+                $uniqueName = "user_" . time() . "_" . $safeName . "." . $imageExtension;
+                
+                $folder = "../assets/uploadedImages/" . $uniqueName;
 
                 if (move_uploaded_file($tempname, $folder)) {
 
@@ -90,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                  `password`,`role`,`Image`,`status`)
                 VALUES
                 (NULL,'$workshop','$name','$email','$phone',
-                 '$passwordhashing','1','$image',0)";   
+                 '$passwordhashing','1','$uniqueName',0)";   
 
                 if (mysqli_query($connect, $insert_p)) {
                     $_SESSION['success'] = "Registered Successfully";
@@ -150,8 +156,8 @@ $run_w = mysqli_query($connect, $select_w);
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- css -->
-     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/registerParticipant.css">
+     <link rel="stylesheet" href="../assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="../assets/css/registerParticipant.css?v=<?= ASSET_VERSION ?>">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>SCCI - Register</title>
   </head>
@@ -228,8 +234,8 @@ $run_w = mysqli_query($connect, $select_w);
             <div class="file-upload-wrapper">
                 <input type="file" name="image" id="image" accept="image/*" required style="display: none;">
                 <label for="image" class="file-upload-label" id="fileLabel">
-                    <span class="file-upload-btn">Choose File</span>
-                    <span class="file-upload-text" id="fileName">No file chosen</span>
+                    <span class="file-upload-btn">Choose Image</span>
+                    <span class="file-upload-text" id="fileName">No image chosen</span>
                 </label>
             </div>
             <div class="error-text" id="error-image"></div>
@@ -315,20 +321,20 @@ setTimeout(() => {
 }, 300);
 </script>
 <?php } ?>
-     <script src="../assets/js/all.min.js"></script>
-    <script src="../assets/js/registerParticipant.js?v=<?php echo time(); ?>"></script>
-    <script src="../assets/js/password-strength-indicator.js"></script>
+     <script src="../assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="../assets/js/registerParticipant.js?v=<?= ASSET_VERSION ?>"></script>
+    <script src="../assets/js/password-strength-indicator.js?v=<?= ASSET_VERSION ?>"></script>
     <script>
         // Client-side image size validation
         document.getElementById('image').addEventListener('change', function() {
             const file = this.files[0];
-            const maxSize = 1 * 1024 * 1024; // 1MB
+            const maxSize = 2 * 1024 * 1024; // 2MB
 
             if (file && file.size > maxSize) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops!',
-                    text: 'Image size must be less than 1MB',
+                    text: 'Image size must be less than 2MB',
                     confirmButtonText: 'Try Again',
                     customClass: {
                         popup: 'swal-custom-popup',
