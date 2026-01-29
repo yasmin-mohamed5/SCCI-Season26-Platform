@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof AOS !== "undefined") {
     AOS.init({
       startEvent: 'load',
-      
+
       duration: 1000,
       easing: "ease-in-out",
       once: true,
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           const counter = entry.target;
           const target = Number(counter.dataset.target);
-          const duration = 4500; // ms
+          const duration = 3500; // ms
           const startTime = performance.now();
 
           function animateCounter(currentTime) {
