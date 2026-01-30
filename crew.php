@@ -33,7 +33,6 @@ include './includes/config.php';
     <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>" />
     <link rel="stylesheet" href="./assets/css/crew.css?v=<?= ASSET_VERSION ?>" />
     <!-- aos -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>SCCI - Crew</title>
   </head>
 

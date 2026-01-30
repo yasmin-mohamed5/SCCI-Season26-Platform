@@ -63,7 +63,6 @@ WHERE c.committee_id = ?
     <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>" />
     <link rel="stylesheet" href="./assets/css/crewDetails.css?v=<?= ASSET_VERSION ?>" />
     <!-- aos -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <title>SCCI - <?php echo $page_title; ?></title>
   </head>
 

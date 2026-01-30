@@ -14,9 +14,10 @@ body {
 }
 
 .mainTitle {
-  font-size: var(--fs-4xl);
+  font-size: 3.7rem !important;
   font-family: "Irish Grover", cursive;
-  margin-bottom: var(--space-4);
+  margin: var(--space-4) auto;
+  width: 70%;
 }
 
 .textPrimary {
@@ -29,11 +30,9 @@ body {
 
 /* ===== Head Section Layout ===== */
 .headLayout {
-  display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(300px, 1.5fr);
-  gap: var(--space-6);
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: var(--space-8);
 }
 
 .headCard {
@@ -84,7 +83,7 @@ body {
 
 .paperScrollTitle {
   font-family: 'Irish Grover', cursive;
-  font-size: var(--fs-2xl);
+  font-size: 2.4rem;
   font-weight: 900;
   color: var(--color-parchment);
   text-shadow:
@@ -461,7 +460,7 @@ a.memberCardLink:hover {
 .smCard {
   width: 100%;
   max-width: 380px;
-  aspect-ratio: 2/3;
+  aspect-ratio: 3/5;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -472,6 +471,17 @@ a.memberCardLink:hover {
 }
 
 /* ===== Responsive ===== */
+@media (max-width:1200px) and (min-width: 1000px) {
+  .sm-card, .smCard {
+    aspect-ratio: 4 / 7;
+}
+}
+@media (max-width: 1000px) {
+  .headLayout {
+    flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 900px) {
   .headLayout {
     grid-template-columns: 1fr;
@@ -494,7 +504,7 @@ a.memberCardLink:hover {
   }
 
   .mainTitle {
-    font-size: var(--fs-3xl);
+    font-size: var(--fs-2xl) !important;
   }
 
   .headCard {
@@ -559,7 +569,17 @@ a.memberCardLink:hover {
   }
 }
 
+@media (max-width: 600px) {
+  .smCard {
+    aspect-ratio: 2 / 3;
+  }
+}
+
 @media (max-width: 480px) {
+  .mainTitle {
+    font-size: 2.8rem !important;
+  }
+
   .membersGrid {
     grid-template-columns: 1fr;
     gap: var(--space-6);
@@ -582,7 +602,7 @@ a.memberCardLink:hover {
   .flipCard {
     height: auto;
     min-height: 500px;
-    aspect-ratio: 2/3;
+    aspect-ratio: 3/5;
   }
 
   .flipSide {
