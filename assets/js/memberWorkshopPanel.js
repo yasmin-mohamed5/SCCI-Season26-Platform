@@ -91,7 +91,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================================================
-     3) POPUPS OPEN/CLOSE (Feedback modal + review popups)
+     3) PAGINATION INITIALIZATION
+  ========================================================= */
+  let workshopPagination;
+  let reviewPagination;
+
+  function initPagination() {
+    if (typeof setupPagination === "function") {
+      workshopPagination = setupPagination("workshopTableScroll", "workshopPagination", 10);
+      reviewPagination = setupPagination("reviewTableScroll", "reviewPagination", 10);
+    }
+  }
+
+  // Initial call
+  initPagination();
+
+  /* =========================================================
+     4) POPUPS OPEN/CLOSE (Feedback modal + review popups)
   ========================================================= */
   // Open popup
   document.querySelectorAll(".evaluateFeedback").forEach((btn) => {
@@ -766,11 +782,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const taskMatch = taskFilter === "all" || taskStatus === taskFilter;
 
         if (attMatch && taskMatch) {
-          row.style.display = "";
+          row.removeAttribute('data-hidden-by-filter');
         } else {
-          row.style.display = "none";
+          row.setAttribute('data-hidden-by-filter', 'true');
         }
       });
+
+      if (reviewPagination && typeof reviewPagination.update === "function") {
+        reviewPagination.update();
+      }
     }
 
     reviewFilterBtns.forEach((btn) => {
