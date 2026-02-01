@@ -1,3 +1,10 @@
+# Config files
+includes/config.php
 
+# Database files
+*.sql
+*.db
+
+# Other files
 *.psd
 *.mp4g
