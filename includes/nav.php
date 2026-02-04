@@ -69,6 +69,7 @@ if (isset($_SESSION['user_id'])) {
         <?php
         if ($role == 5) {
             echo '<a href="/SCCI-Season26-Platform/headPanel.php" id="homeNavLine">head panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/adminDashboard.php" id="homeNavLine">Admin Board</a>';
         }
         ?>
         <?php
@@ -136,6 +137,7 @@ if (isset($_SESSION['user_id'])) {
                     <?php
         if ($role == 5) {
             echo '<a href="/SCCI-Season26-Platform/headPanel.php" id="homeNavLine">head panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/adminDashboard.php"><i class="fa-solid fa-gauge-high"></i> Admin Dashboard</a>';
         }
         ?>
         <?php
