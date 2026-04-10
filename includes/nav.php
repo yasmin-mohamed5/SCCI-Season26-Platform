@@ -6,6 +6,7 @@
 $user_image = 'default.png'; // Default fallback
 $role = 0;
 $committeeId = 0;
+$isAcademicParticipant = false;
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $role = $_SESSION['role'] ?? 0;
@@ -28,6 +29,15 @@ if (isset($_SESSION['user_id'])) {
         }
         mysqli_stmt_close($stmt);
     }
+
+    // Check if user is an academic participant (for academic participant panel nav link)
+    $stmtAcad = mysqli_prepare($connect, "SELECT participant_id FROM academic_participants WHERE participant_id = ? AND role = 3 LIMIT 1");
+    if ($stmtAcad) {
+        mysqli_stmt_bind_param($stmtAcad, "i", $user_id);
+        mysqli_stmt_execute($stmtAcad);
+        $isAcademicParticipant = mysqli_stmt_get_result($stmtAcad)->num_rows > 0;
+        mysqli_stmt_close($stmtAcad);
+    }
 }
 ?>
 
@@ -49,21 +59,27 @@ if (isset($_SESSION['user_id'])) {
         <a href="/SCCI-Season26-Platform/gallary.php" id="galleryNavLine">gallery</a>
         <a href="/SCCI-Season26-Platform/workshops.php" id="workshopsNavLine">workshops</a>
         <a href="/SCCI-Season26-Platform/crew.php" id="crewNavLine">crew</a>
-        
+
         <?php
         if ($role == 2 || $role == 1 || $role == 4 || $role == 5 || $committeeId == 6) {
-           echo '<div class="nav-separator"></div>';
+            echo '<div class="nav-separator"></div>';
         }
         ?>
 
         <?php
         if ($role == 2) {
             echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php" id="homeNavLine">member panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/academicMemberPanel.php" id="homeNavLine">Academic  Panel</a>';
         }
         ?>
         <?php
         if ($role == 1) {
             echo '<a href="/SCCI-Season26-Platform/participantWorkshopPanel.php" id="homeNavLine">participant panel</a>';
+        }
+        ?>
+        <?php
+        if ($role == 1) {
+            echo '<a href="/SCCI-Season26-Platform/academicParticipantPanel.php" id="homeNavLine">Academic  Panel </a>';
         }
         ?>
         <?php
@@ -73,9 +89,9 @@ if (isset($_SESSION['user_id'])) {
         }
         ?>
         <?php
-         if ($role == 5) {
+        if ($role == 5) {
             echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
-        
+
         }
         ?>
         <?php
@@ -122,6 +138,7 @@ if (isset($_SESSION['user_id'])) {
             <?php
             if ($role == 2) {
                 echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php"><i class="fa-solid fa-user-group"></i> member panel</a>';
+                echo '<a href="/SCCI-Season26-Platform/academicMemberPanel.php"><i class="fa-solid fa-graduation-cap"></i> AC member panel</a>';
             }
             ?>
             <?php
@@ -130,23 +147,28 @@ if (isset($_SESSION['user_id'])) {
             }
             ?>
             <?php
+            if ($isAcademicParticipant) {
+                echo '<a href="/SCCI-Season26-Platform/academicParticipantPanel.php"><i class="fa-solid fa-book-open"></i> AC participant panel</a>';
+            }
+            ?>
+            <?php
             if ($role == 4) {
                 echo '<a href="/SCCI-Season26-Platform/contactPanel.php"><i class="fa-solid fa-address-book"></i> contact panel</a>';
                 echo '<a href="/SCCI-Season26-Platform/headPanel.php"><i class="fa-solid fa-user-tie"></i> head panel</a>';
             }
             ?>
-                    <?php
-        if ($role == 5) {
-            echo '<a href="/SCCI-Season26-Platform/headPanel.php" id="homeNavLine">head panel</a>';
-            echo '<a href="/SCCI-Season26-Platform/adminDashboard.php"><i class="fa-solid fa-gauge-high"></i> Admin Dashboard</a>';
-        }
-        ?>
-        <?php
-         if ($role == 5 or $role == 4) {
-            echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
-        
-        }
-        ?>
+            <?php
+            if ($role == 5) {
+                echo '<a href="/SCCI-Season26-Platform/headPanel.php" id="homeNavLine">head panel</a>';
+                echo '<a href="/SCCI-Season26-Platform/adminDashboard.php"><i class="fa-solid fa-gauge-high"></i> Admin Dashboard</a>';
+            }
+            ?>
+            <?php
+            if ($role == 5 or $role == 4) {
+                echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
+
+            }
+            ?>
 
             <?php
             if ($committeeId == 6) {
@@ -156,16 +178,14 @@ if (isset($_SESSION['user_id'])) {
             ?>
 
             <a href="/SCCI-Season26-Platform/profile.php" id="profileNav">
-                <img loading="lazy"
-                    src="/SCCI-Season26-Platform/assets/img/profilePhoto.png"
-                    alt="profile img">
+                <img loading="lazy" src="/SCCI-Season26-Platform/assets/img/profilePhoto.png" alt="profile img">
             </a>
         <?php endif; ?>
     </div>
 </aside>
 <script src="/SCCI-Season26-Platform/assets/js/index.js?v=<?= ASSET_VERSION ?>"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         // Get current path
         const currentPath = window.location.pathname;
 
@@ -180,9 +200,9 @@ if (isset($_SESSION['user_id'])) {
             // We use includes() to handle potential relative paths or query parameters if needed
             // But strict equality or endsWith is safer for navigation highlighting.
             // Adjust logic: if href ends with current path or matches exactly.
-            
+
             if (currentPath.endsWith(linkHref) || (linkHref !== '/' && currentPath.includes(linkHref))) {
-                 link.classList.add('active');
+                link.classList.add('active');
             }
         });
     });
