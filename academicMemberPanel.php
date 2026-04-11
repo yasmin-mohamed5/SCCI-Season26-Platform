@@ -303,7 +303,20 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                             $i = 0;
                             foreach ($groupedWorkshops as $baseName => $wsList): 
                                 $isActive = ($baseName === $selectedBaseName);
-                                $icon = $wsIcons[$i % count($wsIcons)];
+                                
+                                $lowerName = strtolower($baseName);
+                                if (strpos($lowerName, 'marketing') !== false || strpos($lowerName, 'business') !== false) {
+                                    $icon = 'fa-bullhorn';
+                                } elseif (strpos($lowerName, 'devolagy') !== false || strpos($lowerName, 'web') !== false) {
+                                    $icon = 'fa-laptop-code';
+                                } elseif (strpos($lowerName, 'tech') !== false || strpos($lowerName, 'robot') !== false) {
+                                    $icon = 'fa-robot';
+                                } elseif (strpos($lowerName, 'data') !== false || strpos($lowerName, 'analysis') !== false) {
+                                    $icon = 'fa-chart-bar';
+                                } else {
+                                    $icon = $wsIcons[$i % count($wsIcons)];
+                                }
+
                                 $color = $wsColors[$i % count($wsColors)];
                                 
                                 // Point to the first team's workshop by default when clicking the category
