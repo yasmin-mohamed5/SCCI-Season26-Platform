@@ -118,19 +118,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
         exit;
     }
 
-    // Verify the task belongs to the selected workshop AND check deadline
+    // Verify the task belongs to the selected workshop
     $taskValid = false;
-    $isPastDeadline = false;
-    $taskDeadline = '';
 
-    $stmt = mysqli_prepare($connect, "SELECT task_id, deadline FROM academic_tasks WHERE task_id = ? AND workshop_id = ?");
+    $stmt = mysqli_prepare($connect, "SELECT task_id FROM academic_tasks WHERE task_id = ? AND workshop_id = ?");
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "ii", $taskId, $wsId);
         mysqli_stmt_execute($stmt);
         $res = mysqli_stmt_get_result($stmt);
         if ($row = mysqli_fetch_assoc($res)) {
             $taskValid = true;
-            $taskDeadline = $row['deadline'];
         }
         mysqli_stmt_close($stmt);
     }
@@ -139,17 +136,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
         setFlash('error', 'Invalid task selection');
         header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
         exit;
-    }
-
-    // Server-side Deadline Check (Bypasses local time changes)
-    if (!empty($taskDeadline)) {
-        $now = new DateTime();
-        $deadlineTime = new DateTime($taskDeadline);
-        if ($now > $deadlineTime) {
-            setFlash('error', 'Submission failed: The deadline has passed (' . date('M j, Y - g:i A', strtotime($taskDeadline)) . ')');
-            header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
-            exit;
-        }
     }
 
     // File validation
@@ -297,7 +283,7 @@ $tasks = [];
 if ($selectedWorkshopId > 0) {
     $stmt = mysqli_prepare(
         $connect,
-        "SELECT task_id, task_title, task_description, deadline
+        "SELECT task_id, task_title, task_description
          FROM academic_tasks
          WHERE workshop_id = ?
          ORDER BY task_id DESC"
