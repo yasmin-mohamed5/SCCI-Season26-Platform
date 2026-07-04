@@ -70,15 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_t
     $taskTitle = trim($_POST['task_title'] ?? '');
     $taskDesc = trim($_POST['task_description'] ?? '');
     $wsTarget = $_POST['workshop_id'] ?? '0'; // Can be 'all' or numeric ID
-    $deadline = trim($_POST['deadline'] ?? '');
 
     if ($taskTitle === '' || $taskDesc === '') {
         setFlash('error', 'Please fill in all fields');
-    } elseif ($deadline === '') {
-        setFlash('error', 'Please select a deadline');
     } else {
-        $deadlineFormatted = date('Y-m-d H:i:s', strtotime($deadline));
-        
         // Determine workshop IDs to insert
         $targetIds = [];
         if ($wsTarget === 'all' && $selectedBaseName !== '') {
@@ -92,11 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_t
         if (empty($targetIds)) {
             setFlash('error', 'No valid workshops selected');
         } else {
-            $stmt = mysqli_prepare($connect, "INSERT INTO academic_tasks (task_title, task_description, workshop_id, deadline) VALUES (?, ?, ?, ?)");
+            $stmt = mysqli_prepare($connect, "INSERT INTO academic_tasks (task_title, task_description, workshop_id) VALUES (?, ?, ?)");
             if ($stmt) {
                 $successCount = 0;
                 foreach ($targetIds as $tid) {
-                    mysqli_stmt_bind_param($stmt, "ssis", $taskTitle, $taskDesc, $tid, $deadlineFormatted);
+                    mysqli_stmt_bind_param($stmt, "ssi", $taskTitle, $taskDesc, $tid);
                     if (mysqli_stmt_execute($stmt)) {
                         $successCount++;
                     }
@@ -183,7 +178,7 @@ $tasks = [];
 if ($selectedWorkshopId > 0) {
     $stmt = mysqli_prepare(
         $connect,
-        "SELECT t.task_id, t.task_title, t.task_description, t.deadline,
+        "SELECT t.task_id, t.task_title, t.task_description,
                 (SELECT COUNT(*) FROM academic_submissions s WHERE s.task_id = t.task_id) AS sub_count
          FROM academic_tasks t
          WHERE t.workshop_id = ?
@@ -401,10 +396,7 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                     placeholder="Enter detailed task description..." required></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="deadline">Deadline</label>
-                                <input type="datetime-local" id="deadline" name="deadline" required>
-                            </div>
+
 
                             <div class="form-group">
                                 <p style="font-size: 0.85rem; color: var(--accent-color); font-weight: 500;">
@@ -459,13 +451,7 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                     </div>
                                     <div class="task-card-footer">
                                         <span class="task-card-workshop"><?= htmlspecialchars($selectedWorkshopName) ?></span>
-                                        <?php if (!empty($task['deadline'])): ?>
-                                            <span class="task-badge"
-                                                style="background: rgba(239, 68, 68, 0.1); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.2);">
-                                                <i class="far fa-clock"></i>
-                                                <?= htmlspecialchars(date('M j, g:i A', strtotime($task['deadline']))) ?>
-                                            </span>
-                                        <?php endif; ?>
+
                                         <span class="task-badge">
                                             <i class="fas fa-file-upload"></i>
                                             <?= (int) $task['sub_count'] ?>
