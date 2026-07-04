@@ -165,12 +165,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
         exit;
     }
 
-    $allowedExt = ['pdf', 'zip', 'docx', 'doc', 'jpg', 'jpeg', 'png'];
+    $allowedExt = ['pdf', 'zip', 'rar', 'docx', 'doc', 'jpg', 'jpeg', 'png'];
     $originalName = $_FILES['task_file']['name'];
     $ext = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
 
     if (!in_array($ext, $allowedExt, true)) {
-        setFlash('error', 'File type not allowed (PDF, ZIP, DOCX, JPG, PNG only)');
+        setFlash('error', 'File type not allowed (PDF, ZIP, RAR, DOCX, DOC, JPG, PNG only)');
         header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
