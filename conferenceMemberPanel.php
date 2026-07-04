@@ -1,6 +1,6 @@
 <?php
 /* =========================================================================
-   academicMemberPanel.php — AC Member Dashboard
+   conferenceMemberPanel.php — AC Member Dashboard
    Role = 2 (from users table)
    ========================================================================= */
 
@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_t
     }
 
     $redirectId = ($wsTarget === 'all') ? $selectedWorkshopId : (int)$wsTarget;
-    header("Location: academicMemberPanel.php?workshop_id=" . $redirectId);
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $redirectId);
     exit;
 }
 
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save_
         }
     }
 
-    header("Location: academicMemberPanel.php?workshop_id=" . $wsId);
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $wsId);
     exit;
 }
 
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'accep
         }
     }
 
-    header("Location: academicMemberPanel.php?workshop_id=" . $wsId);
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $wsId);
     exit;
 }
 
@@ -239,11 +239,11 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="./assets/icons/logoSCCI.png">
-    <meta property="og:title" content="SCCI — Academic Member Panel">
+    <meta property="og:title" content="SCCI — Conference Member Panel">
     <meta property="og:description"
-        content="AC Member Dashboard for managing academic workshops, tasks, and evaluations.">
+        content="Conference Member Dashboard for managing workshops, tasks, and evaluations.">
     <meta name="description"
-        content="SCCI Academic Member Panel — manage workshops, tasks, submissions, and evaluations.">
+        content="SCCI Conference Member Panel — manage workshops, tasks, submissions, and evaluations.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -258,7 +258,7 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
     <link rel="stylesheet" href="./assets/css/footer.css?v=<?= ASSET_VERSION ?>">
     <link rel="stylesheet" href="./assets/css/academicMemberPanel.css?v=<?= ASSET_VERSION ?>">
 
-    <title>SCCI — Academic Member Panel</title>
+    <title>SCCI — Conference Member Panel</title>
 </head>
 
 <body>

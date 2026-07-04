@@ -1,6 +1,6 @@
 <?php
 /* =========================================================================
-   academicParticipantPanel.php — Participant Dashboard
+   conferenceParticipantPanel.php — Participant Dashboard
    Role = 1 (from academic_participants table)
    ========================================================================= */
 
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'selec
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
             setFlash('success', 'Team selected successfully ✓');
-            header("Location: academicParticipantPanel.php");
+            header("Location: conferenceParticipantPanel.php");
             exit;
         }
     } else {
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
 
     if ($isLeader !== 1) {
         setFlash('error', 'Only team leaders can submit tasks.');
-        header("Location: academicParticipantPanel.php?workshop_id=" . ((int) ($_POST['workshop_id'] ?? 0)));
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . ((int) ($_POST['workshop_id'] ?? 0)));
         exit;
     }
 
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
 
     if ($taskId <= 0) {
         setFlash('error', 'Please select a task');
-        header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
 
@@ -134,20 +134,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
 
     if (!$taskValid) {
         setFlash('error', 'Invalid task selection');
-        header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
 
     // File validation
     if (!isset($_FILES['task_file']) || $_FILES['task_file']['error'] !== UPLOAD_ERR_OK) {
         setFlash('error', 'Please select a file to upload');
-        header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
 
     if ($_FILES['task_file']['size'] > 30 * 1024 * 1024) {
         setFlash('error', 'File too large (max 30MB)');
-        header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
 
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
 
     if (!in_array($ext, $allowedExt, true)) {
         setFlash('error', 'File type not allowed (PDF, ZIP, RAR, DOCX, DOC, JPG, PNG only)');
-        header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
 
@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
 
     if (!move_uploaded_file($_FILES['task_file']['tmp_name'], $destPath)) {
         setFlash('error', 'File upload failed — please try again');
-        header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+        header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
 
@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
         if (mysqli_num_rows($checkRes) > 0) {
             setFlash('error', 'You have already submitted this task. Please wait or contact your IT to delete the previous submission.');
             mysqli_stmt_close($checkStmt);
-            header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+            header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
             exit;
         }
         mysqli_stmt_close($checkStmt);
@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
         mysqli_stmt_close($stmt);
     }
 
-    header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+    header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
     exit;
 }
 
@@ -274,7 +274,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
         }
         mysqli_stmt_close($stmt);
     }
-    header("Location: academicParticipantPanel.php?workshop_id=" . $wsId);
+    header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
     exit;
 }
 
@@ -337,10 +337,10 @@ unset($_SESSION['flash']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="./assets/icons/logoSCCI.png">
-    <meta property="og:title" content="SCCI — Academic Participant Panel">
+    <meta property="og:title" content="SCCI — Conference Participant Panel">
     <meta property="og:description"
-        content="Participant Dashboard for viewing tasks, submitting work, and tracking progress.">
-    <meta name="description" content="SCCI Academic Participant Panel — view workshop tasks and submit your work.">
+        content="Conference Participant Dashboard — view workshop tasks and submit your work.">
+    <meta name="description" content="SCCI Conference Participant Panel - view workshop tasks and submit your work.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -355,7 +355,7 @@ unset($_SESSION['flash']);
     <link rel="stylesheet" href="./assets/css/footer.css?v=<?= ASSET_VERSION ?>">
     <link rel="stylesheet" href="./assets/css/academicParticipantPanel.css?v=<?= ASSET_VERSION ?>">
 
-    <title> Academic Participant Panel</title>
+    <title>SCCI — Conference Participant Panel</title>
 </head>
 
 <body>
@@ -378,7 +378,7 @@ unset($_SESSION['flash']);
                     <div style="margin-bottom: 20px;">
                         <i class="fas fa-users" style="font-size: 3rem; color: var(--accent-color);"></i>
                     </div>
-                    <h2 style="margin-bottom: 15px; color: var(--color-primary);">Welcome to the Academic Panel!</h2>
+                    <h2 style="margin-bottom: 15px; color: var(--color-primary);">Welcome to the Conference Panel!</h2>
                     <p style="margin-bottom: 25px; color: var(--color-gray-dark); font-size: var(--fs-sm);">Please select
                         your team to continue and view your specific tasks.</p>
 
