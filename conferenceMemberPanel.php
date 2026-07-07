@@ -554,31 +554,51 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                     </div>
                                 <?php endif; ?>
 
-                                    <form method="POST" action="" class="eval-form"
-                                        id="evalForm_<?= (int) $sub['submission_id'] ?>">
-                                        <input type="hidden" name="action" value="save_evaluation">
-                                        <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
-                                        <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
-                                        <div class="eval-field">
-                                            <label>Score</label>
-                                            <input type="number" name="score" min="0" max="100" step="0.5"
-                                                value="<?= htmlspecialchars($sub['score'] ?? '') ?>" placeholder="0-100" required>
-                                        </div>
-                                        <div class="eval-field">
-                                            <label>Feedback</label>
-                                            <textarea name="feedback" rows="2"
-                                                placeholder="Enter your feedback..."><?= htmlspecialchars($sub['feedback'] ?? '') ?></textarea>
-                                        </div>
-                                        <button type="submit" class="btn-save-eval">
-                                            <i class="fas fa-save"></i> Save
-                                        </button>
-                                    </form>
+                                    <button class="btn-feedback-trigger" type="button" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
+                                        <i class="fas fa-comment-dots"></i> <?= !empty($sub['feedback']) || !empty($sub['score']) ? 'Read/Edit Feedback' : 'Evaluate & Feedback' ?>
+                                    </button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </section>
                 <?php endif; ?>
 
+            <?php endif; ?>
+
+            <!-- Feedback Modals -->
+            <?php if (!empty($submissions)): ?>
+                <?php foreach ($submissions as $sub): ?>
+                    <div class="feedback-modal-overlay" id="feedbackModal_<?= (int) $sub['submission_id'] ?>">
+                        <div class="feedback-modal">
+                            <div class="feedback-modal-header">
+                                <h3><i class="fas fa-star" style="color: var(--accent-color);"></i> Evaluation & Feedback</h3>
+                                <button type="button" class="feedback-modal-close" onclick="closeFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <div class="feedback-modal-body">
+                                <form method="POST" action="" class="eval-form-modal" id="evalForm_<?= (int) $sub['submission_id'] ?>">
+                                    <input type="hidden" name="action" value="save_evaluation">
+                                    <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
+                                    <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
+                                    <div class="eval-field">
+                                        <label>Score</label>
+                                        <input type="number" name="score" min="0" max="100" step="0.5"
+                                            value="<?= htmlspecialchars($sub['score'] ?? '') ?>" placeholder="0-100" required>
+                                    </div>
+                                    <div class="eval-field">
+                                        <label>Feedback</label>
+                                        <textarea name="feedback" rows="6"
+                                            placeholder="Enter your feedback..."><?= htmlspecialchars($sub['feedback'] ?? '') ?></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-save-eval-modal">
+                                        <i class="fas fa-save"></i> Save Evaluation
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
             <?php endif; ?>
 
         </div>
@@ -646,87 +666,6 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
             if (activeCard) {
                 activeCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
-
-            /* --- Team Search Dropdown --- */
-            (function () {
-                var dd = document.getElementById('teamSearchDropdown');
-                var trigger = document.getElementById('teamSearchTrigger');
-                var input = document.getElementById('teamSearchInput');
-                var opts = document.getElementById('teamSearchOptions');
-                var arrow = document.getElementById('teamSearchArrow');
-                if (!dd || !trigger || !input || !opts) return;
-
-                var font = "'Irish Grover', cursive";
-                dd.style.fontFamily = font;
-                trigger.style.fontFamily = font;
-                input.style.fontFamily = font;
-                opts.style.fontFamily = font;
-                opts.querySelectorAll('.team-opt').forEach(function(el) {
-                    el.style.fontFamily = font;
-                    var sp = el.querySelector('span');
-                    if (sp) { sp.style.marginLeft = '14px'; }
-                });
-
-                var items = opts.querySelectorAll('.team-opt');
-                var activeItem = opts.querySelector('.team-opt-active');
-
-                if (activeItem) {
-                    input.value = activeItem.querySelector('span').textContent;
-                }
-
-                function openDD() {
-                    dd.classList.add('open');
-                    trigger.classList.add('active');
-                    input.removeAttribute('readonly');
-                    input.value = '';
-                    input.focus();
-                    filterOpts('');
-                }
-
-                function closeDD() {
-                    dd.classList.remove('open');
-                    trigger.classList.remove('active');
-                    input.setAttribute('readonly', true);
-                    if (activeItem) {
-                        input.value = activeItem.querySelector('span').textContent;
-                    }
-                }
-
-                trigger.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    if (dd.classList.contains('open')) { closeDD(); } else { openDD(); }
-                });
-
-                input.addEventListener('input', function () {
-                    filterOpts(this.value.toLowerCase());
-                });
-
-                input.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    if (dd.classList.contains('open')) { closeDD(); } else { openDD(); }
-                });
-
-                items.forEach(function (item) {
-                    item.addEventListener('click', function (e) {
-                        e.stopPropagation();
-                        var val = this.getAttribute('data-value');
-                        input.value = this.querySelector('span').textContent;
-                        input.setAttribute('readonly', true);
-                        closeDD();
-                        if (val) { window.location.href = '?workshop_id=' + val; }
-                    });
-                });
-
-                function filterOpts(q) {
-                    items.forEach(function (item) {
-                        var t = item.querySelector('span').textContent.toLowerCase();
-                        item.style.display = (t.includes(q) || q === '') ? 'flex' : 'none';
-                    });
-                }
-
-                document.addEventListener('click', function () { closeDD(); });
-                opts.addEventListener('click', function (e) { e.stopPropagation(); });
-            })();
         });
 
         function openFeedbackModal(subId) {
