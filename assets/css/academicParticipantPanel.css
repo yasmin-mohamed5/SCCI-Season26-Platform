@@ -3,18 +3,12 @@
    Uses CSS variables from root.css
    =============================================================================== */
 
-:root {
-  --color-primary-darker: #430d0d;
-  --color-white-gradient: #d4d2d2;
-  --accent-gradient: linear-gradient(135deg, #7A41DC 13%, #5B2AB5 100%);
-  --accent-color: #7A41DC;
-  --accent-hover: #5B2AB5;
-}
+
 
 /* ========== PAGE WRAPPER ========== */
 .acad-participant-page,
 .acad-participant-page * {
-  font-family: "Poppins", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 .acad-participant-page h1,

@@ -631,12 +631,7 @@ unset($_SESSION['flash']);
                                                     <i class="fas fa-download"></i> Download
                                                 </a>
                                             <?php endif; ?>
-                                            <?php if (!empty($sub['score'])): ?>
-                                                <div class="eval-display-score">
-                                                    <i class="fas fa-star"></i>
-                                                    <span>Score: <?= htmlspecialchars($sub['score']) ?></span>
-                                                </div>
-                                            <?php endif; ?>
+
                                             <?php if (!empty($sub['feedback'])): ?>
                                                 <button class="btn-feedback-trigger" type="button" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
                                                     <i class="fas fa-comment-dots"></i> Read Feedback
