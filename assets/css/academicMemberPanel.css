@@ -1,4 +1,4 @@
-﻿/* ===============================================================================
+/* ===============================================================================
    ACADEMIC MEMBER PANEL — CSS
    Uses CSS variables from root.css
    =============================================================================== */
@@ -1144,15 +1144,16 @@
 .eval-display-score {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 18px;
+  gap: 6px;
+  padding: 6px 14px;
   border-radius: 50px;
   background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 193, 7, 0.12));
   color: #b8860b;
   font-weight: var(--fw-bold);
-  font-size: 1.2rem;
+  font-size: 0.85rem;
   font-family: "system-ui", system-ui;
   border: 1px solid rgba(255, 215, 0, 0.3);
+  white-space: nowrap;
 }
 
 .eval-display-score i {

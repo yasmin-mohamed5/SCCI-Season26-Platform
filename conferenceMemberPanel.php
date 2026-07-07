@@ -538,21 +538,13 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                             </button>
                                         </form>
                                     <?php endif; ?>
-                                </div>
 
-                                <?php if (!empty($sub['score'])): ?>
-                                    <div class="eval-display-row">
+                                    <?php if (!empty($sub['score'])): ?>
                                         <div class="eval-display-score">
                                             <i class="fas fa-star"></i>
                                             <span>Score: <?= htmlspecialchars($sub['score']) ?></span>
                                         </div>
-                                        <?php if (!empty($sub['feedback'])): ?>
-                                            <div class="eval-display-feedback">
-                                                <strong>Feedback:</strong> <?= nl2br(htmlspecialchars($sub['feedback'])) ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
+                                    <?php endif; ?>
 
                                     <button class="btn-feedback-trigger" type="button" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
                                         <i class="fas fa-comment-dots"></i> <?= !empty($sub['feedback']) || !empty($sub['score']) ? 'Read/Edit Feedback' : 'Evaluate & Feedback' ?>
@@ -693,6 +685,60 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                 }
             });
         });
+
+        /* --- Team Search Dropdown --- */
+        (function () {
+            const trigger  = document.getElementById('teamSearchTrigger');
+            const options  = document.getElementById('teamSearchOptions');
+            const input    = document.getElementById('teamSearchInput');
+            const arrow    = document.getElementById('teamSearchArrow');
+            const dropdown = document.getElementById('teamSearchDropdown');
+
+            if (!trigger || !options || !dropdown) return;
+
+            // Toggle open/close — CSS uses .team-search-dropdown.open
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                dropdown.classList.toggle('open');
+            });
+
+            // Select an option
+            options.querySelectorAll('.team-opt').forEach(function (opt) {
+                opt.addEventListener('click', function () {
+                    const val   = this.dataset.value;
+                    const label = this.querySelector('span')?.textContent || '';
+                    if (input) input.value = label;
+                    dropdown.classList.remove('open');
+
+                    // Redirect to selected workshop
+                    const url = new URL(window.location.href);
+                    if (val) {
+                        url.searchParams.set('workshop_id', val);
+                    } else {
+                        url.searchParams.delete('workshop_id');
+                    }
+                    window.location.href = url.toString();
+                });
+            });
+
+            // Close on outside click
+            document.addEventListener('click', function (e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') dropdown.classList.remove('open');
+            });
+
+            // Show currently selected team name on load
+            const activeOpt = options.querySelector('.team-opt-active');
+            if (activeOpt && input) {
+                input.value = activeOpt.querySelector('span')?.textContent || '';
+            }
+        })();
     </script>
 </body>
 

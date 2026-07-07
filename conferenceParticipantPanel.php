@@ -631,21 +631,19 @@ unset($_SESSION['flash']);
                                                     <i class="fas fa-download"></i> Download
                                                 </a>
                                             <?php endif; ?>
-                                            <?php if ($sub['score'] !== null): ?>
-                                                <span class="score-display">
-                                                    <i class="fas fa-star" style="color:#FFD700"></i>
-                                                    <?= htmlspecialchars($sub['score'] ?? '') ?>
-                                                </span>
+                                            <?php if (!empty($sub['score'])): ?>
+                                                <div class="eval-display-score">
+                                                    <i class="fas fa-star"></i>
+                                                    <span>Score: <?= htmlspecialchars($sub['score']) ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (!empty($sub['feedback'])): ?>
+                                                <button class="btn-feedback-trigger" type="button" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
+                                                    <i class="fas fa-comment-dots"></i> Read Feedback
+                                                </button>
                                             <?php endif; ?>
                                         </div>
                                     </div>
-
-                                    <?php if (!empty($sub['feedback'])): ?>
-                                        <div class="prev-sub-desc"
-                                            style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray-dark); background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; border-left: 3px solid var(--accent-color);">
-                                            <strong>Feedback:</strong> <?= nl2br(htmlspecialchars($sub['feedback'] ?? '')) ?>
-                                        </div>
-                                    <?php endif; ?>
 
                                     <?php if (!empty($sub['project_desc'])): ?>
                                         <div class="project-details-expand"

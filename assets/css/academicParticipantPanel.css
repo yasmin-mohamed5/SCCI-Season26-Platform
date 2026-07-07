@@ -1,4 +1,4 @@
-﻿/* ===============================================================================
+/* ===============================================================================
    ACADEMIC PARTICIPANT PANEL — CSS
    Uses CSS variables from root.css
    =============================================================================== */
@@ -763,6 +763,48 @@
   .slider-task-card {
     width: 200px;
   }
+}
+
+/* ========== EVAL DISPLAY ROW (Score + Feedback Preview) ========== */
+.eval-display-row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4, 16px);
+    margin-top: var(--space-4, 16px);
+    padding: var(--space-4, 16px) var(--space-5, 20px);
+    background: linear-gradient(135deg, rgba(122, 65, 220, 0.04), rgba(91, 42, 181, 0.02));
+    border: 1px solid rgba(122, 65, 220, 0.1);
+    border-radius: var(--radius-lg, 12px);
+    flex-wrap: wrap;
+}
+
+.eval-display-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.18), rgba(255, 193, 7, 0.12));
+    color: #b8860b;
+    font-weight: 700;
+    font-size: 0.85rem;
+    font-family: "system-ui", system-ui;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    white-space: nowrap;
+}
+
+.eval-display-score i {
+    color: #FFD700 !important;
+    font-size: 1rem;
+}
+
+.eval-display-feedback {
+    flex: 1;
+    font-family: "system-ui", system-ui;
+    font-size: var(--fs-sm, 0.875rem);
+    color: var(--color-gray-dark, #444);
+    line-height: 1.6;
+    min-width: 180px;
 }
 
 /* ========== FEEDBACK MODAL ========== */
