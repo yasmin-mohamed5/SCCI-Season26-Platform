@@ -1,6 +1,6 @@
 <?php
 /* =========================================================================
-   academicLeaderboard.php — Hall of Fame & Leaderboard
+   conferenceLeaderboard.php — Hall of Fame & Leaderboard
    Accessible by Participants (Role 1 or 3 in participants) and AC/Head (roles 2, 5).
    ========================================================================= */
 
@@ -123,7 +123,7 @@ function getWsIcon($baseName, $index) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="./assets/icons/logoSCCI.png">
-    <title>SCCI — Academic Leaderboard</title>
+    <title>SCCI — Conference Leaderboard</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,7 +144,7 @@ function getWsIcon($baseName, $index) {
     <div class="leaderboard-header-wrapper">
         <div class="container text-center">
             <h1 class="leaderboard-title">
-                <i class="fas fa-trophy highlight-icon"></i> Academic Leaderboard
+                <i class="fas fa-trophy highlight-icon"></i> Conference Leaderboard
             </h1>
             <p class="leaderboard-subtitle">See who's leading the race and the first to conquer the tasks!</p>
         </div>

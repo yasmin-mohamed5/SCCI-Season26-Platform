@@ -1,6 +1,6 @@
 <?php
 /* =========================================================================
-   academicMemberPanel.php — AC Member Dashboard
+   conferenceMemberPanel.php — AC Member Dashboard
    Role = 2 (from users table)
    ========================================================================= */
 
@@ -70,15 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_t
     $taskTitle = trim($_POST['task_title'] ?? '');
     $taskDesc = trim($_POST['task_description'] ?? '');
     $wsTarget = $_POST['workshop_id'] ?? '0'; // Can be 'all' or numeric ID
-    $deadline = trim($_POST['deadline'] ?? '');
 
     if ($taskTitle === '' || $taskDesc === '') {
         setFlash('error', 'Please fill in all fields');
-    } elseif ($deadline === '') {
-        setFlash('error', 'Please select a deadline');
     } else {
-        $deadlineFormatted = date('Y-m-d H:i:s', strtotime($deadline));
-        
         // Determine workshop IDs to insert
         $targetIds = [];
         if ($wsTarget === 'all' && $selectedBaseName !== '') {
@@ -92,11 +87,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_t
         if (empty($targetIds)) {
             setFlash('error', 'No valid workshops selected');
         } else {
-            $stmt = mysqli_prepare($connect, "INSERT INTO academic_tasks (task_title, task_description, workshop_id, deadline) VALUES (?, ?, ?, ?)");
+            $stmt = mysqli_prepare($connect, "INSERT INTO academic_tasks (task_title, task_description, workshop_id) VALUES (?, ?, ?)");
             if ($stmt) {
                 $successCount = 0;
                 foreach ($targetIds as $tid) {
-                    mysqli_stmt_bind_param($stmt, "ssis", $taskTitle, $taskDesc, $tid, $deadlineFormatted);
+                    mysqli_stmt_bind_param($stmt, "ssi", $taskTitle, $taskDesc, $tid);
                     if (mysqli_stmt_execute($stmt)) {
                         $successCount++;
                     }
@@ -113,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_t
     }
 
     $redirectId = ($wsTarget === 'all') ? $selectedWorkshopId : (int)$wsTarget;
-    header("Location: academicMemberPanel.php?workshop_id=" . $redirectId);
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $redirectId);
     exit;
 }
 
@@ -145,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'save_
         }
     }
 
-    header("Location: academicMemberPanel.php?workshop_id=" . $wsId);
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $wsId);
     exit;
 }
 
@@ -165,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'accep
         }
     }
 
-    header("Location: academicMemberPanel.php?workshop_id=" . $wsId);
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $wsId);
     exit;
 }
 
@@ -183,7 +178,7 @@ $tasks = [];
 if ($selectedWorkshopId > 0) {
     $stmt = mysqli_prepare(
         $connect,
-        "SELECT t.task_id, t.task_title, t.task_description, t.deadline,
+        "SELECT t.task_id, t.task_title, t.task_description,
                 (SELECT COUNT(*) FROM academic_submissions s WHERE s.task_id = t.task_id) AS sub_count
          FROM academic_tasks t
          WHERE t.workshop_id = ?
@@ -244,26 +239,26 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="icon" type="image/x-icon" href="./assets/icons/logoSCCI.png">
-    <meta property="og:title" content="SCCI — Academic Member Panel">
+    <meta property="og:title" content="SCCI — Conference Member Panel">
     <meta property="og:description"
-        content="AC Member Dashboard for managing academic workshops, tasks, and evaluations.">
+        content="Conference Member Dashboard for managing workshops, tasks, and evaluations.">
     <meta name="description"
-        content="SCCI Academic Member Panel — manage workshops, tasks, submissions, and evaluations.">
+        content="SCCI Conference Member Panel — manage workshops, tasks, submissions, and evaluations.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= ASSET_VERSION ?>">
-    <link rel="stylesheet" href="./assets/css/root.css?v=<?= ASSET_VERSION ?>">
-    <link rel="stylesheet" href="./assets/css/navbar.css?v=<?= ASSET_VERSION ?>">
-    <link rel="stylesheet" href="./assets/css/footer.css?v=<?= ASSET_VERSION ?>">
-    <link rel="stylesheet" href="./assets/css/academicMemberPanel.css?v=<?= ASSET_VERSION ?>">
+    <link rel="stylesheet" href="./assets/css/all.min.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="./assets/css/root.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="./assets/css/navbar.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="./assets/css/footer.css?v=<?= time() ?>">
+    <link rel="stylesheet" href="./assets/css/academicMemberPanel.css?v=<?= time() ?>">
 
-    <title>SCCI — Academic Member Panel</title>
+    <title>SCCI — Conference Member Panel</title>
 </head>
 
 <body>
@@ -353,19 +348,29 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                     </div>
 
                     <?php if ($selectedBaseName && isset($groupedWorkshops[$selectedBaseName])): ?>
-                        <div class="team-dropdown-container" style="max-width: 400px; margin: 25px auto 10px; text-align: center;">
-                            <label style="display:block; margin-bottom:10px; font-weight: 500; font-size: var(--fs-md); color: var(--color-primary);">
-                                <i class="fas fa-users-cog" style="color:var(--accent-color); margin-right:5px;"></i> Select Specific Team
+                        <div class="team-dropdown-wrap">
+                            <label class="team-dropdown-label">
+                                <i class="fas fa-users-cog"></i> Select Specific Team
                             </label>
-                            <select class="form-control" style="width:100%; padding: 12px; border-radius: 8px; border: 1px solid var(--color-gray-medium); font-family: inherit; font-size: var(--fs-base);"
-                                onchange="window.location.href='?workshop_id='+this.value">
-                                <option value="" disabled>— Select Specific Team —</option>
-                                <?php foreach ($groupedWorkshops[$selectedBaseName] as $wsRow): ?>
-                                    <option value="<?= (int)$wsRow['workshop_id'] ?>" <?= ((int)$wsRow['workshop_id'] === $selectedWorkshopId) ? 'selected' : '' ?>>
-                                        <?= htmlspecialchars($wsRow['team_name'] ?: 'Team ' . $wsRow['team_id']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
+                            <div class="team-search-dropdown" id="teamSearchDropdown">
+                                <div class="team-search-trigger" id="teamSearchTrigger">
+                                    <i class="fas fa-search team-search-icon"></i>
+                                    <input type="text" class="team-search-input" id="teamSearchInput" placeholder="Choose a team..." readonly>
+                                    <i class="fas fa-chevron-down team-search-arrow" id="teamSearchArrow"></i>
+                                </div>
+                                <div class="team-search-options" id="teamSearchOptions">
+                                    <div class="team-opt" data-value="">
+                                        <i class="fas fa-users"></i>
+                                        <span>— Select Specific Team —</span>
+                                    </div>
+                                    <?php foreach ($groupedWorkshops[$selectedBaseName] as $wsRow): ?>
+                                        <div class="team-opt <?= ((int)$wsRow['workshop_id'] === $selectedWorkshopId) ? 'team-opt-active' : '' ?>" data-value="<?= (int)$wsRow['workshop_id'] ?>">
+                                            <i class="fas fa-users"></i>
+                                            <span><?= htmlspecialchars($wsRow['team_name'] ?: 'Team ' . $wsRow['team_id']) ?></span>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
                         </div>
                     <?php endif; ?>
                 <?php endif; ?>
@@ -401,10 +406,7 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                     placeholder="Enter detailed task description..." required></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="deadline">Deadline</label>
-                                <input type="datetime-local" id="deadline" name="deadline" required>
-                            </div>
+
 
                             <div class="form-group">
                                 <p style="font-size: 0.85rem; color: var(--accent-color); font-weight: 500;">
@@ -459,13 +461,7 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                     </div>
                                     <div class="task-card-footer">
                                         <span class="task-card-workshop"><?= htmlspecialchars($selectedWorkshopName) ?></span>
-                                        <?php if (!empty($task['deadline'])): ?>
-                                            <span class="task-badge"
-                                                style="background: rgba(239, 68, 68, 0.1); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.2);">
-                                                <i class="far fa-clock"></i>
-                                                <?= htmlspecialchars(date('M j, g:i A', strtotime($task['deadline']))) ?>
-                                            </span>
-                                        <?php endif; ?>
+
                                         <span class="task-badge">
                                             <i class="fas fa-file-upload"></i>
                                             <?= (int) $task['sub_count'] ?>
@@ -528,8 +524,7 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                 </div>
 
                                 <div class="submission-actions">
-                                    <a href="<?= htmlspecialchars($sub['file_url']) ?>" target="_blank" class="btn-download"
-                                        download>
+                                    <a href="<?= htmlspecialchars($sub['file_url']) ?>" target="_blank" class="btn-download" download>
                                         <i class="fas fa-download"></i> Download
                                     </a>
 
@@ -543,36 +538,47 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                             </button>
                                         </form>
                                     <?php endif; ?>
-
-                                    <?php if (!empty($sub['score'])): ?>
-                                        <div class="eval-display">
-                                            <span class="eval-score">
-                                                <i class="fas fa-star" style="color:#FFD700"></i>
-                                                Score: <?= htmlspecialchars($sub['score']) ?>
-                                            </span>
-                                        </div>
-                                    <?php endif; ?>
-
-                                    <form method="POST" action="" class="eval-form"
-                                        id="evalForm_<?= (int) $sub['submission_id'] ?>">
-                                        <input type="hidden" name="action" value="save_evaluation">
-                                        <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
-                                        <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
-                                        <div class="eval-field">
-                                            <label>Score</label>
-                                            <input type="number" name="score" min="0" max="100" step="0.5"
-                                                value="<?= htmlspecialchars($sub['score'] ?? '') ?>" placeholder="0-100" required>
-                                        </div>
-                                        <div class="eval-field">
-                                            <label>Feedback</label>
-                                            <textarea name="feedback" rows="2"
-                                                placeholder="Enter your feedback..."><?= htmlspecialchars($sub['feedback'] ?? '') ?></textarea>
-                                        </div>
-                                        <button type="submit" class="btn-save-eval">
-                                            <i class="fas fa-save"></i> Save
-                                        </button>
-                                    </form>
                                 </div>
+
+                                <?php if (!empty($sub['score'])): ?>
+                                    <div class="eval-display-row">
+                                        <div class="eval-display-score">
+                                            <i class="fas fa-star"></i>
+                                            <span>Score: <?= htmlspecialchars($sub['score']) ?></span>
+                                        </div>
+                                        <?php if (!empty($sub['feedback'])): ?>
+                                            <div class="eval-display-feedback">
+                                                <strong>Feedback:</strong> <?= nl2br(htmlspecialchars($sub['feedback'])) ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php endif; ?>
+
+                                <form method="POST" action="" class="eval-form" id="evalForm_<?= (int) $sub['submission_id'] ?>">
+                                    <input type="hidden" name="action" value="save_evaluation">
+                                    <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
+                                    <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
+                                    
+                                    <div class="eval-form-fields">
+                                        <div class="eval-field">
+                                            <label for="score_<?= (int) $sub['submission_id'] ?>">
+                                                <i class="fas fa-star"></i> Score
+                                            </label>
+                                            <input type="number" id="score_<?= (int) $sub['submission_id'] ?>" name="score" min="0" max="100" step="0.5"
+                                                value="<?= htmlspecialchars($sub['score'] ?? '') ?>" placeholder="0 — 100" required>
+                                        </div>
+                                        <div class="eval-field">
+                                            <label for="feedback_<?= (int) $sub['submission_id'] ?>">
+                                                <i class="fas fa-comment-dots"></i> Feedback
+                                            </label>
+                                            <textarea id="feedback_<?= (int) $sub['submission_id'] ?>" name="feedback" rows="3"
+                                                placeholder="Write your feedback here..."><?= htmlspecialchars($sub['feedback'] ?? '') ?></textarea>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-save-eval">
+                                        <i class="fas fa-save"></i> Save Evaluation
+                                    </button>
+                                </form>
                             </div>
                         <?php endforeach; ?>
                     </section>
@@ -589,6 +595,12 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
     <script src="./assets/js/all.min.js?v=<?= ASSET_VERSION ?>"></script>
 
     <script>
+        (function(){
+            var s = document.createElement('style');
+            s.textContent = '.team-dropdown-wrap,.team-dropdown-wrap *{font-family:"Irish Grover",cursive !important}.team-opt i{margin-right:20px !important}.form-workshop-tag{font-family:"Irish Grover",cursive !important}@media(max-width:768px){.btn-save-eval{display:flex!important;justify-content:center!important;width:100%!important;text-align:center!important;margin:10px auto 0}.submission-actions{align-items:center!important}.btn-download{width:auto!important;display:inline-flex!important;flex:none!important}}';
+            document.head.appendChild(s);
+        })();
+
         /* --- Workshop Slider scroll --- */
         function slideWorkshops(dir) {
             const track = document.getElementById('wsSliderTrack');
@@ -639,6 +651,87 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
             if (activeCard) {
                 activeCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
+
+            /* --- Team Search Dropdown --- */
+            (function () {
+                var dd = document.getElementById('teamSearchDropdown');
+                var trigger = document.getElementById('teamSearchTrigger');
+                var input = document.getElementById('teamSearchInput');
+                var opts = document.getElementById('teamSearchOptions');
+                var arrow = document.getElementById('teamSearchArrow');
+                if (!dd || !trigger || !input || !opts) return;
+
+                var font = "'Irish Grover', cursive";
+                dd.style.fontFamily = font;
+                trigger.style.fontFamily = font;
+                input.style.fontFamily = font;
+                opts.style.fontFamily = font;
+                opts.querySelectorAll('.team-opt').forEach(function(el) {
+                    el.style.fontFamily = font;
+                    var sp = el.querySelector('span');
+                    if (sp) { sp.style.marginLeft = '14px'; }
+                });
+
+                var items = opts.querySelectorAll('.team-opt');
+                var activeItem = opts.querySelector('.team-opt-active');
+
+                if (activeItem) {
+                    input.value = activeItem.querySelector('span').textContent;
+                }
+
+                function openDD() {
+                    dd.classList.add('open');
+                    trigger.classList.add('active');
+                    input.removeAttribute('readonly');
+                    input.value = '';
+                    input.focus();
+                    filterOpts('');
+                }
+
+                function closeDD() {
+                    dd.classList.remove('open');
+                    trigger.classList.remove('active');
+                    input.setAttribute('readonly', true);
+                    if (activeItem) {
+                        input.value = activeItem.querySelector('span').textContent;
+                    }
+                }
+
+                trigger.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (dd.classList.contains('open')) { closeDD(); } else { openDD(); }
+                });
+
+                input.addEventListener('input', function () {
+                    filterOpts(this.value.toLowerCase());
+                });
+
+                input.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (dd.classList.contains('open')) { closeDD(); } else { openDD(); }
+                });
+
+                items.forEach(function (item) {
+                    item.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        var val = this.getAttribute('data-value');
+                        input.value = this.querySelector('span').textContent;
+                        input.setAttribute('readonly', true);
+                        closeDD();
+                        if (val) { window.location.href = '?workshop_id=' + val; }
+                    });
+                });
+
+                function filterOpts(q) {
+                    items.forEach(function (item) {
+                        var t = item.querySelector('span').textContent.toLowerCase();
+                        item.style.display = (t.includes(q) || q === '') ? 'flex' : 'none';
+                    });
+                }
+
+                document.addEventListener('click', function () { closeDD(); });
+                opts.addEventListener('click', function (e) { e.stopPropagation(); });
+            })();
         });
     </script>
 </body>

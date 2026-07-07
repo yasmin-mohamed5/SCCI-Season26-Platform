@@ -69,7 +69,7 @@ if (isset($_SESSION['user_id'])) {
         <?php
         if ($role == 2) {
             echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php" id="homeNavLine">member panel</a>';
-            echo '<a href="/SCCI-Season26-Platform/academicMemberPanel.php" id="homeNavLine">Academic  Panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/conferenceMemberPanel.php" id="homeNavLine">Conference Panel</a>';
         }
         ?>
         <?php
@@ -79,7 +79,7 @@ if (isset($_SESSION['user_id'])) {
         ?>
         <?php
         if ($role == 1) {
-            echo '<a href="/SCCI-Season26-Platform/academicParticipantPanel.php" id="homeNavLine">Academic  Panel </a>';
+            echo '<a href="/SCCI-Season26-Platform/conferenceParticipantPanel.php" id="homeNavLine">Conference Panel</a>';
         }
         ?>
         <?php
@@ -138,7 +138,7 @@ if (isset($_SESSION['user_id'])) {
             <?php
             if ($role == 2) {
                 echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php"><i class="fa-solid fa-user-group"></i> member panel</a>';
-                echo '<a href="/SCCI-Season26-Platform/academicMemberPanel.php"><i class="fa-solid fa-graduation-cap"></i> AC member panel</a>';
+                echo '<a href="/SCCI-Season26-Platform/conferenceMemberPanel.php"><i class="fa-solid fa-graduation-cap"></i> Conference Panel</a>';
             }
             ?>
             <?php
@@ -148,7 +148,7 @@ if (isset($_SESSION['user_id'])) {
             ?>
             <?php
             if ($isAcademicParticipant) {
-                echo '<a href="/SCCI-Season26-Platform/academicParticipantPanel.php"><i class="fa-solid fa-book-open"></i> AC participant panel</a>';
+                echo '<a href="/SCCI-Season26-Platform/conferenceParticipantPanel.php"><i class="fa-solid fa-book-open"></i> Conference Panel</a>';
             }
             ?>
             <?php
