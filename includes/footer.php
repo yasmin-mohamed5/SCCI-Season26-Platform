@@ -40,6 +40,9 @@
             class="socialText"> facebook</span></a>
         <a target="_blank" href="https://www.instagram.com/scci.cu/"><i class="fa-brands fa-instagram"></i> <span
             class="socialText"> instagram</span></a>
+             <a target="_blank" href="https://youtube.com/@scci-cu?si=q9lPTd_ZnRih9j-u"><i class="fa-brands fa-youtube"></i> <span
+              class="socialText"> youtube</span></a>
+
         <a target="_blank" href="https://www.linkedin.com/in/scci-cu-478a09390/"><i class="fa-brands fa-linkedin"></i>
           <span class="socialText"> linkedin</span></a>
         <a target="_blank" href="mailto:scci.cu.26@gmail.com"><i class="fa-solid fa-envelope"></i> <span class="socialText">

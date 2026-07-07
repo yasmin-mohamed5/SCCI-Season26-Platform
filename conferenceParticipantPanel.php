@@ -319,7 +319,7 @@ if ($selectedWorkshopId > 0) {
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         while ($row = mysqli_fetch_assoc($result)) {
-            $prevSubmissions[] = $row;
+            $prevSubmissions[] = $row; 
         }
         mysqli_stmt_close($stmt);
     }
@@ -346,7 +346,7 @@ unset($_SESSION['flash']);
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- CSS -->
@@ -503,54 +503,68 @@ unset($_SESSION['flash']);
                             </div>
 
                             <div class="form-group">
-                                <label for="task_id_select">Select Task</label>
-                                <select id="task_id_select" name="task_id" required <?= ($selectedWorkshopName === 'Final Project') ? 'disabled' : '' ?>>
-                                    <?php if ($selectedWorkshopName === 'Final Project' && !empty($tasks)): ?>
-                                        <option value="<?= (int) $tasks[0]['task_id'] ?>" selected>
-                                            Final Project Submission
-                                        </option>
-                                    <?php else: ?>
-                                        <option value="">— Select Task —</option>
-                                        <?php foreach ($tasks as $task): ?>
-                                            <option value="<?= (int) $task['task_id'] ?>">
-                                                <?= htmlspecialchars($task['task_title']) ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </select>
                                 <?php if ($selectedWorkshopName === 'Final Project' && !empty($tasks)): ?>
                                     <input type="hidden" name="task_id" value="<?= (int) $tasks[0]['task_id'] ?>">
-                                    <p style="font-size: 0.9rem; color: var(--accent-color); margin-top: 5px;">
-                                        <i class="fas fa-info-circle"></i> This is a one-time final project submission.
-                                    </p>
+                                <?php else: ?>
+                                    <label for="task_id_select">Select Task</label>
+                                    <input type="hidden" name="task_id" id="task_id_hidden" value="">
+                                    <div class="task-search-dropdown" id="taskSearchDropdown">
+                                        <div class="task-search-trigger" id="taskSearchTrigger">
+                                            <i class="fas fa-search" style="color:#999; margin-right:10px; font-size:14px;"></i>
+                                            <input type="text" class="task-search-input" id="taskSearchInput" placeholder="Choose a task..." readonly>
+                                            <i class="fas fa-chevron-down" id="taskSearchArrow" style="color:#999; margin-left:10px; font-size:12px; transition:transform 0.3s ease;"></i>
+                                        </div>
+                                        <div class="task-search-options" id="taskSearchOptions">
+                                            <div class="task-opt" data-value="">
+                                                <i class="fas fa-clipboard-list"></i>
+                                                <span>— Select Task —</span>
+                                            </div>
+                                            <?php foreach ($tasks as $task): ?>
+                                                <div class="task-opt" data-value="<?= (int) $task['task_id'] ?>">
+                                                    <i class="fas fa-clipboard-list"></i>
+                                                    <span><?= htmlspecialchars($task['task_title']) ?></span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
                                 <?php endif; ?>
                             </div>
 
                             <?php if ($selectedWorkshopName === 'Final Project'): ?>
                                 <div class="form-group">
-                                    <label for="project_url">Live Site URL</label>
+                                    <label for="project_url" style="font-family:'Irish Grover',cursive; font-size:1.3rem; font-weight:600; color:var(--color-primary);">Live Site URL</label>
                                     <input type="url" id="project_url" name="project_url" placeholder="https://example.com"
-                                        required>
+                                        required style="font-family:'Irish Grover',cursive; padding:14px 18px; border-radius:12px; border:2px solid #e0e0e0; font-size:1.1rem; transition:all 0.3s ease;">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="team_photo">Team Photo</label>
-                                    <input type="file" id="team_photo" name="team_photo" accept="image/*" required>
-                                    <p style="font-size: 0.8rem; color: var(--color-gray-medium); margin-top: 5px;">
-                                        Upload a photo of your entire team (JPG, PNG).
-                                    </p>
+                                    <label for="team_photo" style="font-family:'Irish Grover',cursive; font-size:1.3rem; font-weight:600; color:var(--color-primary);">Team Photo</label>
+                                    <div class="team-photo-upload" id="teamPhotoUpload" style="position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 20px; border:3px dashed rgba(122,65,220,0.4); border-radius:16px; background:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.3s ease; text-align:center;">
+                                        <input type="file" id="team_photo" name="team_photo" accept="image/*" required style="position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;">
+                                        <div class="team-photo-placeholder" id="teamPhotoPlaceholder">
+                                            <div style="width:60px; height:60px; border-radius:50%; background:rgba(122,65,220,0.1); display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">
+                                                <i class="fas fa-plus" style="font-size:1.8rem; color:var(--accent-color); transition:all 0.3s ease;"></i>
+                                            </div>
+                                            <p style="font-family:'Irish Grover',cursive; font-size:1.2rem; color:#666; margin:0;">Click to upload team photo</p>
+                                            <p style="font-size:0.85rem; color:#999; margin:6px 0 0;">JPG, PNG — Max 5MB</p>
+                                        </div>
+                                        <div class="team-photo-preview" id="teamPhotoPreview" style="display:none;">
+                                            <img id="teamPhotoImg" style="max-width:100%; max-height:200px; border-radius:12px; object-fit:cover;">
+                                            <p style="font-family:'Irish Grover',cursive; font-size:1rem; color:var(--accent-color); margin-top:8px;">Click to change photo</p>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="project_desc">Project Summary</label>
+                                    <label for="project_desc" style="font-family:'Irish Grover',cursive; font-size:1.3rem; font-weight:600; color:var(--color-primary);">Project Summary</label>
                                     <textarea id="project_desc" name="project_desc" rows="4"
                                         placeholder="Enter a comprehensive description of your final project..."
-                                        required></textarea>
+                                        required style="font-family:'Irish Grover',cursive; padding:14px 18px; border-radius:12px; border:2px solid #e0e0e0; font-size:1.1rem; resize:vertical; transition:all 0.3s ease;"></textarea>
                                 </div>
                             <?php endif; ?>
 
                             <div class="form-group">
-                                <label>File</label>
+                                <label style="font-family:'Irish Grover',cursive; font-size:1.3rem; font-weight:600; color:var(--color-primary);">File</label>
                                 <div class="file-drop-zone" id="fileDropZone">
                                     <input type="file" name="task_file" id="taskFileInput"
                                         accept=".pdf,.zip,.docx,.doc,.jpg,.jpeg,.png" required>
@@ -593,22 +607,43 @@ unset($_SESSION['flash']);
                     <?php else: ?>
                         <div class="prev-submissions">
                             <?php foreach ($prevSubmissions as $sub): ?>
-                                <div class="prev-submission-card" id="prevSub_<?= (int) $sub['submission_id'] ?>">
-                                    <div class="prev-sub-info">
-                                        <span class="prev-sub-task">
-                                            <i class="fas fa-file-alt" style="color:var(--accent-color)"></i>
-                                            <?= htmlspecialchars($sub['task_title'] ?? '') ?>
-                                        </span>
-                                        <span class="prev-sub-date" style="margin-left: 10px;">
-                                            <i class="far fa-clock" style="color:var(--color-gray-light)"></i>
-                                            <?= htmlspecialchars($sub['submission_date'] ?? '') ?>
-                                        </span>
+                                <div class="prev-submission-card" id="prevSub_<?= (int) $sub['submission_id'] ?>" style="flex-direction:column; align-items:stretch;">
+                                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+                                        <div class="prev-sub-info">
+                                            <span class="prev-sub-task">
+                                                <i class="fas fa-file-alt" style="color:var(--accent-color)"></i>
+                                                <?= htmlspecialchars($sub['task_title'] ?? '') ?>
+                                            </span>
+                                            <span class="prev-sub-date" style="margin-left: 10px;">
+                                                <i class="far fa-clock" style="color:var(--color-gray-light)"></i>
+                                                <?= htmlspecialchars($sub['submission_date'] ?? '') ?>
+                                            </span>
+                                        </div>
+                                        <div class="prev-sub-meta">
+                                            <span class="status-badge <?= $sub['status'] === 'reviewed' ? 'status-reviewed' : 'status-pending' ?>">
+                                                <i class="fas <?= $sub['status'] === 'reviewed' ? 'fa-check-circle' : 'fa-hourglass-half' ?>"></i>
+                                                <?= $sub['status'] === 'reviewed' ? 'Reviewed' : 'Pending' ?>
+                                            </span>
+                                            <?php if (!empty($sub['file_url'])): ?>
+                                                <a href="<?= htmlspecialchars($sub['file_url'] ?? '') ?>" target="_blank" download
+                                                    class="download-sub-btn"
+                                                    style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 50px; background: rgba(122, 65, 220, 0.1); color: var(--accent-color); font-size: 0.85rem; font-weight: 600; text-decoration: none;">
+                                                    <i class="fas fa-download"></i> Download
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if ($sub['score'] !== null): ?>
+                                                <span class="score-display">
+                                                    <i class="fas fa-star" style="color:#FFD700"></i>
+                                                    <?= htmlspecialchars($sub['score'] ?? '') ?>
+                                                </span>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
+
                                     <?php if (!empty($sub['feedback'])): ?>
-                                        <div style="margin-top: 10px;">
-                                            <button type="button" class="btn-feedback-trigger" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
-                                                <i class="fas fa-comment-dots"></i> Read Feedback
-                                            </button>
+                                        <div class="prev-sub-desc"
+                                            style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray-dark); background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; border-left: 3px solid var(--accent-color);">
+                                            <strong>Feedback:</strong> <?= nl2br(htmlspecialchars($sub['feedback'] ?? '')) ?>
                                         </div>
                                     <?php endif; ?>
 
@@ -640,51 +675,24 @@ unset($_SESSION['flash']);
                                         </div>
                                     <?php endif; ?>
 
-                                    <div class="prev-sub-meta">
-                                        <span
-                                            class="status-badge <?= $sub['status'] === 'reviewed' ? 'status-reviewed' : 'status-pending' ?>">
-                                            <i
-                                                class="fas <?= $sub['status'] === 'reviewed' ? 'fa-check-circle' : 'fa-hourglass-half' ?>"></i>
-                                            <?= $sub['status'] === 'reviewed' ? 'Reviewed' : 'Pending' ?>
-                                        </span>
-
-                                        <?php if (!empty($sub['file_url'])): ?>
-                                            <a href="<?= htmlspecialchars($sub['file_url'] ?? '') ?>" target="_blank" download
-                                                class="download-sub-btn"
-                                                style="display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 50px; background: rgba(122, 65, 220, 0.1); color: var(--accent-color); font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: all 0.3s ease;"
-                                                onmouseover="this.style.background='rgba(122, 65, 220, 0.2)'; this.style.transform='translateY(-1px)'"
-                                                onmouseout="this.style.background='rgba(122, 65, 220, 0.1)'; this.style.transform='translateY(0)'">
-                                                <i class="fas fa-download"></i> Download
-                                            </a>
-                                        <?php endif; ?>
-
-                                        <?php if ($sub['score'] !== null): ?>
-                                            <span class="score-display">
-                                                <i class="fas fa-star" style="color:#FFD700"></i>
-                                                <?= htmlspecialchars($sub['score'] ?? '') ?>
-                                            </span>
-                                        <?php endif; ?>
-
-                                        <?php
-                                        // Check if submission was in the last 60 seconds
-                                        $subTime = strtotime($sub['submission_date'] ?? 'now');
-                                        $isRecently = (time() - $subTime) < 60;
-                                        if ($isRecently && $isLeader === 1):
-                                            ?>
-                                            <form method="POST" style="display:inline;"
-                                                onsubmit="return confirm('Are you sure? This will delete your submission so you can re-upload.');">
-                                                <input type="hidden" name="action" value="delete_submission">
-                                                <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
-                                                <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
-                                                <button type="submit" class="undo-sub-btn"
-                                                    style="background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease;"
-                                                    onmouseover="this.style.background='#fca5a5'"
-                                                    onmouseout="this.style.background='#fee2e2'">
-                                                    <i class="fas fa-undo"></i> Undo (1m)
-                                                </button>
-                                            </form>
-                                        <?php endif; ?>
-                                    </div>
+                                    <?php
+                                    $subTime = strtotime($sub['submission_date'] ?? 'now');
+                                    $isRecently = (time() - $subTime) < 60;
+                                    if ($isRecently && $isLeader === 1):
+                                        ?>
+                                        <form method="POST" style="margin-top:8px;"
+                                            onsubmit="return confirm('Are you sure? This will delete your submission so you can re-upload.');">
+                                            <input type="hidden" name="action" value="delete_submission">
+                                            <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
+                                            <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
+                                            <button type="submit" class="undo-sub-btn"
+                                                style="background: #fee2e2; color: #b91c1c; border: 1px solid #fecaca; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease;"
+                                                onmouseover="this.style.background='#fca5a5'"
+                                                onmouseout="this.style.background='#fee2e2'">
+                                                <i class="fas fa-undo"></i> Undo (1m)
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>
@@ -869,6 +877,125 @@ unset($_SESSION['flash']);
             if (activeP) {
                 activeP.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
+
+            /* --- Team Photo Preview --- */
+            var teamPhotoInput = document.getElementById('team_photo');
+            var teamPhotoUpload = document.getElementById('teamPhotoUpload');
+            var teamPhotoPlaceholder = document.getElementById('teamPhotoPlaceholder');
+            var teamPhotoPreview = document.getElementById('teamPhotoPreview');
+            var teamPhotoImg = document.getElementById('teamPhotoImg');
+            if (teamPhotoInput && teamPhotoUpload && teamPhotoPlaceholder && teamPhotoPreview && teamPhotoImg) {
+                teamPhotoInput.addEventListener('change', function() {
+                    var file = this.files[0];
+                    if (file) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            teamPhotoImg.src = e.target.result;
+                            teamPhotoPlaceholder.style.display = 'none';
+                            teamPhotoPreview.style.display = 'block';
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+                teamPhotoUpload.addEventListener('mouseenter', function() {
+                    this.style.borderColor = '#7A41DC';
+                    this.style.boxShadow = '0 0 0 4px rgba(122,65,220,0.1)';
+                    this.style.background = 'rgba(122,65,220,0.03)';
+                });
+                teamPhotoUpload.addEventListener('mouseleave', function() {
+                    this.style.borderColor = 'rgba(122,65,220,0.4)';
+                    this.style.boxShadow = 'none';
+                    this.style.background = 'rgba(255,255,255,0.6)';
+                });
+            }
+
+            /* --- Task Search Dropdown Styles --- */
+            (function(){
+                var s = document.createElement('style');
+                s.textContent = '.task-search-dropdown{position:relative;width:100%;font-family:"Irish Grover",cursive !important}.task-search-trigger{display:flex;align-items:center;width:100%;padding:12px 16px;border-radius:12px;border:2px solid #e0e0e0;background:rgba(255,255,255,0.95);cursor:pointer;transition:all 0.3s ease}.task-search-trigger:hover,.task-search-trigger.active{border-color:#7A41DC;box-shadow:0 0 0 4px rgba(122,65,220,0.12)}.task-search-input{flex:1;border:none;outline:none;background:transparent;font-family:"Irish Grover",cursive !important;font-size:var(--fs-base);color:#333;cursor:pointer}.task-search-input::placeholder{color:#999}.task-search-options{position:absolute;top:calc(100% + 6px);left:0;right:0;max-height:220px;overflow-y:auto;background:#fff;border-radius:12px;border:1px solid #e0e0e0;box-shadow:0 8px 24px rgba(0,0,0,0.12);z-index:1000;display:none;padding:6px;text-align:left}.task-search-dropdown.open .task-search-options{display:block}.task-search-dropdown.open #taskSearchArrow{transform:rotate(180deg)}.task-opt{display:flex;align-items:center;padding:10px 14px;border-radius:8px;cursor:pointer;font-size:var(--fs-base);color:#333;font-family:"Irish Grover",cursive !important;transition:background 0.2s ease}.task-opt:hover{background:rgba(0,0,0,0.05)}.task-opt i{margin-right:10px;font-size:14px;opacity:0.7}.prev-feedback-block{width:100%!important;font-family:"Irish Grover",cursive !important}.prev-feedback-label{font-family:"Irish Grover",cursive !important}.prev-feedback-text{font-family:"Irish Grover",cursive !important}.download-sub-btn{padding:12px 28px!important;font-size:1.4rem!important;gap:10px!important}.team-photo-upload:hover .fa-plus{transform:rotate(90deg);color:#5B2AB5}.team-photo-upload .fa-plus{transition:all 0.3s ease}.file-drop-zone{font-family:"Irish Grover",cursive !important}.file-drop-zone p{font-family:"Irish Grover",cursive !important}';
+                document.head.appendChild(s);
+            })();
+
+            /* --- Task Search Dropdown --- */
+            (function () {
+                var dd = document.getElementById('taskSearchDropdown');
+                var trigger = document.getElementById('taskSearchTrigger');
+                var input = document.getElementById('taskSearchInput');
+                var opts = document.getElementById('taskSearchOptions');
+                var hidden = document.getElementById('task_id_hidden');
+                if (!dd || !trigger || !input || !opts) return;
+
+                var font = "'Irish Grover', cursive";
+                dd.style.fontFamily = font;
+                trigger.style.fontFamily = font;
+                input.style.fontFamily = font;
+                opts.style.fontFamily = font;
+                opts.querySelectorAll('.task-opt').forEach(function(el) {
+                    el.style.fontFamily = font;
+                    var sp = el.querySelector('span');
+                    if (sp) sp.style.fontFamily = font;
+                    var ic = el.querySelector('i');
+                    if (ic) ic.style.fontFamily = 'Font Awesome 6 Free';
+                });
+
+                var items = opts.querySelectorAll('.task-opt');
+
+                function openDD() {
+                    dd.classList.add('open');
+                    trigger.classList.add('active');
+                    input.removeAttribute('readonly');
+                    input.value = '';
+                    input.focus();
+                    filterOpts('');
+                }
+
+                function closeDD() {
+                    dd.classList.remove('open');
+                    trigger.classList.remove('active');
+                    input.setAttribute('readonly', true);
+                    var active = opts.querySelector('.task-opt[data-value="' + hidden.value + '"]');
+                    if (active) {
+                        input.value = active.querySelector('span').textContent;
+                    } else {
+                        input.value = '';
+                    }
+                }
+
+                trigger.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (dd.classList.contains('open')) { closeDD(); } else { openDD(); }
+                });
+
+                input.addEventListener('input', function () {
+                    filterOpts(this.value.toLowerCase());
+                });
+
+                input.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    if (dd.classList.contains('open')) { closeDD(); } else { openDD(); }
+                });
+
+                items.forEach(function (item) {
+                    item.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        var val = this.getAttribute('data-value');
+                        hidden.value = val;
+                        input.value = this.querySelector('span').textContent;
+                        input.setAttribute('readonly', true);
+                        closeDD();
+                    });
+                });
+
+                function filterOpts(q) {
+                    items.forEach(function (item) {
+                        var t = item.querySelector('span').textContent.toLowerCase();
+                        item.style.display = (t.includes(q) || q === '') ? 'flex' : 'none';
+                    });
+                }
+
+                document.addEventListener('click', function () { closeDD(); });
+                opts.addEventListener('click', function (e) { e.stopPropagation(); });
+            })();
         });
 
         function openFeedbackModal(subId) {

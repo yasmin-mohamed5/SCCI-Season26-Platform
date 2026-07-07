@@ -219,7 +219,7 @@ WHERE c.committee_id = ?
                 </a>
             <?php } ?>
         </div>
-
+        
 
     </section>
 
