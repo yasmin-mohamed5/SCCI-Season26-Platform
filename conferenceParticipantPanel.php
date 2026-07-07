@@ -299,7 +299,7 @@ if ($selectedWorkshopId > 0) {
     }
 }
 
-/* ---------- Fetch Participant's Previous Submissions ---------- */
+/* ---------- Fetch Team's Previous Submissions ---------- */
 $prevSubmissions = [];
 if ($selectedWorkshopId > 0) {
     $stmt = mysqli_prepare(
@@ -309,12 +309,13 @@ if ($selectedWorkshopId > 0) {
                 e.score, e.feedback
          FROM academic_submissions s
          JOIN academic_tasks t ON s.task_id = t.task_id
+         JOIN academic_participants p ON s.participant_id = p.participant_id
          LEFT JOIN academic_evaluations e ON e.submission_id = s.submission_id
-         WHERE s.participant_id = ? AND t.workshop_id = ?
+         WHERE p.team_id = ? AND t.workshop_id = ?
          ORDER BY s.submission_date DESC"
     );
     if ($stmt) {
-        mysqli_stmt_bind_param($stmt, "ii", $participantId, $selectedWorkshopId);
+        mysqli_stmt_bind_param($stmt, "ii", $teamId, $selectedWorkshopId);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         while ($row = mysqli_fetch_assoc($result)) {
@@ -604,9 +605,10 @@ unset($_SESSION['flash']);
                                         </span>
                                     </div>
                                     <?php if (!empty($sub['feedback'])): ?>
-                                        <div class="prev-sub-desc"
-                                            style="margin-top: 10px; font-size: 0.9rem; color: var(--color-gray-dark); background: rgba(255,255,255,0.05); padding: 10px; border-radius: 6px; border-left: 3px solid var(--accent-color);">
-                                            <strong>Feedback:</strong> <?= nl2br(htmlspecialchars($sub['feedback'] ?? '')) ?>
+                                        <div style="margin-top: 10px;">
+                                            <button type="button" class="btn-feedback-trigger" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
+                                                <i class="fas fa-comment-dots"></i> Read Feedback
+                                            </button>
                                         </div>
                                     <?php endif; ?>
 
@@ -689,6 +691,27 @@ unset($_SESSION['flash']);
                     <?php endif; ?>
                 </section>
 
+            <?php endif; ?>
+
+            <!-- Feedback Modals -->
+            <?php if (!empty($prevSubmissions)): ?>
+                <?php foreach ($prevSubmissions as $sub): ?>
+                    <?php if (!empty($sub['feedback'])): ?>
+                        <div class="feedback-modal-overlay" id="feedbackModal_<?= (int) $sub['submission_id'] ?>">
+                            <div class="feedback-modal">
+                                <div class="feedback-modal-header">
+                                    <h3><i class="fas fa-comment-dots" style="color: var(--accent-color);"></i> Feedback</h3>
+                                    <button type="button" class="feedback-modal-close" onclick="closeFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                                <div class="feedback-modal-body">
+                                    <?= nl2br(htmlspecialchars($sub['feedback'] ?? '')) ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
             <?php endif; ?>
 
         </div>
@@ -846,6 +869,32 @@ unset($_SESSION['flash']);
             if (activeP) {
                 activeP.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
+        });
+
+        function openFeedbackModal(subId) {
+            const modal = document.getElementById('feedbackModal_' + subId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeFeedbackModal(subId) {
+            const modal = document.getElementById('feedbackModal_' + subId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Close modal if clicked outside
+        document.querySelectorAll('.feedback-modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
         });
     </script>
 </body>
