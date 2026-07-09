@@ -145,8 +145,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'submi
         exit;
     }
 
-    if ($_FILES['task_file']['size'] > 30 * 1024 * 1024) {
-        setFlash('error', 'File too large (max 30MB)');
+    if ($_FILES['task_file']['size'] > 80 * 1024 * 1024) {
+        setFlash('error', 'File too large (max 80MB)');
         header("Location: conferenceParticipantPanel.php?workshop_id=" . $wsId);
         exit;
     }
@@ -571,7 +571,7 @@ unset($_SESSION['flash']);
                                     <i class="fas fa-cloud-upload-alt"></i>
                                     <p>Drag & drop your file here or click to browse</p>
                                     <p style="font-size:1rem; color:var(--color-gray-light);">PDF, ZIP, DOCX, JPG, PNG — Max
-                                        30MB</p>
+                                        80MB</p>
                                     <div class="file-name-display" id="fileNameDisplay"></div>
                                 </div>
                             </div>
@@ -825,10 +825,10 @@ unset($_SESSION['flash']);
                     }
 
                     const file = fileInput.files[0];
-                    const maxSize = 30 * 1024 * 1024; // 30MB
+                    const maxSize = 80 * 1024 * 1024; // 80MB
                     if (file.size > maxSize) {
                         e.preventDefault();
-                        alert('Project file size exceeds 30MB limit.');
+                        alert('Project file size exceeds 80MB limit.');
                         return;
                     }
 
