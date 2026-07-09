@@ -164,6 +164,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'accep
     exit;
 }
 
+/* ----- Handle: Delete Submission ----- */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_submission') {
+
+    $submissionId = (int) ($_POST['submission_id'] ?? 0);
+    $wsId = (int) ($_POST['workshop_id'] ?? 0);
+
+    if ($submissionId > 0) {
+        // Delete evaluation first (FK), then the submission
+        $stmt1 = mysqli_prepare($connect, "DELETE FROM academic_evaluations WHERE submission_id = ?");
+        if ($stmt1) {
+            mysqli_stmt_bind_param($stmt1, "i", $submissionId);
+            mysqli_stmt_execute($stmt1);
+            mysqli_stmt_close($stmt1);
+        }
+        $stmt2 = mysqli_prepare($connect, "DELETE FROM academic_submissions WHERE submission_id = ?");
+        if ($stmt2) {
+            mysqli_stmt_bind_param($stmt2, "i", $submissionId);
+            mysqli_stmt_execute($stmt2);
+            mysqli_stmt_close($stmt2);
+            setFlash('success', 'Submission deleted successfully ✓');
+        } else {
+            setFlash('error', 'Failed to delete submission');
+        }
+    } else {
+        setFlash('error', 'Invalid submission ID');
+    }
+
+    header("Location: conferenceMemberPanel.php?workshop_id=" . $wsId);
+    exit;
+}
+
 /* ---------- Count tasks per workshop (for the slider cards) ---------- */
 $workshopTaskCounts = [];
 $cntQ = mysqli_query($connect, "SELECT workshop_id, COUNT(*) as cnt FROM academic_tasks GROUP BY workshop_id");
@@ -549,6 +580,16 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
                                     <button class="btn-feedback-trigger" type="button" onclick="openFeedbackModal(<?= (int) $sub['submission_id'] ?>)">
                                         <i class="fas fa-comment-dots"></i> <?= !empty($sub['feedback']) || !empty($sub['score']) ? 'Read/Edit Feedback' : 'Evaluate & Feedback' ?>
                                     </button>
+
+                                    <!-- Delete Submission -->
+                                    <form method="POST" action="" style="display:inline;" onsubmit="return confirmDelete(event)">
+                                        <input type="hidden" name="action" value="delete_submission">
+                                        <input type="hidden" name="submission_id" value="<?= (int) $sub['submission_id'] ?>">
+                                        <input type="hidden" name="workshop_id" value="<?= $selectedWorkshopId ?>">
+                                        <button type="submit" class="btn-delete-submission" id="deleteBtn_<?= (int) $sub['submission_id'] ?>" title="Delete this submission">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -596,6 +637,26 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
         </div>
     </main>
 
+    <!-- ── Delete Confirmation Modal ── -->
+    <div class="delete-confirm-overlay" id="deleteConfirmOverlay" onclick="cancelDelete(event)">
+        <div class="delete-confirm-modal">
+            <div class="delete-confirm-icon">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <h3 class="delete-confirm-title">Delete Submission?</h3>
+            <div class="delete-confirm-info" id="deleteConfirmInfo">
+                <!-- filled by JS -->
+            </div>
+            <p class="delete-confirm-warning">This action <strong>cannot be undone</strong>.</p>
+            <div class="delete-confirm-actions">
+                <button class="delete-btn-cancel" onclick="closeDeleteModal()">Cancel</button>
+                <button class="delete-btn-confirm" id="deleteConfirmBtn">
+                    <i class="fas fa-trash-alt"></i> Yes, Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
     <?php include './includes/footer.php'; ?>
 
     <!-- FontAwesome JS -->
@@ -616,6 +677,39 @@ $wsColors = ['#6C63FF', '#FF6584', '#43B97F', '#F5A623', '#3B82F6', '#8B5CF6', '
             const gap = 20;
             const amount = cardWidth + gap;
             track.scrollBy({ left: dir === 'right' ? amount : -amount, behavior: 'smooth' });
+        }
+
+        /* --- Delete Submission Confirm (custom modal) --- */
+        let _pendingDeleteForm = null;
+
+        function confirmDelete(e) {
+            e.preventDefault();
+            const form = e.target;
+            _pendingDeleteForm = form;
+
+            const row  = form.closest('.submission-row');
+            const name = row?.querySelector('.submission-name')?.textContent?.trim() || '';
+            const task = row?.querySelector('.submission-task')?.textContent?.trim() || '';
+
+            document.getElementById('deleteConfirmInfo').innerHTML =
+                `<span class="dci-item"><i class="fas fa-user-graduate"></i>${name}</span>` +
+                `<span class="dci-item"><i class="fas fa-file-alt"></i>${task}</span>`;
+
+            document.getElementById('deleteConfirmBtn').onclick = function () {
+                _pendingDeleteForm.submit();
+            };
+
+            document.getElementById('deleteConfirmOverlay').classList.add('active');
+            return false;
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteConfirmOverlay').classList.remove('active');
+            _pendingDeleteForm = null;
+        }
+
+        function cancelDelete(e) {
+            if (e.target === document.getElementById('deleteConfirmOverlay')) closeDeleteModal();
         }
 
         /* --- Task Modal --- */
