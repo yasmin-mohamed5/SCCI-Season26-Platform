@@ -67,49 +67,39 @@ if (isset($_SESSION['user_id'])) {
         ?>
 
         <?php
-        // Build the panels dropdown only for users with panel access
-        $panelLinks = [];
-
         if ($role == 2) {
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/memberWorkshopPanel.php',   'icon' => 'fa-user-group',    'label' => 'Member Panel'];
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/conferenceMemberPanel.php', 'icon' => 'fa-graduation-cap','label' => 'Conference Panel'];
+            echo '<a href="/SCCI-Season26-Platform/memberWorkshopPanel.php" id="homeNavLine">member panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/conferenceMemberPanel.php" id="homeNavLine">Conference Panel</a>';
         }
-        if ($role == 1) {
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/participantWorkshopPanel.php',  'icon' => 'fa-user-graduate', 'label' => 'Participant Panel'];
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/conferenceParticipantPanel.php','icon' => 'fa-book-open',     'label' => 'Conference Panel'];
-        }
-        if ($role == 4) {
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/headPanel.php',    'icon' => 'fa-user-tie',      'label' => 'Head Panel'];
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/contactPanel.php', 'icon' => 'fa-address-book',  'label' => 'Contact Panel'];
-        }
-        if ($role == 5) {
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/headPanel.php',       'icon' => 'fa-user-tie',   'label' => 'Head Panel'];
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/adminDashboard.php',  'icon' => 'fa-gauge-high', 'label' => 'Admin Board'];
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/contactPanel.php',    'icon' => 'fa-address-book','label' => 'Contact Panel'];
-        }
-        if ($committeeId == 6) {
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/itPanel.php',          'icon' => 'fa-screwdriver-wrench','label' => 'IT Panel'];
-            $panelLinks[] = ['href' => '/SCCI-Season26-Platform/itResetPassword.php',  'icon' => 'fa-key',              'label' => 'Reset Passwords'];
-        }
-
-        if (!empty($panelLinks)):
         ?>
-        <div class="nav-dropdown" id="navPanelsDropdown">
-            <button class="nav-dropdown-trigger" id="navPanelsTrigger" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-th-large"></i>
-                My Panels
-                <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
-            </button>
-            <div class="nav-dropdown-menu" id="navPanelsMenu" role="menu">
-                <?php foreach ($panelLinks as $pl): ?>
-                <a href="<?= $pl['href'] ?>" class="nav-dropdown-item" role="menuitem">
-                    <i class="fas <?= $pl['icon'] ?>"></i>
-                    <span><?= $pl['label'] ?></span>
-                </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <?php endif; ?>
+        <?php
+        if ($role == 1) {
+            echo '<a href="/SCCI-Season26-Platform/participantWorkshopPanel.php" id="homeNavLine">participant panel</a>';
+        }
+        ?>
+        <?php
+        if ($role == 1) {
+            echo '<a href="/SCCI-Season26-Platform/conferenceParticipantPanel.php" id="homeNavLine">Conference Panel</a>';
+        }
+        ?>
+        <?php
+        if ($role == 5) {
+            echo '<a href="/SCCI-Season26-Platform/headPanel.php" id="homeNavLine">head panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/adminDashboard.php" id="homeNavLine">Admin Board</a>';
+        }
+        ?>
+        <?php
+        if ($role == 5) {
+            echo '<a href="/SCCI-Season26-Platform/contactPanel.php" id="homeNavLine">contact panel</a>';
+
+        }
+        ?>
+        <?php
+        if ($committeeId == 6) {
+            echo '<a href="/SCCI-Season26-Platform/itPanel.php" id="homeNavLine">IT panel</a>';
+            echo '<a href="/SCCI-Season26-Platform/itResetPassword.php" id="homeNavLine">Reset Passwords</a>';
+        }
+        ?>
     </nav>
     <nav class="navAccount navRespnsive">
         <?php
@@ -196,63 +186,24 @@ if (isset($_SESSION['user_id'])) {
 <script src="/SCCI-Season26-Platform/assets/js/index.js?v=<?= ASSET_VERSION ?>"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // ── Active link highlighting ──────────────────
+        // Get current path
         const currentPath = window.location.pathname;
-        const navLinks = document.querySelectorAll('.navLinks a, .sideNavLinks a, .nav-dropdown-item');
+
+        // Select all links in the main navigation and side navigation
+        const navLinks = document.querySelectorAll('.navLinks a, .sideNavLinks a');
+
         navLinks.forEach(link => {
+            // Get the href attribute of the link
             const linkHref = link.getAttribute('href');
-            if (linkHref && (currentPath.endsWith(linkHref) || (linkHref !== '/' && currentPath.includes(linkHref)))) {
+
+            // Check if the current path matches the link's href
+            // We use includes() to handle potential relative paths or query parameters if needed
+            // But strict equality or endsWith is safer for navigation highlighting.
+            // Adjust logic: if href ends with current path or matches exactly.
+
+            if (currentPath.endsWith(linkHref) || (linkHref !== '/' && currentPath.includes(linkHref))) {
                 link.classList.add('active');
             }
         });
-
-        // ── My Panels Dropdown ────────────────────────
-        const dropdown = document.getElementById('navPanelsDropdown');
-        const trigger  = document.getElementById('navPanelsTrigger');
-        const menu     = document.getElementById('navPanelsMenu');
-
-        function positionMenu() {
-            if (!trigger || !menu) return;
-            const rect = trigger.getBoundingClientRect();
-            // Place below trigger, aligned to its right edge
-            menu.style.top   = (rect.bottom + 8) + 'px';
-            menu.style.left  = 'auto';
-            menu.style.right = (window.innerWidth - rect.right) + 'px';
-        }
-
-        function openMenu() {
-            positionMenu();
-            dropdown.classList.add('open');
-            trigger.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMenu() {
-            dropdown.classList.remove('open');
-            trigger.setAttribute('aria-expanded', 'false');
-        }
-
-        if (dropdown && trigger && menu) {
-            trigger.addEventListener('click', function (e) {
-                e.stopPropagation();
-                dropdown.classList.contains('open') ? closeMenu() : openMenu();
-            });
-
-            // Close on outside click
-            document.addEventListener('click', function (e) {
-                if (!dropdown.contains(e.target) && !menu.contains(e.target)) {
-                    closeMenu();
-                }
-            });
-
-            // Close on Escape
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') closeMenu();
-            });
-
-            // Reposition on resize
-            window.addEventListener('resize', function () {
-                if (dropdown.classList.contains('open')) positionMenu();
-            });
-        }
     });
 </script>
